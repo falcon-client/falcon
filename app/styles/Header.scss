@@ -1,7 +1,10 @@
-.Header {
-  background: white;
+.sticky {
   position: fixed;
   z-index: 1000;
+}
+
+.Header {
+  background: white;
   border-bottom: 1px solid #c7c7c7;
   padding: 8px 0;
   display: flex;
@@ -45,8 +48,4 @@
       text-decoration: none;
     }
   }
-}
-
-.Header--spacer {
-  height: 40px;
 }

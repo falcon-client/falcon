@@ -16,11 +16,18 @@
 @import "./Sidebar.scss";
 
 body {
-  background: white;
   font-family: Arial, Helvetica, Helvetica Neue, serif;
   margin: 0;
 }
 
 body, html {
-  background-color: transparent !important
+  background: transparent;
+}
+
+.no-padding {
+  padding: 0;
+}
+
+.no-margin {
+  margin: 0;
 }

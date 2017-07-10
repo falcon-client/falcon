@@ -9,25 +9,26 @@ export default class Home extends Component {
     return (
       <div className="container-fluid">
         <div className="row">
-          <div className="Header col-sm-12">
-            <div className="Header--container Header--container-status">
-              <span className="Connection"><i className="ion-locked Connection--lock Connection--lock-secure" /> <a href="">Connected</a></span>
-              <span><a href="">SQLite Version 3.1.6</a></span>
+          <div className="sticky">
+            <div className="Header col-sm-12">
+              <div className="Header--container Header--container-status">
+                <span className="Connection"><i className="ion-locked Connection--lock Connection--lock-secure" /> <a href="">Connected</a></span>
+                <span><a href="">SQLite Version 3.1.6</a></span>
+              </div>
+              <div className="Header--container">
+                <a href="">Falcon > sqlectron > compat-db</a>
+              </div>
             </div>
-            <div className="Header--container">
-              <a href="">Falcon > sqlectron > compat-db</a>
+            <div className="col-sm-12 no-padding">
+              <Tabs />
             </div>
-          </div>
-          <div className="col-sm-12 Header--spacer" />
-          <div className="col-sm-12">
-            <Tabs />
-          </div>
-          <div className="row">
-            <div className="col-sm-2">
-              <Sidebar />
-            </div>
-            <div className="Grid col-sm-10">
-              <Grid />
+            <div className="row no-margin">
+              <div className="col-sm-2 no-padding">
+                <Sidebar />
+              </div>
+              <div className="Grid col-sm-10">
+                <Grid />
+              </div>
             </div>
           </div>
         </div>

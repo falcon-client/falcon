@@ -4,39 +4,39 @@ export default function Sidebar() {
   return (
     <div className="Sidebar">
       <a>Databases</a>
-      <ul>
-        <li>albumns</li>
-        <li>users</li>
-        <li>Lorem</li>
-        <li>ipsum</li>
-        <li>dolor</li>
-        <li>sit</li>
-        <li>amet,</li>
-        <li>consectetur</li>
-        <li>adipisicing</li>
-        <li>elit.</li>
-        <li>Non</li>
-        <li>nihil</li>
-        <li>hic</li>
-        <li>iusto</li>
-        <li>eum</li>
-        <li>ea</li>
-        <li>pariatur</li>
-        <li>eos</li>
-        <li>fugit</li>
-        <li>et,</li>
-        <li>eius,</li>
-        <li>harum</li>
-        <li>quasi!</li>
-        <li>Architecto</li>
-        <li>veniam</li>
-        <li>debitis</li>
-        <li>sunt</li>
-        <li>nisi</li>
-        <li>ex</li>
-        <li>ipsum,</li>
-        <li>aliquam</li>
-        <li>est.</li>
+      <ul className="Sidebar--list">
+        <li className="Sidebar--list-item"><a>albumns</a></li>
+        <li className="Sidebar--list-item"><a>users</a></li>
+        <li className="Sidebar--list-item"><a>Lorem</a></li>
+        <li className="Sidebar--list-item"><a>ipsum</a></li>
+        <li className="Sidebar--list-item"><a>dolor</a></li>
+        <li className="Sidebar--list-item Sidebar--list-item-selected"><a>sit</a></li>
+        <li className="Sidebar--list-item"><a>amet,</a></li>
+        <li className="Sidebar--list-item"><a>consectetur</a></li>
+        <li className="Sidebar--list-item"><a>adipisicing</a></li>
+        <li className="Sidebar--list-item"><a>elit.</a></li>
+        <li className="Sidebar--list-item"><a>Non</a></li>
+        <li className="Sidebar--list-item"><a>nihil</a></li>
+        <li className="Sidebar--list-item"><a>hic</a></li>
+        <li className="Sidebar--list-item"><a>iusto</a></li>
+        <li className="Sidebar--list-item"><a>eum</a></li>
+        <li className="Sidebar--list-item"><a>ea</a></li>
+        <li className="Sidebar--list-item"><a>pariatur</a></li>
+        <li className="Sidebar--list-item"><a>eos</a></li>
+        <li className="Sidebar--list-item"><a>fugit</a></li>
+        <li className="Sidebar--list-item"><a>et</a></li>
+        <li className="Sidebar--list-item"><a>eius,</a></li>
+        <li className="Sidebar--list-item"><a>harum</a></li>
+        <li className="Sidebar--list-item"><a>quasi!</a></li>
+        <li className="Sidebar--list-item"><a>Architecto</a></li>
+        <li className="Sidebar--list-item"><a>veniam</a></li>
+        <li className="Sidebar--list-item"><a>debitis</a></li>
+        <li className="Sidebar--list-item"><a>sunt</a></li>
+        <li className="Sidebar--list-item"><a>nisi</a></li>
+        <li className="Sidebar--list-item"><a>ex</a></li>
+        <li className="Sidebar--list-item"><a>ipsum,</a></li>
+        <li className="Sidebar--list-item"><a>aliquam</a></li>
+        <li className="Sidebar--list-item"><a>est.</a></li>
       </ul>
     </div>
   );
