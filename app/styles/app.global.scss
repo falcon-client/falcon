@@ -1,0 +1,26 @@
+//
+// 3rd Party Libraries
+//
+
+@import "~bootstrap/scss/bootstrap-grid.scss";
+@import '~ionicons-temp/scss/ionicons.scss';
+@import "~react-virtualized/styles.css";
+
+//
+// Custom Compoments
+//
+
+@import "./Header.scss";
+@import "./Tabs.scss";
+@import "./Grid.scss";
+@import "./Sidebar.scss";
+
+body {
+  background: white;
+  font-family: Arial, Helvetica, Helvetica Neue, serif;
+  margin: 0;
+}
+
+body, html {
+  background-color: transparent !important
+}

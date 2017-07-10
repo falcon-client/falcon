@@ -164,6 +164,7 @@
     "flow-typed": "^2.1.2",
     "html-webpack-plugin": "^2.29.0",
     "identity-obj-proxy": "^3.0.0",
+    "ionicons-temp": "^2.0.0",
     "jest": "^20.0.4",
     "jsdom": "^11.0.0",
     "minimist": "^1.2.0",
@@ -186,7 +187,9 @@
     "webpack-merge": "^4.1.0"
   },
   "dependencies": {
+    "bootstrap": "4.0.0-alpha.6",
     "devtron": "^1.4.0",
+    "draggabilly": "^2.1.1",
     "electron-debug": "^1.2.0",
     "font-awesome": "^4.7.0",
     "history": "^4.6.3",
@@ -197,6 +200,7 @@
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.1",
     "react-router-redux": "^5.0.0-alpha.6",
+    "react-virtualized": "^9.9.0",
     "redux": "^3.7.1",
     "redux-thunk": "^2.2.0",
     "source-map-support": "^0.4.15"

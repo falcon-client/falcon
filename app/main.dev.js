@@ -41,6 +41,9 @@ const installExtensions = async () => {
 };
 
 
+app.commandLine.appendSwitch('--enable-experimental-web-platform-features');
+
+
 /**
  * Add event listeners...
  */
@@ -62,7 +65,10 @@ app.on('ready', async () => {
   mainWindow = new BrowserWindow({
     show: false,
     width: 1024,
-    height: 728
+    height: 528,
+    titleBarStyle: 'hiddenInset',
+    transparent: true,
+    vibrancy: 'light'
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
