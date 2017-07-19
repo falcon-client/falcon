@@ -66,9 +66,9 @@ app.on('ready', async () => {
     show: false,
     width: 1024,
     height: 528,
+    minWidth: 650,
+    minHeight: 300,
     titleBarStyle: 'hiddenInset',
-    transparent: true,
-    vibrancy: 'light'
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);

@@ -1,19 +1,40 @@
 .Sidebar {
-  overflow: scroll;
-  height: 100vh;
+  background: #F4F4F4;
+  padding: 20px 0;
+  border-right: 2px solid #979797;
+  border-top: 2px solid #979797;
+
+  .Sidebar--header {
+    padding: 0 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #767676;
+    font-size: 13px;
+  }
 
   .Sidebar--list {
     list-style: none;
     padding: 0;
+    overflow: scroll;
+    height: 100vh;
+    width: 500px;
   }
 
   .Sidebar--list-item {
+    font-size: 12px;
     padding: 5px;
-    padding-left: 10px;
+    padding-left: 20px;
+    color: #686868;
   }
 
   .Sidebar--list-item-selected {
-    background-color: #0B54D5;
+    background-color: #686868;
     color: white;
+
+    .ListSymbol {
+      background: white;
+      color: #686868;
+    }
   }
 }

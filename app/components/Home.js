@@ -18,15 +18,19 @@ export default class Home extends Component {
               <div className="Header--container">
                 <a href="">Falcon > sqlectron > compat-db</a>
               </div>
+              <div className="Header--container Header--container-hidden">
+                <div className="Header--button ion-android-refresh" />
+                <div className="Header--button ion-android-add" />
+              </div>
             </div>
             <div className="col-sm-12 no-padding">
-              <Tabs />
+              {/* <Tabs /> */}
             </div>
             <div className="row no-margin">
-              <div className="col-sm-2 no-padding">
+              <div className="col-2 no-padding">
                 <Sidebar />
               </div>
-              <div className="Grid col-sm-10">
+              <div className="Grid col-10">
                 <Grid />
               </div>
             </div>

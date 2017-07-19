@@ -2,6 +2,19 @@
 // 3rd Party Libraries
 //
 
+$font-family-sans-serif: "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, sans-serif;
+$font-family-serif: "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, sans-serif;
+$font-family-monospace: "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, sans-serif;
+$font-family-base: "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, sans-serif;
+$headings-font-family: $font-family-base;
+
+// Create grayscale
+$gray-dark:                 #767676 !default;
+$gray:                      gray !default;
+$gray-light:                #F4F4F4 !default;
+$gray-lighter:              white !default;
+$gray-lightest:             white !default;
+
 @import "~bootstrap/scss/bootstrap-grid.scss";
 @import '~ionicons-temp/scss/ionicons.scss';
 @import "~react-virtualized/styles.css";
@@ -14,10 +27,15 @@
 @import "./Tabs.scss";
 @import "./Grid.scss";
 @import "./Sidebar.scss";
+@import "./ListSymbol.scss";
 
 body {
-  font-family: Arial, Helvetica, Helvetica Neue, serif;
+  font-family: "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, sans-serif;
   margin: 0;
+}
+
+* {
+  outline: none;
 }
 
 body, html {

@@ -37,7 +37,7 @@ export default React.createClass({
     const setState = this.setState.bind(this);
     const grid = this.refs.AutoSizer.refs.Grid;
 
-    const className = columnIndex === this.state.hoveredColumnIndex || rowIndex === this.state.hoveredRowIndex
+    const className = rowIndex === this.state.hoveredRowIndex
       ? 'item hoveredItem'
       : 'item';
 
