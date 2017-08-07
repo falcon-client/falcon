@@ -1,15 +1,16 @@
 .sticky {
   position: fixed;
   z-index: 1000;
+  width: 100%;
 }
 
 .Header {
   background: white;
-  padding: 5px 0;
+  padding: 5px 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  padding-left: 80px;
+  padding-left: 100px;
   background: white;
   -webkit-app-region: drag;
 
@@ -35,7 +36,6 @@
 
   .Header--container {
     font-size: 12px;
-    background: #F4F4F4;
     border: 2px solid #E5E5E5;
     padding: 4px 6px;
     border-radius: 5px;

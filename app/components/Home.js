@@ -1,10 +1,40 @@
 // @flow
 import React, { Component } from 'react';
+import { Resizable, ResizableBox } from 'react-resizable';
 import Tabs from './Tabs';
 import Grid from './Grid';
+import Footer from './Footer';
 import Sidebar from './Sidebar';
 
 export default class Home extends Component {
+  state = {
+    widthSidebar: 200,
+    widthGrid: window.innerWidth - 200,
+  };
+
+  componentDidMount() {
+    window.onresizeFunctions.push(() => {
+      this.setState({
+        widthSidebar: this.state.widthSidebar,
+        widthGrid: window.innerWidth - this.state.widthSidebar
+      });
+    });
+  }
+
+  onResizeGrid = (event, { size }) => {
+    this.setState({
+      widthGrid: size.width,
+      widthSidebar: window.innerWidth - size.width
+    });
+  };
+
+  onResizeSidebar = (event, { size }) => {
+    this.setState({
+      widthSidebar: size.width,
+      widthGrid: window.innerWidth - size.width
+    });
+  };
+
   render() {
     return (
       <div className="container-fluid">
@@ -23,15 +53,25 @@ export default class Home extends Component {
                 <div className="Header--button ion-android-add" />
               </div>
             </div>
+            {/**
             <div className="col-sm-12 no-padding">
-              {/* <Tabs /> */}
-            </div>
+              <Tabs />
+            </div> **/}
             <div className="row no-margin">
-              <div className="col-2 no-padding">
+              <ResizableBox
+                width={this.state.widthSidebar}
+                height={100}
+                minConstraints={[100, 200]}
+                maxConstraints={[400, 400]}
+                onResize={this.onResizeSidebar}
+                handleSize={[100, 100]}
+                axis={'x'}
+              >
                 <Sidebar />
-              </div>
-              <div className="Grid col-10">
+              </ResizableBox>
+              <div className="Grid" style={{ position: 'relative', width: this.state.widthGrid }}>
                 <Grid />
+                <Footer />
               </div>
             </div>
           </div>

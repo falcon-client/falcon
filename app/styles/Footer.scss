@@ -1,0 +1,33 @@
+.Footer {
+  background: #D8D8D8;
+  width: 100%;
+  position: absolute;
+  bottom: -40px;
+  padding: 5px 10px;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  border-top: 2px solid #979797;
+
+  .FooterButtonContainer {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    border-radius: 5px;
+    background: red;
+    overflow: hidden;
+  }
+
+  .FooterButton {
+    width: 50%;
+    padding: 3px 15px;
+    background: white;
+    color: gray;
+    cursor: pointer;
+  }
+
+  .FooterButton--active {
+    background: gray;
+    color: white;
+  }
+}
