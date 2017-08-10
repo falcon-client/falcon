@@ -4,8 +4,8 @@ import ListSymbol from './ListSymbol';
 export default function Sidebar() {
   return (
     <div className="Sidebar">
-      <div className="Sidebar--header"><a>Connections</a></div>
       <ul className="Sidebar--list">
+        <li className="Sidebar--list-item"><ListSymbol type="query" /><a>Query</a></li>
         <li className="Sidebar--list-item"><ListSymbol /><a>albumns</a></li>
         <li className="Sidebar--list-item"><ListSymbol />
           <a>users</a>

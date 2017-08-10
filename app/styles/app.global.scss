@@ -16,8 +16,15 @@ $gray-lighter:              white !default;
 $gray-lightest:             white !default;
 
 @import "~bootstrap/scss/bootstrap-grid.scss";
-@import '~ionicons-temp/scss/ionicons.scss';
+@import "~ionicons-temp/scss/ionicons.scss";
 @import "~react-virtualized/styles.css";
+@import "~react-select/dist/react-select.css";
+@import "~react-table/react-table.css";
+
+.Select-menu-outer {
+  position: relative;
+  z-index: 100000;
+}
 
 //
 // Custom Compoments
@@ -28,11 +35,17 @@ $gray-lightest:             white !default;
 @import "./Grid.scss";
 @import "./Sidebar.scss";
 @import "./Footer.scss";
+@import "./Structure.scss";
+@import "./Login.scss";
 @import "./ListSymbol.scss";
 
 body {
   font-family: "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, sans-serif;
   margin: 0;
+}
+
+.row-margin {
+  margin: 5px 0;
 }
 
 * {
