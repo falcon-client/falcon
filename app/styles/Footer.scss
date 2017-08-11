@@ -14,7 +14,6 @@
     justify-content: center;
     align-content: center;
     border-radius: 5px;
-    background: red;
     overflow: hidden;
   }
 
@@ -28,6 +27,14 @@
 
   .FooterButton--active {
     background: gray;
-    color: white;
+
+    a {
+      color: white;
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: gray;
   }
 }

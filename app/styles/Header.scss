@@ -30,8 +30,13 @@
     cursor: pointer;
 
     &:hover {
+      background: black;
       cursor: pointer;
     }
+  }
+
+  .Header--breadcrumb {
+    padding: 0 5px;
   }
 
   .Header--container {

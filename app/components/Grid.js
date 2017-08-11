@@ -30,17 +30,6 @@ export default React.createClass({
     );
   },
 
-  componentDidMount() {
-    // Set the initial height of the grid
-    const element = document.querySelector('.Grid');
-    element.style.height = `${window.innerHeight - 80}px`;
-
-    // If the window is resized, change the height of the grid repsectively
-    window.onresizeFunctions.push(() => {
-      element.style.height = `${window.innerHeight - 80}px`;
-    });
-  },
-
   _cellRenderer(params) {
     const columnIndex = params.columnIndex;
     const rowIndex = params.rowIndex;

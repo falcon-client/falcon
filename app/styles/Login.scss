@@ -40,6 +40,10 @@
     padding: 10px;
     font-size: 1.3em;
     text-align: center;
+
+    &:hover {
+      background: black;
+    }
   }
 
   .Login--submit-button-container {

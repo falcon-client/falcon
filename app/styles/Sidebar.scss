@@ -1,6 +1,5 @@
 .Sidebar {
   background: #F4F4F4;
-  padding: 20px 0;
   border-right: 2px solid #979797;
   border-top: 2px solid #979797;
   position: relative;
@@ -23,6 +22,7 @@
     height: 100vh;
     overflow: scroll;
     white-space: nowrap;
+    cursor: pointer;
   }
 
   .Sidebar--list-item {
@@ -30,6 +30,16 @@
     padding: 5px;
     padding-left: 20px;
     color: #686868;
+
+    &:hover {
+      background-color: #686868;
+      color: white;
+
+      .ListSymbol {
+        background: white;
+        color: #686868;
+      }
+    }
   }
 
   .Sidebar--list-item-selected {

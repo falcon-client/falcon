@@ -1,8 +1,9 @@
 // @flow
 import React, { Component } from 'react';
-import { Resizable, ResizableBox } from 'react-resizable';
+import { ResizableBox } from 'react-resizable';
 import type { Children } from 'react';
-import Tabs from '../components/Tabs';
+// import Tabs from '../components/Tabs';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
 
@@ -22,6 +23,15 @@ export default class App extends Component {
         widthSidebar: this.state.widthSidebar,
         widthGrid: window.innerWidth - this.state.widthSidebar
       });
+    });
+
+    const element = document.querySelector('.Grid');
+    const height = 32 + 10 + 21 + 20;
+    element.style.height = `${window.innerHeight - height}px`;
+
+    // If the window is resized, change the height of the grid repsectively
+    window.onresizeFunctions.push(() => {
+      element.style.height = `${window.innerHeight - height}px`;
     });
   }
 
@@ -44,19 +54,7 @@ export default class App extends Component {
       <div className="container-fluid">
         <div className="row">
           <div className="sticky">
-            <div className="Header col-sm-12">
-              <div className="Header--container Header--container-status">
-                <span className="Connection"><i className="ion-locked Connection--lock Connection--lock-secure" /> <a href="">Connected</a></span>
-                <span><a href="">SQLite Version 3.1.6</a></span>
-              </div>
-              <div className="Header--container">
-                <a href="">Falcon > sqlectron > compat-db</a>
-              </div>
-              <div className="Header--container Header--container-hidden">
-                <div className="Header--button ion-android-refresh" />
-                <div className="Header--button ion-android-add" />
-              </div>
-            </div>
+            <Header />
             {/**
             <div className="col-sm-12 no-padding">
               <Tabs />
