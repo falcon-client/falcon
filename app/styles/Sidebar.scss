@@ -17,12 +17,14 @@
 
   .Sidebar--list {
     list-style: none;
-    padding: 0;
+    padding: 10px 0;
     overflow: scroll;
     height: 100vh;
+    margin: 0;
     overflow: scroll;
     white-space: nowrap;
     cursor: pointer;
+    height: 100%;
   }
 
   .Sidebar--list-item {

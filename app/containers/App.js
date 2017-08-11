@@ -25,13 +25,16 @@ export default class App extends Component {
       });
     });
 
-    const element = document.querySelector('.Grid');
+    const grid = document.querySelector('.Grid');
+    const sidebar = document.querySelector('.Sidebar');
     const height = 32 + 10 + 21 + 20;
-    element.style.height = `${window.innerHeight - height}px`;
+    grid.style.height = `${window.innerHeight - height}px`;
+    sidebar.style.height = `${window.innerHeight - height + 40}px`;
 
     // If the window is resized, change the height of the grid repsectively
     window.onresizeFunctions.push(() => {
-      element.style.height = `${window.innerHeight - height}px`;
+      grid.style.height = `${window.innerHeight - height}px`;
+      sidebar.style.height = `${window.innerHeight - height + 40}px`;
     });
   }
 
