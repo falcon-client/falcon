@@ -15,25 +15,32 @@
     align-items: center;
     border: 1px solid #eee;
   }
+
   .item:hover {
     background-color: rgba(0, 0, 0, .2);
   }
+
   .hoveredItem {
     background-color: rgba(0, 0, 0, .1);
   }
 }
 
-.react-resizable {
-  position: relative;
-}
+.App {
+  .Grid {
+    .react-resizable {
+      position: relative;
+    }
 
-.react-resizable-handle {
-  position: absolute;
-  width: 3px;
-  height: 1000px;
-  bottom: 0;
-  top: 0;
-  right: 0;
-  background: gray;
-  cursor: col-resize;
+    .react-resizable-handle {
+      position: absolute;
+      width: 100%;
+      height: 4px;
+      bottom: 0;
+      left: 0;
+      top: initial;
+      right: initial;
+      background: gray;
+      cursor: row-resize;
+    }
+  }
 }

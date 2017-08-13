@@ -38,6 +38,11 @@ $gray-lightest:             white !default;
 @import "./Structure.scss";
 @import "./Login.scss";
 @import "./ListSymbol.scss";
+@import "./App.scss";
+
+//
+// Global style overrides
+//
 
 body {
   font-family: "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, sans-serif;
@@ -50,10 +55,6 @@ body {
 
 * {
   outline: none;
-}
-
-body, html {
-  background: transparent;
 }
 
 .no-padding {

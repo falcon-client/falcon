@@ -7,11 +7,11 @@ import './styles/app.global.scss';
 
 const store = configureStore();
 
-window.onresizeFunctions = window.onresizeFunctions || [];
+window.onresizeFunctions = window.onresizeFunctions || {};
 
 // Global onresize fn
 window.onresize = () => {
-  window.onresizeFunctions.forEach(fn => {
+  Object.values(window.onresizeFunctions).forEach(fn => {
     fn();
   });
 };

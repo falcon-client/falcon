@@ -5,12 +5,14 @@ import App from './containers/App';
 import ContentPage from './containers/ContentPage';
 import StructurePage from './containers/StructurePage';
 import LoginPage from './containers/LoginPage';
+import QueryPage from './containers/QueryPage';
 
 export default () => (
   <App>
     <Switch>
       <Route path="/content" component={ContentPage} />
       <Route path="/structure" component={StructurePage} />
+      <Route path="/query" component={QueryPage} />
       <Route path="/" component={LoginPage} />
     </Switch>
   </App>

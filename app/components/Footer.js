@@ -13,6 +13,9 @@ export default function Footer() {
           <Link to={'/login'}>Login</Link>
         </div>
         <div className="FooterButton">
+          <Link to={'/query'}>Query</Link>
+        </div>
+        <div className="FooterButton">
           <Link to={'/structure'}>Structure</Link>
         </div>
       </div>

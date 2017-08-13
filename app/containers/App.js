@@ -18,21 +18,21 @@ export default class App extends Component {
   };
 
   componentDidMount() {
-    window.onresizeFunctions.push(() => {
+    window.onresizeFunctions['sidebar-resize-set-state'] = () => {
       this.setState({
         widthSidebar: this.state.widthSidebar,
         widthGrid: window.innerWidth - this.state.widthSidebar
       });
-    });
+    };
 
-    const grid = document.querySelector('.Grid');
+    const grid = document.querySelector('.App .Grid');
     const sidebar = document.querySelector('.Sidebar');
     const height = 32 + 10 + 21 + 20;
     grid.style.height = `${window.innerHeight - height}px`;
     sidebar.style.height = `${window.innerHeight - height + 40}px`;
 
     // If the window is resized, change the height of the grid repsectively
-    window.onresizeFunctions.push(() => {
+    window.onresizeFunctions['resize-grid-resize'] = (() => {
       grid.style.height = `${window.innerHeight - height}px`;
       sidebar.style.height = `${window.innerHeight - height + 40}px`;
     });
@@ -54,7 +54,7 @@ export default class App extends Component {
 
   render() {
     return (
-      <div className="container-fluid">
+      <div className="App container-fluid">
         <div className="row">
           <div className="sticky">
             <Header />
