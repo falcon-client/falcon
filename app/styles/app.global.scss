@@ -38,6 +38,7 @@ $gray-lightest:             white !default;
 @import "./Structure.scss";
 @import "./Login.scss";
 @import "./ListSymbol.scss";
+@import "./QueryPage.scss";
 @import "./App.scss";
 
 //
@@ -63,4 +64,11 @@ body {
 
 .no-margin {
   margin: 0;
+}
+
+.ace_layer.ace_gutter-layer.ace_folding-enabled {
+  background: white;
+}
+.ace_gutter-cell {
+  color: #D8D8D8;
 }

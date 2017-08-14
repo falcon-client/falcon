@@ -5,10 +5,6 @@ import ListSymbol from './ListSymbol';
 export default function Header() {
   return (
     <div className="Header col-sm-12">
-      <div className="Header--container Header--container-status">
-        <span className="Connection"><i className="ion-locked Connection--lock Connection--lock-secure" /> <a href="">Connected</a></span>
-        <span><a href="">SQLite 3.1.6</a></span>
-      </div>
       <div className="Header--container">
         {/* @TODO: Create a separate breadcrumbs component  */}
         <div className="Header--breadcrumb">
@@ -20,6 +16,10 @@ export default function Header() {
         <div className="Header--breadcrumb">
           <ListSymbol type="table" /> Lorem
          </div>
+      </div>
+      <div className="Header--container Header--container-status">
+        <span className="Connection"><i className="ion-locked Connection--lock Connection--lock-secure" /> <a href="">Connected</a></span>
+        <span><a href="">SQLite 3.1.6</a></span>
       </div>
       <div className="Header--container Header--container-hidden">
         <div className="Header--button ion-android-refresh" />

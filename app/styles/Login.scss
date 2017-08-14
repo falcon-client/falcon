@@ -40,8 +40,9 @@
     padding: 10px;
     font-size: 1.3em;
     text-align: center;
+    cursor: pointer;
 
-    &:hover {
+    &:hover, &:focus {
       background: black;
     }
   }
@@ -57,5 +58,9 @@
     color: black;
     border: none;
     padding: 10px;
+
+    &:focus {
+      background: #c3c3c3;
+    }
   }
 }

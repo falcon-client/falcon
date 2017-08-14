@@ -1,12 +1,20 @@
 // @flow
 import React, { Component } from 'react';
 import { ResizableBox } from 'react-resizable';
+import AceEditor from 'react-ace';
+import 'brace';
+import 'brace/mode/sql';
+import 'brace/snippets/sql';
+import 'brace/theme/xcode';
+import 'brace/ext/language_tools';
+import 'brace/ext/searchbox';
 import Content from '../components/Content';
 
 export default class QueryPage extends Component {
   state = {
     queryHeight: (window.innerHeight - 40) / 2,
-    queryResultsHeight: (window.innerHeight - 40) / 2
+    queryResultsHeight: ((window.innerHeight - 40) / 2) - 40,
+    query: 'SELECT * FROM users'
   }
 
   item = null;
@@ -38,8 +46,20 @@ export default class QueryPage extends Component {
           style={{ height: `${this.state.queryHeight}px` }}
           onResize={this.onQueryResize}
         >
-          {this.state.queryHeight},
-          {this.state.queryResultsHeight}
+          <AceEditor
+            mode="sql"
+            theme="xcode"
+            name="querybox"
+            value={this.state.query}
+            focus
+            width={'100%'}
+            height={'100%'}
+            showPrintMargin={false}
+            editorProps={{ $blockScrolling: Infinity }}
+            enableBasicAutocompletion
+            enableSnippets
+            enableLiveAutocompletion={false}
+          />
         </ResizableBox>
         <div style={{ height: this.state.queryResultsHeight }}>
           <Content />
