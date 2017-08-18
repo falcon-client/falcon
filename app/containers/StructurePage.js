@@ -4,8 +4,11 @@ import ReactTable from 'react-table';
 import Select from 'react-select';
 
 const options = [
-  { value: 'one', label: 'One' },
-  { value: 'two', label: 'Two' }
+  { value: 'BINARY', label: 'BINARY' },
+  { value: 'TEXT', label: 'TEXT' },
+  { value: 'NUMERIC', label: 'NUMERIC' },
+  { value: 'REAL', label: 'REAL' },
+  { value: 'BLOB', label: 'BLOB' }
 ];
 
 function logChange(val) {
@@ -13,37 +16,37 @@ function logChange(val) {
 }
 
 const data = [{
-  name: 'Tanner Linsley',
-  age: 26,
-  friend: {
-    name: 'Jason Maurer',
-    age: 23,
-  }
+  name: 'username',
+  autoIncrement: 'false',
+  primaryKey: 'false'
+}, {
+  name: 'password',
+  autoIncrement: 'false',
+  primaryKey: 'false'
 }];
 
 const columns = [{
   Header: 'Name',
   accessor: 'name' // String-based value accessors!
 }, {
-  Header: 'Age',
+  Header: 'Type',
   accessor: 'age',
-  Cell: props => (
+  Cell: () => (
     <span className="number">
       <Select
         name="form-field-name"
-        value="one"
+        value="TEXT"
         options={options}
         onChange={logChange}
       />
     </span>
-  ) // Custom cell components!
+  )
 }, {
-  id: 'friendName', // Required because our accessor is not a string
-  Header: 'Friend Name',
-  accessor: d => d.friend.name // Custom value accessors!
+  accessor: 'autoIncrement', // Required because our accessor is not a string
+  Header: 'Auto Increment',
 }, {
-  Header: props => <span>Friend Age</span>, // Custom header components!
-  accessor: 'friend.age'
+  accessor: 'primaryKey', // Required because our accessor is not a string
+  Header: 'Primary Key',
 }];
 
 export default class StructurePage extends Component {
@@ -53,6 +56,9 @@ export default class StructurePage extends Component {
         <ReactTable
           data={data}
           columns={columns}
+          showPageJump={false}
+          minRows={data.length}
+          showPagination={false}
         />
       </div>
     );

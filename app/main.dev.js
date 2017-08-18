@@ -87,6 +87,9 @@ app.on('ready', async () => {
     mainWindow = null;
   });
 
-  const menuBuilder = new MenuBuilder(mainWindow);
-  menuBuilder.buildMenu();
+  // If we're on Mac make a Dock Menu
+  if (process.platform === 'darwin') {
+    const menuBuilder = new MenuBuilder(mainWindow);
+    menuBuilder.buildMenu();
+  }
 });

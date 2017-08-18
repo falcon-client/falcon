@@ -7,9 +7,13 @@
     background: white;
   }
 
-  // * {
-  //   border: none !important;
-  // }
+  .rt-table {
+    overflow: initial;
+  }
+
+  .rt-tbody {
+    overflow: initial;
+  }
 
   .rt-td {
     overflow: initial !important;
