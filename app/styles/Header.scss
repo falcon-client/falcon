@@ -35,8 +35,14 @@
     }
   }
 
+  .ListSymbol {
+    height: 16px;
+    width: 16px;
+    line-height: 16px;
+  }
+
   .Header--breadcrumb {
-    padding: 0 5px;
+    padding-right: 10px;
   }
 
   .Header--container {

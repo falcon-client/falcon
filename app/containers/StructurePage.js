@@ -27,7 +27,7 @@ const data = [{
 
 const columns = [{
   Header: 'Name',
-  accessor: 'name' // String-based value accessors!
+  accessor: 'name'
 }, {
   Header: 'Type',
   accessor: 'age',
@@ -42,10 +42,10 @@ const columns = [{
     </span>
   )
 }, {
-  accessor: 'autoIncrement', // Required because our accessor is not a string
+  accessor: 'autoIncrement',
   Header: 'Auto Increment',
 }, {
-  accessor: 'primaryKey', // Required because our accessor is not a string
+  accessor: 'primaryKey',
   Header: 'Primary Key',
 }];
 

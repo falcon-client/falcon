@@ -27,7 +27,7 @@ export default class App extends Component {
 
     const grid = document.querySelector('.App .Grid');
     const sidebar = document.querySelector('.Sidebar');
-    const height = 32 + 10 + 21 + 20;
+    const height = 32 + 10 + 21 + 15;
     grid.style.height = `${window.innerHeight - height}px`;
     sidebar.style.height = `${window.innerHeight - height + 40}px`;
 
@@ -61,7 +61,7 @@ export default class App extends Component {
             {/**
             <div className="col-sm-12 no-padding">
               <Tabs />
-            </div> **/}
+            </div> * */}
             <div className="row no-margin">
               <ResizableBox
                 width={this.state.widthSidebar}

@@ -3,8 +3,30 @@
   height: 100%;
   padding: 50px;
 
-  .ReactTable {
+  .rt-tbody {
     background: white;
+  }
+
+  .rt-tr {
+    border: 1px solid red;
+  }
+
+  .rt-resizable-header-content {
+    text-align: left;
+  }
+
+  .ReactTable {
+    border: none;
+  }
+
+  * {
+    box-shadow: none !important;
+    font-family: 'Avenir';
+    font-size: 14px;
+  }
+
+  .rt-resizable-header-content {
+    font-weight: bold;
   }
 
   .rt-table {
