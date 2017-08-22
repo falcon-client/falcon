@@ -194,6 +194,7 @@
     "electron-debug": "^1.4.0",
     "font-awesome": "^4.7.0",
     "history": "^4.6.3",
+    "nprogress": "^0.2.0",
     "react": "^15.6.1",
     "react-ace": "^5.1.2",
     "react-dom": "^15.6.1",
