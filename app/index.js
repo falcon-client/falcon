@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { AppContainer } from 'react-hot-loader';
+import NProgress from 'nprogress';
 import Root from './containers/Root';
 import { configureStore, history } from './store/configureStore';
 import './styles/app.global.scss';
@@ -15,6 +16,20 @@ window.onresize = () => {
     fn();
   });
 };
+
+// Progress bar implementation
+function simulateProgress() {
+  NProgress.configure({
+    parent: '#falcon-status-bar',
+    showSpinner: false
+  });
+  NProgress.start();
+  setTimeout(NProgress.done, 3000);
+}
+
+setTimeout(() => {
+  simulateProgress();
+}, 3000);
 
 render(
   <AppContainer>
