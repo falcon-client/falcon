@@ -7,16 +7,12 @@
     background: white;
   }
 
-  .rt-tr {
-    border: 1px solid red;
-  }
-
   .rt-resizable-header-content {
     text-align: left;
   }
 
   .ReactTable {
-    border: none;
+    background: white;
   }
 
   * {
@@ -39,14 +35,13 @@
 
   .rt-td {
     overflow: initial !important;
-    // padding: 0 !important;
-    // border: 1px solid #D4D4D4 !important;
   }
 
   .rt-tr {
     display: flex;
     justify-content: center;
     align-items: center;
+    border-bottom: 1px solid lightgray;
   }
 
   .Select-menu-outer {

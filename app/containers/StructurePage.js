@@ -11,46 +11,57 @@ const options = [
   { value: 'BLOB', label: 'BLOB' }
 ];
 
-function logChange(val) {
-  console.log(`Selected: ${JSON.stringify(val)}`);
-}
-
 const data = [{
   name: 'username',
   autoIncrement: 'false',
-  primaryKey: 'false'
+  primaryKey: 'false',
+  defaultTypeValue: 'TEXT'
 }, {
   name: 'password',
   autoIncrement: 'false',
-  primaryKey: 'false'
+  primaryKey: 'false',
+  defaultTypeValue: 'TEXT'
 }];
 
-const columns = [{
-  Header: 'Name',
-  accessor: 'name'
-}, {
-  Header: 'Type',
-  accessor: 'age',
-  Cell: () => (
-    <span className="number">
-      <Select
-        name="form-field-name"
-        value="TEXT"
-        options={options}
-        onChange={logChange}
-      />
-    </span>
-  )
-}, {
-  accessor: 'autoIncrement',
-  Header: 'Auto Increment',
-}, {
-  accessor: 'primaryKey',
-  Header: 'Primary Key',
-}];
 
 export default class StructurePage extends Component {
+  state = {
+    values: data.map(column => column.defaultTypeValue)
+  };
+
   render() {
+    const { values } = this.state;
+    const columns = [{
+      Header: 'Name',
+      accessor: 'name'
+    }, {
+      Header: 'Type',
+      accessor: 'defaultTypeValue',
+      Cell: (row) => (
+        <span className="number">
+          <Select
+            name="form-field-name"
+            value={values[row.index]}
+            onChange={(item) => {
+              const updatedRowValues = [...this.state.values];
+              updatedRowValues[row.index] = item.value;
+
+              this.setState({
+                values: updatedRowValues
+              });
+            }}
+            options={options}
+          />
+        </span>
+      )
+    }, {
+      accessor: 'autoIncrement',
+      Header: 'Auto Increment',
+    }, {
+      accessor: 'primaryKey',
+      Header: 'Primary Key',
+    }];
+
     return (
       <div className="Structure col-offset-2">
         <ReactTable
@@ -59,6 +70,7 @@ export default class StructurePage extends Component {
           showPageJump={false}
           minRows={data.length}
           showPagination={false}
+
         />
       </div>
     );
