@@ -20,7 +20,7 @@ window.onresize = () => {
 // Progress bar implementation
 function simulateProgress() {
   NProgress.configure({
-    parent: '#falcon-status-bar',
+    parent: '#falcon-status-bar-container',
     showSpinner: false
   });
   NProgress.start();

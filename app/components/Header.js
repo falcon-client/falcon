@@ -8,7 +8,7 @@ export default function Header() {
 
   return (
     <div className="Header col-sm-12">
-      <div className="Header--container" style={{ marginLeft: isFullScreen ? 'inherit' : '100px' }}>
+      <div className="Header--container" style={{ marginLeft: isFullScreen ? '10px' : '100px' }}>
         {/* @TODO: Create a separate breadcrumbs component  */}
         <div className="Header--breadcrumb">
           <ListSymbol type="connection" /> Falcon Test Database
@@ -20,10 +20,9 @@ export default function Header() {
           <ListSymbol type="table" /> Lorem
          </div>
       </div>
-      <div className="Header--container Header--container-status" id="falcon-status-bar">
+      <div className="Header--container Header--container-status" id="falcon-status-bar-container">
         <span className="Connection"><i className="ion-locked Connection--lock Connection--lock-secure" /> <a href="">Connected</a></span>
         <span><a href="">SQLite 3.1.6</a></span>
-        <div id="falcon-status-bar" />
       </div>
       <div className="Header--container Header--container-hidden">
         <div className="Header--button ion-android-refresh" />

@@ -47,10 +47,11 @@
     padding-right: 10px;
   }
 
-  #falcon-status-bar {
+  #falcon-status-bar-container {
     position: relative;
     z-index: 1;
-    // flex-grow: 1;
+    justify-content: center;
+    flex-grow: 1;
 
     #nprogress {
       .bar {
