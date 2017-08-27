@@ -15,12 +15,20 @@ const data = [{
   name: 'username',
   autoIncrement: 'false',
   primaryKey: 'false',
-  defaultTypeValue: 'TEXT'
+  defaultTypeValue: 'TEXT',
+  notNull: 'false',
+  unique: 'true',
+  default: 'foo',
+  checkConstraints: 'true',
 }, {
   name: 'password',
   autoIncrement: 'false',
   primaryKey: 'false',
-  defaultTypeValue: 'TEXT'
+  defaultTypeValue: 'TEXT',
+  notNull: 'false',
+  unique: 'true',
+  default: 'bar',
+  checkConstraints: 'true',
 }];
 
 
@@ -60,6 +68,18 @@ export default class StructurePage extends Component {
     }, {
       accessor: 'primaryKey',
       Header: 'Primary Key',
+    }, {
+      accessor: 'notNull',
+      Header: 'Not Null',
+    }, {
+      accessor: 'unique',
+      Header: 'Unique',
+    }, {
+      accessor: 'default',
+      Header: 'default',
+    }, {
+      accessor: 'checkConstraints',
+      Header: 'Check Constraints',
     }];
 
     return (

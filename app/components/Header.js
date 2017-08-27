@@ -1,11 +1,14 @@
 // @flow
 import React from 'react';
+import { remote } from 'electron';
 import ListSymbol from './ListSymbol';
 
 export default function Header() {
+  const isFullScreen = remote.getCurrentWindow().isFullScreen();
+
   return (
     <div className="Header col-sm-12">
-      <div className="Header--container">
+      <div className="Header--container" style={{ marginLeft: isFullScreen ? 'inherit' : '100px' }}>
         {/* @TODO: Create a separate breadcrumbs component  */}
         <div className="Header--breadcrumb">
           <ListSymbol type="connection" /> Falcon Test Database
