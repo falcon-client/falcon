@@ -25,6 +25,10 @@
     cursor: pointer;
   }
 
+  .FooterButton:not(:last-child) {
+    border-right: 2px solid lightgray;
+  }
+
   .FooterButton--active {
     background: gray;
 

@@ -8,7 +8,7 @@ export default function Header() {
 
   return (
     <div className="Header col-sm-12">
-      <div className="Header--container" style={{ marginLeft: isFullScreen ? '10px' : '100px' }}>
+      <div className="Header--container" style={{ marginLeft: isFullScreen ? '10px' : '80px' }}>
         {/* @TODO: Create a separate breadcrumbs component  */}
         <div className="Header--breadcrumb">
           <ListSymbol type="connection" /> Falcon Test Database

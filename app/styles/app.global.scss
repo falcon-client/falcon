@@ -67,6 +67,11 @@ body {
   margin: 0;
 }
 
+::selection {
+  color: white;
+  background: gray;
+}
+
 .ace_layer.ace_gutter-layer.ace_folding-enabled {
   background: white;
 }

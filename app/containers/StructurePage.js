@@ -63,23 +63,11 @@ export default class StructurePage extends Component {
         </span>
       )
     }, {
-      accessor: 'autoIncrement',
-      Header: 'Auto Increment',
-    }, {
-      accessor: 'primaryKey',
-      Header: 'Primary Key',
+      accessor: 'default',
+      Header: 'Default',
     }, {
       accessor: 'notNull',
-      Header: 'Not Null',
-    }, {
-      accessor: 'unique',
-      Header: 'Unique',
-    }, {
-      accessor: 'default',
-      Header: 'default',
-    }, {
-      accessor: 'checkConstraints',
-      Header: 'Check Constraints',
+      Header: 'Constraints',
     }];
 
     return (

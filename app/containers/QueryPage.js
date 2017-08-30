@@ -19,12 +19,21 @@ export default class QueryPage extends Component {
 
   item = null;
 
+  didMount: boolean = false;
+
+  componentWillUnmount() {
+    this.didMount = false;
+  }
+
   componentDidMount() {
+    this.didMount = true;
     this.item = document.querySelector('.QueryPage').parentElement;
     window.onresizeFunctions['query-page-resize'] = () => {
-      this.setState({
-        queryResultsHeight: this.item.offsetHeight - this.state.queryHeight,
-      });
+      if (this.didMount) {
+        this.setState({
+          queryResultsHeight: this.item.offsetHeight - this.state.queryHeight,
+        });
+      }
     };
   }
 
