@@ -4,13 +4,13 @@ import { remote } from 'electron';
 import ListSymbol from './ListSymbol';
 
 export default function Header() {
-  const shouldShowMargin =
-    remote.getCurrentWindow().isFullScreen() &&
-    process.platform === 'darwin';
+  const shouldHideMargin =
+    remote.getCurrentWindow().isFullScreen() ||
+    process.platform !== 'darwin';
 
   return (
     <div className="Header col-sm-12">
-      <div className="Header--container" style={{ marginLeft: shouldShowMargin ? '10px' : '80px' }}>
+      <div className="Header--container" style={{ marginLeft: shouldHideMargin ? '10px' : '80px' }}>
         {/* @TODO: Create a separate breadcrumbs component  */}
         <div className="Header--breadcrumb">
           <ListSymbol type="connection" /> Falcon Test Database
