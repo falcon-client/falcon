@@ -14,7 +14,7 @@ export default class App extends Component {
 
   state = {
     widthSidebar: 200,
-    widthGrid: window.innerWidth - 200,
+    widthGrid: window.innerWidth - 200
   };
 
   componentDidMount() {
@@ -32,10 +32,10 @@ export default class App extends Component {
     sidebar.style.height = `${window.innerHeight - height + 40}px`;
 
     // If the window is resized, change the height of the grid repsectively
-    window.onresizeFunctions['resize-grid-resize'] = (() => {
+    window.onresizeFunctions['resize-grid-resize'] = () => {
       grid.style.height = `${window.innerHeight - height}px`;
       sidebar.style.height = `${window.innerHeight - height + 40}px`;
-    });
+    };
   }
 
   onResizeGrid = (event, { size }) => {
@@ -74,7 +74,10 @@ export default class App extends Component {
               >
                 <Sidebar />
               </ResizableBox>
-              <div className="Grid" style={{ position: 'relative', width: this.state.widthGrid }}>
+              <div
+                className="Grid"
+                style={{ position: 'relative', width: this.state.widthGrid }}
+              >
                 {this.props.children}
                 <Footer />
               </div>

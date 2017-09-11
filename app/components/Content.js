@@ -5,8 +5,6 @@ import Grid from './Grid';
 
 export default class Content extends Component {
   render() {
-    return (
-      <Grid />
-    );
+    return <Grid />;
   }
 }

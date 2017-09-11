@@ -12,11 +12,10 @@ export default React.createClass({
     return React.createElement(
       AutoSizer,
       {
-        ref: 'AutoSizer',
+        ref: 'AutoSizer'
       },
-      (params) => React.createElement(
-          Grid,
-        {
+      params =>
+        React.createElement(Grid, {
           columnCount: 1000,
           columnWidth: 100,
           height: params.height,
@@ -25,8 +24,7 @@ export default React.createClass({
           rowHeight: 30,
           rowCount: 1000,
           width: params.width
-        }
-        )
+        })
     );
   },
 
@@ -37,21 +35,23 @@ export default React.createClass({
     const setState = this.setState.bind(this);
     const grid = this.refs.AutoSizer.refs.Grid;
 
-    const className = rowIndex === this.state.hoveredRowIndex
-      ? 'item hoveredItem'
-      : 'item';
+    const className =
+      rowIndex === this.state.hoveredRowIndex ? 'item hoveredItem' : 'item';
 
-    return React.DOM.div({
-      className,
-      key: params.key,
-      onMouseOver() {
-        setState({
-          hoveredColumnIndex: columnIndex,
-          hoveredRowIndex: rowIndex
-        });
-        grid.forceUpdate();
+    return React.DOM.div(
+      {
+        className,
+        key: params.key,
+        onMouseOver() {
+          setState({
+            hoveredColumnIndex: columnIndex,
+            hoveredRowIndex: rowIndex
+          });
+          grid.forceUpdate();
+        },
+        style: params.style
       },
-      style: params.style
-    }, key);
+      key
+    );
   }
 });
