@@ -262,5 +262,4 @@ export default class Graph extends Component {
       </div>
     );
   }
-
 }
