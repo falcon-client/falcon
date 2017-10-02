@@ -5,12 +5,14 @@ import ListSymbol from './ListSymbol';
 
 export default function Header() {
   const shouldHideMargin =
-    remote.getCurrentWindow().isFullScreen() ||
-    process.platform !== 'darwin';
+    remote.getCurrentWindow().isFullScreen() || process.platform !== 'darwin';
 
   return (
     <div className="Header col-sm-12">
-      <div className="Header--container" style={{ marginLeft: shouldHideMargin ? '10px' : '80px' }}>
+      <div
+        className="Header--container"
+        style={{ marginLeft: shouldHideMargin ? '10px' : '80px' }}
+      >
         {/* @TODO: Create a separate breadcrumbs component  */}
         <div className="Header--breadcrumb">
           <ListSymbol type="connection" /> Falcon Test Database
@@ -20,11 +22,19 @@ export default function Header() {
         </div>
         <div className="Header--breadcrumb">
           <ListSymbol type="table" /> Lorem
-         </div>
+        </div>
       </div>
-      <div className="Header--container Header--container-status" id="falcon-status-bar-container">
-        <span className="Connection"><i className="ion-locked Connection--lock Connection--lock-secure" /> <a href="">Connected</a></span>
-        <span><a href="">SQLite 3.1.6</a></span>
+      <div
+        className="Header--container Header--container-status"
+        id="falcon-status-bar-container"
+      >
+        <span className="Connection">
+          <i className="ion-locked Connection--lock Connection--lock-secure" />{' '}
+          <a href="">Connected</a>
+        </span>
+        <span>
+          <a href="">SQLite 3.1.6</a>
+        </span>
       </div>
       <div className="Header--container Header--container-hidden">
         <div className="Header--button ion-android-refresh" />

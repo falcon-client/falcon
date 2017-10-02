@@ -18,6 +18,12 @@ export default function Footer() {
         <div className="FooterButton">
           <Link to={'/structure'}>Structure</Link>
         </div>
+        <div className="FooterButton">
+          <Link to={'/graph'}>Graph</Link>
+        </div>
+        <div className="FooterButton">
+          <Link to={'/logs'}>Logs</Link>
+        </div>
       </div>
     </div>
   );

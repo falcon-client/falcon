@@ -13,9 +13,9 @@ import Content from '../components/Content';
 export default class QueryPage extends Component {
   state = {
     queryHeight: (window.innerHeight - 40) / 2,
-    queryResultsHeight: ((window.innerHeight - 40) / 2) - 40,
+    queryResultsHeight: (window.innerHeight - 40) / 2 - 40,
     query: 'SELECT * FROM users'
-  }
+  };
 
   item = null;
 
@@ -31,7 +31,7 @@ export default class QueryPage extends Component {
     window.onresizeFunctions['query-page-resize'] = () => {
       if (this.didMount) {
         this.setState({
-          queryResultsHeight: this.item.offsetHeight - this.state.queryHeight,
+          queryResultsHeight: this.item.offsetHeight - this.state.queryHeight
         });
       }
     };
@@ -40,7 +40,7 @@ export default class QueryPage extends Component {
   onQueryResize = (event, { size }) => {
     this.setState({
       queryHeight: size.height,
-      queryResultsHeight: this.item.offsetHeight - size.height,
+      queryResultsHeight: this.item.offsetHeight - size.height
     });
   };
 

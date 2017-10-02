@@ -165,7 +165,7 @@ export default merge.smart(baseConfig, {
     renderer: (
       Object
         .keys(dependencies || {})
-        .filter(dependency => dependency !== 'font-awesome')
+        .filter(dependency => dependency !== 'font-awesome' && dependency !== 'react-icons')
     )
   },
 

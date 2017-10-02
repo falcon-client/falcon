@@ -4,8 +4,6 @@ import Content from '../components/Content';
 
 export default class ContentPage extends Component {
   render() {
-    return (
-      <Content />
-    );
+    return <Content />;
   }
 }
