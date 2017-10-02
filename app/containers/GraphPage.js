@@ -231,7 +231,8 @@ export default class Graph extends Component {
 
     const style = {
       height: '100%',
-      width: '100%'
+      width: '100%',
+      cursor: '-webkit-grab'
     };
 
     return (
