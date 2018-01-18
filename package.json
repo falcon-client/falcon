@@ -196,6 +196,7 @@
     "draggabilly": "^2.1.1",
     "electron-debug": "^1.5.0",
     "font-awesome": "^4.7.0",
+    "graphql-voyager": "^1.0.0-rc.11",
     "history": "^4.7.2",
     "jquery": "^3.2.1",
     "nprogress": "^0.2.0",

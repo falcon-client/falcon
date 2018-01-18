@@ -86,6 +86,38 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@f/animate@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@f/animate/-/animate-1.0.1.tgz#a031398adadf9a0bd3a56398cec931f877d88485"
+  dependencies:
+    "@f/elapsed-time" "^1.0.0"
+    "@f/raf" "^1.0.0"
+    "@f/tween" "^1.0.0"
+
+"@f/elapsed-time@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@f/elapsed-time/-/elapsed-time-1.0.0.tgz#6a079a6104a87278bf5b4080444ef02d1b595449"
+  dependencies:
+    "@f/timestamp" "^1.0.0"
+
+"@f/map-obj@^1.2.2":
+  version "1.2.2"
+  resolved "https://registry.npmjs.org/@f/map-obj/-/map-obj-1.2.2.tgz#d9a9f8bd76caa2ae11b633dda24d9c6cccc1e60d"
+
+"@f/raf@^1.0.0":
+  version "1.0.3"
+  resolved "https://registry.npmjs.org/@f/raf/-/raf-1.0.3.tgz#32ddca37de345b20c8c3843018cc51b8f897914d"
+
+"@f/timestamp@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/@f/timestamp/-/timestamp-1.0.0.tgz#32a9166e2516e5ccb9b0fcfdc89223819710e88c"
+
+"@f/tween@^1.0.0":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/@f/tween/-/tween-1.0.1.tgz#18aef79c4975e54415adf326e4b5e0d053d207f0"
+  dependencies:
+    "@f/map-obj" "^1.2.2"
+
 "@types/node@*":
   version "9.3.0"
   resolved "https://registry.npmjs.org/@types/node/-/node-9.3.0.tgz#3a129cda7c4e5df2409702626892cb4b96546dd5"
@@ -2168,6 +2200,14 @@ cli-width@^2.0.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/cli-width/-/cli-width-2.2.0.tgz#ff19ede8a9a5e579324147b0c11f0fbcbabed639"
 
+clipboard@^1.7.1:
+  version "1.7.1"
+  resolved "https://registry.npmjs.org/clipboard/-/clipboard-1.7.1.tgz#360d6d6946e99a7a1fef395e42ba92b5e9b5a16b"
+  dependencies:
+    good-listener "^1.2.2"
+    select "^1.1.2"
+    tiny-emitter "^2.0.0"
+
 cliui@^2.1.0:
   version "2.1.0"
   resolved "https://registry.npmjs.org/cliui/-/cliui-2.1.0.tgz#4b475760ff80264c762c3a1719032e91c7fea0d1"
@@ -2329,6 +2369,15 @@ commander@2.6.0:
 commondir@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
+
+commonmark@^0.28.1:
+  version "0.28.1"
+  resolved "https://registry.npmjs.org/commonmark/-/commonmark-0.28.1.tgz#06eab8d52338b839fa1a2d75af0085eed1b1beae"
+  dependencies:
+    entities "~ 1.1.1"
+    mdurl "~ 1.0.1"
+    minimist "~ 1.2.0"
+    string.prototype.repeat "^0.2.0"
 
 compare-version@^0.1.2:
   version "0.1.2"
@@ -2534,6 +2583,13 @@ cross-env@^5.1.3:
   dependencies:
     cross-spawn "^5.1.0"
     is-windows "^1.0.0"
+
+cross-fetch@1.1.1:
+  version "1.1.1"
+  resolved "https://registry.npmjs.org/cross-fetch/-/cross-fetch-1.1.1.tgz#dede6865ae30f37eae62ac90ebb7bdac002b05a0"
+  dependencies:
+    node-fetch "1.7.3"
+    whatwg-fetch "2.0.3"
 
 cross-spawn@^3.0.0:
   version "3.0.1"
@@ -3120,6 +3176,10 @@ delayed-stream@~1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/delayed-stream/-/delayed-stream-1.0.0.tgz#df3ae199acadfb7d440aaae0b29e2272b24ec619"
 
+delegate@^3.1.2:
+  version "3.2.0"
+  resolved "https://registry.npmjs.org/delegate/-/delegate-3.2.0.tgz#b66b71c3158522e8ab5744f720d8ca0c2af59166"
+
 delegates@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/delegates/-/delegates-1.0.0.tgz#84c6e159b81904fdca59a0ef44cd870d31250f9a"
@@ -3599,7 +3659,7 @@ enhanced-resolve@~0.9.0:
     memory-fs "^0.2.0"
     tapable "^0.1.8"
 
-entities@^1.1.1, entities@~1.1.1:
+entities@^1.1.1, "entities@~ 1.1.1", entities@~1.1.1:
   version "1.1.1"
   resolved "https://registry.npmjs.org/entities/-/entities-1.1.1.tgz#6e5c2d0a5621b5dadaecef80b90edfb5cd7772f0"
 
@@ -4029,7 +4089,7 @@ execall@^1.0.0:
   dependencies:
     clone-regexp "^1.0.0"
 
-exenv@^1.2.1:
+exenv@^1.2.0, exenv@^1.2.1:
   version "1.2.2"
   resolved "https://registry.npmjs.org/exenv/-/exenv-1.2.2.tgz#2ae78e85d9894158670b03d47bec1f03bd91bb9d"
 
@@ -4735,6 +4795,12 @@ gonzales-pe@^4.0.3:
   dependencies:
     minimist "1.1.x"
 
+good-listener@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.npmjs.org/good-listener/-/good-listener-1.2.2.tgz#d53b30cdf9313dffb7dc9a0d477096aa6d145c50"
+  dependencies:
+    delegate "^3.1.2"
+
 got@^6.7.1:
   version "6.7.1"
   resolved "https://registry.npmjs.org/got/-/got-6.7.1.tgz#240cd05785a9a18e561dc1b44b41c763ef1e8db0"
@@ -4785,6 +4851,31 @@ graphlib@^2.1.5:
   resolved "https://registry.npmjs.org/graphlib/-/graphlib-2.1.5.tgz#6afe1afcc5148555ec799e499056795bd6938c87"
   dependencies:
     lodash "^4.11.1"
+
+graphql-request@^1.3.6:
+  version "1.4.1"
+  resolved "https://registry.npmjs.org/graphql-request/-/graphql-request-1.4.1.tgz#0772743cfac8dfdd4d69d36106a96c9bdd191ce8"
+  dependencies:
+    cross-fetch "1.1.1"
+
+graphql-voyager@^1.0.0-rc.11:
+  version "1.0.0-rc.11"
+  resolved "https://registry.npmjs.org/graphql-voyager/-/graphql-voyager-1.0.0-rc.11.tgz#5cc348e507062d4ef8540cead25dc2cec04ef933"
+  dependencies:
+    "@f/animate" "^1.0.1"
+    classnames "^2.2.5"
+    clipboard "^1.7.1"
+    commonmark "^0.28.1"
+    graphql-request "^1.3.6"
+    lodash "^4.17.2"
+    prop-types "^15.6.0"
+    react-modal "^2.3.3"
+    react-redux "^5.0.6"
+    react-toolbox "^2.0.0-beta.11"
+    redux "^3.7.1"
+    redux-thunk "^2.1.0"
+    reselect "^3.0.1"
+    svg-pan-zoom "^3.5.2"
 
 growly@^1.3.0:
   version "1.3.0"
@@ -5022,6 +5113,10 @@ hoek@2.x.x:
 hoek@4.x.x:
   version "4.2.0"
   resolved "https://registry.npmjs.org/hoek/-/hoek-4.2.0.tgz#72d9d0754f7fe25ca2d01ad8f8f9a9449a89526d"
+
+hoist-non-react-statics@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.npmjs.org/hoist-non-react-statics/-/hoist-non-react-statics-1.2.0.tgz#aa448cf0986d55cc40773b17174b7dd066cb7cfb"
 
 hoist-non-react-statics@^2.2.1, hoist-non-react-statics@^2.3.0:
   version "2.3.1"
@@ -6682,6 +6777,10 @@ mdast-util-compact@^1.0.0:
     unist-util-modify-children "^1.0.0"
     unist-util-visit "^1.1.0"
 
+"mdurl@~ 1.0.1":
+  version "1.0.1"
+  resolved "https://registry.npmjs.org/mdurl/-/mdurl-1.0.1.tgz#fe85b2ec75a59037f2adfec100fd6c601761152e"
+
 media-typer@0.3.0:
   version "0.3.0"
   resolved "https://registry.npmjs.org/media-typer/-/media-typer-0.3.0.tgz#8710d7af0aa626f8fffa1ce00168545263255748"
@@ -6862,7 +6961,7 @@ minimist@1.1.x:
   version "1.1.3"
   resolved "https://registry.npmjs.org/minimist/-/minimist-1.1.3.tgz#3bedfd91a92d39016fcfaa1c681e8faa1a1efda8"
 
-minimist@^1.1.0, minimist@^1.1.1, minimist@^1.1.3, minimist@^1.2.0:
+minimist@^1.1.0, minimist@^1.1.1, minimist@^1.1.3, minimist@^1.2.0, "minimist@~ 1.2.0":
   version "1.2.0"
   resolved "https://registry.npmjs.org/minimist/-/minimist-1.2.0.tgz#a35008b20f41383eec1fb914f4cd5df79a264284"
 
@@ -6992,7 +7091,7 @@ no-case@^2.2.0:
   dependencies:
     lower-case "^1.1.1"
 
-node-fetch@^1.0.1:
+node-fetch@1.7.3, node-fetch@^1.0.1:
   version "1.7.3"
   resolved "https://registry.npmjs.org/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"
   dependencies:
@@ -8216,6 +8315,10 @@ railroad-diagrams@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/railroad-diagrams/-/railroad-diagrams-1.0.0.tgz#eb7e6267548ddedfb899c1b90e57374559cddb7e"
 
+ramda@^0.23.0:
+  version "0.23.0"
+  resolved "https://registry.npmjs.org/ramda/-/ramda-0.23.0.tgz#ccd13fff73497a93974e3e86327bfd87bd6e8e2b"
+
 randexp@^0.4.2:
   version "0.4.6"
   resolved "https://registry.npmjs.org/randexp/-/randexp-0.4.6.tgz#e986ad5e5e31dae13ddd6f7b3019aa7c87f60ca3"
@@ -8278,6 +8381,13 @@ react-addons-test-utils@^15.6.2:
   version "15.6.2"
   resolved "https://registry.npmjs.org/react-addons-test-utils/-/react-addons-test-utils-15.6.2.tgz#c12b6efdc2247c10da7b8770d185080a7b047156"
 
+react-css-themr@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/react-css-themr/-/react-css-themr-2.1.2.tgz#e017514e471c232f43a754a55b49d81faf5dafb8"
+  dependencies:
+    hoist-non-react-statics "^1.2.0"
+    invariant "^2.2.1"
+
 react-deep-force-update@^1.0.0:
   version "1.1.1"
   resolved "https://registry.npmjs.org/react-deep-force-update/-/react-deep-force-update-1.1.1.tgz#bcd31478027b64b3339f108921ab520b4313dc2c"
@@ -8331,6 +8441,13 @@ react-input-autosize@^2.1.2:
   resolved "https://registry.npmjs.org/react-input-autosize/-/react-input-autosize-2.2.1.tgz#ec428fa15b1592994fb5f9aa15bb1eb6baf420f8"
   dependencies:
     prop-types "^15.5.8"
+
+react-modal@^2.3.3:
+  version "2.4.1"
+  resolved "https://registry.npmjs.org/react-modal/-/react-modal-2.4.1.tgz#cb09b26711b148eb9f59cb180e1b7d82980ded05"
+  dependencies:
+    exenv "^1.2.0"
+    prop-types "^15.5.10"
 
 react-proxy@^1.1.7:
   version "1.1.8"
@@ -8402,6 +8519,12 @@ react-select@^1.2.1:
     prop-types "^15.5.8"
     react-input-autosize "^2.1.2"
 
+react-style-proptype@^3.0.0:
+  version "3.1.0"
+  resolved "https://registry.npmjs.org/react-style-proptype/-/react-style-proptype-3.1.0.tgz#c8912fc13460f5b0c1ec1114c729d535b52b8073"
+  dependencies:
+    prop-types "^15.5.4"
+
 react-table@^6.7.6:
   version "6.7.6"
   resolved "https://registry.npmjs.org/react-table/-/react-table-6.7.6.tgz#3f9e3b308328ceb04ef93a47babefaba2619c905"
@@ -8420,6 +8543,17 @@ react-test-renderer@^16.2.0:
     object-assign "^4.1.1"
     prop-types "^15.6.0"
 
+react-toolbox@^2.0.0-beta.11:
+  version "2.0.0-beta.12"
+  resolved "https://registry.npmjs.org/react-toolbox/-/react-toolbox-2.0.0-beta.12.tgz#1d9dd7cc41e3b35dabdce5eb100a8068eee88c45"
+  dependencies:
+    classnames "^2.2.5"
+    core-js "^2.4.0"
+    ramda "^0.23.0"
+    react-css-themr "^2.1.2"
+    react-style-proptype "^3.0.0"
+    react-transition-group "^1.1.3"
+
 react-transform-catch-errors@^1.0.2:
   version "1.0.2"
   resolved "https://registry.npmjs.org/react-transform-catch-errors/-/react-transform-catch-errors-1.0.2.tgz#1b4d4a76e97271896fc16fe3086c793ec88a9eeb"
@@ -8431,7 +8565,7 @@ react-transform-hmr@^1.0.3:
     global "^4.3.0"
     react-proxy "^1.1.7"
 
-react-transition-group@^1.1.2:
+react-transition-group@^1.1.2, react-transition-group@^1.1.3:
   version "1.2.1"
   resolved "https://registry.npmjs.org/react-transition-group/-/react-transition-group-1.2.1.tgz#e11f72b257f921b213229a774df46612346c7ca6"
   dependencies:
@@ -8624,11 +8758,11 @@ redux-logger@^3.0.6:
   dependencies:
     deep-diff "^0.3.5"
 
-redux-thunk@^2.2.0:
+redux-thunk@^2.1.0, redux-thunk@^2.2.0:
   version "2.2.0"
   resolved "https://registry.npmjs.org/redux-thunk/-/redux-thunk-2.2.0.tgz#e615a16e16b47a19a515766133d1e3e99b7852e5"
 
-redux@^3.7.2:
+redux@^3.7.1, redux@^3.7.2:
   version "3.7.2"
   resolved "https://registry.npmjs.org/redux/-/redux-3.7.2.tgz#06b73123215901d25d065be342eb026bc1c8537b"
   dependencies:
@@ -8919,6 +9053,10 @@ requires-port@1.0.x, requires-port@1.x.x, requires-port@~1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/requires-port/-/requires-port-1.0.0.tgz#925d2601d39ac485e091cf0da5c6e694dc3dcaff"
 
+reselect@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npmjs.org/reselect/-/reselect-3.0.1.tgz#efdaa98ea7451324d092b2b2163a6a1d7a9a2147"
+
 resolve-cwd@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/resolve-cwd/-/resolve-cwd-2.0.0.tgz#00a9f7387556e27038eae232caa372a6a59b665a"
@@ -9087,6 +9225,10 @@ scss-tokenizer@^0.2.3:
 select-hose@^2.0.0:
   version "2.0.0"
   resolved "https://registry.npmjs.org/select-hose/-/select-hose-2.0.0.tgz#625d8658f865af43ec962bfc376a37359a4994ca"
+
+select@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.npmjs.org/select/-/select-1.1.2.tgz#0e7350acdec80b1108528786ec1d4418d11b396d"
 
 selfsigned@^1.9.1:
   version "1.10.1"
@@ -9599,6 +9741,10 @@ string-width@^2.0.0, string-width@^2.1.0, string-width@^2.1.1:
     is-fullwidth-code-point "^2.0.0"
     strip-ansi "^4.0.0"
 
+string.prototype.repeat@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.npmjs.org/string.prototype.repeat/-/string.prototype.repeat-0.2.0.tgz#aba36de08dcee6a5a337d49b2ea1da1b28fc0ecf"
+
 string_decoder@^1.0.0, string_decoder@~1.0.3:
   version "1.0.3"
   resolved "https://registry.npmjs.org/string_decoder/-/string_decoder-1.0.3.tgz#0fc67d7c141825de94282dd536bec6b9bce860ab"
@@ -9876,6 +10022,10 @@ supports-color@~5.0.0:
   dependencies:
     has-flag "^2.0.0"
 
+svg-pan-zoom@^3.5.2:
+  version "3.5.3"
+  resolved "https://registry.npmjs.org/svg-pan-zoom/-/svg-pan-zoom-3.5.3.tgz#e6b52a1b349716c78e7b5f92d0ed1cc1b860f5d8"
+
 svg-tags@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/svg-tags/-/svg-tags-1.0.0.tgz#58f71cee3bd519b59d4b2a843b6c7de64ac04764"
@@ -10042,6 +10192,10 @@ timers-browserify@^2.0.4:
   resolved "https://registry.npmjs.org/timers-browserify/-/timers-browserify-2.0.4.tgz#96ca53f4b794a5e7c0e1bd7cc88a372298fa01e6"
   dependencies:
     setimmediate "^1.0.4"
+
+tiny-emitter@^2.0.0:
+  version "2.0.2"
+  resolved "https://registry.npmjs.org/tiny-emitter/-/tiny-emitter-2.0.2.tgz#82d27468aca5ade8e5fd1e6d22b57dd43ebdfb7c"
 
 tmp@^0.0.33:
   version "0.0.33"
@@ -10733,7 +10887,7 @@ whatwg-encoding@^1.0.1:
   dependencies:
     iconv-lite "0.4.19"
 
-whatwg-fetch@>=0.10.0:
+whatwg-fetch@2.0.3, whatwg-fetch@>=0.10.0:
   version "2.0.3"
   resolved "https://registry.npmjs.org/whatwg-fetch/-/whatwg-fetch-2.0.3.tgz#9c84ec2dcf68187ff00bc64e1274b442176e1c84"
 
