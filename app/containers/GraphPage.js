@@ -7,7 +7,7 @@ export default class Graph extends Component {
     return (
       <Voyager
         introspection={introspectionProvider}
-        workerURI="http://127.0.0.1:8080/app/voyager.worker.js"
+        workerURI="http://127.0.0.1:3000/voyager.worker.js"
       />
     );
   }

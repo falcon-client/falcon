@@ -11,6 +11,7 @@
  * @flow
  */
 import { app, BrowserWindow } from 'electron';
+import express from 'express';
 import MenuBuilder from './menu';
 
 let mainWindow = null;
@@ -81,6 +82,12 @@ app.on('ready', async () => {
     }
     mainWindow.show();
     mainWindow.focus();
+
+    const path = require('path');
+    const app = express();
+
+    app.listen(3000);
+    app.use(express.static(path.join(__dirname, '.')));
   });
 
   mainWindow.on('closed', () => {
