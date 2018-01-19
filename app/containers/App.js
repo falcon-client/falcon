@@ -70,7 +70,7 @@ export default class App extends Component {
                 maxConstraints={[400, 400]}
                 onResize={this.onResizeSidebar}
                 handleSize={[100, 100]}
-                axis={'x'}
+                axis="x"
               >
                 <Sidebar />
               </ResizableBox>
