@@ -86,8 +86,8 @@ app.on('ready', async () => {
     const path = require('path');
     const app = express();
 
-    app.listen(3000);
-    app.use(express.static(path.join(__dirname, '.')));
+    app.listen(3002);
+    app.use(express.static(path.join(__dirname)));
   });
 
   mainWindow.on('closed', () => {
