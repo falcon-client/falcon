@@ -455,29 +455,9 @@ extsprintf@^1.2.0:
   version "1.4.0"
   resolved "https://registry.npmjs.org/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
 
-"falcon-core@git+ssh://git@github.com:amilajack/falcon-core.git":
-  version "0.1.0-4"
-  resolved "git+ssh://git@github.com:amilajack/falcon-core.git#3f2b0f121a5076fa162b09b824c7351a20192f03"
-  dependencies:
-    cassandra-driver "^3.3.0"
-    debug "^3.1.0"
-    json2csv "^3.11.5"
-    mssql "^4.1.0"
-    mysql "^2.15.0"
-    pg "^7.4.1"
-    portfinder "^1.0.13"
-    sql-query-identifier "^1.1.0"
-    sqlite-json-export "0.0.1"
-    sqlite3 "^3.1.13"
-    ssh2 "^0.5.5"
-    util.promisify "^1.0.0"
-    uuid "^3.2.1"
-    valida "^2.4.0"
-    validator "^9.2.0"
-
 "falcon-core@git+ssh://git@github.com:amilajack/falcon-core.git#graphql-implementation":
   version "0.1.0-4"
-  resolved "git+ssh://git@github.com:amilajack/falcon-core.git#7d670d2981d7fe40d7487c5c71b90f0b696a765b"
+  resolved "git+ssh://git@github.com:amilajack/falcon-core.git#72924ea7bcc0f8686d20d9a3b562e8890fb79240"
   dependencies:
     cassandra-driver "^3.3.0"
     cors "^2.8.4"
