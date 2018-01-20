@@ -29,7 +29,7 @@ async function introspectionProvider(query) {
 
   await connection.startGraphQLServer();
 
-  return fetch('http://localhost:3001/graphql', {
+  return fetch(`http://localhost:${connection.getGraphQLServerPort()}/graphql`, {
     method: 'post',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ query }),
