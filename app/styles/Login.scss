@@ -51,6 +51,16 @@
     margin: 20px 0;
   }
 
+  .Login--alert {
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    background-color: #f2dede;
+    border-color: #ebcccc;
+    color: #a94442;
+  }
+
   input {
     width: 100%;
     font-size: 1.2em;

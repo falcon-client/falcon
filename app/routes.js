@@ -9,13 +9,13 @@ import QueryPage from './containers/QueryPage';
 import GraphPage from './containers/GraphPage';
 
 export default () => (
-  <App>
-    <Switch>
-      <Route path="/content" component={ContentPage} />
-      <Route path="/structure" component={StructurePage} />
-      <Route path="/query" component={QueryPage} />
-      <Route path="/graph" component={GraphPage} />
-      <Route path="/" component={LoginPage} />
-    </Switch>
-  </App>
+    <App>
+      <Switch>
+        <Route path="/content" component={ContentPage} />
+        <Route path="/structure" component={StructurePage} />
+        <Route path="/query" component={QueryPage} />
+        <Route path="/graph" component={GraphPage} />
+        <Route path="/" component={LoginPage}/>
+      </Switch>
+    </App>
 );

@@ -200,6 +200,7 @@
     "graphql-voyager": "^1.0.0-rc.11",
     "history": "^4.7.2",
     "jquery": "^3.2.1",
+    "lodash": "^4.17.4",
     "nprogress": "^0.2.0",
     "popper.js": "^1.12.9",
     "react": "^16.2.0",
