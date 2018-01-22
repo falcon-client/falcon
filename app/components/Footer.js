@@ -6,11 +6,11 @@ export default function Footer() {
   return (
     <div className="Footer">
       <div className="FooterButtonContainer">
-        <div className="FooterButton">
-          <Link to="/content">Content</Link>
-        </div>
         <div className="FooterButton FooterButton--active">
           <Link to="/login">Login</Link>
+        </div>
+        <div className="FooterButton">
+          <Link to="/content">Content</Link>
         </div>
         <div className="FooterButton">
           <Link to="/query">Query</Link>
