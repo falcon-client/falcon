@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Voyager } from 'graphql-voyager/dist/voyager';
-import { db, config } from 'falcon-core';
+import { db } from 'falcon-core';
 import path from 'path';
 import os from 'os';
 
@@ -9,15 +9,13 @@ const serverInfo = {
   client: 'sqlite'
 };
 
-export default class GraphPage extends Component {
-  render() {
-    return (
-      <Voyager
-        introspection={introspectionProvider}
-        workerURI="https://unpkg.com/voyager-worker-test@1.0.0/index.js"
-      />
-    );
-  }
+export default function GraphPage() {
+  return (
+    <Voyager
+      introspection={introspectionProvider}
+      workerURI="https://unpkg.com/voyager-worker-test@1.0.0/index.js"
+    />
+  );
 }
 
 async function introspectionProvider(query) {
