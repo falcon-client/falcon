@@ -7,6 +7,7 @@ import StructurePage from './containers/StructurePage';
 import LoginPage from './containers/LoginPage';
 import QueryPage from './containers/QueryPage';
 import GraphPage from './containers/GraphPage';
+import LogPage from './containers/LogPage';
 
 export default () => (
   <App>
@@ -15,6 +16,7 @@ export default () => (
       <Route path="/structure" component={StructurePage} />
       <Route path="/query" component={QueryPage} />
       <Route path="/graph" component={GraphPage} />
+      <Route path="/logs" component={LogPage} />
       <Route path="/" component={LoginPage} />
     </Switch>
   </App>
