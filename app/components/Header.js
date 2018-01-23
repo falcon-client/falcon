@@ -20,7 +20,7 @@ export default function Header() {
         </div>
         <div className="Header--breadcrumb">
           <ListSymbol type="table" /> Lorem
-         </div>
+        </div>
       </div>
       <div className="Header--container Header--container-status" id="falcon-status-bar-container">
         <span className="Connection"><i className="ion-locked Connection--lock Connection--lock-secure" /> <a href="">Connected</a></span>

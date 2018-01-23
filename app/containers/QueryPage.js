@@ -50,7 +50,7 @@ export default class QueryPage extends Component {
         <ResizableBox
           width={10}
           height={this.state.queryHeight}
-          axis={'y'}
+          axis="y"
           handleSize={[100, 100]}
           style={{ height: `${this.state.queryHeight}px` }}
           onResize={this.onQueryResize}
@@ -61,8 +61,8 @@ export default class QueryPage extends Component {
             name="querybox"
             value={this.state.query}
             focus
-            width={'100%'}
-            height={'100%'}
+            width="100%"
+            height="100%"
             showPrintMargin={false}
             editorProps={{ $blockScrolling: Infinity }}
             enableBasicAutocompletion
