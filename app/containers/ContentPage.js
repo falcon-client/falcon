@@ -1,11 +1,20 @@
 // @flow
 import React, { Component } from 'react';
 import Content from '../components/Content';
+import type { TableType } from '../types/TableType';
 
-export default class ContentPage extends Component {
+type Props = {
+  table: Array<TableType>
+};
+
+type State = {
+
+};
+
+export default class ContentPage extends Component<Props, State> {
   render() {
     return (
-      <Content />
+      <Content table={this.props.table} />
     );
   }
 }

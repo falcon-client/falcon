@@ -4,7 +4,8 @@ export type TableType = {
   tableName: string,
   columns: Array<string>,
   rows: Array<{
-    rowID: string,
-    value: Array<string | number>
+    // @TODO: Check why some rowIDs are undefined (causes flow to throw error)
+    rowID: number | string | undefined,
+    value: Array<string | number | null>
   }>
 };

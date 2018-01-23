@@ -1,20 +1,29 @@
+// @flow
 import React, { PureComponent } from 'react';
 import { AutoSizer, Grid } from 'react-virtualized';
-
+import type { TableType } from '../types/TableType';
 // Update to react 16 with this link
 // https://github.com/bvaughn/react-virtualized/blob/master/source/Grid/Grid.example.js
 
-export default class GridExample extends PureComponent {
+type Props = {
+  table: Array<TableType>
+};
+
+type State = {
+
+};
+
+export default class GridExample extends PureComponent<Props, State> {
   constructor(props, context) {
     super(props, context);
 
     this.state = {
-      columnCount: 1000,
+      columnCount: props.table.columns.length,
       height: 300,
       overscanColumnCount: 0,
       overscanRowCount: 10,
       rowHeight: 40,
-      rowCount: 1000,
+      rowCount: props.table.rows.length,
       scrollToColumn: undefined,
       scrollToRow: undefined,
       useDynamicRowHeight: false,
@@ -33,6 +42,7 @@ export default class GridExample extends PureComponent {
   }
 
   render() {
+    console.log(this.props);
     const {
       columnCount,
       height,
@@ -62,7 +72,7 @@ export default class GridExample extends PureComponent {
           width={width}
         />
           )}
-    </AutoSizer>);
+            </AutoSizer>);
   }
 
   _cellRenderer({

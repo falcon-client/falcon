@@ -88,7 +88,7 @@ class Login extends Component<null, State> {
       return;
     }
 
-    const path = '/home/';
+    const path = '/home/content';
     this.props.setDatabasePath(this.state.databasePath);
     this.props.history.push(path);
   };
@@ -103,7 +103,6 @@ class Login extends Component<null, State> {
   };
 
   render() {
-    console.log(this.props);
     return (
       <div className="Login">
         <div className="Login--container">

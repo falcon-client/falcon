@@ -10,13 +10,13 @@ export default function Footer() {
           <Link to="/login">Login</Link>
         </div>
         <div className="FooterButton">
-          <Link to="/content">Content</Link>
+          <Link to="/home/content">Content</Link>
         </div>
         <div className="FooterButton">
-          <Link to="/query">Query</Link>
+          <Link to="/home/query">Query</Link>
         </div>
         <div className="FooterButton">
-          <Link to="/structure">Structure</Link>
+          <Link to="/home/structure">Structure</Link>
         </div>
         <div className="FooterButton">
           <Link to="/graph">Graph</Link>

@@ -8,7 +8,6 @@ type Props = {
 };
 
 export default function Sidebar(props) {
-  console.log(props);
   const tables = props.tables.map(table =>
     (<li key={table.tableName}className="Sidebar--list-item">
       <ListSymbol type="table" /><a>{table.tableName}</a>

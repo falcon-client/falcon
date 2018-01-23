@@ -2,19 +2,20 @@
 import React from 'react';
 import { Switch, Route } from 'react-router';
 import App from './containers/App';
-import ContentPage from './containers/ContentPage';
-import StructurePage from './containers/StructurePage';
+import HomePage from './containers/HomePage';
 import LoginPage from './containers/LoginPage';
+<<<<<<< HEAD
 import QueryPage from './containers/QueryPage';
 import GraphPage from './containers/GraphPage';
+=======
+>>>>>>> ContentPage, Content, and Grid are passed state.selectedTable
 
+// Routes to be rendered in root.js
 export default () => (
-  <Switch>
-    <Route exact path="/" component={LoginPage} />
-    <Route path="/home" component={App} >
-      <Route path="/home/content" component={ContentPage} />
-      <Route path="/home/structure" component={StructurePage} />
-      <Route path="/home/query" component={QueryPage} />
-    </Route>
-  </Switch>
+  <App>
+    <Switch>
+      <Route exact path="/" component={LoginPage} />
+      <Route path="/home" component={HomePage} />
+    </Switch>
+  </App>
 );

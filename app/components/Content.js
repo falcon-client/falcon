@@ -1,12 +1,20 @@
 // @flow
 import React, { Component } from 'react';
 import Grid from './Grid';
+import type { TableType } from '../types/TableType';
 // import Footer from './Footer';
 
-export default class Content extends Component {
+type Props = {
+  table: Array<TableType>
+};
+
+type State = {
+
+};
+export default class Content extends Component<Props, State> {
   render() {
     return (
-      <Grid />
+      <Grid table={this.props.table} />
     );
   }
 }

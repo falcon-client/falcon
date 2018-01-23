@@ -3,7 +3,12 @@ import React from 'react';
 import { remote } from 'electron';
 import ListSymbol from './ListSymbol';
 
-export default function Header() {
+type Props = {
+  databaseName: string,
+  selectedTableName: string
+};
+
+export default function Header(props) {
   const shouldHideMargin =
     remote.getCurrentWindow().isFullScreen() ||
     process.platform !== 'darwin';
@@ -13,13 +18,10 @@ export default function Header() {
       <div className="Header--container" style={{ marginLeft: shouldHideMargin ? '10px' : '80px' }}>
         {/* @TODO: Create a separate breadcrumbs component  */}
         <div className="Header--breadcrumb">
-          <ListSymbol type="connection" /> Falcon Test Database
+          <ListSymbol type="database" /> {props.databaseName}
         </div>
         <div className="Header--breadcrumb">
-          <ListSymbol type="database" /> falcon-db
-        </div>
-        <div className="Header--breadcrumb">
-          <ListSymbol type="table" /> Lorem
+          <ListSymbol type="table" /> {props.selectedTableName}
         </div>
       </div>
       <div className="Header--container Header--container-status" id="falcon-status-bar-container">
