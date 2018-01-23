@@ -2,10 +2,12 @@
 import React, { Component } from 'react';
 import { remote, ipcRenderer } from 'electron';
 import type { ContextRouter } from 'react-router-dom';
+import { connect } from 'react-redux'; /* IMPORTANT */
 import Connections from '../api/Connections';
 import SavedDatabases from './SavedDatabases';
 import { OPEN_FILE_CHANNEL } from '../types/channels';
 import type { LoginSavedDatabaseType } from '../types/LoginSavedDatabaseType';
+import { setDatabasePath } from '../actions/index';
 
 const { dialog } = remote;
 
@@ -25,7 +27,7 @@ type State = {
   savedDatabases: Array<LoginSavedDatabaseType>
 };
 
-export default class Login extends Component<Props, State> {
+class Login extends Component<null, State> {
   connections = new Connections();
   constructor(props: Props) {
     super(props);
@@ -86,7 +88,8 @@ export default class Login extends Component<Props, State> {
       return;
     }
 
-    const path = `/home/${this.state.databasePath.replace(/\//g, '_')}`;
+    const path = '/home/';
+    this.props.setDatabasePath(this.state.databasePath);
     this.props.history.push(path);
   };
 
@@ -100,7 +103,7 @@ export default class Login extends Component<Props, State> {
   };
 
   render() {
-    const { databasePath } = this.state;
+    console.log(this.props);
     return (
       <div className="Login">
         <div className="Login--container">
@@ -140,3 +143,5 @@ export default class Login extends Component<Props, State> {
     );
   }
 }
+
+export default connect(null, { setDatabasePath })(Login);

@@ -2,12 +2,13 @@
 import React, { Component } from 'react';
 import { ResizableBox } from 'react-resizable';
 import type { Children } from 'react';
+import { connect } from 'react-redux';
 // import Tabs from '../components/Tabs';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
 
-export default class App extends Component {
+class App extends Component {
   props: {
     children: Children
   };
@@ -53,6 +54,7 @@ export default class App extends Component {
   };
 
   render() {
+    console.log(this.props.databasePath);
     return (
       <div className="App container-fluid">
         <div className="row">
@@ -85,3 +87,12 @@ export default class App extends Component {
     );
   }
 }
+
+
+function mapStateToProps(state) {
+  return {
+    databasePath: state.databasePath,
+  };
+}
+
+export default connect(mapStateToProps)(App);
