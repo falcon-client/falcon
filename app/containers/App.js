@@ -3,22 +3,52 @@ import React, { Component } from 'react';
 import { ResizableBox } from 'react-resizable';
 import type { Children } from 'react';
 import { connect } from 'react-redux';
+import { ipcRenderer } from 'electron';
 // import Tabs from '../components/Tabs';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
+import { getDatabases } from '../api/Database';
+import type { DatabaseType } from '../types/DatabaseType';
+import type { TableType } from '../types/TableType';
 
-class App extends Component {
-  props: {
-    children: Children
-  };
+type Props = {
+  children: Children,
+  databasePath: ?string
+};
 
-  state = {
-    widthSidebar: 200,
-    widthGrid: window.innerWidth - 200,
-  };
+type State = {
+  widthSidebar: number, // 200
+  widthGrid: number, // window.innerWidth - 200
+  databaseName: ?string,
+  tables: ?Array<TableType>,
+  selectedTableName: ?string
+  // showQuery: boolean,
+  // siderCollapsed: boolean
+};
+
+class App extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      // @TODO: See LoginPage line 131 for why replace'_' with '/'
+      widthSidebar: 200,
+      widthGrid: window.innerWidth - 200,
+      databaseName: null,
+      tables: [],
+      selectedTableName: null,
+    };
+    // ipcRenderer.on(OPEN_FILE_CHANNEL, (event, filePath) => {
+    //   this.setDatabaseResults(filePath);
+    // });
+    // ipcRenderer.on(DELETE_TABLE_CHANNEL, () => {
+    //   this.deleteSelectedTable();
+    // });
+  }
 
   componentDidMount() {
+    this.setDatabaseResults(this.props.databasePath);
+
     window.onresizeFunctions['sidebar-resize-set-state'] = () => {
       this.setState({
         widthSidebar: this.state.widthSidebar,
@@ -39,6 +69,22 @@ class App extends Component {
     });
   }
 
+  // @TODO: Since supporting just SQLite, getDatabases will only return 1 db
+  setDatabaseResults = async (filePath: string) => {
+    const databasesArr = await getDatabases(filePath);
+    const { databaseName, tables } = databasesArr[0];
+
+    this.setState({
+      databaseName,
+      tables,
+      selectedTableName:
+        this.state.selectedTableName || tables[0].tableName,
+      // @TODO: Use tableName instead of whole table object contents
+      // databasePath: filePath
+    });
+  };
+
+
   onResizeGrid = (event, { size }) => {
     this.setState({
       widthGrid: size.width,
@@ -54,7 +100,7 @@ class App extends Component {
   };
 
   render() {
-    console.log(this.props.databasePath);
+    if (!this.state.tables) return <div />;
     return (
       <div className="App container-fluid">
         <div className="row">
@@ -74,7 +120,8 @@ class App extends Component {
                 handleSize={[100, 100]}
                 axis="x"
               >
-                <Sidebar />
+                {/* Currently only supports one database file at a time (since using SQLite only) */}
+                <Sidebar tables={this.state.tables} databaseName={this.state.databaseName} />
               </ResizableBox>
               <div className="Grid" style={{ position: 'relative', width: this.state.widthGrid }}>
                 {this.props.children}
