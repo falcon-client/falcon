@@ -4,7 +4,7 @@ import Content from '../components/Content';
 import type { TableType } from '../types/TableType';
 
 type Props = {
-  table: Array<TableType>
+  table: TableType
 };
 
 type State = {

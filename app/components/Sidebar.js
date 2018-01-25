@@ -4,6 +4,7 @@ import TableType from '../types/TableType';
 
 type Props = {
   databaseName: string,
+  onSelectTable: (event) => void,
   tables: Array<TableType>
 };
 

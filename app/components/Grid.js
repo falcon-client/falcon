@@ -6,14 +6,14 @@ import type { TableType } from '../types/TableType';
 // https://github.com/bvaughn/react-virtualized/blob/master/source/Grid/Grid.example.js
 
 type Props = {
-  table: Array<TableType>
+  table: TableType
 };
 
 type State = {
 
 };
 
-export default class GridExample extends PureComponent<Props, State> {
+export default class GridWrapper extends PureComponent<Props, State> {
   constructor(props, context) {
     super(props, context);
 
@@ -23,7 +23,7 @@ export default class GridExample extends PureComponent<Props, State> {
       overscanColumnCount: 0,
       overscanRowCount: 10,
       rowHeight: 40,
-      rowCount: props.table.rows.length,
+      rowCount: props.table.rows.length + 1, // + 1 for column labels
       scrollToColumn: undefined,
       scrollToRow: undefined,
       useDynamicRowHeight: false,
@@ -45,7 +45,6 @@ export default class GridExample extends PureComponent<Props, State> {
     console.log(this.props);
     const {
       columnCount,
-      height,
       overscanColumnCount,
       overscanRowCount,
       rowHeight,
@@ -55,11 +54,11 @@ export default class GridExample extends PureComponent<Props, State> {
       useDynamicRowHeight,
     } = this.state;
 
-    return (<AutoSizer disableHeight>
-      {({ width }) => (
+    return (<AutoSizer >
+      {({ height, width }) => (
         <Grid
           cellRenderer={this._cellRenderer}
-          columnWidth={this._getColumnWidth}
+          columnWidth={width / columnCount}
           columnCount={columnCount}
           height={height}
           noContentRenderer={this._noContentRenderer}
@@ -78,7 +77,9 @@ export default class GridExample extends PureComponent<Props, State> {
   _cellRenderer({
     columnIndex, key, rowIndex, style
   }) {
-    return this._renderBodyCell({
+    return rowIndex === 0 ? this._renderHeaderCell({
+      columnIndex, key, rowIndex, style
+    }) : this._renderBodyCell({
       columnIndex, key, rowIndex, style
     });
   }
@@ -106,6 +107,14 @@ export default class GridExample extends PureComponent<Props, State> {
   }
 
   _getRowClassName(row) {
+    return {
+      borderStyle: 'solid',
+      borderWidth: '1px',
+      backgroundColor: row % 2 == 1 ? '#e6e6e6' : 'white',
+      display: 'flex',
+      justifyContent: 'center', /* align horizontal */
+      alignItems: 'center' /* align vertical */
+    };
     // return row % 2 === 0 ? styles.evenRow : styles.oddRow;
   }
 
@@ -123,19 +132,21 @@ export default class GridExample extends PureComponent<Props, State> {
     const rowClass = this._getRowClassName(rowIndex);
     const datum = this._getDatum(rowIndex);
 
-    let content;
+    // rowIndex - 1 to compensate for header
+    return (<div key={key} style={{ ...style, ...rowClass }}>
+      {this.props.table.rows[rowIndex - 1].value[columnIndex]}
+    </div>);
+  }
 
-    switch (columnIndex) {
-      default:
-        content = `r:${rowIndex}, c:${columnIndex}`;
-        break;
-    }
+  _renderHeaderCell({
+    columnIndex, key, rowIndex, style
+  }) {
+    const rowClass = this._getRowClassName(rowIndex);
+    const datum = this._getDatum(rowIndex);
 
-    return (
-      <div key={key} style={style}>
-        {content}
-      </div>
-    );
+    return (<div key={key} style={{ ...style, ...rowClass }}>
+      <h3>{this.props.table.columns[columnIndex]}</h3>
+    </div>);
   }
 
   _updateUseDynamicRowHeights(value) {

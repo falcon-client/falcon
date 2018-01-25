@@ -5,7 +5,7 @@ import type { TableType } from '../types/TableType';
 // import Footer from './Footer';
 
 type Props = {
-  table: Array<TableType>
+  table: TableType
 };
 
 type State = {
