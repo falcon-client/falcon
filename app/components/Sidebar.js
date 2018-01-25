@@ -4,15 +4,15 @@ import TableType from '../types/TableType';
 
 type Props = {
   databaseName: string,
-  onSelectTable: (event) => void,
+  onSelectTable: (table: TableType) => void,
   tables: Array<TableType>
 };
 
 export default function Sidebar(props) {
   const tables = props.tables.map(table =>
-    (<li key={table.tableName}className="Sidebar--list-item">
+    (<li key={table.tableName} onClick={(e) => props.onSelectTable(table)} className="Sidebar--list-item">
       <ListSymbol type="table" /><a>{table.tableName}</a>
-    </li>));
+     </li>));
 
   return (
     <div className="Sidebar">

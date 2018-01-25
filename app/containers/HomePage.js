@@ -103,8 +103,13 @@ class HomePage extends Component<Props, State> {
     });
   };
 
+  onSelectTable = (selectedTable: TableType) => {
+    this.setState({ selectedTable });
+  };
+
   render() {
-    console.log(this.state);
+    console.log('HomePage selected table:');
+    console.log(this.state.selectedTable);
     if (!this.state.selectedTable) return <div />;
     return (
       <div className="HomePage container-fluid">
@@ -126,7 +131,7 @@ class HomePage extends Component<Props, State> {
                 axis="x"
               >
                 {/* Currently only supports one database file at a time (since using SQLite only) */}
-                <Sidebar tables={this.state.tables} databaseName={this.state.databaseName} />
+                <Sidebar databaseName={this.state.databaseName} tables={this.state.tables} onSelectTable={this.onSelectTable} />
               </ResizableBox>
               <div className="Grid" style={{ position: 'relative', width: this.state.widthGrid }}>
                 <Switch>

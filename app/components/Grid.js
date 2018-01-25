@@ -18,12 +18,10 @@ export default class GridWrapper extends PureComponent<Props, State> {
     super(props, context);
 
     this.state = {
-      columnCount: props.table.columns.length,
       height: 300,
       overscanColumnCount: 0,
       overscanRowCount: 10,
       rowHeight: 40,
-      rowCount: props.table.rows.length + 1, // + 1 for column labels
       scrollToColumn: undefined,
       scrollToRow: undefined,
       useDynamicRowHeight: false,
@@ -42,13 +40,13 @@ export default class GridWrapper extends PureComponent<Props, State> {
   }
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
+    const columnCount = this.props.table.columns.length;
+    const rowCount = this.props.table.rows.length + 1; // + 1 for column labels
     const {
-      columnCount,
       overscanColumnCount,
       overscanRowCount,
       rowHeight,
-      rowCount,
       scrollToColumn,
       scrollToRow,
       useDynamicRowHeight,
@@ -77,6 +75,8 @@ export default class GridWrapper extends PureComponent<Props, State> {
   _cellRenderer({
     columnIndex, key, rowIndex, style
   }) {
+    console.log(this.state);
+
     return rowIndex === 0 ? this._renderHeaderCell({
       columnIndex, key, rowIndex, style
     }) : this._renderBodyCell({
