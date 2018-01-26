@@ -15,6 +15,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "falcon-core": "git+ssh://git@github.com:amilajack/falcon-core.git#graphql-implementation"
+    "falcon-core": "git+ssh://git@github.com:amilajack/falcon-core.git"
   }
 }
