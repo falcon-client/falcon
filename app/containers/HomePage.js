@@ -9,6 +9,7 @@ import { Switch, Route } from 'react-router';
 import ContentPage from './ContentPage';
 import StructurePage from './StructurePage';
 import QueryPage from './QueryPage';
+import GraphPage from './GraphPage';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
@@ -138,6 +139,7 @@ class HomePage extends Component<Props, State> {
                   <Route path="/home/content" render={() => <ContentPage table={this.state.selectedTable} />} />
                   <Route path="/home/structure" component={StructurePage} />
                   <Route path="/home/query" component={QueryPage} />
+                  <Route path="/home/graph" render={() => <GraphPage databasePath={this.props.databasePath} />} />
                 </Switch>
                 <Footer />
               </div>

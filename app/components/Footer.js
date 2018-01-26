@@ -7,9 +7,6 @@ export default function Footer() {
     <div className="Footer">
       <div className="FooterButtonContainer">
         <div className="FooterButton FooterButton--active">
-          <Link to="/login">Login</Link>
-        </div>
-        <div className="FooterButton">
           <Link to="/home/content">Content</Link>
         </div>
         <div className="FooterButton">
@@ -19,7 +16,7 @@ export default function Footer() {
           <Link to="/home/structure">Structure</Link>
         </div>
         <div className="FooterButton">
-          <Link to="/graph">Graph</Link>
+          <Link to="/home/graph">Graph</Link>
         </div>
       </div>
     </div>
