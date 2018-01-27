@@ -3,3 +3,6 @@
 *.ico binary
 *.icns binary
 *.sqlite binary
+*.eot     -text diff
+*.woff    -text diff
+
