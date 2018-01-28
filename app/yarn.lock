@@ -457,7 +457,7 @@ extsprintf@^1.2.0:
 
 "falcon-core@git+ssh://git@github.com:amilajack/falcon-core.git":
   version "0.1.0-4"
-  resolved "git+ssh://git@github.com:amilajack/falcon-core.git#9df83894d7ea6fab88143ba47cb1cb7150c4e57f"
+  resolved "git+ssh://git@github.com:amilajack/falcon-core.git#64e57321a1092c701f8e3003b726a8d27454ef34"
   dependencies:
     cassandra-driver "^3.3.0"
     cors "^2.8.4"
