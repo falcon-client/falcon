@@ -5,4 +5,5 @@
 *.sqlite binary
 *.eot     -text diff
 *.woff    -text diff
+*.ttf     -text diff
 
