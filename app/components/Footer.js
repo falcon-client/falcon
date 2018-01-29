@@ -24,6 +24,11 @@ export default function Footer() {
         <div className="FooterButton">
           <Link to="/logs">Logs</Link>
         </div>
+        {process.env.NODE_ENV === 'development' ?
+          <div className="FooterButton">
+            <Link to="/performance">Performance</Link>
+          </div>
+        : null}
       </div>
     </div>
   );
