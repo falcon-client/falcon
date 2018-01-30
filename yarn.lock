@@ -4614,6 +4614,14 @@ handlebars@^4.0.3:
   optionalDependencies:
     uglify-js "^2.6"
 
+handsontable@^0.35.1:
+  version "0.35.1"
+  resolved "https://registry.yarnpkg.com/handsontable/-/handsontable-0.35.1.tgz#e976aa568824b250f2f475309db8db9a8ef1b1d9"
+  dependencies:
+    moment "2.20.1"
+    numbro "1.11.0"
+    pikaday "1.5.1"
+
 har-schema@^1.0.5:
   version "1.0.5"
   resolved "https://registry.npmjs.org/har-schema/-/har-schema-1.0.5.tgz#d263135f43307c02c602afc8fe95970c0151369e"
@@ -6643,6 +6651,10 @@ mkdirp@0.5.0:
   dependencies:
     minimist "0.0.8"
 
+moment@2.20.1, moment@2.x:
+  version "2.20.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.20.1.tgz#d6eb1a46cbcc14a2b2f9434112c1ff8907f313fd"
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "https://registry.npmjs.org/move-concurrently/-/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -6958,6 +6970,10 @@ num2fraction@^1.2.2:
 number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.npmjs.org/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
+
+numbro@1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/numbro/-/numbro-1.11.0.tgz#39aa17b358b4682aec8ca0d5755f35c5d9ce8f9e"
 
 nwmatcher@^1.4.3:
   version "1.4.3"
@@ -7379,6 +7395,12 @@ pify@^2.0.0, pify@^2.3.0:
 pify@^3.0.0:
   version "3.0.0"
   resolved "https://registry.npmjs.org/pify/-/pify-3.0.0.tgz#e5a4acd2c101fdf3d9a4d07f0dbc4db49dd28176"
+
+pikaday@1.5.1:
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/pikaday/-/pikaday-1.5.1.tgz#0a48549bc1a14ea1d08c44074d761bc2f2bfcfd3"
+  optionalDependencies:
+    moment "2.x"
 
 pinkie-promise@^2.0.0:
   version "2.0.1"
@@ -8186,12 +8208,6 @@ react-style-proptype@^3.0.0:
   resolved "https://registry.npmjs.org/react-style-proptype/-/react-style-proptype-3.1.0.tgz#c8912fc13460f5b0c1ec1114c729d535b52b8073"
   dependencies:
     prop-types "^15.5.4"
-
-react-table@^6.7.6:
-  version "6.7.6"
-  resolved "https://registry.npmjs.org/react-table/-/react-table-6.7.6.tgz#3f9e3b308328ceb04ef93a47babefaba2619c905"
-  dependencies:
-    classnames "^2.2.5"
 
 "react-tag-autocomplete@github:amilajack/react-tags":
   version "5.4.1"

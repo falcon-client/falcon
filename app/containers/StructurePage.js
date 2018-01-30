@@ -1,6 +1,5 @@
 // @flow
 import React, { Component } from 'react';
-import ReactTable from 'react-table';
 import Select from 'react-select';
 
 const options = [
