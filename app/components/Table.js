@@ -1,54 +1,70 @@
 // @flow
 import React from 'react';
 import Handsontable from 'handsontable';
-import ReactDOM from 'react-dom';
 import type { TableType } from '../types/TableType';
 
-
-const tableData = [
-  ['Phase', 'Day 1', 'Day 2', 'Day 3', 'Day 4'],
-  ['Warm Up', 10, 11, 12, 13, 5, 12, 5, 2],
-  ['', 20, 11, 14, 13, 5, 12, 5, 2],
-  ['', 30, 15, 12, 13, 5, 12, 5, 2],
-  ['', 30, 15, 12, 13, 5, 12, 5, 2],
-  ['5/3/1', 30, 15, 12, 13, 5, 12, 5, 2],
-  ['', 30, 15, 12, 13, 5, 12, 5, 2],
-  ['', 30, 15, 12, 13, 5, 12, 5, 2],
-  ['', 30, 15, 12, 13, 5, 12, 5, 2],
-  ['The Triumvirate', 30, 15, 12, 13, 5, 12, 5, 2],
-  ['', 30, 15, 12, 13, 5, 12, 5, 2],
-  ['', 30, 15, 12, 13, 5, 12, 5, 2],
-  ['', 30, 15, 12, 13, 5, 12, 5, 2]
-];
+type Props = {
+  table: TableType
+};
 
 
-export default class Table extends React.Component {
-  constructor(props, context) {
-    super(props, context);
+/**
+  * Creates the table to be passed to react-handsontable. Does not mutate
+  * @param {*} table table taken from falcon-core
+  */
+function initTableData(table) {
+  const rows = table.rows.map(row => row.value.map(value => value));
+  return rows;
+}
+
+/**
+  * Creates the table to be passed to react-handsontable. Does not mutate
+  * @param {*} table table taken from falcon-core
+  */
+function initTableHeaders(table) {
+  const columns = [...table.columns];
+  return columns;
+}
+
+/**
+ * Handsontable modifies passed table data. Need to make copies to passed
+ * props immutable
+ */
+export default class Table extends React.Component<Props, State> {
+  constructor(props) {
+    super(props);
     this.state = {
-    	options: {
-        data: tableData,
-      	colHeaders: true,
-	      afterGetColHeader: true,
-      }
+      className: 'htCenter htMiddle',
+      data: initTableData(props.table),
+      colHeaders: initTableHeaders(props.table),
+      afterGetColHeader: true,
+      manualColumnResize: true,
+      stretchH: 'all',
     };
   }
 
   componentDidMount() {
-    const $elm = ReactDOM.findDOMNode(this);
-    this.table = new Handsontable($elm, this.state.options);
+    console.log('in componentDidMount');
+    this.table = new Handsontable(this.$elm, this.state);
   }
 
   componentWillReceiveProps(nextProps) {
-  	const { ...options } = nextProps;
-    this.setState({ options: Object.assign(this.state.options, options) });
+    console.log('in componentWillReceiveProps');
+    this.setState({ data: initTableData(nextProps.table) });
+    this.table.updateSettings(this.state);
   }
 
   componentDidUpdate() {
-    this.table.updateSettings(this.state.options);
+    console.log('in componentDidUpdate');
+    this.table.updateSettings(this.state);
   }
 
   render() {
-    return <div />;
+    console.log('in render');
+    return (
+
+      <div ref={$elm => (this.$elm = $elm)} />
+
+    );
   }
 }

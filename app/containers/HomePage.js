@@ -132,7 +132,7 @@ class HomePage extends Component<Props, State> {
                 {/* Currently only supports one database file at a time (since using SQLite only) */}
                 <Sidebar databaseName={this.state.databaseName} tables={this.state.tables} onSelectTable={this.onSelectTable} />
               </ResizableBox>
-              <div className="Grid" style={{ position: 'relative', width: this.state.widthGrid }}>
+              <div className="Grid" style={{ position: 'relative', width: this.state.widthGrid, overflow: 'scroll' }}>
                 <Switch>
                   <Route path="/home/content" render={() => <ContentPage table={this.state.selectedTable} />} />
                   <Route path="/home/structure" component={StructurePage} />
