@@ -13,7 +13,7 @@ import GraphPage from './GraphPage';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
-import { getDatabases } from '../api/Database';
+import { Database, getDatabases, getTableColumns } from '../api/Database';
 import type { DatabaseType } from '../types/DatabaseType';
 import type { TableType } from '../types/TableType';
 
@@ -27,18 +27,20 @@ type State = {
   widthGrid: number, // window.innerWidth - 200
   databaseName: ?string,
   tables: ?Array<TableType>,
-  selectedTable: ?TableType
-  // showQuery: boolean,
+  selectedTable: ?TableType,
+  databaseApi: Database
   // siderCollapsed: boolean
 };
 
 class HomePage extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
+
     this.state = {
       // @TODO: See LoginPage line 131 for why replace'_' with '/'
       widthSidebar: 200,
       widthGrid: window.innerWidth - 200,
+      databaseApi: new Database(this.props.databasePath),
       databaseName: null,
       tables: null,
       selectedTable: null,
@@ -53,7 +55,7 @@ class HomePage extends Component<Props, State> {
 
   async componentDidMount() {
     await this.setDatabaseResults(this.props.databasePath);
-
+    await this.state.databaseApi.connect();
     window.onresizeFunctions['sidebar-resize-set-state'] = () => {
       this.setState({
         widthSidebar: this.state.widthSidebar,
@@ -135,7 +137,7 @@ class HomePage extends Component<Props, State> {
               <div className="Grid" style={{ position: 'relative', width: this.state.widthGrid, overflow: 'scroll' }}>
                 <Switch>
                   <Route path="/home/content" render={() => <ContentPage table={this.state.selectedTable} />} />
-                  <Route path="/home/structure" component={StructurePage} />
+                  <Route path="/home/structure" render={() => <StructurePage databasePath={this.props.databasePath} tableName={this.state.selectedTable.tableName} getTableColumns={getTableColumns} />} />
                   <Route path="/home/query" component={QueryPage} />
                   <Route path="/home/graph" render={() => <GraphPage databasePath={this.props.databasePath} />} />
                 </Switch>

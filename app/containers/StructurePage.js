@@ -1,6 +1,8 @@
 // @flow
 import React, { Component } from 'react';
+import ReactTable from 'react-table';
 import Select from 'react-select';
+import TableColumnType from '../api/Database';
 
 const options = [
   { value: 'BINARY', label: 'BINARY' },
@@ -30,11 +32,35 @@ const data = [{
   checkConstraints: 'true',
 }];
 
+type Props = {
+  databasePath: string,
+  tableName: string,
+  getTableColumns: (
+    databasePath: string,
+    table: string,
+  ) => Promise<Array<TableColumnType>>
+};
 
-export default class StructurePage extends Component {
-  state = {
-    values: data.map(column => column.defaultTypeValue)
-  };
+type State = {
+  tableColumns: ?TableColumnType
+};
+
+
+export default class StructurePage extends Component<Props, State> {
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      values: data.map(column => column.defaultTypeValue),
+      tableColumns: null
+    };
+  }
+
+  async componentDidMount() {
+    const { getTableColumns, tableName, databasePath } = this.props;
+    const tableColumns = await getTableColumns(databasePath, tableName);
+    console.log(tableColumns);
+    this.setState({ tableColumns });
+  }
 
   render() {
     const { values } = this.state;
@@ -70,7 +96,7 @@ export default class StructurePage extends Component {
     }];
 
     return (
-      <div className="Structure col-offset-2">
+      <div className="Structure col-offset-2" >
         <ReactTable
           data={data}
           columns={columns}

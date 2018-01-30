@@ -26,7 +26,7 @@ type configType = {
   }
 };
 
-export type TableKeyType = {
+export type TableColumnType = {
   cid: number,
   name: string,
   type: string,
@@ -55,8 +55,8 @@ export type DatabaseApiType = {
   getTableColumns: (
     table: string,
     raw: boolean
-  ) => Promise<Array<TableKeyType>>,
-  getPrimaryKeyColumn: (table: string) => Promise<TableKeyType>,
+  ) => Promise<Array<TableColumnType>>,
+  getPrimaryKeyColumn: (table: string) => Promise<TableColumnType>,
   insertRows: (table: string, values: { [string]: any }) => void,
   deleteRows: (table: string, keys: Array<string> | Array<number>) => void,
   renameTable: (oldTableName: string, newTableName: string) => Promise<boolean>,
@@ -93,8 +93,8 @@ export class Database {
     getTableColumns: (
       table: string,
       raw: boolean
-    ) => Promise<Array<TableKeyType>>,
-    getPrimaryKeyColumn: (table: string) => Promise<TableKeyType>,
+    ) => Promise<Array<TableColumnType>>,
+    getPrimaryKeyColumn: (table: string) => Promise<TableColumnType>,
     delete: (
       table: string,
       keys: Array<string> | Array<number>
@@ -165,11 +165,11 @@ export class Database {
   async getTableColumns(
     table: string,
     raw: boolean = false
-  ): Promise<Array<TableKeyType>> {
+  ): Promise<Array<TableColumnType>> {
     return this.connection.getTableColumns(table, raw);
   }
 
-  async getPrimaryKeyColumn(table: string): Promise<TableKeyType> {
+  async getPrimaryKeyColumn(table: string): Promise<TableColumnType> {
     return this.connection.getPrimaryKeyColumn(table);
   }
 
@@ -316,6 +316,24 @@ export async function verifySqlite(databasePath: string): Promise<string | true>
     await connection.connect(serverInfo);
     await connection.executeQuery('pragma schema_version');
     return true;
+  } catch (e) {
+    return e.message;
+  }
+}
+
+/**
+ * Creates a test connection and attempts an operation. If an error occurs,
+ * returns the error message thrown by falcon-core. Otherwise return true
+ */
+export async function getTableColumns(databasePath: string, tableName: string): Promise<string | true> {
+  try {
+    const serverInfo = {
+      database: databasePath,
+      client: 'sqlite'
+    };
+    const serverSession = db.createServer(serverInfo);
+    const connection = await serverSession.createConnection(databasePath);
+    return connection.getTableColumns(tableName);
   } catch (e) {
     return e.message;
   }
