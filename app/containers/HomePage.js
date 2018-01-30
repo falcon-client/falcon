@@ -109,8 +109,6 @@ class HomePage extends Component<Props, State> {
   };
 
   render() {
-    console.log('HomePage selected table:');
-    console.log(this.state.selectedTable);
     if (!this.state.selectedTable) return <div />;
     return (
       <div className="HomePage container-fluid">
@@ -141,8 +139,8 @@ class HomePage extends Component<Props, State> {
                   <Route path="/home/query" component={QueryPage} />
                   <Route path="/home/graph" render={() => <GraphPage databasePath={this.props.databasePath} />} />
                 </Switch>
-                <Footer />
               </div>
+              <Footer offset={this.state.widthSidebar} />
             </div>
           </div>
         </div>

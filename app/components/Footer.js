@@ -2,9 +2,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Footer() {
+type Props = {
+  offset: number
+};
+
+export default function Footer(props: Props) {
   return (
-    <div className="Footer">
+    <div className="Footer" style={{ left: props.offset }}>
       <div className="FooterButtonContainer">
         <div className="FooterButton FooterButton--active">
           <Link to="/home/content">Content</Link>
