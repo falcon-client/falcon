@@ -2,16 +2,37 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import Select from 'react-select';
+import _ from 'lodash';
 import TableColumnType from '../api/Database';
 
+// Taken from https://www.sqlite.org/datatype3.html
+// Each columns type options should contain these and its current type
+// This is db-browser's behavior
 const options = [
-  { value: 'BINARY', label: 'BINARY' },
   { value: 'TEXT', label: 'TEXT' },
   { value: 'NUMERIC', label: 'NUMERIC' },
   { value: 'REAL', label: 'REAL' },
-  { value: 'BLOB', label: 'BLOB' }
+  { value: 'BLOB', label: 'BLOB' },
+  { value: 'INTEGER', label: 'INTEGER' },
 ];
 
+const cellStyle = {
+  display: 'flex',
+  alignItems: 'center',
+  height: '100%',
+  width: '100%',
+  fontSize: '110%',
+  color: '#686868',
+  border: 0
+};
+
+
+const tableStyle = {
+  color: '#686868',
+  backgroundColor: 'white',
+};
+
+// @TODO: Might map tableColumns data passed from falcon-core to this format
 const data = [{
   name: 'username',
   autoIncrement: 'false',
@@ -32,6 +53,7 @@ const data = [{
   checkConstraints: 'true',
 }];
 
+
 type Props = {
   databasePath: string,
   tableName: string,
@@ -50,7 +72,6 @@ export default class StructurePage extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      values: data.map(column => column.defaultTypeValue),
       tableColumns: null
     };
   }
@@ -58,52 +79,76 @@ export default class StructurePage extends Component<Props, State> {
   async componentDidMount() {
     const { getTableColumns, tableName, databasePath } = this.props;
     const tableColumns = await getTableColumns(databasePath, tableName);
-    console.log(tableColumns);
     this.setState({ tableColumns });
   }
 
-  render() {
-    const { values } = this.state;
-    const columns = [{
-      Header: 'Name',
-      accessor: 'name'
-    }, {
-      Header: 'Type',
-      accessor: 'defaultTypeValue',
-      Cell: (row) => (
-        <span className="number">
-          <Select
-            name="form-field-name"
-            value={values[row.index]}
-            onChange={(item) => {
-              const updatedRowValues = [...this.state.values];
-              updatedRowValues[row.index] = item.value;
-
+  renderSelect = (cellInfo) => {
+    const { tableColumns } = this.state;
+    return (
+      <span className="number">
+        <Select
+          name="form-field-name"
+          value={tableColumns[cellInfo.index].type}
+          onChange={(item) => {
+              const newTableColumns = _.cloneDeep(this.state.tableColumns);
+              newTableColumns[cellInfo.index].type = item.value;
               this.setState({
-                values: updatedRowValues
+                tableColumns: newTableColumns
               });
             }}
-            options={options}
-          />
-        </span>
-      )
-    }, {
-      accessor: 'default',
-      Header: 'Default',
-    }, {
-      accessor: 'notNull',
-      Header: 'Constraints',
-    }];
+          clearable={false}
+            // Options contain Affinity types + column's current type
+          options={_.unionWith(options, [{ label: tableColumns[cellInfo.index].type, value: tableColumns[cellInfo.index].type }], _.isEqual)}
+        />
+      </span>
+    );
+  }
 
+  renderEditable = (cellInfo) => (
+    <input style={cellStyle} value={cellInfo.value} />
+  )
+
+  render() {
+    if (!this.state.tableColumns) return <div />;
+
+
+    const { tableColumns } = this.state;
+    const columns = [{
+      accessor: 'cid',
+      Header: 'Column ID',
+      Cell: this.renderEditable
+    }, {
+      accessor: 'dflt_value',
+      Header: 'Default',
+      Cell: this.renderEditable
+    }, {
+      accessor: 'name',
+      Header: 'Name',
+      Cell: this.renderEditable
+    }, {
+      accessor: 'notnull',
+      Header: 'Null',
+      Cell: this.renderEditable
+    },
+    {
+      accessor: 'pk',
+      Header: 'Primary Key',
+      Cell: this.renderEditable
+    },
+    {
+      Header: 'Type',
+      accessor: 'type',
+      Cell: this.renderSelect
+    }];
     return (
       <div className="Structure col-offset-2" >
         <ReactTable
-          data={data}
+          data={tableColumns}
+          style={tableStyle}
           columns={columns}
           showPageJump={false}
-          minRows={data.length}
+          minRows={tableColumns.length}
           showPagination={false}
-
         />
       </div>
     );

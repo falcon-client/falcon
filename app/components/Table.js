@@ -44,23 +44,19 @@ export default class Table extends React.Component<Props, State> {
   }
 
   componentDidMount() {
-    console.log('in componentDidMount');
     this.table = new Handsontable(this.$elm, this.state);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('in componentWillReceiveProps');
     this.setState({ data: initTableData(nextProps.table) });
     this.table.updateSettings(this.state);
   }
 
   componentDidUpdate() {
-    console.log('in componentDidUpdate');
     this.table.updateSettings(this.state);
   }
 
   render() {
-    console.log('in render');
     return (
 
       <div ref={$elm => (this.$elm = $elm)} />
