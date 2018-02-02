@@ -14,12 +14,15 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
 import { Database, getDatabases, getTableColumns } from '../api/Database';
+import { setDatabasePath } from '../actions/index';
 import type { DatabaseType } from '../types/DatabaseType';
 import type { TableType } from '../types/TableType';
+import { OPEN_FILE_CHANNEL } from '../types/channels';
 
 type Props = {
   children: Children,
-  databasePath: ?string
+  databasePath: ?string,
+  setDatabasePath: (string) => null
 };
 
 type State = {
@@ -45,9 +48,9 @@ class HomePage extends Component<Props, State> {
       tables: null,
       selectedTable: null,
     };
-    // ipcRenderer.on(OPEN_FILE_CHANNEL, (event, filePath) => {
-    //   this.setDatabaseResults(filePath);
-    // });
+    ipcRenderer.on(OPEN_FILE_CHANNEL, (event, filePath) => {
+      this.props.setDatabasePath(filePath);
+    });
     // ipcRenderer.on(DELETE_TABLE_CHANNEL, () => {
     //   this.deleteSelectedTable();
     // });
@@ -111,7 +114,7 @@ class HomePage extends Component<Props, State> {
   };
 
   render() {
-    console.log(this.props);
+    console.log(this.props.databasePath);
     if (!this.state.selectedTable) return <div />;
     return (
       <div className="HomePage container-fluid">
@@ -152,11 +155,11 @@ class HomePage extends Component<Props, State> {
   }
 }
 
-
 function mapStateToProps(state) {
   return {
     databasePath: state.databasePath,
   };
 }
 
-export default connect(mapStateToProps)(HomePage);
+
+export default connect(mapStateToProps, { setDatabasePath })(HomePage);

@@ -19,6 +19,9 @@ const buttonStyle = {
   padding: '2px 0px'
 };
 
+type Props = {
+  setDatabasePath: (string) => null
+};
 
 type State = {
   connectionName: string,
@@ -27,7 +30,7 @@ type State = {
   savedDatabases: Array<LoginSavedDatabaseType>
 };
 
-class Login extends Component<null, State> {
+class Login extends Component<Props, State> {
   connections = new Connections();
   constructor(props: Props) {
     super(props);

@@ -290,7 +290,6 @@ export async function exportFile(
   const connection = await serverSession.createConnection(databasePath);
 
   await connection.connect(serverInfo);
-
   switch (type) {
     case 'json':
       return connection.exportJson(exportPath, exportOptions);

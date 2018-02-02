@@ -1,5 +1,12 @@
 // @flow
-import { app, Menu, shell, BrowserWindow } from 'electron';
+/* eslint import/no-extraneous-dependencies: 0 */
+import { app, Menu, shell, BrowserWindow, dialog } from 'electron';
+import { exportFile } from './api/Database';
+import {
+  OPEN_FILE_CHANNEL,
+  DELETE_ROW_CHANNEL,
+  DELETE_TABLE_CHANNEL
+} from './types/channels';
 
 export default class MenuBuilder {
   mainWindow: BrowserWindow;
@@ -58,6 +65,44 @@ export default class MenuBuilder {
         { label: 'Quit', accelerator: 'Command+Q', click: () => { app.quit(); } }
       ]
     };
+    const subMenuFile = {
+      label: 'File',
+      submenu: [
+        {
+          label: 'Open File',
+          accelerator: 'Command+O',
+          click: () => {
+            const selectedFiles = dialog.showOpenDialog({
+              filters: [
+                { name: 'SQLite', extensions: ['sqlite', 'db', 'sqlite3'] }
+              ],
+              title: 'Set a database'
+            });
+            if (!selectedFiles) return;
+            // @TODO: Hardcoded to use only first database selected
+            this.mainWindow.webContents.send(
+              OPEN_FILE_CHANNEL,
+              selectedFiles[0]
+            );
+          }
+        },
+        {
+          label: 'Show Favorites Menu',
+          accelerator: 'Alt+Command+N',
+          click: () => {}
+        },
+        {
+          label: 'New Window',
+          accelerator: 'Command+N',
+          click: () => {}
+        },
+        {
+          label: 'New Tab',
+          accelerator: 'Command+T',
+          click: () => {}
+        }
+      ]
+    };
     const subMenuEdit = {
       label: 'Edit',
       submenu: [
@@ -67,7 +112,22 @@ export default class MenuBuilder {
         { label: 'Cut', accelerator: 'Command+X', selector: 'cut:' },
         { label: 'Copy', accelerator: 'Command+C', selector: 'copy:' },
         { label: 'Paste', accelerator: 'Command+V', selector: 'paste:' },
-        { label: 'Select All', accelerator: 'Command+A', selector: 'selectAll:' }
+        { label: 'Select All', accelerator: 'Command+A', selector: 'selectAll:' },
+        { type: 'separator' },
+        {
+          label: 'Delete Table Row',
+          accelerator: 'Backspace',
+          click: () => {
+            this.mainWindow.webContents.send(DELETE_ROW_CHANNEL);
+          }
+        },
+        {
+          label: 'Delete Table',
+          accelerator: 'Command+Backspace',
+          click: () => {
+            this.mainWindow.webContents.send(DELETE_TABLE_CHANNEL);
+          }
+        }
       ]
     };
     const subMenuViewDev = {
@@ -83,6 +143,50 @@ export default class MenuBuilder {
       submenu: [
         { label: 'Toggle Full Screen', accelerator: 'Ctrl+Command+F', click: () => { this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen()); } }
       ]
+    };
+    const subMenuDatabase = {
+      label: 'Database',
+      submenu: [
+        {
+          label: 'Import',
+          accelerator: '',
+          click: () => {
+            dialog.showSaveDialog();
+          }
+        },
+        {
+          label: 'Export',
+          accelerator: '',
+          click: async () => {
+            const exportPath = dialog.showSaveDialog(this.mainWindow, {
+              filters: [
+                { name: 'JSON', extensions: ['json'] },
+                { name: 'CSV', extensions: ['csv'] }
+              ],
+              title: 'Export a database',
+              // @TODO: Change foo to current database table
+              defaultPath: '~/foo.csv'
+            });
+            const fileType: 'json' | 'csv' = exportPath.substring(exportPath.lastIndexOf('.') + 1);
+            await exportFile(fileType, exportPath, {
+              // @TODO: HARDCODE
+              table: 'albums'
+            });
+          }
+        }
+      ]
+    };
+    const subMenuHistory = {
+      label: 'History',
+      submenu: []
+    };
+    const subMenuBookmarks = {
+      label: 'Bookmarks',
+      submenu: []
+    };
+    const subMenuDevelop = {
+      label: 'Develop',
+      submenu: []
     };
     const subMenuWindow = {
       label: 'Window',
@@ -109,8 +213,13 @@ export default class MenuBuilder {
 
     return [
       subMenuAbout,
+      subMenuFile,
       subMenuEdit,
       subMenuView,
+      subMenuDatabase,
+      subMenuHistory,
+      subMenuBookmarks,
+      subMenuDevelop,
       subMenuWindow,
       subMenuHelp
     ];
@@ -131,7 +240,7 @@ export default class MenuBuilder {
       }]
     }, {
       label: '&View',
-      submenu: (process.env.NODE_ENV === 'development') ? [{
+      submenu: process.env.NODE_ENV === 'development' ? [{
         label: '&Reload',
         accelerator: 'Ctrl+R',
         click: () => {
