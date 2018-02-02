@@ -55,12 +55,7 @@ const data = [{
 
 
 type Props = {
-  databasePath: string,
-  tableName: string,
-  getTableColumns: (
-    databasePath: string,
-    table: string,
-  ) => Promise<Array<TableColumnType>>
+  tablePromise: Promise<Array<TableColumnType>>
 };
 
 type State = {
@@ -77,8 +72,12 @@ export default class StructurePage extends Component<Props, State> {
   }
 
   async componentDidMount() {
-    const { getTableColumns, tableName, databasePath } = this.props;
-    const tableColumns = await getTableColumns(databasePath, tableName);
+    const tableColumns = await this.props.tablePromise;
+    this.setState({ tableColumns });
+  }
+
+  async componentWillReceiveProps(nextProps: Props) {
+    const tableColumns = await nextProps.tablePromise;
     this.setState({ tableColumns });
   }
 

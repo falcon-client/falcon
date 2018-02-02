@@ -137,7 +137,7 @@ class HomePage extends Component<Props, State> {
               <div className="Grid" style={{ position: 'relative', width: this.state.widthGrid, overflow: 'scroll' }}>
                 <Switch>
                   <Route path="/home/content" render={() => <ContentPage table={this.state.selectedTable} />} />
-                  <Route path="/home/structure" render={() => <StructurePage databasePath={this.props.databasePath} tableName={this.state.selectedTable.tableName} getTableColumns={getTableColumns} />} />
+                  <Route path="/home/structure" render={() => <StructurePage tablePromise={getTableColumns(this.props.databasePath, this.state.selectedTable.tableName)} />} />
                   <Route path="/home/query" component={QueryPage} />
                   <Route path="/home/graph" render={() => <GraphPage databasePath={this.props.databasePath} />} />
                 </Switch>
