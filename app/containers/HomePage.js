@@ -81,9 +81,6 @@ class HomePage extends Component<Props, State> {
       grid.style.height = `${window.innerHeight - height}px`;
       sidebar.style.height = `${window.innerHeight - height + 40}px`;
     });
-
-    const columnInfo = await this.state.databaseApi.getTableColumns(this.state.selectedTable.tableName);
-    console.log(columnInfo);
   }
 
   // @TODO: Since supporting just SQLite, getDatabases will only return 1 db
