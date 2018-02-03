@@ -13,7 +13,7 @@ import GraphPage from './GraphPage';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
-import { Database, getDatabases, getTableColumns } from '../api/Database';
+import { Database, getDatabases } from '../api/Database';
 import { setDatabasePath } from '../actions/index';
 import type { DatabaseType } from '../types/DatabaseType';
 import type { TableType } from '../types/TableType';
@@ -38,12 +38,13 @@ type State = {
 class HomePage extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-
+    const databaseApi = new Database(props.databasePath);
+    databaseApi.connect();
     this.state = {
       // @TODO: See LoginPage line 131 for why replace'_' with '/'
       widthSidebar: 200,
       widthGrid: window.innerWidth - 200,
-      databaseApi: new Database(this.props.databasePath),
+      databaseApi,
       databaseName: null,
       tables: null,
       selectedTable: null,
@@ -56,9 +57,12 @@ class HomePage extends Component<Props, State> {
     // });
   }
 
+  /**
+   * Upon mounting, component fetches initial database data and configures
+   * grid/sidebar resizing data
+   */
   async componentDidMount() {
     await this.setDatabaseResults(this.props.databasePath);
-    await this.state.databaseApi.connect();
     window.onresizeFunctions['sidebar-resize-set-state'] = () => {
       this.setState({
         widthSidebar: this.state.widthSidebar,
@@ -77,6 +81,9 @@ class HomePage extends Component<Props, State> {
       grid.style.height = `${window.innerHeight - height}px`;
       sidebar.style.height = `${window.innerHeight - height + 40}px`;
     });
+
+    const columnInfo = await this.state.databaseApi.getTableColumns(this.state.selectedTable.tableName);
+    console.log(columnInfo);
   }
 
   // @TODO: Since supporting just SQLite, getDatabases will only return 1 db
@@ -141,7 +148,7 @@ class HomePage extends Component<Props, State> {
               <div className="Grid" style={{ position: 'relative', width: this.state.widthGrid, overflow: 'scroll' }}>
                 <Switch>
                   <Route path="/home/content" render={() => <ContentPage table={this.state.selectedTable} />} />
-                  <Route path="/home/structure" render={() => <StructurePage tablePromise={getTableColumns(this.props.databasePath, this.state.selectedTable.tableName)} />} />
+                  <Route path="/home/structure" render={() => <StructurePage tablePromise={this.state.databaseApi.getTableColumns(this.state.selectedTable.tableName)} />} />
                   <Route path="/home/query" component={QueryPage} />
                   <Route path="/home/graph" render={() => <GraphPage databasePath={this.props.databasePath} />} />
                 </Switch>
