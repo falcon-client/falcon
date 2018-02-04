@@ -62,7 +62,6 @@ type State = {
   tableColumns: ?TableColumnType
 };
 
-
 export default class StructurePage extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
