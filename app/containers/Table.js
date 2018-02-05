@@ -7,7 +7,6 @@ type Props = {
   table: TableType
 };
 
-
 /**
   * Creates the table to be passed to react-handsontable. Does not mutate
   * @param {*} table table taken from falcon-core
@@ -35,6 +34,19 @@ export default class Table extends React.Component<Props, State> {
     super(props);
     this.state = {
       className: 'htCenter htMiddle',
+      contextMenu: [
+        'row_above',
+        'row_below',
+        '---------',
+        'col_left',
+        'col_right',
+        '---------',
+        'remove_row',
+        'remove_col',
+        '---------',
+        'undo',
+        'redo'
+      ],
       data: initTableData(props.table),
       colHeaders: initTableHeaders(props.table),
       afterGetColHeader: true,
@@ -48,7 +60,8 @@ export default class Table extends React.Component<Props, State> {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ data: initTableData(nextProps.table) });
+    console.log(nextProps.table);
+    this.setState({ data: initTableData(nextProps.table), colHeaders: initTableHeaders(nextProps.table) });
     this.table.updateSettings(this.state);
   }
 
@@ -58,9 +71,7 @@ export default class Table extends React.Component<Props, State> {
 
   render() {
     return (
-
       <div ref={$elm => (this.$elm = $elm)} />
-
     );
   }
 }
