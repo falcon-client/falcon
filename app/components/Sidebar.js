@@ -9,6 +9,7 @@ import TableType from '../types/TableType';
 type Props = {
   databaseName: string,
   onSelectTable: (table: TableType) => void,
+  selectedTable: TableType,
   tables: Array<TableType>
 };
 
@@ -17,9 +18,9 @@ type Props = {
 // via styling. Will need to fix this when we want collapsible elements
 export default function Sidebar(props) {
   const tables = props.tables.map(table =>
-    (<div key={table.tableName} onClick={(e) => props.onSelectTable(table)} className="Sidebar--list-item" style={{ paddingLeft: 40 }}>
+    (<div key={table.tableName} onClick={(e) => props.onSelectTable(table)} className={props.selectedTable.tableName === table.tableName ? 'Sidebar--list-item-selected' : 'Sidebar--list-item'} style={{ paddingLeft: 40 }}>
       <ListSymbol type="table" /><a>{table.tableName}</a>
-    </div>));
+     </div>));
 
   return (
     <div className="Sidebar">

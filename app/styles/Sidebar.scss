@@ -34,7 +34,7 @@
     color: #686868;
 
     &:hover {
-      background-color: #686868;
+      background-color: #999999;
       color: white;
 
       .ListSymbol {
@@ -45,6 +45,9 @@
   }
 
   .Sidebar--list-item-selected {
+    font-size: 12px;
+    padding: 5px;
+    padding-left: 20px;
     background-color: #686868;
     color: white;
 
