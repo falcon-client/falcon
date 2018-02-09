@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import Select from 'react-select';
 import _ from 'lodash';
-import TableColumnType from '../api/Database';
+import type { TableColumnType } from '../api/Database';
 
 // Taken from https://www.sqlite.org/datatype3.html
 // Each columns type options should contain these and its current type
@@ -89,10 +89,12 @@ export default class StructurePage extends Component<Props, State> {
           value={tableColumns[cellInfo.index].type}
           onChange={(item) => {
               const newTableColumns = _.cloneDeep(this.state.tableColumns);
-              newTableColumns[cellInfo.index].type = item.value;
-              this.setState({
-                tableColumns: newTableColumns
-              });
+              if (newTableColumns) {
+                newTableColumns[cellInfo.index].type = item.value;
+                this.setState({
+                  tableColumns: newTableColumns
+                });
+              }
             }}
           clearable={false}
             // Options contain Affinity types + column's current type
