@@ -52,6 +52,7 @@ export default class Table extends React.Component<Props, State> {
       afterGetColHeader: true,
       manualColumnResize: true,
       stretchH: 'all',
+      currentRowClassName: 'currentRow'
     };
   }
 
@@ -60,7 +61,6 @@ export default class Table extends React.Component<Props, State> {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.table);
     this.setState({ data: initTableData(nextProps.table), colHeaders: initTableHeaders(nextProps.table) });
     this.table.updateSettings(this.state);
   }
