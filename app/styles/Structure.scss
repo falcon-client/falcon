@@ -8,7 +8,53 @@
     text-align: center;
   }
 
-  .search-bar input {
-    width: 75%;
+    .search-bar input {
+      width: 75%;
+    }
+
+  .rt-tbody {
+    background: white;
+  }
+
+  .rt-resizable-header-content {
+    text-align: left;
+  }
+
+  .ReactTable {
+    background: white;
+  }
+
+  * {
+    box-shadow: none !important;
+    font-family: 'Avenir';
+    font-size: 14px;
+  }
+
+  .rt-resizable-header-content {
+    font-weight: bold;
+  }
+
+  .rt-table {
+    overflow: initial;
+  }
+
+  .rt-tbody {
+    overflow: initial;
+  }
+
+  .rt-td {
+    overflow: initial !important;
+  }
+
+  .rt-tr {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid lightgray;
+  }
+
+  .Select-menu-outer {
+    position: absolute;
+    z-index: 1000000;
   }
 }
