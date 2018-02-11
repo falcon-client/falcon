@@ -42,7 +42,6 @@ export default class Table extends React.Component<Props, State> {
         'col_right',
         '---------',
         'remove_row',
-        'remove_col',
         '---------',
         'undo',
         'redo'

@@ -53,6 +53,17 @@ const data = [{
   checkConstraints: 'true',
 }];
 
+/** Maps tableData from falcon-core to an obj compatible with react-table */
+function convertColumnData(col: TableColumnType) {
+  return {
+    cid: col.cid,
+    dflt_value: col.dflt_value,
+    name: col.name,
+    notNull: col.notnull === 0,
+    isPrimaryKey: col.pk === 1,
+    type: col.type
+  };
+}
 
 type Props = {
   tablePromise: Promise<Array<TableColumnType>>
@@ -72,21 +83,22 @@ export default class StructurePage extends Component<Props, State> {
 
   async componentDidMount() {
     const tableColumns = await this.props.tablePromise;
-    this.setState({ tableColumns });
+    this.setState({ tableColumns: tableColumns.map(convertColumnData) });
   }
 
   async componentWillReceiveProps(nextProps: Props) {
     const tableColumns = await nextProps.tablePromise;
-    this.setState({ tableColumns });
+    this.setState({ tableColumns: tableColumns.map(convertColumnData) });
   }
 
-  renderSelect = (cellInfo) => {
+  /** Used to render <Select> for column.type options</Select> */
+  renderSelectType = (cellInfo) => {
     const { tableColumns } = this.state;
     return (
       <span className="number">
         <Select
           name="form-field-name"
-          value={tableColumns[cellInfo.index].type}
+          value={cellInfo.value}
           onChange={(item) => {
               const newTableColumns = _.cloneDeep(this.state.tableColumns);
               if (newTableColumns) {
@@ -104,6 +116,29 @@ export default class StructurePage extends Component<Props, State> {
     );
   }
 
+  renderSelectBoolean = (cellInfo) => {
+    const columnAccessor = cellInfo.column.id;
+    return (
+      <span className="number">
+        <Select
+          name="form-field-name"
+          value={cellInfo.value}
+          onChange={(item) => {
+              const newTableColumns = _.cloneDeep(this.state.tableColumns);
+              if (newTableColumns) {
+                newTableColumns[cellInfo.index][columnAccessor] = item.value;
+                this.setState({
+                  tableColumns: newTableColumns
+                });
+              }
+            }}
+          clearable={false}
+          options={[{ label: 'TRUE', value: 'true' }, { label: 'FALSE', value: 'false' }]}
+        />
+      </span>
+    );
+  }
+
   renderEditable = (cellInfo) => (
     <input style={cellStyle} value={cellInfo.value} />
   )
@@ -111,34 +146,34 @@ export default class StructurePage extends Component<Props, State> {
   render() {
     if (!this.state.tableColumns) return <div />;
 
-
     const { tableColumns } = this.state;
     const columns = [{
       accessor: 'cid',
       Header: 'Column ID',
       Cell: this.renderEditable
     }, {
+      accessor: 'name',
+      Header: 'Name',
+      Cell: this.renderEditable
+    },
+    {
       accessor: 'dflt_value',
       Header: 'Default',
       Cell: this.renderEditable
     }, {
-      accessor: 'name',
-      Header: 'Name',
-      Cell: this.renderEditable
-    }, {
-      accessor: 'notnull',
-      Header: 'Null',
-      Cell: this.renderEditable
+      accessor: 'notNull',
+      Header: 'Not Null',
+      Cell: this.renderSelectBoolean
     },
     {
-      accessor: 'pk',
+      accessor: 'isPrimaryKey',
       Header: 'Primary Key',
-      Cell: this.renderEditable
+      Cell: this.renderSelectBoolean
     },
     {
       Header: 'Type',
       accessor: 'type',
-      Cell: this.renderSelect
+      Cell: this.renderSelectType
     }];
     return (
       <div className="Structure col-offset-2" >
