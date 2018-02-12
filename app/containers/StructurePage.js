@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import Select from 'react-select';
 import _ from 'lodash';
+import Cell from '../components/StructurePageCell';
 import type { TableColumnType } from '../api/Database';
 
 // Taken from https://www.sqlite.org/datatype3.html
@@ -140,7 +141,9 @@ export default class StructurePage extends Component<Props, State> {
   }
 
   renderEditable = (cellInfo) => (
-    <input style={cellStyle} value={cellInfo.value} />
+    <Cell type={cellInfo.value === null ? null : ''}>
+      <input style={cellStyle} value={cellInfo.value} placeholder={cellInfo.value == null ? 'NULL' : cellInfo.value} />
+    </Cell>
   )
 
   render() {

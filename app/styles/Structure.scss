@@ -46,6 +46,14 @@
     overflow: initial !important;
   }
 
+  .rt-td:focus-within {
+    border-color: blue;
+  }
+
+  input {
+    background-color: inherit;
+  }
+
   .rt-tr {
     display: flex;
     justify-content: center;
