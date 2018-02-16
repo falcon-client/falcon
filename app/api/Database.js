@@ -31,7 +31,7 @@ export type TableColumnType = {
   name: string,
   type: string,
   notnull: 0 | 1,
-  dflt_value: string,
+  dflt_value: string | null,
   pk: 0 | 1
 };
 
@@ -73,7 +73,8 @@ export type DatabaseApiType = {
   dropTableColumns: (
     table: string,
     columnsToDrop: Array<string>
-  ) => Promise<string>
+  ) => Promise<string>,
+  getDatabasePrimaryKeys: () => Array<{tableName: string, primaryKey: string}>
 };
 
 /**
@@ -256,15 +257,18 @@ export async function getDatabases(databasePath: string): Promise<Array<Database
       .all(tables.map(table => connection.getTableValues(table)))
     // For each table of the current database, format the rows
       .then((databaseTableValues: Array<Array<Object>>) =>
-        databaseTableValues.map((table, tableIndex) => ({
-          databaseName,
-          tableName: tables[tableIndex],
-          columns: Object.keys(table[0]),
-          rows: table.map((value, index) => ({
-            rowID: value[Object.keys(value)[index]],
-            value: Object.values(value)
-          }))
-        }))))).then(_databases =>
+        databaseTableValues.map((table, tableIndex) =>
+          // console.log(tableIndex);
+          // console.log(table);
+          ({
+            databaseName,
+            tableName: tables[tableIndex],
+            columns: Object.keys(table[0]),
+            rows: table.map((value, index) => ({
+              rowID: value[Object.keys(value)[index]],
+              value: Object.values(value)
+            }))
+          }))))).then(_databases =>
     _databases.map((database, databaseIndex) => ({
       tables: database,
       // @TODO: databaseName currently returns database path rather than name

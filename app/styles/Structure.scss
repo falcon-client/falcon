@@ -50,9 +50,6 @@
     border-color: blue;
   }
 
-  input {
-    background-color: inherit;
-  }
 
   .rt-tr {
     display: flex;
@@ -65,4 +62,30 @@
     position: absolute;
     z-index: 1000000;
   }
+
+  .Structure-Cell-Input {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-size: 110%;
+    color: #686868;
+    border: 0
+  }
+
+  .Structure-Cell-Input--null {
+    background-color: #FFF8B2;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    font-size: 110%;
+    color: #686868;
+    border: 0;
+  }
+
+  .Structure-Cell-Input--null::placeholder {
+    color: #b3b3b3
+  }
+
 }

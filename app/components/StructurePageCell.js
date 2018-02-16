@@ -12,10 +12,6 @@ const genericTypeMappings: { [type: string]: SpecialType } = {
   null: 'null',
 };
 
-// @TODO: Placeholders for all types except for null
-const colorMappings = {
-  null: '#FFF8B2'
-};
 
 /**
  * Used to render a cell in react-table for special types (e.g. NULL)
@@ -25,16 +21,14 @@ export default function StructurePageCell(props: Props) {
   switch (type) {
     case null:
       return (
-        <div
-          style={{ backgroundColor: '#FFF8B2' }}
-        >
-          {props.children}
+        <div>
+          <input className="Structure-Cell-Input--null" value={props.value} placeholder={props.value == null ? 'NULL' : props.value} />
         </div>
       );
     default:
       return (
         <div>
-          {props.children}
+          <input className="Structure-Cell-Input" value={props.value} placeholder={props.value == null ? 'NULL' : props.value} />
         </div>
       );
   }

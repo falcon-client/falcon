@@ -17,17 +17,6 @@ const options = [
   { value: 'INTEGER', label: 'INTEGER' },
 ];
 
-const cellStyle = {
-  display: 'flex',
-  alignItems: 'center',
-  height: '100%',
-  width: '100%',
-  fontSize: '110%',
-  color: '#686868',
-  border: 0
-};
-
-
 const tableStyle = {
   color: '#686868',
   backgroundColor: 'white',
@@ -141,9 +130,7 @@ export default class StructurePage extends Component<Props, State> {
   }
 
   renderEditable = (cellInfo) => (
-    <Cell type={cellInfo.value === null ? null : ''}>
-      <input style={cellStyle} value={cellInfo.value} placeholder={cellInfo.value == null ? 'NULL' : cellInfo.value} />
-    </Cell>
+    <Cell type={cellInfo.value === null ? null : ''} value={cellInfo.value} />
   )
 
   render() {
