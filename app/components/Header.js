@@ -5,10 +5,13 @@ import ListSymbol from './ListSymbol';
 
 type Props = {
   databaseName: string,
-  selectedTableName: string
+  selectedTableName: string,
+  databaseName: string,
+  databaseType: string,
+  databaseVersion: number | string
 };
 
-export default function Header(props) {
+export default function Header(props: Props) {
   const shouldHideMargin =
     remote.getCurrentWindow().isFullScreen() ||
     process.platform !== 'darwin';
@@ -26,7 +29,7 @@ export default function Header(props) {
       </div>
       <div className="Header--container Header--container-status" id="falcon-status-bar-container">
         <span className="Connection"><i className="ion-locked Connection--lock Connection--lock-secure" /> <a href="">Connected</a></span>
-        <span><a href="">SQLite 3.1.6</a></span>
+        <span><a href="">{props.databaseType} {props.databaseVersion}</a></span>
       </div>
       <div className="Header--container Header--container-hidden">
         <div className="Header--button ion-android-refresh" />

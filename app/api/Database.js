@@ -235,6 +235,19 @@ export class Database {
   static getDatabases = getDatabases;
 }
 
+export async function getVersion(databasePath: string | number): Promise<string> {
+  const serverInfo = {
+    database: databasePath,
+    client: 'sqlite'
+  };
+
+  const serverSession = db.createServer(serverInfo);
+  const connection = await serverSession.createConnection(databasePath);
+  await connection.connect(serverInfo);
+
+  return connection.getVersion();
+}
+
 export async function getDatabases(databasePath: string): Promise<Array<DatabaseType>> {
   const serverInfo = {
     database: databasePath,

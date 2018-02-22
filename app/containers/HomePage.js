@@ -13,7 +13,7 @@ import GraphPage from './GraphPage';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
-import { Database, getDatabases } from '../api/Database';
+import { Database, getDatabases, getVersion } from '../api/Database';
 import { setDatabasePath } from '../actions/index';
 import type { DatabaseType } from '../types/DatabaseType';
 import type { TableType } from '../types/TableType';
@@ -47,6 +47,9 @@ class HomePage extends Component<Props, State> {
       databaseApi,
       databaseName: null,
       tables: null,
+      // @HACK: HARDCODE
+      databaseType: 'SQLite',
+      databaseVersion: '',
       selectedTable: null,
     };
     ipcRenderer.on(OPEN_FILE_CHANNEL, (event, filePath) => {
@@ -63,6 +66,11 @@ class HomePage extends Component<Props, State> {
    */
   async componentDidMount() {
     await this.setDatabaseResults(this.props.databasePath);
+    const databaseVersion = await getVersion(this.props.databasePath);
+    this.setState({
+      databaseVersion
+    });
+
     window.onresizeFunctions['sidebar-resize-set-state'] = () => {
       this.setState({
         widthSidebar: this.state.widthSidebar,
@@ -123,7 +131,12 @@ class HomePage extends Component<Props, State> {
       <div className="HomePage container-fluid">
         <div className="row">
           <div className="sticky">
-            <Header databaseName={this.state.databaseName} selectedTableName={this.state.selectedTable.tableName} />
+            <Header
+              selectedTableName={this.state.selectedTable.tableName}
+              databaseType={this.state.databaseType}
+              databaseName={this.state.databaseName}
+              databaseVersion={this.state.databaseVersion}
+            />
             {/**
             <div className="col-sm-12 no-padding">
               <Tabs />
