@@ -232,7 +232,40 @@ export class Database {
     return this.connection.dropTableColumns(table, columnsToDrop);
   }
 
-  static getDatabases = getDatabases;
+  async getDatabases(): Promise<Array<DatabaseType>> {
+    const databases: Array<string> = await this.connection.listDatabases();
+    const tables: Array<string> = await this.connection
+      .listTables()
+      .then(each => each.map(s => s.name));
+
+    return Promise.all(databases.map(databaseName =>
+      // @TODO: Dynamically create connections for each table. For now, we're
+      //        expecting there to be only one database, and therefore only one
+      //        connection
+      Promise
+      // Get the values of each table
+        .all(tables.map(table => this.connection.getTableValues(table)))
+      // For each table of the current database, format the rows
+        .then((databaseTableValues: Array<Array<Object>>) =>
+          databaseTableValues.map((table, tableIndex) =>
+            // console.log(tableIndex);
+            // console.log(table);
+            ({
+              databaseName,
+              tableName: tables[tableIndex],
+              columns: Object.keys(table[0]),
+              rows: table.map((value, index) => ({
+                rowID: value[Object.keys(value)[index]],
+                value: Object.values(value)
+              }))
+            }))))).then(_databases =>
+      _databases.map((database, databaseIndex) => ({
+        tables: database,
+        // @TODO: databaseName currently returns database path rather than name
+        //        Used substring to get just the name
+        databaseName: databases[databaseIndex].substring(databases[databaseIndex].lastIndexOf('/') + 1)
+      })));
+  }
 }
 
 export async function getDatabases(databasePath: string): Promise<Array<DatabaseType>> {

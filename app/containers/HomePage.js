@@ -13,7 +13,7 @@ import GraphPage from './GraphPage';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
-import { Database, getDatabases } from '../api/Database';
+import { Database } from '../api/Database';
 import { setDatabasePath } from '../actions/index';
 import type { DatabaseType } from '../types/DatabaseType';
 import type { TableType } from '../types/TableType';
@@ -31,20 +31,19 @@ type State = {
   databaseName: ?string,
   tables: ?Array<TableType>,
   selectedTable: ?TableType,
-  databaseApi: Database
+  DatabaseApi: Database
   // siderCollapsed: boolean
 };
 
 class HomePage extends Component<Props, State> {
   constructor(props: Props) {
     super(props);
-    const databaseApi = new Database(props.databasePath);
-    databaseApi.connect();
+    const DatabaseApi = new Database(props.databasePath);
     this.state = {
       // @TODO: See LoginPage line 131 for why replace'_' with '/'
       widthSidebar: 200,
       widthGrid: window.innerWidth - 200,
-      databaseApi,
+      DatabaseApi,
       databaseName: null,
       tables: null,
       selectedTable: null,
@@ -59,9 +58,10 @@ class HomePage extends Component<Props, State> {
 
   /**
    * Upon mounting, component fetches initial database data and configures
-   * grid/sidebar resizing data
+   * grid/sidebar resizing data. Also connects the DatabaseApi
    */
   async componentDidMount() {
+    await this.state.DatabaseApi.connect();
     await this.setDatabaseResults(this.props.databasePath);
     window.onresizeFunctions['sidebar-resize-set-state'] = () => {
       this.setState({
@@ -83,11 +83,13 @@ class HomePage extends Component<Props, State> {
     });
   }
 
-  // @TODO: Since supporting just SQLite, getDatabases will only return 1 db
+  /**
+   * Uses the database api to set container's state from falcon-core
+   * @TODO: Since supporting just SQLite, getDatabases will only return 1 db
+   */
   setDatabaseResults = async (filePath: string) => {
-    const databasesArr = await getDatabases(filePath);
+    const databasesArr = await this.state.DatabaseApi.getDatabases();
     const { databaseName, tables } = databasesArr[0];
-
     this.setState({
       databaseName,
       tables,
@@ -144,7 +146,7 @@ class HomePage extends Component<Props, State> {
               <div className="Grid" style={{ position: 'relative', width: this.state.widthGrid, overflow: 'scroll' }}>
                 <Switch>
                   <Route path="/home/content" render={() => <ContentPage table={this.state.selectedTable} />} />
-                  <Route path="/home/structure" render={() => <StructurePage tablePromise={this.state.databaseApi.getTableColumns(this.state.selectedTable.tableName)} />} />
+                  <Route path="/home/structure" render={() => <StructurePage tablePromise={this.state.DatabaseApi.getTableColumns(this.state.selectedTable.tableName)} />} />
                   <Route path="/home/query" component={QueryPage} />
                   <Route path="/home/graph" render={() => <GraphPage databasePath={this.props.databasePath} />} />
                 </Switch>
