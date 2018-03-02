@@ -4,6 +4,7 @@ import { ResizableBox } from 'react-resizable';
 import type { Children } from 'react';
 import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
+// @TODO: Implement
 // import Tabs from '../components/Tabs';
 import { Switch, Route } from 'react-router';
 import ContentPage from './ContentPage';
@@ -22,7 +23,7 @@ import { OPEN_FILE_CHANNEL } from '../types/channels';
 type Props = {
   children: Children,
   databasePath: ?string,
-  setDatabasePath: (string) => null
+  setDatabasePath: string => null
 };
 
 type State = {
@@ -49,7 +50,7 @@ class HomePage extends Component<Props, State> {
       // @HACK: HARDCODE
       databaseType: 'SQLite',
       databaseVersion: '',
-      selectedTable: null,
+      selectedTable: null
     };
     ipcRenderer.on(OPEN_FILE_CHANNEL, (event, filePath) => {
       this.props.setDatabasePath(filePath);
@@ -85,10 +86,10 @@ class HomePage extends Component<Props, State> {
     sidebar.style.height = `${window.innerHeight - height + 40}px`;
 
     // If the window is resized, change the height of the grid repsectively
-    window.onresizeFunctions['resize-grid-resize'] = (() => {
+    window.onresizeFunctions['resize-grid-resize'] = () => {
       grid.style.height = `${window.innerHeight - height}px`;
       sidebar.style.height = `${window.innerHeight - height + 40}px`;
-    });
+    };
   }
 
   /**
@@ -101,13 +102,11 @@ class HomePage extends Component<Props, State> {
     this.setState({
       databaseName,
       tables,
-      selectedTable:
-        this.state.selectedTable || tables[0],
+      selectedTable: this.state.selectedTable || tables[0]
       // @TODO: Use tableName instead of whole table object contents
       // databasePath: filePath
     });
   };
-
 
   onResizeGrid = (event, { size }) => {
     this.setState({
@@ -154,17 +153,51 @@ class HomePage extends Component<Props, State> {
                 axis="x"
               >
                 {/* Currently only supports one database file at a time (since using SQLite only) */}
-                <Sidebar databaseName={this.state.databaseName} tables={this.state.tables} onSelectTable={this.onSelectTable} selectedTable={this.state.selectedTable} />
+                <Sidebar
+                  databaseName={this.state.databaseName}
+                  tables={this.state.tables}
+                  onSelectTable={this.onSelectTable}
+                  selectedTable={this.state.selectedTable}
+                />
               </ResizableBox>
-              <div className="Grid" style={{ position: 'relative', width: this.state.widthGrid, overflow: 'scroll' }}>
+              <div
+                className="Grid"
+                style={{
+                  position: 'relative',
+                  width: this.state.widthGrid,
+                  overflow: 'scroll'
+                }}
+              >
                 <Switch>
-                  <Route path="/home/content" render={() => <ContentPage table={this.state.selectedTable} />} />
-                  <Route path="/home/structure" render={() => <StructurePage tablePromise={this.state.DatabaseApi.getTableColumns(this.state.selectedTable.tableName)} />} />
+                  <Route
+                    path="/home/content"
+                    render={() => (
+                      <ContentPage table={this.state.selectedTable} />
+                    )}
+                  />
+                  <Route
+                    path="/home/structure"
+                    render={() => (
+                      <StructurePage
+                        tablePromise={this.state.DatabaseApi.getTableColumns(
+                          this.state.selectedTable.tableName
+                        )}
+                      />
+                    )}
+                  />
                   <Route path="/home/query" component={QueryPage} />
-                  <Route path="/home/graph" render={() => <GraphPage databasePath={this.props.databasePath} />} />
+                  <Route
+                    path="/home/graph"
+                    render={() => (
+                      <GraphPage databasePath={this.props.databasePath} />
+                    )}
+                  />
                 </Switch>
               </div>
-              <Footer offset={this.state.widthSidebar} pathname={this.props.location.pathname} />
+              <Footer
+                offset={this.state.widthSidebar}
+                pathname={this.props.location.pathname}
+              />
             </div>
           </div>
         </div>
@@ -175,9 +208,8 @@ class HomePage extends Component<Props, State> {
 
 function mapStateToProps(state) {
   return {
-    databasePath: state.databasePath,
+    databasePath: state.databasePath
   };
 }
-
 
 export default connect(mapStateToProps, { setDatabasePath })(HomePage);

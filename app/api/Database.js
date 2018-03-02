@@ -74,7 +74,7 @@ export type DatabaseApiType = {
     table: string,
     columnsToDrop: Array<string>
   ) => Promise<string>,
-  getDatabasePrimaryKeys: () => Array<{tableName: string, primaryKey: string}>
+  getDatabasePrimaryKeys: () => Array<{ tableName: string, primaryKey: string }>
 };
 
 /**
@@ -152,14 +152,18 @@ export class Database {
   }
 
   async connect() {
-    this.connection = await this.session.createConnection(this.config.serverInfo.database);
+    this.connection = await this.session.createConnection(
+      this.config.serverInfo.database
+    );
     if (!this.connection) {
       throw new Error('Connection has not been established yet');
     }
     this.connection.connect(this.config.serverInfo);
   }
 
-  async sendQueryToDatabase(query: string): Promise<Array<ProviderInterfaceType.queryResponseType>> {
+  async sendQueryToDatabase(
+    query: string
+  ): Promise<Array<ProviderInterfaceType.queryResponseType>> {
     return this.connection.executeQuery(query);
   }
 
@@ -238,37 +242,47 @@ export class Database {
       .listTables()
       .then(each => each.map(s => s.name));
 
-    return Promise.all(databases.map(databaseName =>
-      // @TODO: Dynamically create connections for each table. For now, we're
-      //        expecting there to be only one database, and therefore only one
-      //        connection
-      Promise
-      // Get the values of each table
-        .all(tables.map(table => this.connection.getTableValues(table)))
-      // For each table of the current database, format the rows
-        .then((databaseTableValues: Array<Array<Object>>) =>
-          databaseTableValues.map((table, tableIndex) =>
-            // console.log(tableIndex);
-            // console.log(table);
-            ({
-              databaseName,
-              tableName: tables[tableIndex],
-              columns: Object.keys(table[0]),
-              rows: table.map((value, index) => ({
-                rowID: value[Object.keys(value)[index]],
-                value: Object.values(value)
-              }))
-            }))))).then(_databases =>
+    return Promise.all(
+      databases.map(databaseName =>
+        // @TODO: Dynamically create connections for each table. For now, we're
+        //        expecting there to be only one database, and therefore only one
+        //        connection
+        Promise
+          // Get the values of each table
+          .all(tables.map(table => this.connection.getTableValues(table)))
+          // For each table of the current database, format the rows
+          .then((databaseTableValues: Array<Array<Object>>) =>
+            databaseTableValues.map((table, tableIndex) =>
+              // console.log(tableIndex);
+              // console.log(table);
+              ({
+                databaseName,
+                tableName: tables[tableIndex],
+                columns: Object.keys(table[0]),
+                rows: table.map((value, index) => ({
+                  rowID: value[Object.keys(value)[index]],
+                  value: Object.values(value)
+                }))
+              })
+            )
+          )
+      )
+    ).then(_databases =>
       _databases.map((database, databaseIndex) => ({
         tables: database,
         // @TODO: databaseName currently returns database path rather than name
         //        Used substring to get just the name
-        databaseName: databases[databaseIndex].substring(databases[databaseIndex].lastIndexOf('/') + 1)
-      })));
+        databaseName: databases[databaseIndex].substring(
+          databases[databaseIndex].lastIndexOf('/') + 1
+        )
+      }))
+    );
   }
 }
 
-export async function getVersion(databasePath: string | number): Promise<string> {
+export async function getVersion(
+  databasePath: string | number
+): Promise<string> {
   const serverInfo = {
     database: databasePath,
     client: 'sqlite'
@@ -281,7 +295,9 @@ export async function getVersion(databasePath: string | number): Promise<string>
   return connection.getVersion();
 }
 
-export async function getDatabases(databasePath: string): Promise<Array<DatabaseType>> {
+export async function getDatabases(
+  databasePath: string
+): Promise<Array<DatabaseType>> {
   const serverInfo = {
     database: databasePath,
     client: 'sqlite'
@@ -294,33 +310,41 @@ export async function getDatabases(databasePath: string): Promise<Array<Database
     .listTables()
     .then(each => each.map(s => s.name));
 
-  return Promise.all(databases.map(databaseName =>
-    // @TODO: Dynamically create connections for each table. For now, we're
-    //        expecting there to be only one database, and therefore only one
-    //        connection
-    Promise
-    // Get the values of each table
-      .all(tables.map(table => connection.getTableValues(table)))
-    // For each table of the current database, format the rows
-      .then((databaseTableValues: Array<Array<Object>>) =>
-        databaseTableValues.map((table, tableIndex) =>
-          // console.log(tableIndex);
-          // console.log(table);
-          ({
-            databaseName,
-            tableName: tables[tableIndex],
-            columns: Object.keys(table[0]),
-            rows: table.map((value, index) => ({
-              rowID: value[Object.keys(value)[index]],
-              value: Object.values(value)
-            }))
-          }))))).then(_databases =>
+  return Promise.all(
+    databases.map(databaseName =>
+      // @TODO: Dynamically create connections for each table. For now, we're
+      //        expecting there to be only one database, and therefore only one
+      //        connection
+      Promise
+        // Get the values of each table
+        .all(tables.map(table => connection.getTableValues(table)))
+        // For each table of the current database, format the rows
+        .then((databaseTableValues: Array<Array<Object>>) =>
+          databaseTableValues.map((table, tableIndex) =>
+            // console.log(tableIndex);
+            // console.log(table);
+            ({
+              databaseName,
+              tableName: tables[tableIndex],
+              columns: Object.keys(table[0]),
+              rows: table.map((value, index) => ({
+                rowID: value[Object.keys(value)[index]],
+                value: Object.values(value)
+              }))
+            })
+          )
+        )
+    )
+  ).then(_databases =>
     _databases.map((database, databaseIndex) => ({
       tables: database,
       // @TODO: databaseName currently returns database path rather than name
       //        Used substring to get just the name
-      databaseName: databases[databaseIndex].substring(databases[databaseIndex].lastIndexOf('/') + 1)
-    })));
+      databaseName: databases[databaseIndex].substring(
+        databases[databaseIndex].lastIndexOf('/') + 1
+      )
+    }))
+  );
 }
 
 /**
@@ -354,7 +378,9 @@ export async function exportFile(
  * Creates a test connection and attempts an operation. If an error occurs,
  * returns the error message thrown by falcon-core. Otherwise return true
  */
-export async function verifySqlite(databasePath: string): Promise<string | true> {
+export async function verifySqlite(
+  databasePath: string
+): Promise<string | true> {
   try {
     const serverInfo = {
       database: databasePath,
@@ -374,7 +400,10 @@ export async function verifySqlite(databasePath: string): Promise<string | true>
  * Creates a test connection and attempts an operation. If an error occurs,
  * returns the error message thrown by falcon-core. Otherwise return true
  */
-export async function getTableColumns(databasePath: string, tableName: string): Promise<string | true> {
+export async function getTableColumns(
+  databasePath: string,
+  tableName: string
+): Promise<string | true> {
   try {
     const serverInfo = {
       database: databasePath,

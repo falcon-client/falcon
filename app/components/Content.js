@@ -8,13 +8,9 @@ type Props = {
   table: TableType
 };
 
-type State = {
-
-};
+type State = {};
 export default class Content extends Component<Props, State> {
   render() {
-    return (
-      <Table table={this.props.table} />
-    );
+    return <Table table={this.props.table} />;
   }
 }

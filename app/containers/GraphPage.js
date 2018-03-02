@@ -2,7 +2,7 @@ import React from 'react';
 import { Voyager } from 'graphql-voyager/dist/voyager';
 import { db } from 'falcon-core';
 
-type Props = {databasePath: string};
+type Props = { databasePath: string };
 
 export default function GraphPage(props: Props) {
   return (
@@ -18,15 +18,20 @@ export default function GraphPage(props: Props) {
       client: 'sqlite'
     };
     const serverSession = db.createServer(serverInfo);
-    const connection = await serverSession.createConnection(serverInfo.database);
+    const connection = await serverSession.createConnection(
+      serverInfo.database
+    );
     await connection.connect(serverInfo);
 
     await connection.startGraphQLServer();
 
-    return fetch(`http://localhost:${connection.getGraphQLServerPort()}/graphql`, {
-      method: 'post',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ query }),
-    }).then(response => response.json());
+    return fetch(
+      `http://localhost:${connection.getGraphQLServerPort()}/graphql`,
+      {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query })
+      }
+    ).then(response => response.json());
   }
 }

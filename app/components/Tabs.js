@@ -57,7 +57,10 @@ class ChromeTabs {
         this.setCurrentTab(target);
       } else if (target.classList.contains('chrome-tab-close')) {
         this.removeTab(target.parentNode);
-      } else if (target.classList.contains('chrome-tab-title') || target.classList.contains('chrome-tab-favicon')) {
+      } else if (
+        target.classList.contains('chrome-tab-title') ||
+        target.classList.contains('chrome-tab-favicon')
+      ) {
         this.setCurrentTab(target.parentNode);
       }
     });
@@ -72,9 +75,14 @@ class ChromeTabs {
   }
 
   get tabWidth() {
-    const tabsContentWidth = this.tabContentEl.clientWidth - this.options.tabOverlapDistance;
-    const width = (tabsContentWidth / this.tabEls.length) + this.options.tabOverlapDistance;
-    return Math.max(this.options.minWidth, Math.min(this.options.maxWidth, width));
+    const tabsContentWidth =
+      this.tabContentEl.clientWidth - this.options.tabOverlapDistance;
+    const width =
+      tabsContentWidth / this.tabEls.length + this.options.tabOverlapDistance;
+    return Math.max(
+      this.options.minWidth,
+      Math.min(this.options.maxWidth, width)
+    );
   }
 
   get tabEffectiveWidth() {
@@ -97,12 +105,14 @@ class ChromeTabs {
     const tabWidth = this.tabWidth;
 
     this.cleanUpPreviouslyDraggedTabs();
-    this.tabEls.forEach((tabEl) => tabEl.style.width = `${tabWidth}px`);
+    this.tabEls.forEach(tabEl => (tabEl.style.width = `${tabWidth}px`));
     requestAnimationFrame(() => {
       let styleHTML = '';
       this.tabPositions.forEach((left, i) => {
         styleHTML += `
-          .chrome-tabs[data-chrome-tabs-instance-id="${this.instanceId}"] .chrome-tab:nth-child(${i + 1}) {
+          .chrome-tabs[data-chrome-tabs-instance-id="${
+            this.instanceId
+          }"] .chrome-tab:nth-child(${i + 1}) {
             transform: translate3d(${left}px, 0, 0)
           }
         `;
@@ -173,11 +183,15 @@ class ChromeTabs {
 
   updateTab(tabEl, tabProperties) {
     tabEl.querySelector('.chrome-tab-title').textContent = tabProperties.title;
-    tabEl.querySelector('.chrome-tab-favicon').style.backgroundImage = `url('${tabProperties.favicon}')`;
+    tabEl.querySelector('.chrome-tab-favicon').style.backgroundImage = `url('${
+      tabProperties.favicon
+    }')`;
   }
 
   cleanUpPreviouslyDraggedTabs() {
-    this.tabEls.forEach((tabEl) => tabEl.classList.remove('chrome-tab-just-dragged'));
+    this.tabEls.forEach(tabEl =>
+      tabEl.classList.remove('chrome-tab-just-dragged')
+    );
   }
 
   setupDraggabilly() {
@@ -185,7 +199,9 @@ class ChromeTabs {
     const tabEffectiveWidth = this.tabEffectiveWidth;
     const tabPositions = this.tabPositions;
 
-    this.draggabillyInstances.forEach(draggabillyInstance => draggabillyInstance.destroy());
+    this.draggabillyInstances.forEach(draggabillyInstance =>
+      draggabillyInstance.destroy()
+    );
 
     tabEls.forEach((tabEl, originalIndex) => {
       const originalTabPositionX = tabPositions[originalIndex];
@@ -234,7 +250,15 @@ class ChromeTabs {
         const currentIndex = tabEls.indexOf(tabEl);
 
         const currentTabPositionX = originalTabPositionX + moveVector.x;
-        const destinationIndex = Math.max(0, Math.min(tabEls.length, Math.floor((currentTabPositionX + (tabEffectiveWidth / 2)) / tabEffectiveWidth)));
+        const destinationIndex = Math.max(
+          0,
+          Math.min(
+            tabEls.length,
+            Math.floor(
+              (currentTabPositionX + tabEffectiveWidth / 2) / tabEffectiveWidth
+            )
+          )
+        );
 
         if (currentIndex !== destinationIndex) {
           this.animateTabMove(tabEl, currentIndex, destinationIndex);
@@ -252,7 +276,6 @@ class ChromeTabs {
   }
 }
 
-
 export default class Tab extends Component {
   componentDidMount() {
     setTimeout(() => {
@@ -265,30 +288,42 @@ export default class Tab extends Component {
         maxWidth: 243
       });
 
-      el.addEventListener('activeTabChange', ({ detail }) => console.log('Active tab changed', detail.tabEl));
-      el.addEventListener('tabAdd', ({ detail }) => console.log('Tab added', detail.tabEl));
-      el.addEventListener('tabRemove', ({ detail }) => console.log('Tab removed', detail.tabEl));
+      el.addEventListener('activeTabChange', ({ detail }) =>
+        console.log('Active tab changed', detail.tabEl)
+      );
+      el.addEventListener('tabAdd', ({ detail }) =>
+        console.log('Tab added', detail.tabEl)
+      );
+      el.addEventListener('tabRemove', ({ detail }) =>
+        console.log('Tab removed', detail.tabEl)
+      );
 
-      document.querySelector('button[data-add-tab]').addEventListener('click', () => {
-        chromeTabs.addTab({
-          title: 'New Tab',
-          favicon: 'demo/images/default-favicon.png'
+      document
+        .querySelector('button[data-add-tab]')
+        .addEventListener('click', () => {
+          chromeTabs.addTab({
+            title: 'New Tab',
+            favicon: 'demo/images/default-favicon.png'
+          });
         });
-      });
 
-      document.querySelector('button[data-remove-tab]').addEventListener('click', () => {
-        chromeTabs.removeTab(el.querySelector('.chrome-tab-current'));
-      });
+      document
+        .querySelector('button[data-remove-tab]')
+        .addEventListener('click', () => {
+          chromeTabs.removeTab(el.querySelector('.chrome-tab-current'));
+        });
 
-      document.querySelector('button[data-theme-toggle]').addEventListener('click', () => {
-        if (el.classList.contains('chrome-tabs-dark-theme')) {
-          document.documentElement.classList.remove('dark-theme');
-          el.classList.remove('chrome-tabs-dark-theme');
-        } else {
-          document.documentElement.classList.add('dark-theme');
-          el.classList.add('chrome-tabs-dark-theme');
-        }
-      });
+      document
+        .querySelector('button[data-theme-toggle]')
+        .addEventListener('click', () => {
+          if (el.classList.contains('chrome-tabs-dark-theme')) {
+            document.documentElement.classList.remove('dark-theme');
+            el.classList.remove('chrome-tabs-dark-theme');
+          } else {
+            document.documentElement.classList.add('dark-theme');
+            el.classList.add('chrome-tabs-dark-theme');
+          }
+        });
     }, 0);
   }
 

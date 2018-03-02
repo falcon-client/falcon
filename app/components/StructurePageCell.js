@@ -9,9 +9,8 @@ type Props = {
 
 // @TODO: Placeholders for all types except for null
 const genericTypeMappings: { [type: string]: SpecialType } = {
-  null: 'null',
+  null: 'null'
 };
-
 
 /**
  * Used to render a cell in react-table for special types (e.g. NULL)
@@ -22,13 +21,21 @@ export default function StructurePageCell(props: Props) {
     case null:
       return (
         <div>
-          <input className="Structure-Cell-Input--null" value={props.value} placeholder={props.value == null ? 'NULL' : props.value} />
+          <input
+            className="Structure-Cell-Input--null"
+            value={props.value}
+            placeholder={props.value == null ? 'NULL' : props.value}
+          />
         </div>
       );
     default:
       return (
         <div>
-          <input className="Structure-Cell-Input" value={props.value} placeholder={props.value == null ? 'NULL' : props.value} />
+          <input
+            className="Structure-Cell-Input"
+            value={props.value}
+            placeholder={props.value == null ? 'NULL' : props.value}
+          />
         </div>
       );
   }

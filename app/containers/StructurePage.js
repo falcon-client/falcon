@@ -14,34 +14,37 @@ const options = [
   { value: 'NUMERIC', label: 'NUMERIC' },
   { value: 'REAL', label: 'REAL' },
   { value: 'BLOB', label: 'BLOB' },
-  { value: 'INTEGER', label: 'INTEGER' },
+  { value: 'INTEGER', label: 'INTEGER' }
 ];
 
 const tableStyle = {
   color: '#686868',
-  backgroundColor: 'white',
+  backgroundColor: 'white'
 };
 
 // @TODO: Might map tableColumns data passed from falcon-core to this format
-const data = [{
-  name: 'username',
-  autoIncrement: 'false',
-  primaryKey: 'false',
-  defaultTypeValue: 'TEXT',
-  notNull: 'false',
-  unique: 'true',
-  default: 'foo',
-  checkConstraints: 'true',
-}, {
-  name: 'password',
-  autoIncrement: 'false',
-  primaryKey: 'false',
-  defaultTypeValue: 'TEXT',
-  notNull: 'false',
-  unique: 'true',
-  default: 'bar',
-  checkConstraints: 'true',
-}];
+const data = [
+  {
+    name: 'username',
+    autoIncrement: 'false',
+    primaryKey: 'false',
+    defaultTypeValue: 'TEXT',
+    notNull: 'false',
+    unique: 'true',
+    default: 'foo',
+    checkConstraints: 'true'
+  },
+  {
+    name: 'password',
+    autoIncrement: 'false',
+    primaryKey: 'false',
+    defaultTypeValue: 'TEXT',
+    notNull: 'false',
+    unique: 'true',
+    default: 'bar',
+    checkConstraints: 'true'
+  }
+];
 
 /** Maps tableData from falcon-core to an obj compatible with react-table */
 function convertColumnData(col: TableColumnType) {
@@ -82,91 +85,107 @@ export default class StructurePage extends Component<Props, State> {
   }
 
   /** Used to render <Select> for column.type options</Select> */
-  renderSelectType = (cellInfo) => {
+  renderSelectType = cellInfo => {
     const { tableColumns } = this.state;
     return (
       <span className="number">
         <Select
           name="form-field-name"
           value={cellInfo.value}
-          onChange={(item) => {
-              const newTableColumns = _.cloneDeep(this.state.tableColumns);
-              if (newTableColumns) {
-                newTableColumns[cellInfo.index].type = item.value;
-                this.setState({
-                  tableColumns: newTableColumns
-                });
-              }
-            }}
+          onChange={item => {
+            const newTableColumns = _.cloneDeep(this.state.tableColumns);
+            if (newTableColumns) {
+              newTableColumns[cellInfo.index].type = item.value;
+              this.setState({
+                tableColumns: newTableColumns
+              });
+            }
+          }}
           clearable={false}
-            // Options contain Affinity types + column's current type
-          options={_.unionWith(options, [{ label: tableColumns[cellInfo.index].type, value: tableColumns[cellInfo.index].type }], _.isEqual)}
+          // Options contain Affinity types + column's current type
+          options={_.unionWith(
+            options,
+            [
+              {
+                label: tableColumns[cellInfo.index].type,
+                value: tableColumns[cellInfo.index].type
+              }
+            ],
+            _.isEqual
+          )}
         />
       </span>
     );
-  }
+  };
 
-  renderSelectBoolean = (cellInfo) => {
+  renderSelectBoolean = cellInfo => {
     const columnAccessor = cellInfo.column.id;
     return (
       <span className="number">
         <Select
           name="form-field-name"
           value={cellInfo.value}
-          onChange={(item) => {
-              const newTableColumns = _.cloneDeep(this.state.tableColumns);
-              if (newTableColumns) {
-                newTableColumns[cellInfo.index][columnAccessor] = item.value;
-                this.setState({
-                  tableColumns: newTableColumns
-                });
-              }
-            }}
+          onChange={item => {
+            const newTableColumns = _.cloneDeep(this.state.tableColumns);
+            if (newTableColumns) {
+              newTableColumns[cellInfo.index][columnAccessor] = item.value;
+              this.setState({
+                tableColumns: newTableColumns
+              });
+            }
+          }}
           clearable={false}
-          options={[{ label: 'TRUE', value: 'true' }, { label: 'FALSE', value: 'false' }]}
+          options={[
+            { label: 'TRUE', value: 'true' },
+            { label: 'FALSE', value: 'false' }
+          ]}
         />
       </span>
     );
-  }
+  };
 
-  renderEditable = (cellInfo) => (
+  renderEditable = cellInfo => (
     <Cell type={cellInfo.value === null ? null : ''} value={cellInfo.value} />
-  )
+  );
 
   render() {
     if (!this.state.tableColumns) return <div />;
 
     const { tableColumns } = this.state;
-    const columns = [{
-      accessor: 'cid',
-      Header: 'Column ID',
-      Cell: this.renderEditable
-    }, {
-      accessor: 'name',
-      Header: 'Name',
-      Cell: this.renderEditable
-    },
-    {
-      accessor: 'dflt_value',
-      Header: 'Default',
-      Cell: this.renderEditable
-    }, {
-      accessor: 'notNull',
-      Header: 'Not Null',
-      Cell: this.renderSelectBoolean
-    },
-    {
-      accessor: 'isPrimaryKey',
-      Header: 'Primary Key',
-      Cell: this.renderSelectBoolean
-    },
-    {
-      Header: 'Type',
-      accessor: 'type',
-      Cell: this.renderSelectType
-    }];
+    const columns = [
+      {
+        accessor: 'cid',
+        Header: 'Column ID',
+        Cell: this.renderEditable
+      },
+      {
+        accessor: 'name',
+        Header: 'Name',
+        Cell: this.renderEditable
+      },
+      {
+        accessor: 'dflt_value',
+        Header: 'Default',
+        Cell: this.renderEditable
+      },
+      {
+        accessor: 'notNull',
+        Header: 'Not Null',
+        Cell: this.renderSelectBoolean
+      },
+      {
+        accessor: 'isPrimaryKey',
+        Header: 'Primary Key',
+        Cell: this.renderSelectBoolean
+      },
+      {
+        Header: 'Type',
+        accessor: 'type',
+        Cell: this.renderSelectType
+      }
+    ];
     return (
-      <div className="Structure col-offset-2" >
+      <div className="Structure col-offset-2">
         <ReactTable
           data={tableColumns}
           style={tableStyle}

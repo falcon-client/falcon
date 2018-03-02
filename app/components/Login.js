@@ -20,7 +20,7 @@ const buttonStyle = {
 };
 
 type Props = {
-  setDatabasePath: (string) => null
+  setDatabasePath: string => null
 };
 
 type State = {
@@ -112,14 +112,20 @@ class Login extends Component<Props, State> {
           <div className="row no-gutters">
             <div className="col-12 row-margin text-center">
               <h2 className="Login--header">Create Connection</h2>
-              {this.state.errorMessage ? <div className="Login--alert">{this.state.errorMessage}</div> : null}
+              {this.state.errorMessage ? (
+                <div className="Login--alert">{this.state.errorMessage}</div>
+              ) : null}
             </div>
             <div className="col-12">
-              <h3 className="text-left Login--input-label">Connection Nickname</h3>
+              <h3 className="text-left Login--input-label">
+                Connection Nickname
+              </h3>
               <input
                 placeholder="My first connection"
                 value={this.state.connectionName}
-                onChange={e => this.setState({ connectionName: e.target.value })}
+                onChange={e =>
+                  this.setState({ connectionName: e.target.value })
+                }
                 type="text"
               />
             </div>
@@ -132,12 +138,18 @@ class Login extends Component<Props, State> {
               />
             </div>
             <div className="col-2" style={buttonStyle}>
-
-              <button onClick={this.handleDatabasePathSelection}>Choose Path</button>
-
+              <button onClick={this.handleDatabasePathSelection}>
+                Choose Path
+              </button>
             </div>
             <div className="col-12 row-margin Login--submit-button-container">
-              <div className="Login--submit-button" onClick={this.handleConnect}> Connect</div>
+              <div
+                className="Login--submit-button"
+                onClick={this.handleConnect}
+              >
+                {' '}
+                Connect
+              </div>
             </div>
           </div>
         </div>

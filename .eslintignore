@@ -51,3 +51,4 @@ main.js.map
 .idea
 npm-debug.log.*
 __snapshots__
+app/voyager.worker.js

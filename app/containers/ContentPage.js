@@ -7,14 +7,10 @@ type Props = {
   table: TableType
 };
 
-type State = {
-
-};
+type State = {};
 
 export default class ContentPage extends Component<Props, State> {
   render() {
-    return (
-      <Content table={this.props.table} />
-    );
+    return <Content table={this.props.table} />;
   }
 }

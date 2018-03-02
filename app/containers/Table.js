@@ -8,18 +8,18 @@ type Props = {
 };
 
 /**
-  * Creates the table to be passed to react-handsontable. Does not mutate
-  * @param {*} table table taken from falcon-core
-  */
+ * Creates the table to be passed to react-handsontable. Does not mutate
+ * @param {*} table table taken from falcon-core
+ */
 function initTableData(table) {
   const rows = table.rows.map(row => row.value.map(value => value));
   return rows;
 }
 
 /**
-  * Creates the table to be passed to react-handsontable. Does not mutate
-  * @param {*} table table taken from falcon-core
-  */
+ * Creates the table to be passed to react-handsontable. Does not mutate
+ * @param {*} table table taken from falcon-core
+ */
 function initTableHeaders(table) {
   const columns = [...table.columns];
   return columns;
@@ -60,7 +60,10 @@ export default class Table extends React.Component<Props, State> {
   }
 
   componentWillReceiveProps(nextProps) {
-    this.setState({ data: initTableData(nextProps.table), colHeaders: initTableHeaders(nextProps.table) });
+    this.setState({
+      data: initTableData(nextProps.table),
+      colHeaders: initTableHeaders(nextProps.table)
+    });
     this.table.updateSettings(this.state);
   }
 
@@ -69,8 +72,6 @@ export default class Table extends React.Component<Props, State> {
   }
 
   render() {
-    return (
-      <div ref={$elm => (this.$elm = $elm)} />
-    );
+    return <div ref={$elm => (this.$elm = $elm)} />;
   }
 }

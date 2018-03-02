@@ -6,6 +6,6 @@ export const SET_DATABASE_PATH = 'SET_DATABASE_PATH';
 export function setDatabasePath(path: string) {
   return {
     type: SET_DATABASE_PATH,
-    payload: path,
+    payload: path
   };
 }

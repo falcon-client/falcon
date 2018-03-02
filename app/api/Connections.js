@@ -62,8 +62,12 @@ export default class Connections {
    * Deletes a savedDatabase from local storage
    * @return an array that does not contain that database
    */
-  deleteSavedDatabase = (savedDatabase: LoginSavedDatabaseType): Array<LoginSavedDatabaseType> => {
-    const savedDatabases = _.cloneDeep(this.store.get('savedDatabases')).filter(e => _.isEqual(e, savedDatabase));
+  deleteSavedDatabase = (
+    savedDatabase: LoginSavedDatabaseType
+  ): Array<LoginSavedDatabaseType> => {
+    const savedDatabases = _.cloneDeep(this.store.get('savedDatabases')).filter(
+      e => _.isEqual(e, savedDatabase)
+    );
     this.store.set('savedDatabases', savedDatabases);
     return savedDatabases;
   };
@@ -104,7 +108,9 @@ export default class Connections {
    * Checks if a given database file has a problem
    * @return true if no problem exists, the error if there is a problem
    */
-  static async validateConnection(databasePath: string): Promise<string | true> {
+  static async validateConnection(
+    databasePath: string
+  ): Promise<string | true> {
     return verifySqlite(databasePath);
   }
 
