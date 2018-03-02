@@ -13,7 +13,7 @@ import GraphPage from './GraphPage';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
-import { Database, getDatabases, getVersion } from '../api/Database';
+import { Database, getVersion } from '../api/Database';
 import { setDatabasePath } from '../actions/index';
 import type { DatabaseType } from '../types/DatabaseType';
 import type { TableType } from '../types/TableType';
