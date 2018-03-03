@@ -51,17 +51,6 @@ export default class StructurePage extends Component<Props, State> {
     tableColumns: []
   };
 
-  async componentDidMount() {
-    this.setState({
-      tableColumns: this.props.tableColumns.map(convertColumnData)
-    });
-  }
-
-  async componentWillReceiveProps(nextProps: Props) {
-    const { tableColumns } = await nextProps;
-    this.setState({ tableColumns: tableColumns.map(convertColumnData) });
-  }
-
   /** Used to render <Select> for column.type options</Select> */
   renderSelectType = cellInfo => {
     const { tableColumns } = this.state;
@@ -125,6 +114,17 @@ export default class StructurePage extends Component<Props, State> {
   renderEditable = cellInfo => (
     <Cell type={cellInfo.value === null ? null : ''} value={cellInfo.value} />
   );
+
+  async componentDidMount() {
+    this.setState({
+      tableColumns: this.props.tableColumns.map(convertColumnData)
+    });
+  }
+
+  async componentWillReceiveProps(nextProps: Props) {
+    const { tableColumns } = await nextProps;
+    this.setState({ tableColumns: tableColumns.map(convertColumnData) });
+  }
 
   render() {
     if (!this.state.tableColumns) return <div />;

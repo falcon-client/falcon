@@ -36,23 +36,6 @@ export default class QueryPage extends Component<Props, State> {
 
   didMount: boolean = false;
 
-  componentWillUnmount() {
-    this.didMount = false;
-  }
-
-  componentDidMount() {
-    this.didMount = true;
-    this.item = document.querySelector('.QueryPage').parentElement;
-    window.onresizeFunctions['query-page-resize'] = () => {
-      if (this.didMount) {
-        this.setState({
-          queryResultsHeight: this.item.offsetHeight - this.state.queryHeight
-        });
-      }
-    };
-    this.onInputChange(this.state.query, this);
-  }
-
   async onInputChange(query: string, self: QueryView) {
     if (!self || !self.didMount) {
       return;
@@ -92,6 +75,23 @@ export default class QueryPage extends Component<Props, State> {
       queryResultsHeight: this.item.offsetHeight - size.height
     });
   };
+
+  componentDidMount() {
+    this.didMount = true;
+    this.item = document.querySelector('.QueryPage').parentElement;
+    window.onresizeFunctions['query-page-resize'] = () => {
+      if (this.didMount) {
+        this.setState({
+          queryResultsHeight: this.item.offsetHeight - this.state.queryHeight
+        });
+      }
+    };
+    this.onInputChange(this.state.query, this);
+  }
+
+  componentWillUnmount() {
+    this.didMount = false;
+  }
 
   render() {
     return (

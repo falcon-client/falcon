@@ -74,39 +74,6 @@ class HomePage extends Component<Props, State> {
   }
 
   /**
-   * Upon mounting, component fetches initial database data and configures
-   * grid/sidebar resizing data. Also core
-   */
-  async componentDidMount() {
-    await this.core.connect();
-    await this.setDatabaseResults(this.props.databasePath);
-    const databaseVersion = await getVersion(this.props.databasePath);
-
-    this.setState({
-      databaseVersion,
-    });
-
-    window.onresizeFunctions['sidebar-resize-set-state'] = () => {
-      this.setState({
-        widthSidebar: this.state.widthSidebar,
-        widthGrid: window.innerWidth - this.state.widthSidebar
-      });
-    };
-
-    const grid = document.querySelector('.HomePage .Grid');
-    const sidebar = document.querySelector('.Sidebar');
-    const height = 32 + 10 + 21 + 15;
-    grid.style.height = `${window.innerHeight - height}px`;
-    sidebar.style.height = `${window.innerHeight - height + 40}px`;
-
-    // If the window is resized, change the height of the grid repsectively
-    window.onresizeFunctions['resize-grid-resize'] = () => {
-      grid.style.height = `${window.innerHeight - height}px`;
-      sidebar.style.height = `${window.innerHeight - height + 40}px`;
-    };
-  }
-
-  /**
    * Uses the database api to set container's state from falcon-core
    * @TODO: Since supporting just SQLite, getDatabases will only return 1 db
    */
@@ -176,6 +143,39 @@ class HomePage extends Component<Props, State> {
       // databasePath: filePath
     });
   };
+
+  /**
+   * Upon mounting, component fetches initial database data and configures
+   * grid/sidebar resizing data. Also core
+   */
+  async componentDidMount() {
+    await this.core.connect();
+    await this.setDatabaseResults(this.props.databasePath);
+    const databaseVersion = await getVersion(this.props.databasePath);
+
+    this.setState({
+      databaseVersion,
+    });
+
+    window.onresizeFunctions['sidebar-resize-set-state'] = () => {
+      this.setState({
+        widthSidebar: this.state.widthSidebar,
+        widthGrid: window.innerWidth - this.state.widthSidebar
+      });
+    };
+
+    const grid = document.querySelector('.HomePage .Grid');
+    const sidebar = document.querySelector('.Sidebar');
+    const height = 32 + 10 + 21 + 15;
+    grid.style.height = `${window.innerHeight - height}px`;
+    sidebar.style.height = `${window.innerHeight - height + 40}px`;
+
+    // If the window is resized, change the height of the grid repsectively
+    window.onresizeFunctions['resize-grid-resize'] = () => {
+      grid.style.height = `${window.innerHeight - height}px`;
+      sidebar.style.height = `${window.innerHeight - height + 40}px`;
+    };
+  }
 
   render() {
     if (!this.state.selectedTable) return <div />;
@@ -276,6 +276,7 @@ class HomePage extends Component<Props, State> {
 
 function mapStateToProps(state) {
   return {
+    // @HACK: HARDCODE. The concept of 'paths' are specific to sqlite
     databasePath: state.databasePath
   };
 }
