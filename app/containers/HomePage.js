@@ -14,7 +14,7 @@ import GraphPage from './GraphPage';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
-import { Database, getVersion } from '../api/Database';
+import Database from '../api/Database';
 import { setDatabasePath } from '../actions/index';
 import type { TableType } from '../types/TableType';
 import type { TableColumnType } from '../api/Database';
@@ -32,12 +32,12 @@ type State = {
   widthSidebar: number, // 200
   widthGrid: number, // window.innerWidth - 200
   databaseName: ?string,
-  tables: Array<{
-    name: string
-  }>,
   selectedTable: ?TableType,
   tableColumns: Array<TableColumnType>,
-  tableDefinition: string
+  tableDefinition: string,
+  tables: Array<{
+    name: string
+  }>
 };
 
 class HomePage extends Component<Props, State> {
@@ -62,7 +62,9 @@ class HomePage extends Component<Props, State> {
       rows: []
     };
 
-    this.core = new Database(props.databasePath);
+    console.log(props.databasePath)
+
+    this.core = new Database('sqlite', props.databasePath);
 
     ipcRenderer.on(OPEN_FILE_CHANNEL, (event, filePath) => {
       this.props.setDatabasePath(filePath);
@@ -123,7 +125,7 @@ class HomePage extends Component<Props, State> {
       this.core.connection.getTableCreateScript(
         selectedTable.name
       ),
-      this.core.getTableColumns(selectedTable.name),
+      this.core.connection.getTableColumns(selectedTable.name),
       this.core.connection.getTableValues(
         selectedTable.name
       )
@@ -151,7 +153,7 @@ class HomePage extends Component<Props, State> {
   async componentDidMount() {
     await this.core.connect();
     await this.setDatabaseResults(this.props.databasePath);
-    const databaseVersion = await getVersion(this.props.databasePath);
+    const databaseVersion = await this.core.connection.getVersion();
 
     this.setState({
       databaseVersion,
