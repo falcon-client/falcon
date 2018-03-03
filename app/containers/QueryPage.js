@@ -62,12 +62,10 @@ export default class QueryPage extends Component<Props, State> {
 
     try {
       const queryResults = await this.props.executeQuery(this.state.query);
-      console.log(queryResults)
       const rows = queryResults[0].rows.map((value, index) => ({
         rowID: value[Object.keys(value)[index]],
         value: Object.values(value)
       }));
-      console.log(rows)
       this.setState({
         rows
       });

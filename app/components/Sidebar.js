@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import ListSymbol from './ListSymbol';
 import type { TableType } from '../types/TableType';

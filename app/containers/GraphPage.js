@@ -1,3 +1,4 @@
+// @flow
 import React from 'react';
 import { Voyager } from 'graphql-voyager/dist/voyager';
 import { db } from 'falcon-core';

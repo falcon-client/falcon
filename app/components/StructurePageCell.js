@@ -5,7 +5,7 @@ export type SpecialType = 'null' | undefined;
 
 type Props = {
   type: string | number | boolean | null,
-  value: any
+  value: string | number | boolean | null
 };
 
 /**
