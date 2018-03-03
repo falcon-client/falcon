@@ -5,7 +5,9 @@ import { ResizableBox } from 'react-resizable';
 import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
 import { Switch, Route } from 'react-router';
+import { ConnectionManager } from 'falcon-core';
 import ContentPage from './ContentPage';
+import LoginPage from './LoginPage';
 import StructurePage from './StructurePage';
 import QueryPage from './QueryPage';
 import GraphPage from './GraphPage';
@@ -40,6 +42,8 @@ type State = {
 
 class HomePage extends Component<Props, State> {
   core: Database;
+
+  connectionManager = new ConnectionManager();
 
   constructor(props: Props) {
     super(props);
@@ -77,13 +81,9 @@ class HomePage extends Component<Props, State> {
     await this.core.connect();
     await this.setDatabaseResults(this.props.databasePath);
     const databaseVersion = await getVersion(this.props.databasePath);
-    const tableColumns = await this.core.getTableColumns(
-      this.state.selectedTable.name
-    );
 
     this.setState({
       databaseVersion,
-      tableColumns
     });
 
     window.onresizeFunctions['sidebar-resize-set-state'] = () => {
@@ -111,13 +111,16 @@ class HomePage extends Component<Props, State> {
    * @TODO: Since supporting just SQLite, getDatabases will only return 1 db
    */
   setDatabaseResults = async (filePath: string) => {
-    const databases = await this.core.connection.listDatabases();
-    // @HACK: HARDCODE. SQLITE ONLY
-    const databaseName = path.parse(databases[0]).base;
-    const tableNames = await this.core.connection.listTables();
+    const [databases, tableNames] = await Promise.all([
+      this.core.connection.listDatabases(),
+      // @HACK: HARDCODE. SQLITE ONLY
+      this.core.connection.listTables()
+    ])
+
     const selectedTable = this.state.selectedTable || {
       name: tableNames[0].name
     };
+    const databaseName = path.parse(databases[0]).base;
 
     this.onTableSelect(selectedTable);
 
@@ -149,22 +152,26 @@ class HomePage extends Component<Props, State> {
   };
 
   onTableSelect = async (selectedTable: TableType) => {
-    const [tableDefinition] = await this.core.connection.getTableCreateScript(
-      selectedTable.name
-    );
-    const tableColumns = await this.core.getTableColumns(selectedTable.name);
-    const tableValues = await this.core.connection.getTableValues(
-      selectedTable.name
-    );
+    const [tableDefinition, tableColumns, tableValues] = await Promise.all([
+      this.core.connection.getTableCreateScript(
+        selectedTable.name
+      ),
+      this.core.getTableColumns(selectedTable.name),
+      this.core.connection.getTableValues(
+        selectedTable.name
+      )
+    ])
+
     const rows = tableValues.map((value, index) => ({
       rowID: value[Object.keys(value)[index]],
       value: Object.values(value)
     }));
+
     this.setState({
       selectedTable,
-      tableDefinition,
       tableColumns,
-      rows
+      rows,
+      tableDefinition: tableDefinition[0],
       // @TODO: Use tableName instead of whole table object contents
       // databasePath: filePath
     });
@@ -199,6 +206,7 @@ class HomePage extends Component<Props, State> {
                   tables={this.state.tables}
                   onTableSelect={this.onTableSelect}
                   selectedTable={this.state.selectedTable}
+                  connections={[]}
                 />
               </ResizableBox>
               <div
@@ -210,6 +218,12 @@ class HomePage extends Component<Props, State> {
                 }}
               >
                 <Switch>
+                  <Route
+                    path="/home/login"
+                    render={() => (
+                      <LoginPage />
+                    )}
+                  />
                   <Route
                     path="/home/content"
                     render={() => (

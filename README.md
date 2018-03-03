@@ -8,9 +8,3 @@ cd falcon-ui-rewrite
 yarn
 yarn dev
 ```
-
-## Roadmap
-- [x] Content Page
-- [x] Login Page
-- [ ] Structure Page
-- [ ] Query Page

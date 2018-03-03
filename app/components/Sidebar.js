@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import type { connectionType } from 'falcon-core';
 import ListSymbol from './ListSymbol';
 import type { TableType } from '../types/TableType';
 
@@ -10,7 +11,9 @@ import type { TableType } from '../types/TableType';
 type Props = {
   databaseName: string,
   onTableSelect: (table: TableType) => void,
-  // selectedTable?: ?TableType,
+  connections: Array<connectionType>,
+  selectedConnection: connectionType,
+  selectedTable: TableType,
   tables: Array<{
     name: string
   }>
@@ -20,10 +23,26 @@ type Props = {
 // Children are rendered outside of the parent and is made to look like a children
 // via styling. Will need to fix this when we want collapsible elements
 export default function Sidebar(props: Props) {
+  const connections = props.connections.map(connection => (
+    <div
+      key={connection.name}
+      onClick={() => props.onConnectionSelect(connection)}
+      className={
+        props.selectedConnection.name === connection.name
+          ? 'Sidebar--list-item-selected'
+          : 'Sidebar--list-item'
+      }
+      style={{ paddingLeft: 40 }}
+    >
+      <ListSymbol type="table" />
+      <a>{connection.name}</a>
+    </div>
+  ));
+
   const tables = props.tables.map(table => (
     <div
       key={table.name}
-      onClick={e => props.onTableSelect(table)}
+      onClick={() => props.onTableSelect(table)}
       className={
         props.selectedTable.name === table.name
           ? 'Sidebar--list-item-selected'
@@ -39,10 +58,7 @@ export default function Sidebar(props: Props) {
   return (
     <div className="Sidebar">
       <ul className="Sidebar--list">
-        <div className="Sidebar--list-item">
-          <ListSymbol type="query" />
-          <a>Query</a>
-        </div>
+        {connections}
         <div className="Sidebar--list-item">
           <ListSymbol type="database" /> <a>{props.databaseName}</a>
         </div>

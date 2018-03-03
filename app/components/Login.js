@@ -32,6 +32,7 @@ type State = {
 
 class Login extends Component<Props, State> {
   connections = new Connections();
+
   constructor(props: Props) {
     super(props);
     this.state = {
