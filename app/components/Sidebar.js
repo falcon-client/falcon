@@ -1,6 +1,6 @@
 import React from 'react';
 import ListSymbol from './ListSymbol';
-import TableType from '../types/TableType';
+import type { TableType } from '../types/TableType';
 
 /**
  * Recursively render the tree of elements by passing props
@@ -8,28 +8,30 @@ import TableType from '../types/TableType';
 
 type Props = {
   databaseName: string,
-  onSelectTable: (table: TableType) => void,
-  selectedTable: TableType,
-  tables: Array<TableType>
+  onTableSelect: (table: TableType) => void,
+  // selectedTable?: ?TableType,
+  tables: Array<{
+    name: string
+  }>
 };
 
 // @TODO: Fix how child elements in the list are rendered. Currently  hacky since
 // Children are rendered outside of the parent and is made to look like a children
 // via styling. Will need to fix this when we want collapsible elements
-export default function Sidebar(props) {
+export default function Sidebar(props: Props) {
   const tables = props.tables.map(table => (
     <div
-      key={table.tableName}
-      onClick={e => props.onSelectTable(table)}
+      key={table.name}
+      onClick={e => props.onTableSelect(table)}
       className={
-        props.selectedTable.tableName === table.tableName
+        props.selectedTable.name === table.name
           ? 'Sidebar--list-item-selected'
           : 'Sidebar--list-item'
       }
       style={{ paddingLeft: 40 }}
     >
       <ListSymbol type="table" />
-      <a>{table.tableName}</a>
+      <a>{table.name}</a>
     </div>
   ));
 

@@ -167,14 +167,14 @@ export default class MenuBuilder {
           click: () => {
             this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
           }
-        },
-        {
-          label: 'Toggle Developer Tools',
-          accelerator: 'Alt+Command+I',
-          click: () => {
-            this.mainWindow.toggleDevTools();
-          }
         }
+        // {
+        //   label: 'Toggle Developer Tools',
+        //   accelerator: 'Alt+Command+I',
+        //   click: () => {
+        //     this.mainWindow.toggleDevTools();
+        //   }
+        // }
       ]
     };
     const subMenuViewProd = {
@@ -335,14 +335,14 @@ export default class MenuBuilder {
                       !this.mainWindow.isFullScreen()
                     );
                   }
-                },
-                {
-                  label: 'Toggle &Developer Tools',
-                  accelerator: 'Alt+Ctrl+I',
-                  click: () => {
-                    this.mainWindow.toggleDevTools();
-                  }
                 }
+                // {
+                //   label: 'Toggle &Developer Tools',
+                //   accelerator: 'Alt+Ctrl+I',
+                //   click: () => {
+                //     this.mainWindow.toggleDevTools();
+                //   }
+                // }
               ]
             : [
                 {

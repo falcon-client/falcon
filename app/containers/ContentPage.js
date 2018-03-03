@@ -7,9 +7,7 @@ type Props = {
   table: TableType
 };
 
-type State = {};
-
-export default class ContentPage extends Component<Props, State> {
+export default class ContentPage extends Component<Props, {}> {
   render() {
     return <Content table={this.props.table} />;
   }

@@ -14,6 +14,7 @@
   },
   "rules": {
     "arrow-parens": ["off"],
+    "class-methods-use-this": "off",
     "compat/compat": "error",
     "consistent-return": "off",
     "comma-dangle": "off",

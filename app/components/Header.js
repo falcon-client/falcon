@@ -5,7 +5,9 @@ import ListSymbol from './ListSymbol';
 
 type Props = {
   databaseName: string,
-  selectedTableName: string,
+  selectedTable: {
+    name: string
+  },
   databaseName: string,
   databaseType: string,
   databaseVersion: number | string
@@ -26,7 +28,7 @@ export default function Header(props: Props) {
           <ListSymbol type="database" /> {props.databaseName}
         </div>
         <div className="Header--breadcrumb">
-          <ListSymbol type="table" /> {props.selectedTableName}
+          <ListSymbol type="table" /> {props.selectedTable.name}
         </div>
       </div>
       <div

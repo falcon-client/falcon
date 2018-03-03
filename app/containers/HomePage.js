@@ -1,11 +1,9 @@
 // @flow
+import path from 'path';
 import React, { Component } from 'react';
 import { ResizableBox } from 'react-resizable';
-import type { Children } from 'react';
 import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
-// @TODO: Implement
-// import Tabs from '../components/Tabs';
 import { Switch, Route } from 'react-router';
 import ContentPage from './ContentPage';
 import StructurePage from './StructurePage';
@@ -16,45 +14,56 @@ import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
 import { Database, getVersion } from '../api/Database';
 import { setDatabasePath } from '../actions/index';
-import type { DatabaseType } from '../types/DatabaseType';
 import type { TableType } from '../types/TableType';
+import type { TableColumnType } from '../api/Database';
 import { OPEN_FILE_CHANNEL } from '../types/channels';
 
 type Props = {
-  children: Children,
   databasePath: ?string,
-  setDatabasePath: string => null
+  setDatabasePath: string => null,
+  location: {
+    pathname: string
+  }
 };
 
 type State = {
   widthSidebar: number, // 200
   widthGrid: number, // window.innerWidth - 200
   databaseName: ?string,
-  tables: ?Array<TableType>,
+  tables: Array<{
+    name: string
+  }>,
   selectedTable: ?TableType,
-  DatabaseApi: Database
-  // siderCollapsed: boolean
+  tableColumns: Array<TableColumnType>,
+  tableDefinition: string
 };
 
 class HomePage extends Component<Props, State> {
+  core: Database;
+
   constructor(props: Props) {
     super(props);
-    const DatabaseApi = new Database(props.databasePath);
     this.state = {
       // @TODO: See LoginPage line 131 for why replace'_' with '/'
       widthSidebar: 200,
       widthGrid: window.innerWidth - 200,
-      DatabaseApi,
       databaseName: null,
-      tables: null,
+      tables: [],
       // @HACK: HARDCODE
       databaseType: 'SQLite',
       databaseVersion: '',
-      selectedTable: null
+      selectedTable: null,
+      tableColumns: [],
+      tableDefinition: '',
+      rows: []
     };
+
+    this.core = new Database(props.databasePath);
+
     ipcRenderer.on(OPEN_FILE_CHANNEL, (event, filePath) => {
       this.props.setDatabasePath(filePath);
     });
+
     // ipcRenderer.on(DELETE_TABLE_CHANNEL, () => {
     //   this.deleteSelectedTable();
     // });
@@ -62,14 +71,19 @@ class HomePage extends Component<Props, State> {
 
   /**
    * Upon mounting, component fetches initial database data and configures
-   * grid/sidebar resizing data. Also connects the DatabaseApi
+   * grid/sidebar resizing data. Also core
    */
   async componentDidMount() {
-    await this.state.DatabaseApi.connect();
+    await this.core.connect();
     await this.setDatabaseResults(this.props.databasePath);
     const databaseVersion = await getVersion(this.props.databasePath);
+    const tableColumns = await this.core.getTableColumns(
+      this.state.selectedTable.name
+    );
+
     this.setState({
-      databaseVersion
+      databaseVersion,
+      tableColumns
     });
 
     window.onresizeFunctions['sidebar-resize-set-state'] = () => {
@@ -97,16 +111,28 @@ class HomePage extends Component<Props, State> {
    * @TODO: Since supporting just SQLite, getDatabases will only return 1 db
    */
   setDatabaseResults = async (filePath: string) => {
-    const databasesArr = await this.state.DatabaseApi.getDatabases();
-    const { databaseName, tables } = databasesArr[0];
+    const databases = await this.core.connection.listDatabases();
+    // @HACK: HARDCODE. SQLITE ONLY
+    const databaseName = path.parse(databases[0]).base;
+    const tableNames = await this.core.connection.listTables();
+    const selectedTable = this.state.selectedTable || {
+      name: tableNames[0].name
+    };
+
+    this.onTableSelect(selectedTable);
+
     this.setState({
       databaseName,
-      tables,
-      selectedTable: this.state.selectedTable || tables[0]
+      tables: tableNames,
+      selectedTable
       // @TODO: Use tableName instead of whole table object contents
       // databasePath: filePath
     });
   };
+
+  async executeQuery(query: string) {
+    return this.core.connection.executeQuery(query);
+  }
 
   onResizeGrid = (event, { size }) => {
     this.setState({
@@ -122,26 +148,41 @@ class HomePage extends Component<Props, State> {
     });
   };
 
-  onSelectTable = (selectedTable: TableType) => {
-    this.setState({ selectedTable });
+  onTableSelect = async (selectedTable: TableType) => {
+    const [tableDefinition] = await this.core.connection.getTableCreateScript(
+      selectedTable.name
+    );
+    const tableColumns = await this.core.getTableColumns(selectedTable.name);
+    const tableValues = await this.core.connection.getTableValues(
+      selectedTable.name
+    );
+    const rows = tableValues.map((value, index) => ({
+      rowID: value[Object.keys(value)[index]],
+      value: Object.values(value)
+    }));
+    this.setState({
+      selectedTable,
+      tableDefinition,
+      tableColumns,
+      rows
+      // @TODO: Use tableName instead of whole table object contents
+      // databasePath: filePath
+    });
   };
 
   render() {
     if (!this.state.selectedTable) return <div />;
+
     return (
       <div className="HomePage container-fluid">
         <div className="row">
           <div className="sticky">
             <Header
-              selectedTableName={this.state.selectedTable.tableName}
+              selectedTable={this.state.selectedTable}
               databaseType={this.state.databaseType}
               databaseName={this.state.databaseName}
               databaseVersion={this.state.databaseVersion}
             />
-            {/**
-            <div className="col-sm-12 no-padding">
-              <Tabs />
-            </div> * */}
             <div className="row no-margin">
               <ResizableBox
                 width={this.state.widthSidebar}
@@ -156,7 +197,7 @@ class HomePage extends Component<Props, State> {
                 <Sidebar
                   databaseName={this.state.databaseName}
                   tables={this.state.tables}
-                  onSelectTable={this.onSelectTable}
+                  onTableSelect={this.onTableSelect}
                   selectedTable={this.state.selectedTable}
                 />
               </ResizableBox>
@@ -172,20 +213,33 @@ class HomePage extends Component<Props, State> {
                   <Route
                     path="/home/content"
                     render={() => (
-                      <ContentPage table={this.state.selectedTable} />
+                      <ContentPage
+                        table={{
+                          name: this.state.selectedTable.name,
+                          columns: this.state.tableColumns,
+                          rows: this.state.rows
+                        }}
+                      />
                     )}
                   />
                   <Route
                     path="/home/structure"
                     render={() => (
                       <StructurePage
-                        tablePromise={this.state.DatabaseApi.getTableColumns(
-                          this.state.selectedTable.tableName
-                        )}
+                        tableColumns={this.state.tableColumns}
+                        tableDefinition={this.state.tableDefinition}
                       />
                     )}
                   />
-                  <Route path="/home/query" component={QueryPage} />
+                  <Route
+                    path="/home/query"
+                    render={() => (
+                      <QueryPage
+                        tableColumns={this.state.tableColumns}
+                        executeQuery={e => this.executeQuery(e)}
+                      />
+                    )}
+                  />
                   <Route
                     path="/home/graph"
                     render={() => (

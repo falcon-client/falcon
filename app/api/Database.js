@@ -1,12 +1,8 @@
 // @flow
 import { db } from 'falcon-core';
 import path from 'path';
-import type { exportOptionsType, ProviderInterfaceType } from 'falcon-core';
-import type { DatabaseType } from '../types/DatabaseType';
+import type { exportOptionsType, ProviderInterface } from 'falcon-core';
 
-// const electron = require('electron');
-// console.log(electron);
-// console.log(electron.remote);
 /**
  * @TODO: Make this the default export. Classese are a better choice for
  *        database connections, which are stateful. They require a constant
@@ -32,49 +28,7 @@ export type TableColumnType = {
   type: string,
   notnull: 0 | 1,
   dflt_value: string | null,
-  pk: 0 | 1
-};
-
-// Interface used by Falcon to interact with connected database
-export type DatabaseApiType = {
-  connection: {
-    client: 'sqlite' | 'mysql' | 'postgresql',
-    connect: configType => void,
-    executeQuery: (
-      conn: string
-    ) => Promise<Array<ProviderInterfaceType.queryResponseType>>
-  },
-  config: configType,
-  session: {
-    createConnection: string => ProviderInterfaceType
-  },
-  connect: () => void,
-  sendQueryToDatabase: (
-    query: string
-  ) => Promise<Array<ProviderInterfaceType.queryResponseType>>,
-  getTableColumns: (
-    table: string,
-    raw: boolean
-  ) => Promise<Array<TableColumnType>>,
-  getPrimaryKeyColumn: (table: string) => Promise<TableColumnType>,
-  insertRows: (table: string, values: { [string]: any }) => void,
-  deleteRows: (table: string, keys: Array<string> | Array<number>) => void,
-  renameTable: (oldTableName: string, newTableName: string) => Promise<boolean>,
-  dropTable: (table: string) => Promise<string>,
-  addTableColumn: (
-    table: string,
-    columnName: string,
-    columnType: string
-  ) => Promise<string>,
-  renameTableColumns: (
-    table: string,
-    columns: Array<{ oldColumnName: string, newColumnName: string }>
-  ) => Promise<string>,
-  dropTableColumns: (
-    table: string,
-    columnsToDrop: Array<string>
-  ) => Promise<string>,
-  getDatabasePrimaryKeys: () => Array<{ tableName: string, primaryKey: string }>
+  pk: 0 | 1 | 2
 };
 
 /**
@@ -90,7 +44,7 @@ export class Database {
     connect: configType => void,
     executeQuery: (
       conn: string
-    ) => Promise<Array<ProviderInterfaceType.queryResponseType>>,
+    ) => Promise<Array<ProviderInterface.queryResponseType>>,
     getTableColumns: (
       table: string,
       raw: boolean
@@ -134,7 +88,7 @@ export class Database {
   // pool: Map<string, { databaseName: string }>
 
   session: {
-    createConnection: (databaseName: string) => ProviderInterfaceType
+    createConnection: (databaseName: string) => ProviderInterface
   };
 
   /**
@@ -163,7 +117,7 @@ export class Database {
 
   async sendQueryToDatabase(
     query: string
-  ): Promise<Array<ProviderInterfaceType.queryResponseType>> {
+  ): Promise<Array<ProviderInterface.queryResponseType>> {
     return this.connection.executeQuery(query);
   }
 
@@ -235,49 +189,6 @@ export class Database {
   async dropTableColumns(table: string, columnsToDrop: Array<string>) {
     return this.connection.dropTableColumns(table, columnsToDrop);
   }
-
-  async getDatabases(): Promise<Array<DatabaseType>> {
-    const databases: Array<string> = await this.connection.listDatabases();
-    const tables: Array<string> = await this.connection
-      .listTables()
-      .then(each => each.map(s => s.name));
-
-    return Promise.all(
-      databases.map(databaseName =>
-        // @TODO: Dynamically create connections for each table. For now, we're
-        //        expecting there to be only one database, and therefore only one
-        //        connection
-        Promise
-          // Get the values of each table
-          .all(tables.map(table => this.connection.getTableValues(table)))
-          // For each table of the current database, format the rows
-          .then((databaseTableValues: Array<Array<Object>>) =>
-            databaseTableValues.map((table, tableIndex) =>
-              // console.log(tableIndex);
-              // console.log(table);
-              ({
-                databaseName,
-                tableName: tables[tableIndex],
-                columns: Object.keys(table[0]),
-                rows: table.map((value, index) => ({
-                  rowID: value[Object.keys(value)[index]],
-                  value: Object.values(value)
-                }))
-              })
-            )
-          )
-      )
-    ).then(_databases =>
-      _databases.map((database, databaseIndex) => ({
-        tables: database,
-        // @TODO: databaseName currently returns database path rather than name
-        //        Used substring to get just the name
-        databaseName: databases[databaseIndex].substring(
-          databases[databaseIndex].lastIndexOf('/') + 1
-        )
-      }))
-    );
-  }
 }
 
 export async function getVersion(
@@ -293,58 +204,6 @@ export async function getVersion(
   await connection.connect(serverInfo);
 
   return connection.getVersion();
-}
-
-export async function getDatabases(
-  databasePath: string
-): Promise<Array<DatabaseType>> {
-  const serverInfo = {
-    database: databasePath,
-    client: 'sqlite'
-  };
-  const serverSession = db.createServer(serverInfo);
-  const connection = await serverSession.createConnection(databasePath);
-  await connection.connect(serverInfo);
-  const databases: Array<string> = await connection.listDatabases();
-  const tables: Array<string> = await connection
-    .listTables()
-    .then(each => each.map(s => s.name));
-
-  return Promise.all(
-    databases.map(databaseName =>
-      // @TODO: Dynamically create connections for each table. For now, we're
-      //        expecting there to be only one database, and therefore only one
-      //        connection
-      Promise
-        // Get the values of each table
-        .all(tables.map(table => connection.getTableValues(table)))
-        // For each table of the current database, format the rows
-        .then((databaseTableValues: Array<Array<Object>>) =>
-          databaseTableValues.map((table, tableIndex) =>
-            // console.log(tableIndex);
-            // console.log(table);
-            ({
-              databaseName,
-              tableName: tables[tableIndex],
-              columns: Object.keys(table[0]),
-              rows: table.map((value, index) => ({
-                rowID: value[Object.keys(value)[index]],
-                value: Object.values(value)
-              }))
-            })
-          )
-        )
-    )
-  ).then(_databases =>
-    _databases.map((database, databaseIndex) => ({
-      tables: database,
-      // @TODO: databaseName currently returns database path rather than name
-      //        Used substring to get just the name
-      databaseName: databases[databaseIndex].substring(
-        databases[databaseIndex].lastIndexOf('/') + 1
-      )
-    }))
-  );
 }
 
 /**

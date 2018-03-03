@@ -4,6 +4,7 @@ import ReactTable from 'react-table';
 import Select from 'react-select';
 import _ from 'lodash';
 import Cell from '../components/StructurePageCell';
+import TableDefinition from '../components/TableDefinition';
 import type { TableColumnType } from '../api/Database';
 
 // Taken from https://www.sqlite.org/datatype3.html
@@ -22,31 +23,9 @@ const tableStyle = {
   backgroundColor: 'white'
 };
 
-// @TODO: Might map tableColumns data passed from falcon-core to this format
-const data = [
-  {
-    name: 'username',
-    autoIncrement: 'false',
-    primaryKey: 'false',
-    defaultTypeValue: 'TEXT',
-    notNull: 'false',
-    unique: 'true',
-    default: 'foo',
-    checkConstraints: 'true'
-  },
-  {
-    name: 'password',
-    autoIncrement: 'false',
-    primaryKey: 'false',
-    defaultTypeValue: 'TEXT',
-    notNull: 'false',
-    unique: 'true',
-    default: 'bar',
-    checkConstraints: 'true'
-  }
-];
-
 /** Maps tableData from falcon-core to an obj compatible with react-table */
+// @HACK: HARDCODE
+// This transformation is specific to SQLite
 function convertColumnData(col: TableColumnType) {
   return {
     cid: col.cid,
@@ -59,7 +38,8 @@ function convertColumnData(col: TableColumnType) {
 }
 
 type Props = {
-  tablePromise: Promise<Array<TableColumnType>>
+  tableColumns: Array<TableColumnType>,
+  tableDefinition: string
 };
 
 type State = {
@@ -67,20 +47,18 @@ type State = {
 };
 
 export default class StructurePage extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      tableColumns: null
-    };
-  }
+  state = {
+    tableColumns: []
+  };
 
   async componentDidMount() {
-    const tableColumns = await this.props.tablePromise;
-    this.setState({ tableColumns: tableColumns.map(convertColumnData) });
+    this.setState({
+      tableColumns: this.props.tableColumns.map(convertColumnData)
+    });
   }
 
   async componentWillReceiveProps(nextProps: Props) {
-    const tableColumns = await nextProps.tablePromise;
+    const { tableColumns } = await nextProps;
     this.setState({ tableColumns: tableColumns.map(convertColumnData) });
   }
 
@@ -194,6 +172,7 @@ export default class StructurePage extends Component<Props, State> {
           minRows={tableColumns.length}
           showPagination={false}
         />
+        <TableDefinition tableDefinition={this.props.tableDefinition} />
       </div>
     );
   }
