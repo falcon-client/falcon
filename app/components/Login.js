@@ -1,12 +1,8 @@
 // @flow
 import React, { Component } from 'react';
 import { remote, ipcRenderer } from 'electron';
-import type { ContextRouter } from 'react-router-dom';
-import { connect } from 'react-redux'; /* IMPORTANT */
-import Connections from '../api/Connections';
-import SavedDatabases from './SavedDatabases';
+import { connect } from 'react-redux';
 import { OPEN_FILE_CHANNEL } from '../types/channels';
-import type { LoginSavedDatabaseType } from '../types/LoginSavedDatabaseType';
 import { setDatabasePath } from '../actions/index';
 
 const { dialog } = remote;
@@ -20,27 +16,24 @@ const buttonStyle = {
 };
 
 type Props = {
-  setDatabasePath: string => null
+  setDatabasePath: (path: string) => null
 };
 
 type State = {
   connectionName: string,
   databasePath: string,
-  errorMessage: ?string,
-  savedDatabases: Array<LoginSavedDatabaseType>
+  errorMessage: ?string
 };
 
 class Login extends Component<Props, State> {
-  connections = new Connections();
+  state = {
+    connectionName: '',
+    databasePath: '',
+    errorMessage: null
+  };
 
   constructor(props: Props) {
     super(props);
-    this.state = {
-      connectionName: '',
-      databasePath: '',
-      errorMessage: null,
-      savedDatabases: this.connections.getSavedDatabases() || []
-    };
     ipcRenderer.on(OPEN_FILE_CHANNEL, (event, filePath) => {
       this.setState({ databasePath: filePath });
       this.handleConnect();
@@ -55,55 +48,6 @@ class Login extends Component<Props, State> {
     if (!selectedFiles) return;
     const databasePath = selectedFiles[0];
     this.setState({ databasePath });
-  };
-
-  handleSaveDatabase = async () => {
-    try {
-      this.setState({
-        savedDatabases: await this.connections.saveDatabase(
-          this.state.connectionName,
-          this.state.databasePath
-        )
-      });
-    } catch (e) {
-      this.setState({ errorMessage: e });
-    }
-  };
-
-  handleConnect = async (e?: SyntheticEvent<>) => {
-    if (e) {
-      e.preventDefault();
-    }
-    if (
-      (await Connections.validateDatabaseFilePath(this.state.databasePath)) !==
-      true
-    ) {
-      const errorMessage =
-        this.state.databasePath === ''
-          ? 'Database path is empty'
-          : `${this.state.databasePath} isn't a valid sqlite file path`;
-      this.setState({ errorMessage });
-      return;
-    }
-
-    const flag = await Connections.validateConnection(this.state.databasePath);
-    if (flag !== true) {
-      this.setState({ flag });
-      return;
-    }
-
-    const path = '/home/content';
-    this.props.setDatabasePath(this.state.databasePath);
-    this.props.history.push(path);
-  };
-
-  loadSavedDatabase = (databasePath: string, connectionName: string) => {
-    this.setState({ databasePath, connectionName });
-  };
-
-  deleteSavedDatabase = (savedDatabase: LoginSavedDatabaseType) => {
-    const savedDatabases = this.connections.deleteSavedDatabase(savedDatabase);
-    this.setState({ savedDatabases });
   };
 
   render() {

@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
 import { Switch, Route } from 'react-router';
 import { ConnectionManager } from 'falcon-core';
+import type { connectionType } from 'falcon-core';
 import ContentPage from './ContentPage';
 import LoginPage from './LoginPage';
 import StructurePage from './StructurePage';
@@ -35,6 +36,7 @@ type State = {
   selectedTable: ?TableType,
   tableColumns: Array<TableColumnType>,
   tableDefinition: string,
+  connections: Array<connectionType>,
   tables: Array<{
     name: string
   }>
@@ -45,25 +47,24 @@ class HomePage extends Component<Props, State> {
 
   connectionManager = new ConnectionManager();
 
+  state = {
+    // @TODO: See LoginPage line 131 for why replace'_' with '/'
+    widthSidebar: 200,
+    widthGrid: window.innerWidth - 200,
+    databaseName: null,
+    tables: [],
+    // @HACK: HARDCODE
+    databaseType: 'SQLite',
+    databaseVersion: '',
+    selectedTable: null,
+    tableColumns: [],
+    tableDefinition: '',
+    rows: [],
+    connections: []
+  };
+
   constructor(props: Props) {
     super(props);
-    this.state = {
-      // @TODO: See LoginPage line 131 for why replace'_' with '/'
-      widthSidebar: 200,
-      widthGrid: window.innerWidth - 200,
-      databaseName: null,
-      tables: [],
-      // @HACK: HARDCODE
-      databaseType: 'SQLite',
-      databaseVersion: '',
-      selectedTable: null,
-      tableColumns: [],
-      tableDefinition: '',
-      rows: []
-    };
-
-    console.log(props.databasePath)
-
     this.core = new Database('sqlite', props.databasePath);
 
     ipcRenderer.on(OPEN_FILE_CHANNEL, (event, filePath) => {
@@ -79,12 +80,12 @@ class HomePage extends Component<Props, State> {
    * Uses the database api to set container's state from falcon-core
    * @TODO: Since supporting just SQLite, getDatabases will only return 1 db
    */
-  setDatabaseResults = async (filePath: string) => {
+  getInitialViewData = async (filePath: string) => {
     const [databases, tableNames] = await Promise.all([
       this.core.connection.listDatabases(),
       // @HACK: HARDCODE. SQLITE ONLY
       this.core.connection.listTables()
-    ])
+    ]);
 
     const selectedTable = this.state.selectedTable || {
       name: tableNames[0].name
@@ -95,12 +96,19 @@ class HomePage extends Component<Props, State> {
 
     this.setState({
       databaseName,
-      tables: tableNames,
-      selectedTable
+      selectedTable,
+      tables: tableNames
       // @TODO: Use tableName instead of whole table object contents
       // databasePath: filePath
     });
   };
+
+  async setConnections() {
+    const connections = await this.connectionManager.getAll();
+    this.setState({
+      connections
+    });
+  }
 
   async executeQuery(query: string) {
     return this.core.connection.executeQuery(query);
@@ -122,14 +130,10 @@ class HomePage extends Component<Props, State> {
 
   onTableSelect = async (selectedTable: TableType) => {
     const [tableDefinition, tableColumns, tableValues] = await Promise.all([
-      this.core.connection.getTableCreateScript(
-        selectedTable.name
-      ),
+      this.core.connection.getTableCreateScript(selectedTable.name),
       this.core.connection.getTableColumns(selectedTable.name),
-      this.core.connection.getTableValues(
-        selectedTable.name
-      )
-    ])
+      this.core.connection.getTableValues(selectedTable.name)
+    ]);
 
     const rows = tableValues.map((value, index) => ({
       rowID: value[Object.keys(value)[index]],
@@ -140,7 +144,7 @@ class HomePage extends Component<Props, State> {
       selectedTable,
       tableColumns,
       rows,
-      tableDefinition: tableDefinition[0],
+      tableDefinition: tableDefinition[0]
       // @TODO: Use tableName instead of whole table object contents
       // databasePath: filePath
     });
@@ -152,11 +156,11 @@ class HomePage extends Component<Props, State> {
    */
   async componentDidMount() {
     await this.core.connect();
-    await this.setDatabaseResults(this.props.databasePath);
+    await this.getInitialViewData(this.props.databasePath);
     const databaseVersion = await this.core.connection.getVersion();
 
     this.setState({
-      databaseVersion,
+      databaseVersion
     });
 
     window.onresizeFunctions['sidebar-resize-set-state'] = () => {
@@ -208,7 +212,7 @@ class HomePage extends Component<Props, State> {
                   tables={this.state.tables}
                   onTableSelect={this.onTableSelect}
                   selectedTable={this.state.selectedTable}
-                  connections={[]}
+                  connections={this.state.connections}
                 />
               </ResizableBox>
               <div
@@ -220,12 +224,7 @@ class HomePage extends Component<Props, State> {
                 }}
               >
                 <Switch>
-                  <Route
-                    path="/home/login"
-                    render={() => (
-                      <LoginPage />
-                    )}
-                  />
+                  <Route path="/home/login" render={() => <LoginPage />} />
                   <Route
                     path="/home/content"
                     render={() => (

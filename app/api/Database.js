@@ -1,7 +1,5 @@
 // @flow
 import { db } from 'falcon-core';
-import path from 'path';
-import type { exportOptionsType, ProviderInterface } from 'falcon-core';
 
 /**
  * @TODO: Make this the default export. Classese are a better choice for

@@ -17,9 +17,7 @@ export default function Footer(props: Props) {
       <div className="FooterButtonContainer">
         <div
           className={
-            props.pathname === '/home/login'
-              ? activeFooterButton
-              : footerButton
+            props.pathname === '/home/login' ? activeFooterButton : footerButton
           }
         >
           <Link to="/home/login">Login</Link>

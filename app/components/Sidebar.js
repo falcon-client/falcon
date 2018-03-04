@@ -34,7 +34,7 @@ export default function Sidebar(props: Props) {
       }
       style={{ paddingLeft: 40 }}
     >
-      <ListSymbol type="table" />
+      <ListSymbol type="connection" />
       <a>{connection.name}</a>
     </div>
   ));
