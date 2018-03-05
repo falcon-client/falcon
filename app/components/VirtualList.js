@@ -45,6 +45,10 @@ type State = {
  *		/>
  */
 export default class VirtualList extends Component<Props, State> {
+  static defaultProps = {
+    sync: false
+  }
+
   state = {
     height: 0,
     offset: 0
@@ -109,7 +113,6 @@ export default class VirtualList extends Component<Props, State> {
         ref={input => {
           this.base = input;
         }}
-        className="foo"
         onScroll={() => this.handleScroll()}
         {...props}
       >

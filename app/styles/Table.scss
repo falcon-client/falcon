@@ -1,3 +1,6 @@
+.Table {
+  contain: strict;
+}
 .Table--cell {
     display: flex;
     alignItems: center;

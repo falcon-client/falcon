@@ -1,4 +1,5 @@
-.virtual-list {
+.VirtualList {
+  contain: strict;
   position: absolute;
   top: 20%;
   left: 20%;
@@ -9,7 +10,7 @@
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 
-  .virtual-list-row {
+  .VirtualList-row {
     position: relative;
     display: block;
     height: 30px;

@@ -16,25 +16,25 @@ export default class Content extends Component<Props, {}> {
   rowHeight = 30;
 
   renderRow(row) {
-    return <div className="virtual-list-row">{row}</div>;
-  }
-
-  render() {
-    return (
-      <div>
-        <VirtualList
-          sync={false}
-          className="virtual-list"
-          overscanCount={10}
-          data={DATA}
-          rowHeight={this.rowHeight}
-          renderRow={this.renderRow}
-        />
-      </div>
-    );
+    return <div className="VirtualList-row">{row}</div>;
   }
 
   // render() {
-  //   return <Table table={this.props.table} />;
+  //   return (
+  //     <div>
+  //       <VirtualList
+  //         sync={false}
+  //         className="VirtualList"
+  //         overscanCount={10}
+  //         data={DATA}
+  //         rowHeight={this.rowHeight}
+  //         renderRow={this.renderRow}
+  //       />
+  //     </div>
+  //   );
   // }
+
+  render() {
+    return <Table table={this.props.table} />;
+  }
 }

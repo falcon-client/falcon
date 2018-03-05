@@ -1,13 +1,13 @@
 {
+  "extends": [
+    "airbnb",
+    "prettier"
+  ],
   "parser": "babel-eslint",
   "parserOptions": {
     "sourceType": "module",
     "allowImportExportEverywhere": true
   },
-  "extends": [
-    "airbnb",
-    "prettier"
-  ],
   "env": {
     "browser": true,
     "node": true
@@ -31,7 +31,16 @@
     "promise/catch-or-return": "error",
     "promise/no-native": "off",
     "react/sort-comp": ["error", {
-      "order": ["type-annotations", "state", "constructor", "everything-else", "static-methods", "lifecycle", "render"]
+      "order": [
+        "type-annotations",
+        "defaultProps",
+        "state",
+        "constructor",
+        "everything-else",
+        "static-methods",
+        "lifecycle",
+        "render"
+      ]
     }],
     "jsx-a11y/no-static-element-interactions": "off",
     "jsx-a11y/click-events-have-key-events": "off",
