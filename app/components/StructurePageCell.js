@@ -20,8 +20,8 @@ export default function StructurePageCell(props: Props) {
         <div>
           <input
             className="Structure-Cell-Input--null"
-            value={value}
-            placeholder={value == null ? 'NULL' : value}
+            value={undefined}
+            placeholder={value === null ? 'NULL' : value}
           />
         </div>
       );
@@ -31,12 +31,18 @@ export default function StructurePageCell(props: Props) {
           <input
             className="Structure-Cell-Input"
             value={value}
-            placeholder={value == null ? 'NULL' : value}
+            placeholder={value === null ? 'NULL' : value}
           />
         </div>
       );
   }
 }
+
+
+StructurePageCell.defaultProps = {
+  value: ''
+};
+
 
 // these are the only things that are colored
 // null, boolean, enum,

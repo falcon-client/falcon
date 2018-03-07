@@ -224,8 +224,10 @@ class HomePage extends Component<Props, State> {
                 }}
               >
                 <Switch>
-                  <Route path="/home/login" render={() => <LoginPage />} />
+                  <Route exact path="/" render={() => <LoginPage />} />
+                  <Route exact path="/home/login" render={() => <LoginPage />} />
                   <Route
+                    exact
                     path="/home/content"
                     render={() => (
                       <ContentPage
@@ -238,6 +240,7 @@ class HomePage extends Component<Props, State> {
                     )}
                   />
                   <Route
+                    exact
                     path="/home/structure"
                     render={() => (
                       <StructurePage
@@ -247,6 +250,7 @@ class HomePage extends Component<Props, State> {
                     )}
                   />
                   <Route
+                    exact
                     path="/home/query"
                     render={() => (
                       <QueryPage
@@ -256,6 +260,7 @@ class HomePage extends Component<Props, State> {
                     )}
                   />
                   <Route
+                    exact
                     path="/home/graph"
                     render={() => (
                       <GraphPage databasePath={this.props.databasePath} />
