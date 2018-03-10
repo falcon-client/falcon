@@ -5,8 +5,7 @@ import { ResizableBox } from 'react-resizable';
 import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
 import { Switch, Route } from 'react-router';
-import { ConnectionManager } from 'falcon-core';
-import type { connectionType } from 'falcon-core';
+// import type { connectionType } from 'falcon-core';
 import ContentPage from './ContentPage';
 import LoginPage from './LoginPage';
 import StructurePage from './StructurePage';
@@ -37,6 +36,7 @@ type State = {
   tableColumns: Array<TableColumnType>,
   tableDefinition: string,
   connections: Array<connectionType>,
+  isLoading: boolean,
   tables: Array<{
     name: string
   }>
@@ -44,8 +44,6 @@ type State = {
 
 class HomePage extends Component<Props, State> {
   core: Database;
-
-  connectionManager = new ConnectionManager();
 
   state = {
     // @TODO: See LoginPage line 131 for why replace'_' with '/'
@@ -60,12 +58,12 @@ class HomePage extends Component<Props, State> {
     tableColumns: [],
     tableDefinition: '',
     rows: [],
-    connections: []
+    connections: [],
+    isLoading: true
   };
 
   constructor(props: Props) {
     super(props);
-    this.core = new Database('sqlite', props.databasePath);
 
     ipcRenderer.on(OPEN_FILE_CHANNEL, (event, filePath) => {
       this.props.setDatabasePath(filePath);
@@ -92,11 +90,12 @@ class HomePage extends Component<Props, State> {
     };
     const databaseName = path.parse(databases[0]).base;
 
-    this.onTableSelect(selectedTable);
+    await this.onTableSelect(selectedTable);
 
     this.setState({
       databaseName,
       selectedTable,
+      isLoading: false,
       tables: tableNames
       // @TODO: Use tableName instead of whole table object contents
       // databasePath: filePath
@@ -129,6 +128,11 @@ class HomePage extends Component<Props, State> {
   };
 
   onTableSelect = async (selectedTable: TableType) => {
+    this.setState({
+      selectedTable,
+      isLoading: true
+    });
+
     const [tableDefinition, tableColumns, tableValues] = await Promise.all([
       this.core.connection.getTableCreateScript(selectedTable.name),
       this.core.connection.getTableColumns(selectedTable.name),
@@ -141,9 +145,9 @@ class HomePage extends Component<Props, State> {
     }));
 
     this.setState({
-      selectedTable,
       tableColumns,
       rows,
+      isLoading: false,
       tableDefinition: tableDefinition[0]
       // @TODO: Use tableName instead of whole table object contents
       // databasePath: filePath
@@ -155,7 +159,26 @@ class HomePage extends Component<Props, State> {
    * grid/sidebar resizing data. Also core
    */
   async componentDidMount() {
-    await this.core.connect();
+    const {
+      default: SqliteProviderFactory
+    } = await import('falcon-core/lib/database/provider_clients/SqliteProviderFactory');
+    const {
+      default: ConnectionManager
+    } = await import('falcon-core/lib/config/ConnectionManager');
+
+    // @HACK: This is a temporary way if improving require performance.
+    //        The API itself in falcon-core needs to be changed to reflect this
+    this.core = {};
+    this.core.connection = await SqliteProviderFactory(
+      {
+        database: this.props.databasePath
+      },
+      {
+        database: this.props.databasePath
+      }
+    );
+    this.connectionManager = new ConnectionManager();
+
     await this.getInitialViewData(this.props.databasePath);
     const databaseVersion = await this.core.connection.getVersion();
 
@@ -191,6 +214,7 @@ class HomePage extends Component<Props, State> {
         <div className="row">
           <div className="sticky">
             <Header
+              isLoading={this.state.isLoading}
               selectedTable={this.state.selectedTable}
               databaseType={this.state.databaseType}
               databaseName={this.state.databaseName}
@@ -225,7 +249,11 @@ class HomePage extends Component<Props, State> {
               >
                 <Switch>
                   <Route exact path="/" render={() => <LoginPage />} />
-                  <Route exact path="/home/login" render={() => <LoginPage />} />
+                  <Route
+                    exact
+                    path="/home/login"
+                    render={() => <LoginPage />}
+                  />
                   <Route
                     exact
                     path="/home/content"
@@ -263,7 +291,10 @@ class HomePage extends Component<Props, State> {
                     exact
                     path="/home/graph"
                     render={() => (
-                      <GraphPage databasePath={this.props.databasePath} />
+                      <GraphPage
+                        databasePath={this.props.databasePath}
+                        connection={this.core.connection}
+                      />
                     )}
                   />
                 </Switch>

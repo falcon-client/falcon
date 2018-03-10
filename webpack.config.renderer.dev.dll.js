@@ -5,6 +5,7 @@
 import webpack from 'webpack';
 import path from 'path';
 import merge from 'webpack-merge';
+import CopyWebpackPlugin from 'copy-webpack-plugin';
 import baseConfig from './webpack.config.base';
 import { dependencies } from './package.json';
 import CheckNodeEnv from './internals/scripts/CheckNodeEnv';
@@ -203,6 +204,14 @@ export default merge.smart(baseConfig, {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'development'
     }),
+
+    // Taken from https://github.com/superRaytin/react-monaco-editor#using-with-webpack
+    new CopyWebpackPlugin([
+      {
+        from: 'node_modules/monaco-editor/min/vs',
+        to: 'vs'
+      }
+    ]),
 
     new webpack.LoaderOptionsPlugin({
       debug: true,

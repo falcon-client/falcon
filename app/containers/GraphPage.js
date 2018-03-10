@@ -1,9 +1,11 @@
 // @flow
 import React from 'react';
 import { Voyager } from 'graphql-voyager/dist/voyager';
-import { db } from 'falcon-core';
 
-type Props = { databasePath: string };
+type Props = {
+  databasePath: string,
+  connection: Object
+};
 
 export default function GraphPage(props: Props) {
   return (
@@ -15,20 +17,9 @@ export default function GraphPage(props: Props) {
   );
 
   async function introspectionProvider(query) {
-    const serverInfo = {
-      database: props.databasePath,
-      client: 'sqlite'
-    };
-    const serverSession = db.createServer(serverInfo);
-    const connection = await serverSession.createConnection(
-      serverInfo.database
-    );
-    await connection.connect(serverInfo);
-
-    await connection.startGraphQLServer();
-
+    await props.connection.startGraphQLServer();
     return fetch(
-      `http://localhost:${connection.getGraphQLServerPort()}/graphql`,
+      `http://localhost:${props.connection.getGraphQLServerPort()}/graphql`,
       {
         method: 'post',
         headers: { 'Content-Type': 'application/json' },

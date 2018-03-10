@@ -1,6 +1,4 @@
 // @flow
-import { db } from 'falcon-core';
-
 /**
  * @TODO: Make this the default export. Classese are a better choice for
  *        database connections, which are stateful. They require a constant
@@ -12,6 +10,8 @@ import { db } from 'falcon-core';
  *
  * This class should be treated as a singleton. Creating multiple connections will waste
  * memory.
+ *
+ * @HACK: HARDCODEed to sqlite keys
  */
 export type TableColumnType = {
   cid: number,
@@ -34,10 +34,13 @@ export default class Database {
         client: 'sqlite'
       }
     };
-    this.session = db.createServer(this.config.serverInfo);
   }
 
   async connect() {
+    const {
+      db
+    } = await import('falcon-core/lib/database/provider_clients/SqliteProviderFactory');
+    this.session = db.createServer(this.config.serverInfo);
     this.connection = await this.session.createConnection(
       this.config.serverInfo.database
     );

@@ -4,13 +4,24 @@
 
 import path from 'path';
 import webpack from 'webpack';
-import CopyWebpackPlugin from 'copy-webpack-plugin';
 import { dependencies as externals } from './app/package.json';
 
 export default {
-  externals: Object.keys(externals || {}),
+  externals: [
+    ...Object.keys(externals || {}),
+    'pg-native',
+    'sqlite3',
+    'pg-hstore'
+  ],
 
   module: {
+    // Disable handling of requires with a single expression
+    exprContextRegExp: /$^/,
+    exprContextCritical: false,
+    // Disable handling of requires with expression wrapped by string,
+    wrappedContextRegExp: /$^/,
+    wrappedContextCritical: false,
+
     rules: [
       {
         test: /\.jsx?$/,
@@ -21,7 +32,9 @@ export default {
             cacheDirectory: true
           }
         }
-      }
+      },
+      { test: /aws-sdk/, loaders: ['transform-loader?brfs'] },
+      { test: /\.json$/, loaders: ['json-loader'] }
     ]
   },
 
@@ -43,15 +56,6 @@ export default {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production'
     }),
-
-    // Taken from https://github.com/superRaytin/react-monaco-editor#using-with-webpack
-    new CopyWebpackPlugin([
-      {
-        from: 'node_modules/monaco-editor/min/vs',
-        to: 'vs'
-      }
-    ]),
-
     new webpack.NamedModulesPlugin()
   ]
 };

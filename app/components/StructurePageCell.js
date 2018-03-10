@@ -38,11 +38,9 @@ export default function StructurePageCell(props: Props) {
   }
 }
 
-
 StructurePageCell.defaultProps = {
   value: ''
 };
-
 
 // these are the only things that are colored
 // null, boolean, enum,

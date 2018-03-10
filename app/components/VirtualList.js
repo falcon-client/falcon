@@ -47,7 +47,7 @@ type State = {
 export default class VirtualList extends Component<Props, State> {
   static defaultProps = {
     sync: false
-  }
+  };
 
   state = {
     height: 0,

@@ -13,6 +13,7 @@ import webpack from 'webpack';
 import chalk from 'chalk';
 import merge from 'webpack-merge';
 import { spawn, execSync } from 'child_process';
+import ErrorOverlayPlugin from 'error-overlay-webpack-plugin';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import baseConfig from './webpack.config.base';
 import CheckNodeEnv from './internals/scripts/CheckNodeEnv';
@@ -201,6 +202,8 @@ export default merge.smart(baseConfig, {
   },
 
   plugins: [
+    new ErrorOverlayPlugin(),
+
     new webpack.DllReferencePlugin({
       context: process.cwd(),
       manifest: require(manifest),

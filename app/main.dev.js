@@ -40,7 +40,10 @@ const installExtensions = async () => {
   ).catch(console.log);
 };
 
-app.commandLine.appendSwitch('--enable-experimental-web-platform-features');
+// These don't really work :(
+// See this for all the flags: chrome://flags
+// app.commandLine.appendSwitch('--enable-gpu-rasterization', 'enabled');
+// app.commandLine.appendSwitch('--ignore-gpu-blacklist', 'enabled');
 
 /**
  * Add event listeners...
@@ -68,7 +71,12 @@ app.on('ready', async () => {
     height: 528,
     minWidth: 650,
     minHeight: 500,
-    titleBarStyle: 'hiddenInset'
+    titleBarStyle: 'hiddenInset',
+    webPreferences: {
+      experimentalFeatures: true
+      // See here for options: https://cs.chromium.org/codesearch/f/chromium/src/third_party/WebKit/Source/platform/runtime_enabled_features.json5?cl=cbbf6d7ba09944355e52c1cad494d8963398dc62
+      // enableBlinkFeatures: ''
+    }
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);

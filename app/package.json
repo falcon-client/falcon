@@ -15,7 +15,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "falcon-core": "git+ssh://git@github.com:amilajack/falcon-core.git",
-    "electron-store": "^1.2.0"
+    "falcon-core": "git+ssh://git@github.com:amilajack/falcon-core.git#sqlite-formatting",
+    "rndm": "^1.2.0"
   }
 }
