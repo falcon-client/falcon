@@ -10,7 +10,7 @@ import 'brace/theme/xcode';
 import 'brace/ext/language_tools';
 import 'brace/ext/searchbox';
 import Content from '../components/Content';
-import type { TableColumnType } from '../api/Database';
+// import type { TableColumnType } from '../api/Database';
 
 type Props = {
   executeQuery: (query: string) => void,

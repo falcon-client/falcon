@@ -5,20 +5,29 @@ import { ResizableBox } from 'react-resizable';
 import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
 import { Switch, Route } from 'react-router';
+import Loadable from 'react-loadable';
 // import type { connectionType } from 'falcon-core';
-import ContentPage from './ContentPage';
-import LoginPage from './LoginPage';
-import StructurePage from './StructurePage';
-import QueryPage from './QueryPage';
-import GraphPage from './GraphPage';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
-import Database from '../api/Database';
+// import Database from '../api/Database';
 import { setDatabasePath } from '../actions/index';
 import type { TableType } from '../types/TableType';
-import type { TableColumnType } from '../api/Database';
+// import type { TableColumnType } from '../api/Database';
 import { OPEN_FILE_CHANNEL } from '../types/channels';
+
+const LoadableHelper = (module, opts = {}) => Loadable({
+  loader: () => module,
+  loading: () => <div>Loading...</div>,
+  delay: 2000,
+  ...opts
+});
+
+const ContentPage = LoadableHelper(import('./ContentPage.js'));
+const LoginPage = LoadableHelper(import('./LoginPage.js'));
+const StructurePage = LoadableHelper(import('./StructurePage.js'));
+const QueryPage = LoadableHelper(import('./QueryPage.js'));
+const GraphPage = LoadableHelper(import('./GraphPage.js'));
 
 type Props = {
   databasePath: ?string,
@@ -248,15 +257,22 @@ class HomePage extends Component<Props, State> {
                 }}
               >
                 <Switch>
-                  <Route exact path="/" render={() => <LoginPage />} />
                   <Route
                     exact
-                    path="/home/login"
+                    strict
+                    path="/"
                     render={() => <LoginPage />}
                   />
                   <Route
                     exact
-                    path="/home/content"
+                    strict
+                    path="/login"
+                    render={() => <LoginPage />}
+                  />
+                  <Route
+                    exact
+                    strict
+                    path="/content"
                     render={() => (
                       <ContentPage
                         table={{
@@ -269,7 +285,8 @@ class HomePage extends Component<Props, State> {
                   />
                   <Route
                     exact
-                    path="/home/structure"
+                    strict
+                    path="/structure"
                     render={() => (
                       <StructurePage
                         tableColumns={this.state.tableColumns}
@@ -279,7 +296,8 @@ class HomePage extends Component<Props, State> {
                   />
                   <Route
                     exact
-                    path="/home/query"
+                    strict
+                    path="/query"
                     render={() => (
                       <QueryPage
                         tableColumns={this.state.tableColumns}
@@ -289,7 +307,8 @@ class HomePage extends Component<Props, State> {
                   />
                   <Route
                     exact
-                    path="/home/graph"
+                    strict
+                    path="/graph"
                     render={() => (
                       <GraphPage
                         databasePath={this.props.databasePath}

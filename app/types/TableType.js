@@ -1,5 +1,5 @@
 // @flow
-import type { TableColumnType } from '../api/Database';
+// import type { TableColumnType } from '../api/Database';
 
 export type TableType = {
   databaseName?: string,

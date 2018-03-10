@@ -18,16 +18,17 @@ export default class Header extends Component<Props, {}> {
   componentDidMount() {
     NProgress.configure({
       parent: '#falcon-status-bar-container',
-      showSpinner: false,
-      speed: 500
+      showSpinner: false
     });
   }
 
   componentWillReceiveProps(newProps) {
-    if (newProps.isLoading) {
-      NProgress.start();
-    } else {
-      NProgress.done();
+    if (this.props.isLoading !== newProps.isLoading) {
+      if (newProps.isLoading) {
+        NProgress.start();
+      } else {
+        NProgress.done();
+      }
     }
   }
 

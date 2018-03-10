@@ -1,7 +1,7 @@
 // @flow
 /* eslint import/no-extraneous-dependencies: 0 */
 import { app, Menu, shell, BrowserWindow, dialog } from 'electron';
-import { exportFile } from './api/Database';
+// import { exportFile } from './api/Database';
 import {
   OPEN_FILE_CHANNEL,
   DELETE_ROW_CHANNEL,
@@ -215,10 +215,10 @@ export default class MenuBuilder {
             const fileType: 'json' | 'csv' = exportPath.substring(
               exportPath.lastIndexOf('.') + 1
             );
-            await exportFile(fileType, exportPath, {
-              // @TODO: HARDCODE
-              table: 'albums'
-            });
+            // await exportFile(fileType, exportPath, {
+            //   // @TODO: HARDCODE
+            //   table: 'albums'
+            // });
           }
         }
       ]

@@ -17,42 +17,38 @@ export default function Footer(props: Props) {
       <div className="FooterButtonContainer">
         <div
           className={
-            props.pathname === '/home/login' ? activeFooterButton : footerButton
+            props.pathname === '/login' ? activeFooterButton : footerButton
           }
         >
-          <Link to="/home/login">Login</Link>
+          <Link to="/login">Login</Link>
         </div>
         <div
           className={
-            props.pathname === '/home/content'
-              ? activeFooterButton
-              : footerButton
+            props.pathname === '/content' ? activeFooterButton : footerButton
           }
         >
-          <Link to="/home/content">Content</Link>
+          <Link to="/content">Content</Link>
         </div>
         <div
           className={
-            props.pathname === '/home/query' ? activeFooterButton : footerButton
+            props.pathname === '/query' ? activeFooterButton : footerButton
           }
         >
-          <Link to="/home/query">Query</Link>
+          <Link to="/query">Query</Link>
         </div>
         <div
           className={
-            props.pathname === '/home/structure'
-              ? activeFooterButton
-              : footerButton
+            props.pathname === '/structure' ? activeFooterButton : footerButton
           }
         >
-          <Link to="/home/structure">Structure</Link>
+          <Link to="/structure">Structure</Link>
         </div>
         <div
           className={
-            props.pathname === '/home/graph' ? activeFooterButton : footerButton
+            props.pathname === '/graph' ? activeFooterButton : footerButton
           }
         >
-          <Link to="/home/graph">Graph</Link>
+          <Link to="/graph">Graph</Link>
         </div>
       </div>
     </div>
