@@ -493,9 +493,9 @@ extsprintf@^1.2.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
 
-"falcon-core@git+ssh://git@github.com:amilajack/falcon-core.git#sqlite-formatting":
+"falcon-core@git+ssh://git@github.com:amilajack/falcon-core.git":
   version "0.1.0-4"
-  resolved "git+ssh://git@github.com:amilajack/falcon-core.git#f62790d32de696faeae73bebe9873f0e4359c112"
+  resolved "git+ssh://git@github.com:amilajack/falcon-core.git#b361f9ac3fa683e24631c56c70e7139153791b5e"
   dependencies:
     better-sqlite3 "^4.1.0"
     cassandra-driver "^3.4.0"
@@ -1425,8 +1425,8 @@ send@0.16.1:
     statuses "~1.3.1"
 
 sequelize@^4.22.7:
-  version "4.35.3"
-  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-4.35.3.tgz#016bf8d195dc05b4e270f1e4cd102257e9db4717"
+  version "4.36.0"
+  resolved "https://registry.yarnpkg.com/sequelize/-/sequelize-4.36.0.tgz#769af2b1f0d4498efe7f229040d9524448dba4a8"
   dependencies:
     bluebird "^3.5.0"
     cls-bluebird "^2.1.0"
@@ -1582,8 +1582,8 @@ strip-json-comments@~2.0.1:
   resolved "https://registry.yarnpkg.com/strip-json-comments/-/strip-json-comments-2.0.1.tgz#3c531942e908c2697c0ec344858c286c7ca0a60a"
 
 table-layout@^0.4.2:
-  version "0.4.2"
-  resolved "https://registry.yarnpkg.com/table-layout/-/table-layout-0.4.2.tgz#10e9043c142a1e2d155da7257e478f0ef4981786"
+  version "0.4.3"
+  resolved "https://registry.yarnpkg.com/table-layout/-/table-layout-0.4.3.tgz#07509e1d72599f2c128a58ac67682ec4ba002af0"
   dependencies:
     array-back "^2.0.0"
     deep-extend "~0.5.0"

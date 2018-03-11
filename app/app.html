@@ -34,7 +34,9 @@
         );
 
         const { webFrame } = require('electron');
-        webFrame.registerURLSchemeAsPrivileged('file', { bypassCSP: true })
+        webFrame.registerURLSchemeAsPrivileged('file', { bypassCSP: true });
+        webFrame.setVisualZoomLevelLimits(1, 1)
+        webFrame.setLayoutZoomLevelLimits(0, 0);
 
         if (process.env.NODE_ENV === 'production') {
           navigator.serviceWorker.register('./service-worker.prod.js');
