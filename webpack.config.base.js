@@ -11,7 +11,9 @@ export default {
     ...Object.keys(externals || {}),
     'pg-native',
     'sqlite3',
-    'pg-hstore'
+    'better-sqlite',
+    'pg-hstore',
+    'bindings'
   ],
 
   module: {
@@ -56,6 +58,23 @@ export default {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production'
     }),
-    new webpack.NamedModulesPlugin()
+    new webpack.NamedModulesPlugin(),
+    new webpack.IgnorePlugin(/^mock-firmata$/),
+    new webpack.ContextReplacementPlugin(/bindings$/, /^$/),
+    {
+      apply(compiler) {
+        function setModuleConstant(expressionName, fn) {
+          compiler.parser.plugin(`expression ${expressionName}`, function plugin() {
+            this.state.current.addVariable(
+              expressionName,
+              JSON.stringify(fn(this.state.module))
+            );
+            return true;
+          });
+        }
+        setModuleConstant('__filename', module => module.resource);
+        setModuleConstant('__dirname', module => module.context);
+      }
+    },
   ]
 };

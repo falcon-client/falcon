@@ -15,26 +15,41 @@ for (let x = 1e5; x--; ) DATA[x] = `Item #${x + 1}`;
 export default class Content extends Component<Props, {}> {
   rowHeight = 30;
 
+  state = {
+    data: []
+  };
+
+  constructor(props) {
+    super();
+    this.state.data = props.table.rows.map(value => value.value);
+  }
+
   renderRow(row) {
     return <div className="VirtualList-row">{row}</div>;
   }
 
-  // render() {
-  //   return (
-  //     <div>
-  //       <VirtualList
-  //         sync={false}
-  //         className="VirtualList"
-  //         overscanCount={10}
-  //         data={DATA}
-  //         rowHeight={this.rowHeight}
-  //         renderRow={this.renderRow}
-  //       />
-  //     </div>
-  //   );
-  // }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      data: nextProps.table.rows.map(value => value.value)
+    });
+  }
 
   render() {
-    return <Table table={this.props.table} />;
+    return (
+      <div>
+        <VirtualList
+          sync={false}
+          className="VirtualList"
+          overscanCount={10}
+          data={this.state.data}
+          rowHeight={this.rowHeight}
+          renderRow={this.renderRow}
+        />
+      </div>
+    );
   }
+
+  // render() {
+  //   return <Table table={this.props.table} />;
+  // }
 }

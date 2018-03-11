@@ -1,6 +1,6 @@
 // @flow
 import React, { Component } from 'react';
-import { remote } from 'electron';
+// import { remote } from 'electron';
 import NProgress from 'nprogress';
 import ListSymbol from './ListSymbol';
 
@@ -35,7 +35,9 @@ export default class Header extends Component<Props, {}> {
   render() {
     const { props } = this;
     const shouldHideMargin =
-      remote.getCurrentWindow().isFullScreen() || process.platform !== 'darwin';
+      false;
+      // @NOTE: Temporarily disabled for performance. fullscreen prop should be passed from parent
+      // remote.getCurrentWindow().isFullScreen() || process.platform !== 'darwin';
 
     return (
       <div className="Header col-sm-12">
