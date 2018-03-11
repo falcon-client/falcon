@@ -220,6 +220,14 @@ class HomePage extends Component<Props, State> {
       grid.style.height = `${window.innerHeight - height}px`;
       sidebar.style.height = `${window.innerHeight - height + 40}px`;
     };
+
+    // Preload other pages when the browser's main thread isn't busy
+    requestIdleCallback(() => {
+      ContentPage.preload();
+      StructurePage.preload();
+      QueryPage.preload();
+      GraphPage.preload();
+    });
   }
 
   render() {
