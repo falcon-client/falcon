@@ -37,10 +37,8 @@ flow-typed/npm/*
 
 # App packaged
 release
-app/main.prod.js
-app/main.prod.js.map
-app/renderer.prod.js
-app/renderer.prod.js.map
+app/*.prod.js
+app/*.prod.js.map
 app/style.css
 app/style.css.map
 dist

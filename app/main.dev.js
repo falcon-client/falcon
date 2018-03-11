@@ -10,7 +10,7 @@
  *
  * @flow
  */
-import { app, BrowserWindow, webFrame, protocol } from 'electron';
+import { app, BrowserWindow, protocol } from 'electron';
 import MenuBuilder from './menu';
 
 let mainWindow = null;
@@ -65,6 +65,8 @@ app.on('ready', async () => {
     await installExtensions();
   }
 
+  protocol.registerServiceWorkerSchemes(['file:']);
+
   mainWindow = new BrowserWindow({
     show: false,
     width: 1024,
@@ -80,14 +82,6 @@ app.on('ready', async () => {
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
-
-  // webFrame.registerURLSchemeAsPrivileged('file');
-  // webFrame.registerURLSchemeAsSecure('file');
-  // webFrame.registerURLSchemeAsBypassingCSP('file');
-
-  // app.on('ready', () => {
-  //   protocol.registerServiceWorkerSchemes(['file:']);
-  // });
 
   // @TODO: Use 'ready-to-show' event
   //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event

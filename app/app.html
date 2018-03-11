@@ -33,6 +33,13 @@
             : './dist/renderer.prod.js'
         );
 
+        const { webFrame } = require('electron');
+        webFrame.registerURLSchemeAsPrivileged('file', { bypassCSP: true })
+
+        if (process.env.NODE_ENV === 'production') {
+          navigator.serviceWorker.register('./service-worker.prod.js');
+        }
+
         document.write(
           scripts
             .map(script => '<script defer src="' + script + '"><\/script>')
