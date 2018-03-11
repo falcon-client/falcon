@@ -32,7 +32,7 @@ export default merge.smart(baseConfig, {
       {
         test: /\.global\.css$/,
         use: ExtractTextPlugin.extract({
-          publicPath: './',
+          publicPath: '../',
           use: {
             loader: 'css-loader',
             options: {

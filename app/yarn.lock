@@ -495,7 +495,7 @@ extsprintf@^1.2.0:
 
 "falcon-core@git+ssh://git@github.com:amilajack/falcon-core.git#sqlite-formatting":
   version "0.1.0-4"
-  resolved "git+ssh://git@github.com:amilajack/falcon-core.git#e44822440bdc79f49577a39a2239ae6471f67ef2"
+  resolved "git+ssh://git@github.com:amilajack/falcon-core.git#f62790d32de696faeae73bebe9873f0e4359c112"
   dependencies:
     better-sqlite3 "^4.1.0"
     cassandra-driver "^3.4.0"

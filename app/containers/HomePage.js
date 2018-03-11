@@ -6,28 +6,34 @@ import { connect } from 'react-redux';
 import { ipcRenderer } from 'electron';
 import { Switch, Route } from 'react-router';
 import Loadable from 'react-loadable';
-// import type { connectionType } from 'falcon-core';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
-// import Database from '../api/Database';
 import { setDatabasePath } from '../actions/index';
 import type { TableType } from '../types/TableType';
-// import type { TableColumnType } from '../api/Database';
 import { OPEN_FILE_CHANNEL } from '../types/channels';
 
-const LoadableHelper = (module, opts = {}) => Loadable({
-  loader: () => module,
-  loading: () => <div>Loading...</div>,
-  delay: 2000,
-  ...opts
+// @NOTE: This duplication is necessary. It makes webpack lazily load the chunks
+const ContentPage = Loadable({
+  loader: () => import('./ContentPage'),
+  loading: () => <div>Loading...</div>
 });
-
-const ContentPage = LoadableHelper(import('./ContentPage.js'));
-const LoginPage = LoadableHelper(import('./LoginPage.js'));
-const StructurePage = LoadableHelper(import('./StructurePage.js'));
-const QueryPage = LoadableHelper(import('./QueryPage.js'));
-const GraphPage = LoadableHelper(import('./GraphPage.js'));
+const LoginPage = Loadable({
+  loader: () => import('./LoginPage'),
+  loading: () => <div>Loading...</div>
+});
+const StructurePage = Loadable({
+  loader: () => import('./StructurePage'),
+  loading: () => <div>Loading...</div>
+});
+const QueryPage = Loadable({
+  loader: () => import('./QueryPage'),
+  loading: () => <div>Loading...</div>
+});
+const GraphPage = Loadable({
+  loader: () => import('./GraphPage'),
+  loading: () => <div>Loading...</div>
+});
 
 type Props = {
   databasePath: ?string,
@@ -168,12 +174,13 @@ class HomePage extends Component<Props, State> {
    * grid/sidebar resizing data. Also core
    */
   async componentDidMount() {
-    const {
-      default: SqliteProviderFactory
-    } = await import('falcon-core/lib/database/provider_clients/SqliteProviderFactory');
-    const {
-      default: ConnectionManager
-    } = await import('falcon-core/lib/config/ConnectionManager');
+    const [a, b] = await Promise.all([
+      import('falcon-core/lib/database/provider_clients/SqliteProviderFactory'),
+      import('falcon-core/lib/config/ConnectionManager')
+    ]);
+
+    const { default: SqliteProviderFactory } = a;
+    const { default: ConnectionManager } = b;
 
     // @HACK: This is a temporary way if improving require performance.
     //        The API itself in falcon-core needs to be changed to reflect this
@@ -257,12 +264,7 @@ class HomePage extends Component<Props, State> {
                 }}
               >
                 <Switch>
-                  <Route
-                    exact
-                    strict
-                    path="/"
-                    render={() => <LoginPage />}
-                  />
+                  <Route exact strict path="/" render={() => <LoginPage />} />
                   <Route
                     exact
                     strict

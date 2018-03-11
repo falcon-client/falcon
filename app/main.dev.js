@@ -10,7 +10,7 @@
  *
  * @flow
  */
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, webFrame, protocol } from 'electron';
 import MenuBuilder from './menu';
 
 let mainWindow = null;
@@ -81,9 +81,17 @@ app.on('ready', async () => {
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
 
+  // webFrame.registerURLSchemeAsPrivileged('file');
+  // webFrame.registerURLSchemeAsSecure('file');
+  // webFrame.registerURLSchemeAsBypassingCSP('file');
+
+  // app.on('ready', () => {
+  //   protocol.registerServiceWorkerSchemes(['file:']);
+  // });
+
   // @TODO: Use 'ready-to-show' event
   //        https://github.com/electron/electron/blob/master/docs/api/browser-window.md#using-ready-to-show-event
-  app.on('web-contents-created', () => {
+  mainWindow.webContents.on('did-finish-load', () => {
     if (!mainWindow) {
       throw new Error('"mainWindow" is not defined');
     }
