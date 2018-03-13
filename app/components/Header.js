@@ -34,10 +34,9 @@ export default class Header extends Component<Props, {}> {
 
   render() {
     const { props } = this;
-    const shouldHideMargin =
-      false;
-      // @NOTE: Temporarily disabled for performance. fullscreen prop should be passed from parent
-      // remote.getCurrentWindow().isFullScreen() || process.platform !== 'darwin';
+    const shouldHideMargin = false;
+    // @NOTE: Temporarily disabled for performance. fullscreen prop should be passed from parent
+    // remote.getCurrentWindow().isFullScreen() || process.platform !== 'darwin';
 
     return (
       <div className="Header col-sm-12">

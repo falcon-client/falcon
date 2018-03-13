@@ -2,13 +2,7 @@
 import React, { Component } from 'react';
 import { ResizableBox } from 'react-resizable';
 import debounce from 'lodash/debounce';
-import AceEditor from 'react-ace';
-import 'brace';
-import 'brace/mode/sql';
-import 'brace/snippets/sql';
-import 'brace/theme/xcode';
-import 'brace/ext/language_tools';
-import 'brace/ext/searchbox';
+import Editor from '../components/Editor';
 import Content from '../components/Content';
 // import type { TableColumnType } from '../api/Database';
 
@@ -21,7 +15,7 @@ type State = {
   queryHeight: number,
   queryResultsHeight: number,
   query: string,
-  rows: any
+  rows: Array<Object>
 };
 
 export default class QueryPage extends Component<Props, State> {
@@ -104,20 +98,9 @@ export default class QueryPage extends Component<Props, State> {
           style={{ height: `${this.state.queryHeight}px` }}
           onResize={this.onQueryResize}
         >
-          <AceEditor
-            mode="sql"
-            theme="xcode"
-            name="querybox"
-            value={this.state.query}
-            focus
-            width="100%"
-            height="100%"
+          <Editor
+            sql={this.state.query}
             onChange={debounce(e => this.onInputChange(e, this), 500)}
-            showPrintMargin={false}
-            editorProps={{ $blockScrolling: Infinity }}
-            enableBasicAutocompletion
-            enableSnippets
-            enableLiveAutocompletion={false}
           />
         </ResizableBox>
         <div style={{ height: this.state.queryResultsHeight }}>

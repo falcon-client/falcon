@@ -64,17 +64,20 @@ export default {
     {
       apply(compiler) {
         function setModuleConstant(expressionName, fn) {
-          compiler.parser.plugin(`expression ${expressionName}`, function plugin() {
-            this.state.current.addVariable(
-              expressionName,
-              JSON.stringify(fn(this.state.module))
-            );
-            return true;
-          });
+          compiler.parser.plugin(
+            `expression ${expressionName}`,
+            function plugin() {
+              this.state.current.addVariable(
+                expressionName,
+                JSON.stringify(fn(this.state.module))
+              );
+              return true;
+            }
+          );
         }
         setModuleConstant('__filename', module => module.resource);
         setModuleConstant('__dirname', module => module.context);
       }
-    },
+    }
   ]
 };
