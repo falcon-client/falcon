@@ -19,8 +19,9 @@ export default function StructurePageCell(props: Props) {
       return (
         <div>
           <input
-            className="Structure-Cell-Input--null"
+            defaultValue=""
             value={undefined}
+            className="Structure-Cell-Input--null"
             placeholder={value === null ? 'NULL' : value}
           />
         </div>
@@ -29,8 +30,9 @@ export default function StructurePageCell(props: Props) {
       return (
         <div>
           <input
-            className="Structure-Cell-Input"
+            defaultValue=""
             value={value}
+            className="Structure-Cell-Input"
             placeholder={value === null ? 'NULL' : value}
           />
         </div>

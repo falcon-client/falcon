@@ -9,12 +9,19 @@ type Props = {
   databaseType: string,
   databaseVersion: number | string,
   isLoading: boolean,
-  selectedTable: {
+  selectedTable?: ?{
     name: string
   }
 };
 
 export default class Header extends Component<Props, {}> {
+  static defaultProps = {
+    databaseName: '',
+    selectedTable: {
+      name: ''
+    }
+  };
+
   componentDidMount() {
     NProgress.configure({
       parent: '#falcon-status-bar-container',
@@ -46,10 +53,10 @@ export default class Header extends Component<Props, {}> {
         >
           {/* @TODO: Create a separate breadcrumbs component  */}
           <div className="Header--breadcrumb">
-            <ListSymbol type="database" /> {props.databaseName}
+            <ListSymbol type="database" /> {props.databaseName || ''}
           </div>
           <div className="Header--breadcrumb">
-            <ListSymbol type="table" /> {props.selectedTable.name}
+            <ListSymbol type="table" /> {props.selectedTable ? props.selectedTable.name : ''}
           </div>
         </div>
         <div
@@ -62,7 +69,7 @@ export default class Header extends Component<Props, {}> {
           </span>
           <span>
             <a href="">
-              {props.databaseType} {props.databaseVersion}
+              {props.databaseType} {props.databaseVersion || ''}
             </a>
           </span>
         </div>
@@ -74,7 +81,3 @@ export default class Header extends Component<Props, {}> {
     );
   }
 }
-
-Header.defaultProps = {
-  databaseName: ''
-};

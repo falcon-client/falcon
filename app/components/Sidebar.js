@@ -14,7 +14,7 @@ type Props = {
   activeConnections: Array<connectionType>,
   connections: Array<connectionType>,
   selectedConnection: connectionType,
-  selectedTable: TableType,
+  selectedTable?: ?TableType,
   tables: Array<{
     name: string
   }>

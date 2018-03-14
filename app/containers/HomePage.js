@@ -2,16 +2,16 @@
 import path from 'path';
 import React, { Component } from 'react';
 import { ResizableBox } from 'react-resizable';
-import { connect } from 'react-redux';
-import { ipcRenderer } from 'electron';
+// import { connect } from 'react-redux';
+// import { ipcRenderer } from 'electron';
 import { Switch, Route } from 'react-router';
 import Loadable from 'react-loadable';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
-import { setDatabasePath } from '../actions/index';
+// import { setDatabasePath } from '../actions/index';
 import type { TableType } from '../types/TableType';
-import { OPEN_FILE_CHANNEL } from '../types/channels';
+// import { OPEN_FILE_CHANNEL } from '../types/channels';
 
 // @NOTE: This duplication is necessary. It makes webpack lazily load the chunks
 const ContentPage = Loadable({
@@ -36,8 +36,8 @@ const GraphPage = Loadable({
 });
 
 type Props = {
-  databasePath: ?string,
-  setDatabasePath: string => null,
+  // databasePath: ?string,
+  // setDatabasePath: string => null,
   location: {
     pathname: string
   }
@@ -59,7 +59,7 @@ type State = {
   }>
 };
 
-class HomePage extends Component<Props, State> {
+export default class HomePage extends Component<Props, State> {
   core: Database;
 
   state = {
@@ -81,17 +81,17 @@ class HomePage extends Component<Props, State> {
     isLoading: true
   };
 
-  constructor(props: Props) {
-    super(props);
+  // constructor(props: Props) {
+  //   super(props);
 
-    ipcRenderer.on(OPEN_FILE_CHANNEL, (event, filePath) => {
-      this.props.setDatabasePath(filePath);
-    });
+  //   // ipcRenderer.on(OPEN_FILE_CHANNEL, (event, filePath) => {
+  //   //   this.props.setDatabasePath(filePath);
+  //   // });
 
-    // ipcRenderer.on(DELETE_TABLE_CHANNEL, () => {
-    //   this.deleteSelectedTable();
-    // });
-  }
+  //   // ipcRenderer.on(DELETE_TABLE_CHANNEL, () => {
+  //   //   this.deleteSelectedTable();
+  //   // });
+  // }
 
   /**
    * Uses the database api to set container's state from falcon-core
@@ -100,8 +100,7 @@ class HomePage extends Component<Props, State> {
   getInitialViewData = async () => {
     const [databases, tableNames] = await Promise.all([
       this.core.connection.listDatabases(),
-      this.core.connection.listTables(),
-      this.setConnections()
+      this.core.connection.listTables()
     ]);
 
     const selectedTable = this.state.selectedTable || {
@@ -126,6 +125,7 @@ class HomePage extends Component<Props, State> {
     this.setState({
       connections
     });
+    return connections;
   }
 
   async executeQuery(query: string) {
@@ -195,42 +195,50 @@ class HomePage extends Component<Props, State> {
     // @HACK: This is a temporary way if improving require performance.
     //        The API itself in falcon-core needs to be changed to reflect this
     this.core = {};
-    this.core.connection = await SqliteProviderFactory(
-      {
-        database: this.props.databasePath
-      },
-      {
-        database: this.props.databasePath
-      }
-    );
     this.connectionManager = new ConnectionManager();
+    this.setConnections()
+      .then(() => this.setConnections())
+      .then(async connections => {
+        if (connections.length) {
+          // @HACK: Temporarily connect to the first conenction in the connections
+          //        array
+          const [firstConnection] = connections;
+          this.core.connection = await SqliteProviderFactory(
+            firstConnection,
+            firstConnection
+          );
+          await this.getInitialViewData(firstConnection.database);
+          const databaseVersion = await this.core.connection.getVersion();
+          this.setState({
+            databaseVersion
+          });
+          this.props.history.push('/content');
+        } else {
+          this.props.history.push('/login');
+        }
+        return connections;
+      })
+      .catch(console.log);
 
-    await this.getInitialViewData(this.props.databasePath);
-    const databaseVersion = await this.core.connection.getVersion();
-
-    this.setState({
-      databaseVersion
-    });
-
+    // View/DOM related logic
     window.onresizeFunctions['sidebar-resize-set-state'] = () => {
       this.setState({
         widthSidebar: this.state.widthSidebar,
         widthGrid: window.innerWidth - this.state.widthSidebar
       });
     };
-
     const grid = document.querySelector('.HomePage .Grid');
     const sidebar = document.querySelector('.Sidebar');
-    const height = 32 + 10 + 21 + 15;
-    grid.style.height = `${window.innerHeight - height}px`;
-    sidebar.style.height = `${window.innerHeight - height + 40}px`;
-
-    // If the window is resized, change the height of the grid repsectively
-    window.onresizeFunctions['resize-grid-resize'] = () => {
+    if (grid && sidebar) {
+      const height = 32 + 10 + 21 + 15;
       grid.style.height = `${window.innerHeight - height}px`;
       sidebar.style.height = `${window.innerHeight - height + 40}px`;
-    };
-
+      // If the window is resized, change the height of the grid repsectively
+      window.onresizeFunctions['resize-grid-resize'] = () => {
+        grid.style.height = `${window.innerHeight - height}px`;
+        sidebar.style.height = `${window.innerHeight - height + 40}px`;
+      };
+    }
     // Preload other pages when the browser's main thread isn't busy
     requestIdleCallback(() => {
       ContentPage.preload();
@@ -241,7 +249,7 @@ class HomePage extends Component<Props, State> {
   }
 
   render() {
-    if (!this.state.selectedTable) return <div />;
+    // if (!this.state.selectedTable) return <div />;
 
     return (
       <div className="HomePage container-fluid">
@@ -284,14 +292,6 @@ class HomePage extends Component<Props, State> {
                 }}
               >
                 <Switch>
-                  <Route
-                    exact
-                    strict
-                    path="/"
-                    render={() => (
-                      <LoginPage connectionManager={this.connectionManager} />
-                    )}
-                  />
                   <Route
                     exact
                     strict
@@ -342,7 +342,7 @@ class HomePage extends Component<Props, State> {
                     path="/graph"
                     render={() => (
                       <GraphPage
-                        databasePath={this.props.databasePath}
+                        databasePath={this.state.selectedConnection.database}
                         connection={this.core.connection}
                       />
                     )}
@@ -352,7 +352,10 @@ class HomePage extends Component<Props, State> {
               <Footer
                 offset={this.state.widthSidebar}
                 pathname={this.props.location.pathname}
-                hasActiveConnection={this.state.activeConnections.length !== 0}
+                hasActiveConnection={
+                  this.state.activeConnections.length !== 0 ||
+                  this.state.connections.length !== 0
+                }
               />
             </div>
           </div>
@@ -362,11 +365,11 @@ class HomePage extends Component<Props, State> {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    // @HACK: HARDCODE. The concept of 'paths' are specific to sqlite
-    databasePath: state.databasePath
-  };
-}
+// function mapStateToProps(state) {
+//   return {
+//     // @HACK: HARDCODE. The concept of 'paths' are specific to sqlite
+//     databasePath: state.databasePath
+//   };
+// }
 
-export default connect(mapStateToProps, { setDatabasePath })(HomePage);
+// export default connect(mapStateToProps, { setDatabasePath })(HomePage);
