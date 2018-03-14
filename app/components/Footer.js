@@ -4,7 +4,8 @@ import { Link } from 'react-router-dom';
 
 type Props = {
   pathname: string,
-  offset: number
+  offset: number,
+  hasActiveConnection?: boolean
 };
 
 // @TODO: Clean this up with <NavLink>
@@ -15,13 +16,15 @@ export default function Footer(props: Props) {
   return (
     <div className="Footer" style={{ left: props.offset }}>
       <div className="FooterButtonContainer">
-        <div
-          className={
-            props.pathname === '/login' ? activeFooterButton : footerButton
-          }
-        >
-          <Link to="/login">Login</Link>
-        </div>
+        {props.hasActiveConnection ? null : (
+          <div
+            className={
+              props.pathname === '/login' ? activeFooterButton : footerButton
+            }
+          >
+            <Link to="/login">Login</Link>
+          </div>
+        )}
         <div
           className={
             props.pathname === '/content' ? activeFooterButton : footerButton
@@ -54,3 +57,7 @@ export default function Footer(props: Props) {
     </div>
   );
 }
+
+Footer.defaultProps = {
+  hasActiveConnection: false
+};

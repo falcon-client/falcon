@@ -7,5 +7,5 @@ type Props = {
 };
 
 export default function TableDefinition(props: Props) {
-  return <Editor readOnly sql={props.tableDefinition} />
+  return <Editor readOnly sql={props.tableDefinition} />;
 }

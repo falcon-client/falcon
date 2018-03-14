@@ -8,12 +8,7 @@ type Props = {
 };
 
 export default function GraphPage(props: Props) {
-  return (
-    <Voyager
-      className="Graph"
-      introspection={introspectionProvider}
-    />
-  );
+  return <Voyager className="Graph" introspection={introspectionProvider} />;
 
   async function introspectionProvider(query) {
     await props.connection.startGraphQLServer();

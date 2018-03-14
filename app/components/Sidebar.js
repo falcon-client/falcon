@@ -11,6 +11,7 @@ import type { TableType } from '../types/TableType';
 type Props = {
   databaseName?: ?string,
   onTableSelect: (table: TableType) => void,
+  activeConnections: Array<connectionType>,
   connections: Array<connectionType>,
   selectedConnection: connectionType,
   selectedTable: TableType,
@@ -28,6 +29,7 @@ export default function Sidebar(props: Props) {
       key={connection.name}
       onClick={() => props.onConnectionSelect(connection)}
       className={
+        props.selectedConnection &&
         props.selectedConnection.name === connection.name
           ? 'Sidebar--list-item-selected'
           : 'Sidebar--list-item'
@@ -58,6 +60,9 @@ export default function Sidebar(props: Props) {
   return (
     <div className="Sidebar">
       <ul className="Sidebar--list">
+        <div className="Sidebar--list-item">
+          <ListSymbol type="connection" /> <a>Connections</a>
+        </div>
         {connections}
         <div className="Sidebar--list-item">
           <ListSymbol type="database" /> <a>{props.databaseName}</a>

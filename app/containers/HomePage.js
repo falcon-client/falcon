@@ -48,6 +48,7 @@ type State = {
   widthGrid: number, // window.innerWidth - 200
   databaseName: ?string,
   selectedTable: ?TableType,
+  selectedConnection: ?connectionType,
   tableColumns: Array<TableColumnType>,
   tableDefinition: string,
   activeConnections: Array<connectionType>,
@@ -71,9 +72,11 @@ class HomePage extends Component<Props, State> {
     databaseType: 'SQLite',
     databaseVersion: '',
     selectedTable: null,
+    selectedConnection: null,
     tableColumns: [],
     tableDefinition: '',
     rows: [],
+    activeConnections: [],
     connections: [],
     isLoading: true
   };
@@ -97,8 +100,8 @@ class HomePage extends Component<Props, State> {
   getInitialViewData = async () => {
     const [databases, tableNames] = await Promise.all([
       this.core.connection.listDatabases(),
-      // @HACK: HARDCODE. SQLITE ONLY
-      this.core.connection.listTables()
+      this.core.connection.listTables(),
+      this.setConnections()
     ]);
 
     const selectedTable = this.state.selectedTable || {
@@ -140,6 +143,12 @@ class HomePage extends Component<Props, State> {
     this.setState({
       widthSidebar: size.width,
       widthGrid: window.innerWidth - size.width
+    });
+  };
+
+  onConnectionSelect = async (selectedConnection: connectionType) => {
+    this.setState({
+      selectedConnection
     });
   };
 
@@ -260,8 +269,10 @@ class HomePage extends Component<Props, State> {
                   databaseName={this.state.databaseName}
                   tables={this.state.tables}
                   onTableSelect={this.onTableSelect}
+                  onConnectionSelect={this.onConnectionSelect}
                   selectedTable={this.state.selectedTable}
                   connections={this.state.connections}
+                  activeConnections={this.state.activeConnections}
                 />
               </ResizableBox>
               <div
@@ -273,12 +284,21 @@ class HomePage extends Component<Props, State> {
                 }}
               >
                 <Switch>
-                  <Route exact strict path="/" render={() => <LoginPage />} />
+                  <Route
+                    exact
+                    strict
+                    path="/"
+                    render={() => (
+                      <LoginPage connectionManager={this.connectionManager} />
+                    )}
+                  />
                   <Route
                     exact
                     strict
                     path="/login"
-                    render={() => <LoginPage />}
+                    render={() => (
+                      <LoginPage connectionManager={this.connectionManager} />
+                    )}
                   />
                   <Route
                     exact
@@ -332,6 +352,7 @@ class HomePage extends Component<Props, State> {
               <Footer
                 offset={this.state.widthSidebar}
                 pathname={this.props.location.pathname}
+                hasActiveConnection={this.state.activeConnections.length !== 0}
               />
             </div>
           </div>

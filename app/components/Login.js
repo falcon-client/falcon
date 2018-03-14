@@ -22,14 +22,14 @@ type Props = {
 type State = {
   connectionName: string,
   databasePath: string,
-  errorMessage: ?string
+  errorMessages: Array<string>
 };
 
 class Login extends Component<Props, State> {
   state = {
     connectionName: '',
     databasePath: '',
-    errorMessage: null
+    errorMessages: []
   };
 
   constructor(props: Props) {
@@ -38,6 +38,27 @@ class Login extends Component<Props, State> {
       this.setState({ databasePath: filePath });
       this.handleConnect();
     });
+  }
+
+  async handleConnect() {
+    const { connectionManager } = this.props;
+    console.log(await connectionManager.getAll());
+    try {
+      await connectionManager.add({
+        id: 'foo',
+        name: this.state.connectionName,
+        database: this.state.databasePath,
+        type: 'sqlite'
+      });
+    } catch (e) {
+      // console.log(e.data.errors.)
+      this.setState({
+        errorMessages: e.data.errors.error.details.map(detail => ({
+          fieldName: detail.context.label,
+          message: detail.message
+        }))
+      });
+    }
   }
 
   handleDatabasePathSelection = () => {
@@ -57,9 +78,9 @@ class Login extends Component<Props, State> {
           <div className="row no-gutters">
             <div className="col-12 row-margin text-center">
               <h2 className="Login--header">Create Connection</h2>
-              {this.state.errorMessage ? (
-                <div className="Login--alert">{this.state.errorMessage}</div>
-              ) : null}
+              {this.state.errorMessages.map(e => (
+                <div className="Login--alert">{e.message}</div>
+              ))}
             </div>
             <div className="col-12">
               <h3 className="text-left Login--input-label">
@@ -68,16 +89,16 @@ class Login extends Component<Props, State> {
               <input
                 placeholder="My first connection"
                 value={this.state.connectionName}
+                type="text"
                 onChange={e =>
                   this.setState({ connectionName: e.target.value })
                 }
-                type="text"
               />
             </div>
             <div className="col-10">
               <h3 className="text-left Login--input-label">Database path</h3>
               <input
-                placeholder="~/Documents/..."
+                placeholder="/Desktop/sqlite.db"
                 value={this.state.databasePath}
                 onChange={e => this.setState({ databasePath: e.target.value })}
               />
@@ -90,9 +111,8 @@ class Login extends Component<Props, State> {
             <div className="col-12 row-margin Login--submit-button-container">
               <div
                 className="Login--submit-button"
-                onClick={this.handleConnect}
+                onClick={() => this.handleConnect()}
               >
-                {' '}
                 Connect
               </div>
             </div>
