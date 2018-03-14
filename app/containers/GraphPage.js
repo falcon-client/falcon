@@ -12,7 +12,6 @@ export default function GraphPage(props: Props) {
     <Voyager
       className="Graph"
       introspection={introspectionProvider}
-      workerURI="https://unpkg.com/voyager-worker-test@1.0.0/index.js"
     />
   );
 

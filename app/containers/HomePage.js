@@ -50,6 +50,7 @@ type State = {
   selectedTable: ?TableType,
   tableColumns: Array<TableColumnType>,
   tableDefinition: string,
+  activeConnections: Array<connectionType>,
   connections: Array<connectionType>,
   isLoading: boolean,
   tables: Array<{
@@ -93,7 +94,7 @@ class HomePage extends Component<Props, State> {
    * Uses the database api to set container's state from falcon-core
    * @TODO: Since supporting just SQLite, getDatabases will only return 1 db
    */
-  getInitialViewData = async (filePath: string) => {
+  getInitialViewData = async () => {
     const [databases, tableNames] = await Promise.all([
       this.core.connection.listDatabases(),
       // @HACK: HARDCODE. SQLITE ONLY
