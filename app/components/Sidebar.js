@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-// import type { connectionType } from 'falcon-core';
+import type { connectionType } from 'falcon-core/types';
 import ListSymbol from './ListSymbol';
 import type { TableType } from '../types/TableType';
 

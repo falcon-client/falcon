@@ -2,16 +2,14 @@
 import path from 'path';
 import React, { Component } from 'react';
 import { ResizableBox } from 'react-resizable';
-// import { connect } from 'react-redux';
-// import { ipcRenderer } from 'electron';
+import { ipcRenderer } from 'electron';
 import { Switch, Route } from 'react-router';
 import Loadable from 'react-loadable';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
-// import { setDatabasePath } from '../actions/index';
+import { OPEN_FILE_CHANNEL } from '../types/channels';
 import type { TableType } from '../types/TableType';
-// import { OPEN_FILE_CHANNEL } from '../types/channels';
 
 // @NOTE: This duplication is necessary. It makes webpack lazily load the chunks
 const ContentPage = Loadable({
@@ -36,8 +34,6 @@ const GraphPage = Loadable({
 });
 
 type Props = {
-  // databasePath: ?string,
-  // setDatabasePath: string => null,
   location: {
     pathname: string
   }
@@ -81,28 +77,29 @@ export default class HomePage extends Component<Props, State> {
     isLoading: true
   };
 
-  // constructor(props: Props) {
-  //   super(props);
+  ipcConnection = null;
 
-  //   // ipcRenderer.on(OPEN_FILE_CHANNEL, (event, filePath) => {
-  //   //   this.props.setDatabasePath(filePath);
-  //   // });
-
-  //   // ipcRenderer.on(DELETE_TABLE_CHANNEL, () => {
-  //   //   this.deleteSelectedTable();
-  //   // });
-  // }
+  constructor(props: Props) {
+    super(props);
+    ipcRenderer.on(OPEN_FILE_CHANNEL, (event, filePath) => {
+      this.ipcConnection = {
+        database: filePath
+      };
+    });
+    // ipcRenderer.on(DELETE_TABLE_CHANNEL, () => {
+    //   this.deleteSelectedTable();
+    // });
+  }
 
   /**
    * Uses the database api to set container's state from falcon-core
    * @TODO: Since supporting just SQLite, getDatabases will only return 1 db
    */
   getInitialViewData = async () => {
-    const [databases, tableNames] = await Promise.all([
+    const [databases, tableNames, databaseVersion] = await Promise.all([
       this.core.connection.listDatabases(),
       this.core.connection.listTables()
     ]);
-
     const selectedTable = this.state.selectedTable || {
       name: tableNames[0].name
     };
@@ -113,6 +110,7 @@ export default class HomePage extends Component<Props, State> {
     this.setState({
       databaseName,
       selectedTable,
+      databaseVersion,
       isLoading: false,
       tables: tableNames
       // @TODO: Use tableName instead of whole table object contents
@@ -168,7 +166,7 @@ export default class HomePage extends Component<Props, State> {
 
     const rows = tableValues.map((value, index) => ({
       rowID: value[Object.keys(value)[index]],
-      value: Object.values(value)
+      value: Object.values(value).filter(e => !(e instanceof Buffer))
     }));
 
     this.setState({
@@ -199,21 +197,15 @@ export default class HomePage extends Component<Props, State> {
     this.core = {};
     this.connectionManager = new ConnectionManager();
     this.setConnections()
-      .then(() => this.setConnections())
       .then(async connections => {
         if (connections.length) {
           // @HACK: Temporarily connect to the first conenction in the connections
           //        array
-          const [firstConnection] = connections;
           this.core.connection = await SqliteProviderFactory(
-            firstConnection,
-            firstConnection
+            this.ipcConnection || connections[0],
+            this.ipcConnection || connections[0]
           );
-          await this.getInitialViewData(firstConnection.database);
-          const databaseVersion = await this.core.connection.getVersion();
-          this.setState({
-            databaseVersion
-          });
+          await this.getInitialViewData();
           this.props.history.push('/content');
         } else {
           this.props.history.push('/login');
@@ -251,8 +243,6 @@ export default class HomePage extends Component<Props, State> {
   }
 
   render() {
-    // if (!this.state.selectedTable) return <div />;
-
     return (
       <div className="HomePage container-fluid">
         <div className="row">
@@ -371,12 +361,3 @@ export default class HomePage extends Component<Props, State> {
     );
   }
 }
-
-// function mapStateToProps(state) {
-//   return {
-//     // @HACK: HARDCODE. The concept of 'paths' are specific to sqlite
-//     databasePath: state.databasePath
-//   };
-// }
-
-// export default connect(mapStateToProps, { setDatabasePath })(HomePage);

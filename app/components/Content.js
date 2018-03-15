@@ -1,16 +1,11 @@
 // @flow
 import React, { Component } from 'react';
-import Table from '../containers/Table';
-import type { TableType } from '../types/TableType';
 import VirtualList from './VirtualList';
+import type { TableType } from '../types/TableType';
 
 type Props = {
   table: TableType
 };
-
-// static data
-const DATA = [];
-for (let x = 1e5; x--; ) DATA[x] = `Item #${x + 1}`;
 
 export default class Content extends Component<Props, {}> {
   rowHeight = 30;
@@ -25,7 +20,12 @@ export default class Content extends Component<Props, {}> {
   }
 
   renderRow(row) {
-    return <div className="VirtualList-row">{row}</div>;
+    return (
+      <div className="VirtualList-row">
+        {/* @HACK: node-sqlite3 sometimes returns buffers. This kilss rendering perf */}
+        {row}
+      </div>
+    );
   }
 
   componentWillReceiveProps(nextProps) {
@@ -48,8 +48,4 @@ export default class Content extends Component<Props, {}> {
       </div>
     );
   }
-
-  // render() {
-  //   return <Table table={this.props.table} />;
-  // }
 }

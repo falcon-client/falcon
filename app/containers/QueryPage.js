@@ -4,7 +4,6 @@ import { ResizableBox } from 'react-resizable';
 import debounce from 'lodash/debounce';
 import Editor from '../components/Editor';
 import Content from '../components/Content';
-// import type { TableColumnType } from '../api/Database';
 
 type Props = {
   executeQuery: (query: string) => void,
@@ -22,7 +21,7 @@ export default class QueryPage extends Component<Props, State> {
   state = {
     queryHeight: (window.innerHeight - 40) / 2,
     queryResultsHeight: (window.innerHeight - 40) / 2 - 40,
-    query: 'SELECT * FROM artists',
+    query: 'SELECT * FROM sqlite_master',
     rows: []
   };
 
@@ -41,7 +40,7 @@ export default class QueryPage extends Component<Props, State> {
       const queryResults = await this.props.executeQuery(this.state.query);
       const rows = queryResults[0].rows.map((value, index) => ({
         rowID: value[Object.keys(value)[index]],
-        value: Object.values(value)
+        value: Object.values(value).filter(e => !(e instanceof Buffer))
       }));
       this.setState({
         rows

@@ -5,7 +5,6 @@ import Select from 'react-select';
 import _ from 'lodash';
 import Cell from '../components/StructurePageCell';
 import TableDefinition from '../components/TableDefinition';
-// import type { TableColumnType } from '../api/Database';
 
 // Taken from https://www.sqlite.org/datatype3.html
 // Each columns type options should contain these and its current type

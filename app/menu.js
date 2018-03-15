@@ -1,7 +1,6 @@
 // @flow
 /* eslint import/no-extraneous-dependencies: 0 */
 import { app, Menu, shell, BrowserWindow, dialog } from 'electron';
-// import { exportFile } from './api/Database';
 import {
   OPEN_FILE_CHANNEL,
   DELETE_ROW_CHANNEL,

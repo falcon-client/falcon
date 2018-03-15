@@ -1,13 +1,12 @@
 // @flow
 import React, { Component } from 'react';
-// import { remote } from 'electron';
 import NProgress from 'nprogress';
 import ListSymbol from './ListSymbol';
 
 type Props = {
   databaseName?: ?string,
   databaseType: string,
-  databaseVersion: number | string,
+  databaseVersion?: number | string,
   isLoading: boolean,
   selectedTable?: ?{
     name: string
@@ -43,6 +42,7 @@ export default class Header extends Component<Props, {}> {
     const { props } = this;
     const shouldHideMargin = false;
     // @NOTE: Temporarily disabled for performance. fullscreen prop should be passed from parent
+    // import { remote } from 'electron';
     // remote.getCurrentWindow().isFullScreen() || process.platform !== 'darwin';
 
     return (
