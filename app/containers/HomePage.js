@@ -125,6 +125,8 @@ export default class HomePage extends Component<Props, State> {
     this.setState({
       connections
     });
+    // @HACK
+    await this.onConnectionSelect(connections[0]);
     return connections;
   }
 
@@ -304,15 +306,17 @@ export default class HomePage extends Component<Props, State> {
                     exact
                     strict
                     path="/content"
-                    render={() => (
-                      <ContentPage
-                        table={{
-                          name: this.state.selectedTable.name,
-                          columns: this.state.tableColumns,
-                          rows: this.state.rows
-                        }}
-                      />
-                    )}
+                    render={() =>
+                      this.state.selectedTable ? (
+                        <ContentPage
+                          table={{
+                            name: this.state.selectedTable.name,
+                            columns: this.state.tableColumns,
+                            rows: this.state.rows
+                          }}
+                        />
+                      ) : null
+                    }
                   />
                   <Route
                     exact
@@ -340,12 +344,15 @@ export default class HomePage extends Component<Props, State> {
                     exact
                     strict
                     path="/graph"
-                    render={() => (
-                      <GraphPage
-                        databasePath={this.state.selectedConnection.database}
-                        connection={this.core.connection}
-                      />
-                    )}
+                    render={() =>
+                      this.state.selectedConnection &&
+                      this.state.selectedConnection.database ? (
+                        <GraphPage
+                          databasePath={this.state.selectedConnection.database}
+                          connection={this.core.connection}
+                        />
+                      ) : null
+                    }
                   />
                 </Switch>
               </div>

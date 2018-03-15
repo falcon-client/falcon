@@ -56,7 +56,8 @@ export default class Header extends Component<Props, {}> {
             <ListSymbol type="database" /> {props.databaseName || ''}
           </div>
           <div className="Header--breadcrumb">
-            <ListSymbol type="table" /> {props.selectedTable ? props.selectedTable.name : ''}
+            <ListSymbol type="table" />{' '}
+            {props.selectedTable ? props.selectedTable.name : ''}
           </div>
         </div>
         <div
