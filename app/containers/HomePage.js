@@ -335,6 +335,8 @@ export default class HomePage extends Component<Props, State> {
                     strict
                     path="/graph"
                     render={() =>
+                      this.core &&
+                      this.core.connection &&
                       this.state.selectedConnection &&
                       this.state.selectedConnection.database ? (
                         <GraphPage

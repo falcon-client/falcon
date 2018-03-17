@@ -42,7 +42,6 @@ class Login extends Component<Props, State> {
 
   async handleConnect() {
     const { connectionManager } = this.props;
-    console.log(await connectionManager.getAll());
     try {
       await connectionManager.add({
         id: 'foo',
@@ -51,7 +50,6 @@ class Login extends Component<Props, State> {
         type: 'sqlite'
       });
     } catch (e) {
-      // console.log(e.data.errors.)
       this.setState({
         errorMessages: e.data.errors.error.details.map(detail => ({
           fieldName: detail.context.label,

@@ -4,6 +4,7 @@
 
 import path from 'path';
 import webpack from 'webpack';
+import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
 import { dependencies as externals } from './app/package.json';
 
 export default {
@@ -35,6 +36,10 @@ export default {
           }
         }
       },
+      {
+        test: /\.worker\.js$/,
+        use: { loader: 'worker-loader' }
+      },
       { test: /aws-sdk/, loaders: ['transform-loader?brfs'] },
       { test: /\.json$/, loaders: ['json-loader'] }
     ]
@@ -58,6 +63,7 @@ export default {
     new webpack.EnvironmentPlugin({
       NODE_ENV: 'production'
     }),
+    new LodashModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.IgnorePlugin(/^mock-firmata$/),
     new webpack.ContextReplacementPlugin(/bindings$/, /^$/),

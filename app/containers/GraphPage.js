@@ -1,17 +1,19 @@
 // @flow
 import React from 'react';
-import { Voyager } from 'graphql-voyager/dist/voyager';
+import { Voyager } from './GraphQlVoyager';
 
 type Props = {
   databasePath: string,
-  connection: Object
+  connection?: ?Object
 };
 
 export default function GraphPage(props: Props) {
-  return <Voyager className="Graph" introspection={introspectionProvider} />;
-
   async function introspectionProvider(query) {
-    await props.connection.startGraphQLServer();
+    try {
+      await props.connection.startGraphQLServer();
+    } catch (e) {
+      console.log(e);
+    }
     return fetch(
       `http://localhost:${props.connection.getGraphQLServerPort()}/graphql`,
       {
@@ -21,4 +23,14 @@ export default function GraphPage(props: Props) {
       }
     ).then(response => response.json());
   }
+
+  const worker = import('./GraphQlVoyager.worker').then(VoyagerWorker => new VoyagerWorker());
+
+  return (
+    <Voyager
+      className="Graph"
+      introspection={introspectionProvider}
+      workerURI={worker}
+    />
+  );
 }

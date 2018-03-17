@@ -20,6 +20,7 @@ export default function StructurePageCell(props: Props) {
         <div>
           <input
             defaultValue=""
+            readOnly
             value={undefined}
             className="Structure-Cell-Input--null"
             placeholder={value === null ? 'NULL' : value}
@@ -31,6 +32,7 @@ export default function StructurePageCell(props: Props) {
         <div>
           <input
             defaultValue=""
+            readOnly
             value={value}
             className="Structure-Cell-Input"
             placeholder={value === null ? 'NULL' : value}
