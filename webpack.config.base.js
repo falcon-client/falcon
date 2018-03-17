@@ -56,7 +56,17 @@ export default {
    */
   resolve: {
     extensions: ['.js', '.jsx', '.json'],
-    modules: [path.join(__dirname, 'app'), 'node_modules']
+    modules: [path.join(__dirname, 'app'), 'node_modules'],
+    alias: {
+      '@falcon-client/graphql-voyager': path.resolve(
+        __dirname,
+        'packages/graphql-voyager'
+      ),
+      '@falcon-client/react-clipboard.js': path.resolve(
+        __dirname,
+        'packages/react-clipboard.js'
+      )
+    }
   },
 
   plugins: [

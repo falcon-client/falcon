@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import { Voyager } from './GraphQlVoyager';
+import { Voyager } from '@falcon-client/graphql-voyager';
 
 type Props = {
   databasePath: string,
@@ -24,7 +24,9 @@ export default function GraphPage(props: Props) {
     ).then(response => response.json());
   }
 
-  const worker = import('./GraphQlVoyager.worker').then(VoyagerWorker => new VoyagerWorker());
+  const worker = import('worker-loader!@falcon-client/graphql-voyager/es/worker.js').then(
+    VoyagerWorker => new VoyagerWorker()
+  );
 
   return (
     <Voyager
