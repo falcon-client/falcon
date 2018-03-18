@@ -1,0 +1,1170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg id="svg2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="2807pt" height="1470pt" xmlns:ev="http://www.w3.org/2001/xml-events" style="overflow: hidden; " class=""><g id="viewport-20180124223719007" class="svg-pan-zoom_viewport" transform="matrix(0.2707594078110965,0,0,0.2707594078110965,5.684341886080802e-14,160.9972496544255)" style="transform: matrix(0.270759, 0, 0, 0.270759, 5.68434e-14, 160.997);"><symbol viewBox="0 0 600 600" id="RelayIcon"><g fill="#F26B00"><path d="M142.536 198.858c0 26.36-21.368 47.72-47.72 47.72-26.36 0-47.722-21.36-47.722-47.72s21.36-47.72 47.72-47.72c26.355 0 47.722 21.36 47.722 47.72"></path><path d="M505.18 414.225H238.124c-35.25 0-63.926-28.674-63.926-63.923s28.678-63.926 63.926-63.926h120.78c20.816 0 37.753-16.938 37.753-37.756s-16.938-37.756-37.753-37.756H94.81c-7.227 0-13.086-5.86-13.086-13.085 0-7.227 5.86-13.086 13.085-13.086h264.093c35.25 0 63.923 28.678 63.923 63.926s-28.674 63.923-63.923 63.923h-120.78c-20.82 0-37.756 16.938-37.756 37.76 0 20.816 16.938 37.753 37.756 37.753H505.18c7.227 0 13.086 5.86 13.086 13.085 0 7.226-5.858 13.085-13.085 13.085z"></path><path d="M457.464 401.142c0-26.36 21.36-47.72 47.72-47.72s47.72 21.36 47.72 47.72-21.36 47.72-47.72 47.72-47.72-21.36-47.72-47.72"></path></g></symbol>
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 1465.9645)">
+
+<polygon fill="#ffffff" stroke="transparent" points="-4,4 -4,-1465.9645 2802.9204,-1465.9645 2802.9204,4 -4,4"></polygon>
+<!-- Query -->
+<g id="TYPE::Query" class="node type">
+
+<g id="TYPE_TITLE::Query" class="type-title">
+<polygon fill="none" stroke="#000000" points="8.5,-1187.1645 8.5,-1218.1645 207.5,-1218.1645 207.5,-1187.1645 8.5,-1187.1645"></polygon>
+<text text-anchor="start" x="83.4966" y="-1196.9645" font-family="helvetica, open-sans" font-size="18.00" fill="#000000">Query</text>
+
+</g>
+<g id="FIELD::Query::albums" class="field edge-source hovered">
+<polygon fill="none" stroke="#000000" points="8.5,-1156.1645 8.5,-1187.1645 207.5,-1187.1645 207.5,-1156.1645 8.5,-1156.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-1167.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">albums</text>
+
+<text text-anchor="start" x="147.2712" y="-1167.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="151.7176" y="-1167.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Album</text>
+<text text-anchor="start" x="197.0536" y="-1167.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Query::album" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-1125.1645 8.5,-1156.1645 207.5,-1156.1645 207.5,-1125.1645 8.5,-1125.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-1136.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">album</text>
+
+<text text-anchor="start" x="156.164" y="-1135.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Album</text>
+
+</g>
+<g id="FIELD::Query::artists" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-1094.1645 8.5,-1125.1645 207.5,-1125.1645 207.5,-1094.1645 8.5,-1094.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-1105.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">artists</text>
+
+<text text-anchor="start" x="156.1672" y="-1105.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="160.6136" y="-1105.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Artist</text>
+<text text-anchor="start" x="197.0536" y="-1105.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Query::artist" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-1063.1645 8.5,-1094.1645 207.5,-1094.1645 207.5,-1063.1645 8.5,-1063.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-1074.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">artist</text>
+
+<text text-anchor="start" x="165.06" y="-1073.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Artist</text>
+
+</g>
+<g id="FIELD::Query::customers" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-1032.1645 8.5,-1063.1645 207.5,-1063.1645 207.5,-1032.1645 8.5,-1032.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-1043.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">customers</text>
+
+<text text-anchor="start" x="123.2744" y="-1043.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="127.7208" y="-1043.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Customer</text>
+<text text-anchor="start" x="197.0536" y="-1043.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Query::customer" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-1001.1645 8.5,-1032.1645 207.5,-1032.1645 207.5,-1001.1645 8.5,-1001.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-1012.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">customer</text>
+
+<text text-anchor="start" x="132.1672" y="-1011.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Customer</text>
+
+</g>
+<g id="FIELD::Query::employees" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-970.1645 8.5,-1001.1645 207.5,-1001.1645 207.5,-970.1645 8.5,-970.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-981.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">employees</text>
+
+<text text-anchor="start" x="121.4824" y="-981.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="125.9288" y="-981.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Employee</text>
+<text text-anchor="start" x="197.0536" y="-981.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Query::employee" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-939.1645 8.5,-970.1645 207.5,-970.1645 207.5,-939.1645 8.5,-939.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-950.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">employee</text>
+
+<text text-anchor="start" x="130.3752" y="-949.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Employee</text>
+
+</g>
+<g id="FIELD::Query::genres" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-908.1645 8.5,-939.1645 207.5,-939.1645 207.5,-908.1645 8.5,-908.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-919.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">genres</text>
+
+<text text-anchor="start" x="148.1512" y="-919.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="152.5976" y="-919.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Genre</text>
+<text text-anchor="start" x="197.0536" y="-919.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Query::genre" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-877.1645 8.5,-908.1645 207.5,-908.1645 207.5,-877.1645 8.5,-877.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-888.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">genre</text>
+
+<text text-anchor="start" x="157.044" y="-887.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Genre</text>
+
+</g>
+<g id="FIELD::Query::invoices" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-846.1645 8.5,-877.1645 207.5,-877.1645 207.5,-846.1645 8.5,-846.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-857.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">invoices</text>
+
+<text text-anchor="start" x="141.9272" y="-857.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="146.3736" y="-857.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Invoice</text>
+<text text-anchor="start" x="197.0536" y="-857.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Query::invoice" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-815.1645 8.5,-846.1645 207.5,-846.1645 207.5,-815.1645 8.5,-815.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-826.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">invoice</text>
+
+<text text-anchor="start" x="150.82" y="-825.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Invoice</text>
+
+</g>
+<g id="FIELD::Query::invoiceItems" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-784.1645 8.5,-815.1645 207.5,-815.1645 207.5,-784.1645 8.5,-784.1645"></polygon>
+<text text-anchor="start" x="14.1048" y="-795.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">invoiceItems</text>
+
+<text text-anchor="start" x="111.1568" y="-795.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="115.6032" y="-795.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">InvoiceItem</text>
+<text text-anchor="start" x="197.3968" y="-795.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Query::invoiceItem" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-753.1645 8.5,-784.1645 207.5,-784.1645 207.5,-753.1645 8.5,-753.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-764.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">invoiceItem</text>
+
+<text text-anchor="start" x="119.7064" y="-763.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">InvoiceItem</text>
+
+</g>
+<g id="FIELD::Query::mediaTypes" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-722.1645 8.5,-753.1645 207.5,-753.1645 207.5,-722.1645 8.5,-722.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-733.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">mediaTypes</text>
+
+<text text-anchor="start" x="113.484" y="-733.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="117.9304" y="-733.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">MediaType</text>
+<text text-anchor="start" x="197.0536" y="-733.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Query::mediaType" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-691.1645 8.5,-722.1645 207.5,-722.1645 207.5,-691.1645 8.5,-691.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-702.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">mediaType</text>
+
+<text text-anchor="start" x="122.3768" y="-701.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">MediaType</text>
+
+</g>
+<g id="FIELD::Query::playlists" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-660.1645 8.5,-691.1645 207.5,-691.1645 207.5,-660.1645 8.5,-660.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-671.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">playlists</text>
+
+<text text-anchor="start" x="141.9448" y="-671.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="146.3912" y="-671.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Playlist</text>
+<text text-anchor="start" x="197.0536" y="-671.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Query::playlist" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-629.1645 8.5,-660.1645 207.5,-660.1645 207.5,-629.1645 8.5,-629.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-640.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">playlist</text>
+
+<text text-anchor="start" x="150.8376" y="-639.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Playlist</text>
+
+</g>
+<g id="FIELD::Query::tracks" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-598.1645 8.5,-629.1645 207.5,-629.1645 207.5,-598.1645 8.5,-598.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-609.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">tracks</text>
+
+<text text-anchor="start" x="152.612" y="-609.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="157.0584" y="-609.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Track</text>
+<text text-anchor="start" x="197.0536" y="-609.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Query::track" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="8.5,-567.1645 8.5,-598.1645 207.5,-598.1645 207.5,-567.1645 8.5,-567.1645"></polygon>
+<text text-anchor="start" x="14.5" y="-578.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">track</text>
+
+<text text-anchor="start" x="161.5048" y="-577.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Track</text>
+
+</g>
+</g>
+<!-- Album -->
+<g id="TYPE::Album" class="node type">
+
+<g id="TYPE_TITLE::Album" class="type-title">
+<polygon fill="none" stroke="#000000" points="446.8128,-1291.1645 446.8128,-1322.1645 557.8128,-1322.1645 557.8128,-1291.1645 446.8128,-1291.1645"></polygon>
+<text text-anchor="start" x="476.8113" y="-1300.9645" font-family="helvetica, open-sans" font-size="18.00" fill="#000000">Album</text>
+
+</g>
+<g id="FIELD::Album::albumId" class="field">
+<polygon fill="none" stroke="#000000" points="446.8128,-1260.1645 446.8128,-1291.1645 557.8128,-1291.1645 557.8128,-1260.1645 446.8128,-1260.1645"></polygon>
+<text text-anchor="start" x="452.8128" y="-1271.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">albumId</text>
+
+<text text-anchor="start" x="529.5792" y="-1271.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="547.3664" y="-1271.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Album::title" class="field">
+<polygon fill="none" stroke="#000000" points="446.8128,-1229.1645 446.8128,-1260.1645 557.8128,-1260.1645 557.8128,-1229.1645 446.8128,-1229.1645"></polygon>
+<text text-anchor="start" x="452.8128" y="-1240.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">title</text>
+
+<text text-anchor="start" x="505.584" y="-1240.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+<text text-anchor="start" x="547.3664" y="-1240.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Album::artistId" class="field">
+<polygon fill="none" stroke="#000000" points="446.8128,-1198.1645 446.8128,-1229.1645 557.8128,-1229.1645 557.8128,-1198.1645 446.8128,-1198.1645"></polygon>
+<text text-anchor="start" x="452.8128" y="-1209.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">artistId</text>
+
+<text text-anchor="start" x="529.5792" y="-1209.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="547.3664" y="-1209.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Album::tracks" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="446.8128,-1167.1645 446.8128,-1198.1645 557.8128,-1198.1645 557.8128,-1167.1645 446.8128,-1167.1645"></polygon>
+<text text-anchor="start" x="452.5328" y="-1178.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">tracks</text>
+
+<text text-anchor="start" x="503.3688" y="-1178.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="507.8152" y="-1178.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Track</text>
+<text text-anchor="start" x="547.8104" y="-1178.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Album::artist" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="446.8128,-1136.1645 446.8128,-1167.1645 557.8128,-1167.1645 557.8128,-1136.1645 446.8128,-1136.1645"></polygon>
+<text text-anchor="start" x="452.8128" y="-1147.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">artist</text>
+
+<text text-anchor="start" x="515.3728" y="-1146.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Artist</text>
+
+</g>
+</g>
+<!-- Query&#45;&gt;Album -->
+<g class="edge hovered" data-from="FIELD::Query::albums" data-to="TYPE::Album">
+
+<path fill="none" stroke="#000000" d="M207.5,-1172.1645C245.929,-1172.1645 249.8175,-1196.4561 287,-1206.1645 332.9308,-1218.157 385.9513,-1223.9132 427.8247,-1226.6683"></path>
+<polygon fill="#000000" stroke="#000000" points="427.7489,-1230.1701 437.9448,-1227.2904 428.1784,-1223.1833 427.7489,-1230.1701"></polygon>
+<text text-anchor="middle" x="326.6564" y="-1224.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:albums</text>
+<path fill="none" stroke="#000000" d="M207.5,-1172.1645C245.929,-1172.1645 249.8175,-1196.4561 287,-1206.1645 332.9308,-1218.157 385.9513,-1223.9132 427.8247,-1226.6683" class="hover-path"></path></g>
+<!-- Query&#45;&gt;Album -->
+<g class="edge" data-from="FIELD::Query::album" data-to="TYPE::Album">
+
+<path fill="none" stroke="#000000" d="M207.5,-1141.1645C285.4252,-1141.1645 370.2754,-1169.8324 428.7597,-1194.443"></path>
+<polygon fill="#000000" stroke="#000000" points="427.7054,-1197.7986 438.2763,-1198.5099 430.4561,-1191.3617 427.7054,-1197.7986"></polygon>
+<text text-anchor="middle" x="326.6564" y="-1173.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:album</text>
+<path fill="none" stroke="#000000" d="M207.5,-1141.1645C285.4252,-1141.1645 370.2754,-1169.8324 428.7597,-1194.443" class="hover-path"></path></g>
+<!-- Artist -->
+<g id="TYPE::Artist" class="node type">
+
+<g id="TYPE_TITLE::Artist" class="type-title">
+<polygon fill="none" stroke="#000000" points="864.9966,-1299.1645 864.9966,-1330.1645 990.9966,-1330.1645 990.9966,-1299.1645 864.9966,-1299.1645"></polygon>
+<text text-anchor="start" x="907.4991" y="-1308.9645" font-family="helvetica, open-sans" font-size="18.00" fill="#000000">Artist</text>
+
+</g>
+<g id="FIELD::Artist::artistId" class="field">
+<polygon fill="none" stroke="#000000" points="864.9966,-1268.1645 864.9966,-1299.1645 990.9966,-1299.1645 990.9966,-1268.1645 864.9966,-1268.1645"></polygon>
+<text text-anchor="start" x="870.9966" y="-1279.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">artistId</text>
+
+<text text-anchor="start" x="962.763" y="-1279.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="980.5502" y="-1279.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Artist::name" class="field">
+<polygon fill="none" stroke="#000000" points="864.9966,-1237.1645 864.9966,-1268.1645 990.9966,-1268.1645 990.9966,-1237.1645 864.9966,-1237.1645"></polygon>
+<text text-anchor="start" x="870.9966" y="-1248.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">name</text>
+
+<text text-anchor="start" x="943.2142" y="-1247.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Artist::albums" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="864.9966,-1206.1645 864.9966,-1237.1645 990.9966,-1237.1645 990.9966,-1206.1645 864.9966,-1206.1645"></polygon>
+<text text-anchor="start" x="870.7702" y="-1217.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">albums</text>
+
+<text text-anchor="start" x="930.8822" y="-1217.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="935.3286" y="-1217.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Album</text>
+<text text-anchor="start" x="980.6646" y="-1217.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+</g>
+<!-- Query&#45;&gt;Artist -->
+<g class="edge" data-from="FIELD::Query::artists" data-to="TYPE::Artist">
+
+<path fill="none" stroke="#000000" d="M207.5,-1110.1645C257.6263,-1110.1645 251.2349,-1155.0433 287,-1190.1645 353.4577,-1255.4258 351.8849,-1300.4386 438.3128,-1335.1645 574.6437,-1389.9409 747.6713,-1341.469 847.3164,-1303.3598"></path>
+<polygon fill="#000000" stroke="#000000" points="848.6703,-1306.5887 856.7267,-1299.7079 846.1378,-1300.0629 848.6703,-1306.5887"></polygon>
+<text text-anchor="middle" x="501.8128" y="-1363.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:artists</text>
+<path fill="none" stroke="#000000" d="M207.5,-1110.1645C257.6263,-1110.1645 251.2349,-1155.0433 287,-1190.1645 353.4577,-1255.4258 351.8849,-1300.4386 438.3128,-1335.1645 574.6437,-1389.9409 747.6713,-1341.469 847.3164,-1303.3598" class="hover-path"></path></g>
+<!-- Query&#45;&gt;Artist -->
+<g class="edge" data-from="FIELD::Query::artist" data-to="TYPE::Artist">
+
+<path fill="none" stroke="#000000" d="M207.5,-1079.1645C327.9316,-1079.1645 637.0561,-1065.5051 748.4966,-1111.1645 792.6533,-1129.2563 833.4348,-1162.8826 864.9294,-1194.3876"></path>
+<polygon fill="#000000" stroke="#000000" points="862.8178,-1197.2326 872.3219,-1201.9147 867.8121,-1192.3277 862.8178,-1197.2326"></polygon>
+<text text-anchor="middle" x="501.8128" y="-1085.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:artist</text>
+<path fill="none" stroke="#000000" d="M207.5,-1079.1645C327.9316,-1079.1645 637.0561,-1065.5051 748.4966,-1111.1645 792.6533,-1129.2563 833.4348,-1162.8826 864.9294,-1194.3876" class="hover-path"></path></g>
+<!-- Customer -->
+<g id="TYPE::Customer" class="node type">
+
+<g id="TYPE_TITLE::Customer" class="type-title">
+<polygon fill="none" stroke="#000000" points="2175.0066,-907.1645 2175.0066,-938.1645 2336.0066,-938.1645 2336.0066,-907.1645 2175.0066,-907.1645"></polygon>
+<text text-anchor="start" x="2216.5069" y="-916.9645" font-family="helvetica, open-sans" font-size="18.00" fill="#000000">Customer</text>
+
+</g>
+<g id="FIELD::Customer::customerId" class="field">
+<polygon fill="none" stroke="#000000" points="2175.0066,-876.1645 2175.0066,-907.1645 2336.0066,-907.1645 2336.0066,-876.1645 2175.0066,-876.1645"></polygon>
+<text text-anchor="start" x="2181.0066" y="-887.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">customerId</text>
+
+<text text-anchor="start" x="2307.773" y="-887.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="2325.5602" y="-887.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Customer::firstName" class="field">
+<polygon fill="none" stroke="#000000" points="2175.0066,-845.1645 2175.0066,-876.1645 2336.0066,-876.1645 2336.0066,-845.1645 2175.0066,-845.1645"></polygon>
+<text text-anchor="start" x="2181.0066" y="-856.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">firstName</text>
+
+<text text-anchor="start" x="2283.7778" y="-856.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+<text text-anchor="start" x="2325.5602" y="-856.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Customer::lastName" class="field">
+<polygon fill="none" stroke="#000000" points="2175.0066,-814.1645 2175.0066,-845.1645 2336.0066,-845.1645 2336.0066,-814.1645 2175.0066,-814.1645"></polygon>
+<text text-anchor="start" x="2181.0066" y="-825.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">lastName</text>
+
+<text text-anchor="start" x="2283.7778" y="-825.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+<text text-anchor="start" x="2325.5602" y="-825.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Customer::company" class="field">
+<polygon fill="none" stroke="#000000" points="2175.0066,-783.1645 2175.0066,-814.1645 2336.0066,-814.1645 2336.0066,-783.1645 2175.0066,-783.1645"></polygon>
+<text text-anchor="start" x="2181.0066" y="-794.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">company</text>
+
+<text text-anchor="start" x="2288.2242" y="-793.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Customer::address" class="field">
+<polygon fill="none" stroke="#000000" points="2175.0066,-752.1645 2175.0066,-783.1645 2336.0066,-783.1645 2336.0066,-752.1645 2175.0066,-752.1645"></polygon>
+<text text-anchor="start" x="2181.0066" y="-763.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">address</text>
+
+<text text-anchor="start" x="2288.2242" y="-762.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Customer::city" class="field">
+<polygon fill="none" stroke="#000000" points="2175.0066,-721.1645 2175.0066,-752.1645 2336.0066,-752.1645 2336.0066,-721.1645 2175.0066,-721.1645"></polygon>
+<text text-anchor="start" x="2181.0066" y="-732.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">city</text>
+
+<text text-anchor="start" x="2288.2242" y="-731.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Customer::state" class="field">
+<polygon fill="none" stroke="#000000" points="2175.0066,-690.1645 2175.0066,-721.1645 2336.0066,-721.1645 2336.0066,-690.1645 2175.0066,-690.1645"></polygon>
+<text text-anchor="start" x="2181.0066" y="-701.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">state</text>
+
+<text text-anchor="start" x="2288.2242" y="-700.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Customer::country" class="field">
+<polygon fill="none" stroke="#000000" points="2175.0066,-659.1645 2175.0066,-690.1645 2336.0066,-690.1645 2336.0066,-659.1645 2175.0066,-659.1645"></polygon>
+<text text-anchor="start" x="2181.0066" y="-670.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">country</text>
+
+<text text-anchor="start" x="2288.2242" y="-669.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Customer::postalCode" class="field">
+<polygon fill="none" stroke="#000000" points="2175.0066,-628.1645 2175.0066,-659.1645 2336.0066,-659.1645 2336.0066,-628.1645 2175.0066,-628.1645"></polygon>
+<text text-anchor="start" x="2181.0066" y="-639.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">postalCode</text>
+
+<text text-anchor="start" x="2288.2242" y="-638.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Customer::phone" class="field">
+<polygon fill="none" stroke="#000000" points="2175.0066,-597.1645 2175.0066,-628.1645 2336.0066,-628.1645 2336.0066,-597.1645 2175.0066,-597.1645"></polygon>
+<text text-anchor="start" x="2181.0066" y="-608.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">phone</text>
+
+<text text-anchor="start" x="2288.2242" y="-607.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Customer::fax" class="field">
+<polygon fill="none" stroke="#000000" points="2175.0066,-566.1645 2175.0066,-597.1645 2336.0066,-597.1645 2336.0066,-566.1645 2175.0066,-566.1645"></polygon>
+<text text-anchor="start" x="2181.0066" y="-577.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">fax</text>
+
+<text text-anchor="start" x="2288.2242" y="-576.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Customer::email" class="field">
+<polygon fill="none" stroke="#000000" points="2175.0066,-535.1645 2175.0066,-566.1645 2336.0066,-566.1645 2336.0066,-535.1645 2175.0066,-535.1645"></polygon>
+<text text-anchor="start" x="2181.0066" y="-546.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">email</text>
+
+<text text-anchor="start" x="2283.7778" y="-546.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+<text text-anchor="start" x="2325.5602" y="-546.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Customer::supportRepId" class="field">
+<polygon fill="none" stroke="#000000" points="2175.0066,-504.1645 2175.0066,-535.1645 2336.0066,-535.1645 2336.0066,-504.1645 2175.0066,-504.1645"></polygon>
+<text text-anchor="start" x="2181.0066" y="-515.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">supportRepId</text>
+
+<text text-anchor="start" x="2312.2194" y="-514.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+
+</g>
+<g id="FIELD::Customer::invoices" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="2175.0066,-473.1645 2175.0066,-504.1645 2336.0066,-504.1645 2336.0066,-473.1645 2175.0066,-473.1645"></polygon>
+<text text-anchor="start" x="2181.0066" y="-484.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">invoices</text>
+
+<text text-anchor="start" x="2270.4338" y="-484.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="2274.8802" y="-484.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Invoice</text>
+<text text-anchor="start" x="2325.5602" y="-484.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Customer::employee" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="2175.0066,-442.1645 2175.0066,-473.1645 2336.0066,-473.1645 2336.0066,-442.1645 2175.0066,-442.1645"></polygon>
+<text text-anchor="start" x="2180.8858" y="-453.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">employee</text>
+
+<text text-anchor="start" x="2258.9442" y="-452.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Employee</text>
+
+</g>
+</g>
+<!-- Query&#45;&gt;Customer -->
+<g class="edge" data-from="FIELD::Query::customers" data-to="TYPE::Customer">
+
+<path fill="none" stroke="#000000" d="M207.5,-1048.1645C631.692,-1048.1645 737.7268,-1053.1645 1161.9188,-1053.1645 1161.9188,-1053.1645 1161.9188,-1053.1645 1810.0234,-1053.1645 1936.9095,-1053.1645 1990.2428,-1101.4773 2094.5066,-1029.1645 2123.9744,-1008.7269 2148.1915,-981.394 2168.0531,-951.0783"></path>
+<polygon fill="#000000" stroke="#000000" points="2171.1264,-952.768 2173.5404,-942.4518 2165.22,-949.0109 2171.1264,-952.768"></polygon>
+<text text-anchor="middle" x="1161.9188" y="-1057.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:customers</text>
+<path fill="none" stroke="#000000" d="M207.5,-1048.1645C631.692,-1048.1645 737.7268,-1053.1645 1161.9188,-1053.1645 1161.9188,-1053.1645 1161.9188,-1053.1645 1810.0234,-1053.1645 1936.9095,-1053.1645 1990.2428,-1101.4773 2094.5066,-1029.1645 2123.9744,-1008.7269 2148.1915,-981.394 2168.0531,-951.0783" class="hover-path"></path></g>
+<!-- Query&#45;&gt;Customer -->
+<g class="edge" data-from="FIELD::Query::customer" data-to="TYPE::Customer">
+
+<path fill="none" stroke="#000000" d="M207.5,-1017.1645C587.9855,-1017.1645 1567.2767,-1079.8133 1917.5234,-931.1645 2006.1845,-893.5357 2094.3423,-829.4218 2158.3112,-776.7793"></path>
+<polygon fill="#000000" stroke="#000000" points="2160.9168,-779.1657 2166.3844,-770.0907 2156.4509,-773.7754 2160.9168,-779.1657"></polygon>
+<text text-anchor="middle" x="1161.9188" y="-1034.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:customer</text>
+<path fill="none" stroke="#000000" d="M207.5,-1017.1645C587.9855,-1017.1645 1567.2767,-1079.8133 1917.5234,-931.1645 2006.1845,-893.5357 2094.3423,-829.4218 2158.3112,-776.7793" class="hover-path"></path></g>
+<!-- Employee -->
+<g id="TYPE::Employee" class="node type">
+
+<g id="TYPE_TITLE::Employee" class="type-title">
+<polygon fill="none" stroke="#000000" points="2612.9204,-1217.1645 2612.9204,-1248.1645 2790.9204,-1248.1645 2790.9204,-1217.1645 2612.9204,-1217.1645"></polygon>
+<text text-anchor="start" x="2661.9127" y="-1226.9645" font-family="helvetica, open-sans" font-size="18.00" fill="#000000">Employee</text>
+
+</g>
+<g id="FIELD::Employee::employeeId" class="field">
+<polygon fill="none" stroke="#000000" points="2612.9204,-1186.1645 2612.9204,-1217.1645 2790.9204,-1217.1645 2790.9204,-1186.1645 2612.9204,-1186.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-1197.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">employeeId</text>
+
+<text text-anchor="start" x="2762.6868" y="-1197.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="2780.474" y="-1197.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Employee::lastName" class="field">
+<polygon fill="none" stroke="#000000" points="2612.9204,-1155.1645 2612.9204,-1186.1645 2790.9204,-1186.1645 2790.9204,-1155.1645 2612.9204,-1155.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-1166.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">lastName</text>
+
+<text text-anchor="start" x="2738.6916" y="-1166.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+<text text-anchor="start" x="2780.474" y="-1166.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Employee::firstName" class="field">
+<polygon fill="none" stroke="#000000" points="2612.9204,-1124.1645 2612.9204,-1155.1645 2790.9204,-1155.1645 2790.9204,-1124.1645 2612.9204,-1124.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-1135.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">firstName</text>
+
+<text text-anchor="start" x="2738.6916" y="-1135.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+<text text-anchor="start" x="2780.474" y="-1135.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Employee::title" class="field">
+<polygon fill="none" stroke="#000000" points="2612.9204,-1093.1645 2612.9204,-1124.1645 2790.9204,-1124.1645 2790.9204,-1093.1645 2612.9204,-1093.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-1104.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">title</text>
+
+<text text-anchor="start" x="2743.138" y="-1103.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Employee::reportsTo" class="field">
+<polygon fill="none" stroke="#000000" points="2612.9204,-1062.1645 2612.9204,-1093.1645 2790.9204,-1093.1645 2790.9204,-1062.1645 2612.9204,-1062.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-1073.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">reportsTo</text>
+
+<text text-anchor="start" x="2767.1332" y="-1072.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+
+</g>
+<g id="FIELD::Employee::birthDate" class="field">
+<polygon fill="none" stroke="#000000" points="2612.9204,-1031.1645 2612.9204,-1062.1645 2790.9204,-1062.1645 2790.9204,-1031.1645 2612.9204,-1031.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-1042.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">birthDate</text>
+
+<text text-anchor="start" x="2743.138" y="-1041.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Employee::hireDate" class="field">
+<polygon fill="none" stroke="#000000" points="2612.9204,-1000.1645 2612.9204,-1031.1645 2790.9204,-1031.1645 2790.9204,-1000.1645 2612.9204,-1000.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-1011.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">hireDate</text>
+
+<text text-anchor="start" x="2743.138" y="-1010.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Employee::address" class="field">
+<polygon fill="none" stroke="#000000" points="2612.9204,-969.1645 2612.9204,-1000.1645 2790.9204,-1000.1645 2790.9204,-969.1645 2612.9204,-969.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-980.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">address</text>
+
+<text text-anchor="start" x="2743.138" y="-979.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Employee::city" class="field">
+<polygon fill="none" stroke="#000000" points="2612.9204,-938.1645 2612.9204,-969.1645 2790.9204,-969.1645 2790.9204,-938.1645 2612.9204,-938.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-949.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">city</text>
+
+<text text-anchor="start" x="2743.138" y="-948.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Employee::state" class="field">
+<polygon fill="none" stroke="#000000" points="2612.9204,-907.1645 2612.9204,-938.1645 2790.9204,-938.1645 2790.9204,-907.1645 2612.9204,-907.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-918.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">state</text>
+
+<text text-anchor="start" x="2743.138" y="-917.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Employee::country" class="field">
+<polygon fill="none" stroke="#000000" points="2612.9204,-876.1645 2612.9204,-907.1645 2790.9204,-907.1645 2790.9204,-876.1645 2612.9204,-876.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-887.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">country</text>
+
+<text text-anchor="start" x="2743.138" y="-886.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Employee::postalCode" class="field">
+<polygon fill="none" stroke="#000000" points="2612.9204,-845.1645 2612.9204,-876.1645 2790.9204,-876.1645 2790.9204,-845.1645 2612.9204,-845.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-856.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">postalCode</text>
+
+<text text-anchor="start" x="2743.138" y="-855.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Employee::phone" class="field">
+<polygon fill="none" stroke="#000000" points="2612.9204,-814.1645 2612.9204,-845.1645 2790.9204,-845.1645 2790.9204,-814.1645 2612.9204,-814.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-825.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">phone</text>
+
+<text text-anchor="start" x="2743.138" y="-824.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Employee::fax" class="field">
+<polygon fill="none" stroke="#000000" points="2612.9204,-783.1645 2612.9204,-814.1645 2790.9204,-814.1645 2790.9204,-783.1645 2612.9204,-783.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-794.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">fax</text>
+
+<text text-anchor="start" x="2743.138" y="-793.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Employee::email" class="field">
+<polygon fill="none" stroke="#000000" points="2612.9204,-752.1645 2612.9204,-783.1645 2790.9204,-783.1645 2790.9204,-752.1645 2612.9204,-752.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-763.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">email</text>
+
+<text text-anchor="start" x="2743.138" y="-762.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Employee::customers" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="2612.9204,-721.1645 2612.9204,-752.1645 2790.9204,-752.1645 2790.9204,-721.1645 2612.9204,-721.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-732.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">customers</text>
+
+<text text-anchor="start" x="2706.6948" y="-732.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="2711.1412" y="-732.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Customer</text>
+<text text-anchor="start" x="2780.474" y="-732.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Employee::employees" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="2612.9204,-690.1645 2612.9204,-721.1645 2790.9204,-721.1645 2790.9204,-690.1645 2612.9204,-690.1645"></polygon>
+<text text-anchor="start" x="2618.7996" y="-701.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">employees</text>
+
+<text text-anchor="start" x="2704.9116" y="-701.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="2709.358" y="-701.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Employee</text>
+<text text-anchor="start" x="2780.4828" y="-701.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Employee::employee" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="2612.9204,-659.1645 2612.9204,-690.1645 2790.9204,-690.1645 2790.9204,-659.1645 2612.9204,-659.1645"></polygon>
+<text text-anchor="start" x="2618.9204" y="-670.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">employee</text>
+
+<text text-anchor="start" x="2713.7956" y="-669.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Employee</text>
+
+</g>
+</g>
+<!-- Query&#45;&gt;Employee -->
+<g class="edge" data-from="FIELD::Query::employees" data-to="TYPE::Employee">
+
+<path fill="none" stroke="#000000" d="M207.5,-986.1645C813.7338,-986.1645 965.1984,-970.1645 1571.4322,-970.1645 1571.4322,-970.1645 1571.4322,-970.1645 2255.0066,-970.1645 2371.1858,-970.1645 2504.2447,-964.6976 2594.754,-960.155"></path>
+<polygon fill="#000000" stroke="#000000" points="2594.9403,-963.6502 2604.7503,-959.6484 2594.5859,-956.6591 2594.9403,-963.6502"></polygon>
+<text text-anchor="middle" x="1364.341" y="-976.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:employees</text>
+<path fill="none" stroke="#000000" d="M207.5,-986.1645C813.7338,-986.1645 965.1984,-970.1645 1571.4322,-970.1645 1571.4322,-970.1645 1571.4322,-970.1645 2255.0066,-970.1645 2371.1858,-970.1645 2504.2447,-964.6976 2594.754,-960.155" class="hover-path"></path></g>
+<!-- Query&#45;&gt;Employee -->
+<g class="edge" data-from="FIELD::Query::employee" data-to="TYPE::Employee">
+
+<path fill="none" stroke="#000000" d="M207.5,-955.1645C367.0179,-955.1645 195.8425,-1174.2589 287,-1305.1645 352.1224,-1398.6827 387.8541,-1445.1645 501.8128,-1445.1645 501.8128,-1445.1645 501.8128,-1445.1645 2255.0066,-1445.1645 2409.657,-1445.1645 2524.9601,-1310.301 2599.6809,-1181.9354"></path>
+<polygon fill="#000000" stroke="#000000" points="2602.8118,-1183.5118 2604.7672,-1173.099 2596.7451,-1180.0197 2602.8118,-1183.5118"></polygon>
+<text text-anchor="middle" x="1364.341" y="-1449.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:employee</text>
+<path fill="none" stroke="#000000" d="M207.5,-955.1645C367.0179,-955.1645 195.8425,-1174.2589 287,-1305.1645 352.1224,-1398.6827 387.8541,-1445.1645 501.8128,-1445.1645 501.8128,-1445.1645 501.8128,-1445.1645 2255.0066,-1445.1645 2409.657,-1445.1645 2524.9601,-1310.301 2599.6809,-1181.9354" class="hover-path"></path></g>
+<!-- Genre -->
+<g id="TYPE::Genre" class="node type">
+
+<g id="TYPE_TITLE::Genre" class="type-title">
+<polygon fill="none" stroke="#000000" points="1309.341,-776.1645 1309.341,-807.1645 1420.341,-807.1645 1420.341,-776.1645 1309.341,-776.1645"></polygon>
+<text text-anchor="start" x="1339.8345" y="-785.9645" font-family="helvetica, open-sans" font-size="18.00" fill="#000000">Genre</text>
+
+</g>
+<g id="FIELD::Genre::genreId" class="field">
+<polygon fill="none" stroke="#000000" points="1309.341,-745.1645 1309.341,-776.1645 1420.341,-776.1645 1420.341,-745.1645 1309.341,-745.1645"></polygon>
+<text text-anchor="start" x="1315.341" y="-756.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">genreId</text>
+
+<text text-anchor="start" x="1392.1074" y="-756.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="1409.8946" y="-756.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Genre::name" class="field">
+<polygon fill="none" stroke="#000000" points="1309.341,-714.1645 1309.341,-745.1645 1420.341,-745.1645 1420.341,-714.1645 1309.341,-714.1645"></polygon>
+<text text-anchor="start" x="1315.341" y="-725.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">name</text>
+
+<text text-anchor="start" x="1372.5586" y="-724.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Genre::tracks" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="1309.341,-683.1645 1309.341,-714.1645 1420.341,-714.1645 1420.341,-683.1645 1309.341,-683.1645"></polygon>
+<text text-anchor="start" x="1315.061" y="-694.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">tracks</text>
+
+<text text-anchor="start" x="1365.897" y="-694.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="1370.3434" y="-694.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Track</text>
+<text text-anchor="start" x="1410.3386" y="-694.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+</g>
+<!-- Query&#45;&gt;Genre -->
+<g class="edge" data-from="FIELD::Query::genres" data-to="TYPE::Genre">
+
+<path fill="none" stroke="#000000" d="M207.5,-924.1645C352.7519,-924.1645 212.7257,-1116.3388 287,-1241.1645 333.6956,-1319.6412 353.2239,-1347.0141 438.3128,-1380.1645 504.234,-1405.8472 918.2487,-1411.661 1035.4966,-1343.1645 1135.2889,-1284.8655 1273.9623,-968.1284 1334.3007,-820.71"></path>
+<polygon fill="#000000" stroke="#000000" points="1337.6236,-821.8305 1338.1605,-811.2492 1331.1422,-819.1861 1337.6236,-821.8305"></polygon>
+<text text-anchor="middle" x="692.9047" y="-1401.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:genres</text>
+<path fill="none" stroke="#000000" d="M207.5,-924.1645C352.7519,-924.1645 212.7257,-1116.3388 287,-1241.1645 333.6956,-1319.6412 353.2239,-1347.0141 438.3128,-1380.1645 504.234,-1405.8472 918.2487,-1411.661 1035.4966,-1343.1645 1135.2889,-1284.8655 1273.9623,-968.1284 1334.3007,-820.71" class="hover-path"></path></g>
+<!-- Query&#45;&gt;Genre -->
+<g class="edge" data-from="FIELD::Query::genre" data-to="TYPE::Genre">
+
+<path fill="none" stroke="#000000" d="M207.5,-892.1645C243.377,-892.1645 251.2804,-902.8071 287,-906.1645 523.0894,-928.355 583.3717,-911.6089 820.4966,-913.1645 916.0501,-913.7913 942.5933,-935.5214 1035.4966,-913.1645 1130.0454,-890.4116 1228.0042,-835.6377 1292.1357,-794.7787"></path>
+<polygon fill="#000000" stroke="#000000" points="1294.0438,-797.713 1300.5659,-789.3635 1290.2606,-791.8233 1294.0438,-797.713"></polygon>
+<text text-anchor="middle" x="692.9047" y="-920.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:genre</text>
+<path fill="none" stroke="#000000" d="M207.5,-892.1645C243.377,-892.1645 251.2804,-902.8071 287,-906.1645 523.0894,-928.355 583.3717,-911.6089 820.4966,-913.1645 916.0501,-913.7913 942.5933,-935.5214 1035.4966,-913.1645 1130.0454,-890.4116 1228.0042,-835.6377 1292.1357,-794.7787" class="hover-path"></path></g>
+<!-- Invoice -->
+<g id="TYPE::Invoice" class="node type">
+
+<g id="TYPE_TITLE::Invoice" class="type-title">
+<polygon fill="none" stroke="#000000" points="1711.0234,-887.1645 1711.0234,-918.1645 1910.0234,-918.1645 1910.0234,-887.1645 1711.0234,-887.1645"></polygon>
+<text text-anchor="start" x="1782.0159" y="-896.9645" font-family="helvetica, open-sans" font-size="18.00" fill="#000000">Invoice</text>
+
+</g>
+<g id="FIELD::Invoice::invoiceId" class="field">
+<polygon fill="none" stroke="#000000" points="1711.0234,-856.1645 1711.0234,-887.1645 1910.0234,-887.1645 1910.0234,-856.1645 1711.0234,-856.1645"></polygon>
+<text text-anchor="start" x="1717.0234" y="-867.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">invoiceId</text>
+
+<text text-anchor="start" x="1881.7898" y="-867.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="1899.577" y="-867.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Invoice::customerId" class="field">
+<polygon fill="none" stroke="#000000" points="1711.0234,-825.1645 1711.0234,-856.1645 1910.0234,-856.1645 1910.0234,-825.1645 1711.0234,-825.1645"></polygon>
+<text text-anchor="start" x="1717.0234" y="-836.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">customerId</text>
+
+<text text-anchor="start" x="1881.7898" y="-836.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="1899.577" y="-836.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Invoice::invoiceDate" class="field">
+<polygon fill="none" stroke="#000000" points="1711.0234,-794.1645 1711.0234,-825.1645 1910.0234,-825.1645 1910.0234,-794.1645 1711.0234,-794.1645"></polygon>
+<text text-anchor="start" x="1717.0234" y="-805.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">invoiceDate</text>
+
+<text text-anchor="start" x="1857.7946" y="-805.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+<text text-anchor="start" x="1899.577" y="-805.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Invoice::billingAddress" class="field">
+<polygon fill="none" stroke="#000000" points="1711.0234,-763.1645 1711.0234,-794.1645 1910.0234,-794.1645 1910.0234,-763.1645 1711.0234,-763.1645"></polygon>
+<text text-anchor="start" x="1717.0234" y="-774.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">billingAddress</text>
+
+<text text-anchor="start" x="1862.241" y="-773.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Invoice::billingCity" class="field">
+<polygon fill="none" stroke="#000000" points="1711.0234,-732.1645 1711.0234,-763.1645 1910.0234,-763.1645 1910.0234,-732.1645 1711.0234,-732.1645"></polygon>
+<text text-anchor="start" x="1717.0234" y="-743.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">billingCity</text>
+
+<text text-anchor="start" x="1862.241" y="-742.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Invoice::billingState" class="field">
+<polygon fill="none" stroke="#000000" points="1711.0234,-701.1645 1711.0234,-732.1645 1910.0234,-732.1645 1910.0234,-701.1645 1711.0234,-701.1645"></polygon>
+<text text-anchor="start" x="1717.0234" y="-712.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">billingState</text>
+
+<text text-anchor="start" x="1862.241" y="-711.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Invoice::billingCountry" class="field">
+<polygon fill="none" stroke="#000000" points="1711.0234,-670.1645 1711.0234,-701.1645 1910.0234,-701.1645 1910.0234,-670.1645 1711.0234,-670.1645"></polygon>
+<text text-anchor="start" x="1717.0234" y="-681.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">billingCountry</text>
+
+<text text-anchor="start" x="1862.241" y="-680.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Invoice::billingPostalCode" class="field">
+<polygon fill="none" stroke="#000000" points="1711.0234,-639.1645 1711.0234,-670.1645 1910.0234,-670.1645 1910.0234,-639.1645 1711.0234,-639.1645"></polygon>
+<text text-anchor="start" x="1717.0234" y="-650.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">billingPostalCode</text>
+
+<text text-anchor="start" x="1862.241" y="-649.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Invoice::total" class="field">
+<polygon fill="none" stroke="#000000" points="1711.0234,-608.1645 1711.0234,-639.1645 1910.0234,-639.1645 1910.0234,-608.1645 1711.0234,-608.1645"></polygon>
+<text text-anchor="start" x="1717.0234" y="-619.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">total</text>
+
+<text text-anchor="start" x="1857.7946" y="-619.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+<text text-anchor="start" x="1899.577" y="-619.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Invoice::invoiceItems" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="1711.0234,-577.1645 1711.0234,-608.1645 1910.0234,-608.1645 1910.0234,-577.1645 1711.0234,-577.1645"></polygon>
+<text text-anchor="start" x="1716.6282" y="-588.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">invoiceItems</text>
+
+<text text-anchor="start" x="1813.6802" y="-588.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="1818.1266" y="-588.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">InvoiceItem</text>
+<text text-anchor="start" x="1899.9202" y="-588.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Invoice::customer" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="1711.0234,-546.1645 1711.0234,-577.1645 1910.0234,-577.1645 1910.0234,-546.1645 1711.0234,-546.1645"></polygon>
+<text text-anchor="start" x="1717.0234" y="-557.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">customer</text>
+
+<text text-anchor="start" x="1834.6906" y="-556.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Customer</text>
+
+</g>
+</g>
+<!-- Query&#45;&gt;Invoice -->
+<g class="edge" data-from="FIELD::Query::invoices" data-to="TYPE::Invoice">
+
+<path fill="none" stroke="#000000" d="M207.5,-861.1645C339.0293,-861.1645 370.2835,-892.1645 501.8128,-892.1645 501.8128,-892.1645 501.8128,-892.1645 1364.341,-892.1645 1483.9074,-892.1645 1519.0184,-896.3239 1630.5234,-853.1645 1651.9906,-844.8553 1673.4608,-833.5956 1693.7036,-821.273"></path>
+<polygon fill="#000000" stroke="#000000" points="1695.6531,-824.1824 1702.3004,-815.9323 1691.9591,-818.2364 1695.6531,-824.1824"></polygon>
+<text text-anchor="middle" x="927.9966" y="-896.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:invoices</text>
+<path fill="none" stroke="#000000" d="M207.5,-861.1645C339.0293,-861.1645 370.2835,-892.1645 501.8128,-892.1645 501.8128,-892.1645 501.8128,-892.1645 1364.341,-892.1645 1483.9074,-892.1645 1519.0184,-896.3239 1630.5234,-853.1645 1651.9906,-844.8553 1673.4608,-833.5956 1693.7036,-821.273" class="hover-path"></path></g>
+<!-- Query&#45;&gt;Invoice -->
+<g class="edge" data-from="FIELD::Query::invoice" data-to="TYPE::Invoice">
+
+<path fill="none" stroke="#000000" d="M207.5,-830.1645C338.3668,-830.1645 370.946,-839.1645 501.8128,-839.1645 501.8128,-839.1645 501.8128,-839.1645 1364.341,-839.1645 1478.1623,-839.1645 1603.929,-805.7598 1692.7581,-776.2797"></path>
+<polygon fill="#000000" stroke="#000000" points="1693.9498,-779.5717 1702.3186,-773.0746 1691.7247,-772.9347 1693.9498,-779.5717"></polygon>
+<text text-anchor="middle" x="927.9966" y="-843.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:invoice</text>
+<path fill="none" stroke="#000000" d="M207.5,-830.1645C338.3668,-830.1645 370.946,-839.1645 501.8128,-839.1645 501.8128,-839.1645 501.8128,-839.1645 1364.341,-839.1645 1478.1623,-839.1645 1603.929,-805.7598 1692.7581,-776.2797" class="hover-path"></path></g>
+<!-- InvoiceItem -->
+<g id="TYPE::InvoiceItem" class="node type">
+
+<g id="TYPE_TITLE::InvoiceItem" class="type-title">
+<polygon fill="none" stroke="#000000" points="1296.341,-626.1645 1296.341,-657.1645 1432.341,-657.1645 1432.341,-626.1645 1296.341,-626.1645"></polygon>
+<text text-anchor="start" x="1318.3321" y="-635.9645" font-family="helvetica, open-sans" font-size="18.00" fill="#000000">InvoiceItem</text>
+
+</g>
+<g id="FIELD::InvoiceItem::invoiceLineId" class="field">
+<polygon fill="none" stroke="#000000" points="1296.341,-595.1645 1296.341,-626.1645 1432.341,-626.1645 1432.341,-595.1645 1296.341,-595.1645"></polygon>
+<text text-anchor="start" x="1302.2154" y="-606.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">invoiceLineId</text>
+
+<text text-anchor="start" x="1404.2242" y="-606.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="1422.0114" y="-606.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::InvoiceItem::invoiceId" class="field">
+<polygon fill="none" stroke="#000000" points="1296.341,-564.1645 1296.341,-595.1645 1432.341,-595.1645 1432.341,-564.1645 1296.341,-564.1645"></polygon>
+<text text-anchor="start" x="1302.341" y="-575.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">invoiceId</text>
+
+<text text-anchor="start" x="1404.1074" y="-575.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="1421.8946" y="-575.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::InvoiceItem::trackId" class="field">
+<polygon fill="none" stroke="#000000" points="1296.341,-533.1645 1296.341,-564.1645 1432.341,-564.1645 1432.341,-533.1645 1296.341,-533.1645"></polygon>
+<text text-anchor="start" x="1302.341" y="-544.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">trackId</text>
+
+<text text-anchor="start" x="1404.1074" y="-544.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="1421.8946" y="-544.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::InvoiceItem::unitPrice" class="field">
+<polygon fill="none" stroke="#000000" points="1296.341,-502.1645 1296.341,-533.1645 1432.341,-533.1645 1432.341,-502.1645 1296.341,-502.1645"></polygon>
+<text text-anchor="start" x="1302.341" y="-513.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">unitPrice</text>
+
+<text text-anchor="start" x="1380.1122" y="-513.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+<text text-anchor="start" x="1421.8946" y="-513.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::InvoiceItem::quantity" class="field">
+<polygon fill="none" stroke="#000000" points="1296.341,-471.1645 1296.341,-502.1645 1432.341,-502.1645 1432.341,-471.1645 1296.341,-471.1645"></polygon>
+<text text-anchor="start" x="1302.341" y="-482.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">quantity</text>
+
+<text text-anchor="start" x="1404.1074" y="-482.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="1421.8946" y="-482.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::InvoiceItem::track" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="1296.341,-440.1645 1296.341,-471.1645 1432.341,-471.1645 1432.341,-440.1645 1296.341,-440.1645"></polygon>
+<text text-anchor="start" x="1302.341" y="-451.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">track</text>
+
+<text text-anchor="start" x="1386.3458" y="-450.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Track</text>
+
+</g>
+<g id="FIELD::InvoiceItem::invoice" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="1296.341,-409.1645 1296.341,-440.1645 1432.341,-440.1645 1432.341,-409.1645 1296.341,-409.1645"></polygon>
+<text text-anchor="start" x="1302.341" y="-420.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">invoice</text>
+
+<text text-anchor="start" x="1375.661" y="-419.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Invoice</text>
+
+</g>
+</g>
+<!-- Query&#45;&gt;InvoiceItem -->
+<g class="edge" data-from="FIELD::Query::invoiceItems" data-to="TYPE::InvoiceItem">
+
+<path fill="none" stroke="#000000" d="M207.5,-799.1645C319.643,-799.1645 1119.0324,-824.9057 1216.341,-769.1645 1227.8215,-762.5881 1256.53,-718.5116 1285.6401,-670.1963"></path>
+<polygon fill="#000000" stroke="#000000" points="1288.7411,-671.8307 1290.8842,-661.4549 1282.7384,-668.2296 1288.7411,-671.8307"></polygon>
+<text text-anchor="middle" x="692.9047" y="-809.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:invoiceItems</text>
+<path fill="none" stroke="#000000" d="M207.5,-799.1645C319.643,-799.1645 1119.0324,-824.9057 1216.341,-769.1645 1227.8215,-762.5881 1256.53,-718.5116 1285.6401,-670.1963" class="hover-path"></path></g>
+<!-- Query&#45;&gt;InvoiceItem -->
+<g class="edge" data-from="FIELD::Query::invoiceItem" data-to="TYPE::InvoiceItem">
+
+<path fill="none" stroke="#000000" d="M207.5,-768.1645C319.6336,-768.1645 1117.3788,-793.8942 1216.341,-741.1645 1234.4463,-731.5175 1258.8119,-701.6459 1282.5422,-667.4391"></path>
+<polygon fill="#000000" stroke="#000000" points="1285.4662,-669.3637 1288.2336,-659.1367 1279.6925,-665.4057 1285.4662,-669.3637"></polygon>
+<text text-anchor="middle" x="692.9047" y="-779.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:invoiceItem</text>
+<path fill="none" stroke="#000000" d="M207.5,-768.1645C319.6336,-768.1645 1117.3788,-793.8942 1216.341,-741.1645 1234.4463,-731.5175 1258.8119,-701.6459 1282.5422,-667.4391" class="hover-path"></path></g>
+<!-- MediaType -->
+<g id="TYPE::MediaType" class="node type">
+
+<g id="TYPE_TITLE::MediaType" class="type-title">
+<polygon fill="none" stroke="#000000" points="1297.341,-347.1645 1297.341,-378.1645 1432.341,-378.1645 1432.341,-347.1645 1297.341,-347.1645"></polygon>
+<text text-anchor="start" x="1320.3342" y="-356.9645" font-family="helvetica, open-sans" font-size="18.00" fill="#000000">MediaType</text>
+
+</g>
+<g id="FIELD::MediaType::mediaTypeId" class="field">
+<polygon fill="none" stroke="#000000" points="1297.341,-316.1645 1297.341,-347.1645 1432.341,-347.1645 1432.341,-316.1645 1297.341,-316.1645"></polygon>
+<text text-anchor="start" x="1303.1626" y="-327.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">mediaTypeId</text>
+
+<text text-anchor="start" x="1404.2242" y="-327.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="1422.0114" y="-327.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::MediaType::name" class="field">
+<polygon fill="none" stroke="#000000" points="1297.341,-285.1645 1297.341,-316.1645 1432.341,-316.1645 1432.341,-285.1645 1297.341,-285.1645"></polygon>
+<text text-anchor="start" x="1303.341" y="-296.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">name</text>
+
+<text text-anchor="start" x="1384.5586" y="-295.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::MediaType::tracks" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="1297.341,-254.1645 1297.341,-285.1645 1432.341,-285.1645 1432.341,-254.1645 1297.341,-254.1645"></polygon>
+<text text-anchor="start" x="1303.341" y="-265.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">tracks</text>
+
+<text text-anchor="start" x="1377.453" y="-265.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="1381.8994" y="-265.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Track</text>
+<text text-anchor="start" x="1421.8946" y="-265.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+</g>
+<!-- Query&#45;&gt;MediaType -->
+<g class="edge" data-from="FIELD::Query::mediaTypes" data-to="TYPE::MediaType">
+
+<path fill="none" stroke="#000000" d="M207.5,-737.1645C557.121,-737.1645 491.7583,-363.1853 820.4966,-244.1645 985.9324,-184.2679 1045.4335,-197.3648 1216.341,-239.1645 1237.8113,-244.4156 1259.6326,-253.3783 1279.6878,-263.3732"></path>
+<polygon fill="#000000" stroke="#000000" points="1278.2748,-266.5819 1288.7705,-268.0285 1281.4677,-260.3525 1278.2748,-266.5819"></polygon>
+<text text-anchor="middle" x="692.9047" y="-369.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:mediaTypes</text>
+<path fill="none" stroke="#000000" d="M207.5,-737.1645C557.121,-737.1645 491.7583,-363.1853 820.4966,-244.1645 985.9324,-184.2679 1045.4335,-197.3648 1216.341,-239.1645 1237.8113,-244.4156 1259.6326,-253.3783 1279.6878,-263.3732" class="hover-path"></path></g>
+<!-- Query&#45;&gt;MediaType -->
+<g class="edge" data-from="FIELD::Query::mediaType" data-to="TYPE::MediaType">
+
+<path fill="none" stroke="#000000" d="M207.5,-706.1645C355.811,-706.1645 335.473,-572.0295 438.3128,-465.1645 526.5379,-373.4862 529.1704,-326.4002 637.3128,-259.3645 709.9198,-214.3566 736.0798,-214.2523 820.4966,-201.1645 994.4059,-174.2019 1050.2033,-153.1154 1216.341,-211.1645 1238.5909,-218.9387 1260.4759,-231.1363 1280.309,-244.508"></path>
+<polygon fill="#000000" stroke="#000000" points="1278.4639,-247.4875 1288.6784,-250.3012 1282.448,-241.7319 1278.4639,-247.4875"></polygon>
+<text text-anchor="middle" x="692.9047" y="-264.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:mediaType</text>
+<path fill="none" stroke="#000000" d="M207.5,-706.1645C355.811,-706.1645 335.473,-572.0295 438.3128,-465.1645 526.5379,-373.4862 529.1704,-326.4002 637.3128,-259.3645 709.9198,-214.3566 736.0798,-214.2523 820.4966,-201.1645 994.4059,-174.2019 1050.2033,-153.1154 1216.341,-211.1645 1238.5909,-218.9387 1260.4759,-231.1363 1280.309,-244.508" class="hover-path"></path></g>
+<!-- Playlist -->
+<g id="TYPE::Playlist" class="node type">
+
+<g id="TYPE_TITLE::Playlist" class="type-title">
+<polygon fill="none" stroke="#000000" points="1309.341,-186.1645 1309.341,-217.1645 1420.341,-217.1645 1420.341,-186.1645 1309.341,-186.1645"></polygon>
+<text text-anchor="start" x="1336.3434" y="-195.9645" font-family="helvetica, open-sans" font-size="18.00" fill="#000000">Playlist</text>
+
+</g>
+<g id="FIELD::Playlist::playlistId" class="field">
+<polygon fill="none" stroke="#000000" points="1309.341,-155.1645 1309.341,-186.1645 1420.341,-186.1645 1420.341,-155.1645 1309.341,-155.1645"></polygon>
+<text text-anchor="start" x="1315.341" y="-166.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">playlistId</text>
+
+<text text-anchor="start" x="1392.1074" y="-166.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="1409.8946" y="-166.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Playlist::name" class="field">
+<polygon fill="none" stroke="#000000" points="1309.341,-124.1645 1309.341,-155.1645 1420.341,-155.1645 1420.341,-124.1645 1309.341,-124.1645"></polygon>
+<text text-anchor="start" x="1315.341" y="-135.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">name</text>
+
+<text text-anchor="start" x="1372.5586" y="-134.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Playlist::tracks" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="1309.341,-93.1645 1309.341,-124.1645 1420.341,-124.1645 1420.341,-93.1645 1309.341,-93.1645"></polygon>
+<text text-anchor="start" x="1315.061" y="-104.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">tracks</text>
+
+<text text-anchor="start" x="1365.897" y="-104.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="1370.3434" y="-104.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Track</text>
+<text text-anchor="start" x="1410.3386" y="-104.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+</g>
+<!-- Query&#45;&gt;Playlist -->
+<g class="edge" data-from="FIELD::Query::playlists" data-to="TYPE::Playlist">
+
+<path fill="none" stroke="#000000" d="M207.5,-675.1645C231.4451,-675.1645 421.1547,-327.8668 438.3128,-311.1645 512.1228,-239.315 539.8447,-225.6845 637.3128,-192.3645 864.8843,-114.568 1155.8461,-131.8739 1290.2162,-145.883"></path>
+<polygon fill="#000000" stroke="#000000" points="1290.0803,-149.3883 1300.3953,-146.9694 1290.8233,-142.4278 1290.0803,-149.3883"></polygon>
+<text text-anchor="middle" x="692.9047" y="-197.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:playlists</text>
+<path fill="none" stroke="#000000" d="M207.5,-675.1645C231.4451,-675.1645 421.1547,-327.8668 438.3128,-311.1645 512.1228,-239.315 539.8447,-225.6845 637.3128,-192.3645 864.8843,-114.568 1155.8461,-131.8739 1290.2162,-145.883" class="hover-path"></path></g>
+<!-- Query&#45;&gt;Playlist -->
+<g class="edge" data-from="FIELD::Query::playlist" data-to="TYPE::Playlist">
+
+<path fill="none" stroke="#000000" d="M207.5,-644.1645C310.2131,-644.1645 239.0661,-518.0067 287,-427.1645 341.0227,-324.7831 346.2146,-285.2953 438.3128,-215.1645 696.2538,-18.7478 1120.9006,-94.0598 1290.764,-135.2653"></path>
+<polygon fill="#000000" stroke="#000000" points="1290.0622,-138.6969 1300.6086,-137.6847 1291.7329,-131.8992 1290.0622,-138.6969"></polygon>
+<text text-anchor="middle" x="692.9047" y="-122.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:playlist</text>
+<path fill="none" stroke="#000000" d="M207.5,-644.1645C310.2131,-644.1645 239.0661,-518.0067 287,-427.1645 341.0227,-324.7831 346.2146,-285.2953 438.3128,-215.1645 696.2538,-18.7478 1120.9006,-94.0598 1290.764,-135.2653" class="hover-path"></path></g>
+<!-- Track -->
+<g id="TYPE::Track" class="node type">
+
+<g id="TYPE_TITLE::Track" class="type-title">
+<polygon fill="none" stroke="#000000" points="828.9966,-691.1645 828.9966,-722.1645 1027.9966,-722.1645 1027.9966,-691.1645 828.9966,-691.1645"></polygon>
+<text text-anchor="start" x="905.9993" y="-700.9645" font-family="helvetica, open-sans" font-size="18.00" fill="#000000">Track</text>
+
+</g>
+<g id="FIELD::Track::trackId" class="field">
+<polygon fill="none" stroke="#000000" points="828.9966,-660.1645 828.9966,-691.1645 1027.9966,-691.1645 1027.9966,-660.1645 828.9966,-660.1645"></polygon>
+<text text-anchor="start" x="834.9966" y="-671.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">trackId</text>
+
+<text text-anchor="start" x="999.763" y="-671.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="1017.5502" y="-671.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Track::name" class="field">
+<polygon fill="none" stroke="#000000" points="828.9966,-629.1645 828.9966,-660.1645 1027.9966,-660.1645 1027.9966,-629.1645 828.9966,-629.1645"></polygon>
+<text text-anchor="start" x="834.9966" y="-640.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">name</text>
+
+<text text-anchor="start" x="975.7678" y="-640.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+<text text-anchor="start" x="1017.5502" y="-640.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Track::albumId" class="field">
+<polygon fill="none" stroke="#000000" points="828.9966,-598.1645 828.9966,-629.1645 1027.9966,-629.1645 1027.9966,-598.1645 828.9966,-598.1645"></polygon>
+<text text-anchor="start" x="834.9966" y="-609.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">albumId</text>
+
+<text text-anchor="start" x="1004.2094" y="-608.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+
+</g>
+<g id="FIELD::Track::mediaTypeId" class="field">
+<polygon fill="none" stroke="#000000" points="828.9966,-567.1645 828.9966,-598.1645 1027.9966,-598.1645 1027.9966,-567.1645 828.9966,-567.1645"></polygon>
+<text text-anchor="start" x="834.9966" y="-578.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">mediaTypeId</text>
+
+<text text-anchor="start" x="999.763" y="-578.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="1017.5502" y="-578.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Track::genreId" class="field">
+<polygon fill="none" stroke="#000000" points="828.9966,-536.1645 828.9966,-567.1645 1027.9966,-567.1645 1027.9966,-536.1645 828.9966,-536.1645"></polygon>
+<text text-anchor="start" x="834.9966" y="-547.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">genreId</text>
+
+<text text-anchor="start" x="1004.2094" y="-546.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+
+</g>
+<g id="FIELD::Track::composer" class="field">
+<polygon fill="none" stroke="#000000" points="828.9966,-505.1645 828.9966,-536.1645 1027.9966,-536.1645 1027.9966,-505.1645 828.9966,-505.1645"></polygon>
+<text text-anchor="start" x="834.9966" y="-516.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">composer</text>
+
+<text text-anchor="start" x="980.2142" y="-515.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+
+</g>
+<g id="FIELD::Track::milliseconds" class="field">
+<polygon fill="none" stroke="#000000" points="828.9966,-474.1645 828.9966,-505.1645 1027.9966,-505.1645 1027.9966,-474.1645 828.9966,-474.1645"></polygon>
+<text text-anchor="start" x="834.9966" y="-485.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">milliseconds</text>
+
+<text text-anchor="start" x="999.763" y="-485.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+<text text-anchor="start" x="1017.5502" y="-485.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Track::bytes" class="field">
+<polygon fill="none" stroke="#000000" points="828.9966,-443.1645 828.9966,-474.1645 1027.9966,-474.1645 1027.9966,-443.1645 828.9966,-443.1645"></polygon>
+<text text-anchor="start" x="834.9966" y="-454.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">bytes</text>
+
+<text text-anchor="start" x="1004.2094" y="-453.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">Int</text>
+
+</g>
+<g id="FIELD::Track::unitPrice" class="field">
+<polygon fill="none" stroke="#000000" points="828.9966,-412.1645 828.9966,-443.1645 1027.9966,-443.1645 1027.9966,-412.1645 828.9966,-412.1645"></polygon>
+<text text-anchor="start" x="834.9966" y="-423.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">unitPrice</text>
+
+<text text-anchor="start" x="975.7678" y="-423.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">String</text>
+<text text-anchor="start" x="1017.5502" y="-423.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">!</text>
+
+</g>
+<g id="FIELD::Track::invoiceItems" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="828.9966,-381.1645 828.9966,-412.1645 1027.9966,-412.1645 1027.9966,-381.1645 828.9966,-381.1645"></polygon>
+<text text-anchor="start" x="834.6014" y="-392.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">invoiceItems</text>
+
+<text text-anchor="start" x="931.6534" y="-392.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="936.0998" y="-392.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">InvoiceItem</text>
+<text text-anchor="start" x="1017.8934" y="-392.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+<g id="FIELD::Track::mediaType" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="828.9966,-350.1645 828.9966,-381.1645 1027.9966,-381.1645 1027.9966,-350.1645 828.9966,-350.1645"></polygon>
+<text text-anchor="start" x="834.9966" y="-361.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">mediaType</text>
+
+<text text-anchor="start" x="942.8734" y="-360.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">MediaType</text>
+
+</g>
+<g id="FIELD::Track::genre" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="828.9966,-319.1645 828.9966,-350.1645 1027.9966,-350.1645 1027.9966,-319.1645 828.9966,-319.1645"></polygon>
+<text text-anchor="start" x="834.9966" y="-330.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">genre</text>
+
+<text text-anchor="start" x="977.5406" y="-329.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Genre</text>
+
+</g>
+<g id="FIELD::Track::album" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="828.9966,-288.1645 828.9966,-319.1645 1027.9966,-319.1645 1027.9966,-288.1645 828.9966,-288.1645"></polygon>
+<text text-anchor="start" x="834.9966" y="-299.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">album</text>
+
+<text text-anchor="start" x="976.6606" y="-298.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Album</text>
+
+</g>
+<g id="FIELD::Track::playlists" class="field edge-source">
+<polygon fill="none" stroke="#000000" points="828.9966,-257.1645 828.9966,-288.1645 1027.9966,-288.1645 1027.9966,-257.1645 828.9966,-257.1645"></polygon>
+<text text-anchor="start" x="834.9966" y="-268.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-name">playlists</text>
+
+<text text-anchor="start" x="962.4414" y="-268.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">[</text>
+<text text-anchor="start" x="966.8878" y="-268.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type type-link">Playlist</text>
+<text text-anchor="start" x="1017.5502" y="-268.7645" font-family="helvetica, open-sans" font-size="16.00" fill="#000000" class="field-type">]</text>
+
+</g>
+</g>
+<!-- Query&#45;&gt;Track -->
+<g class="edge" data-from="FIELD::Query::tracks" data-to="TYPE::Track">
+
+<path fill="none" stroke="#000000" d="M207.5,-613.1645C323.5196,-613.1645 200.0236,-173.9477 287,-97.1645 363.9003,-29.2765 662.4625,-31.3025 748.4966,-87.1645 804.7865,-123.7136 843.5722,-182.4587 870.2416,-243.9226"></path>
+<polygon fill="#000000" stroke="#000000" points="867.1342,-245.5609 874.2537,-253.4072 873.5812,-242.8337 867.1342,-245.5609"></polygon>
+<text text-anchor="middle" x="501.8128" y="-54.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:tracks</text>
+<path fill="none" stroke="#000000" d="M207.5,-613.1645C323.5196,-613.1645 200.0236,-173.9477 287,-97.1645 363.9003,-29.2765 662.4625,-31.3025 748.4966,-87.1645 804.7865,-123.7136 843.5722,-182.4587 870.2416,-243.9226" class="hover-path"></path></g>
+<!-- Query&#45;&gt;Track -->
+<g class="edge" data-from="FIELD::Query::track" data-to="TYPE::Track">
+
+<path fill="none" stroke="#000000" d="M207.5,-582.1645C324.8376,-582.1645 207.1953,-146.1838 287,-60.1645 333.9328,-9.5769 369.7473,-33.1475 438.3128,-25.3645 575.7656,-9.7619 639.322,33.7921 748.4966,-51.1645 809.9878,-99.0151 850.5454,-171.4717 877.2436,-243.806"></path>
+<polygon fill="#000000" stroke="#000000" points="874.0713,-245.3267 880.7565,-253.5461 880.6561,-242.9517 874.0713,-245.3267"></polygon>
+<text text-anchor="middle" x="501.8128" y="-30.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Query:track</text>
+<path fill="none" stroke="#000000" d="M207.5,-582.1645C324.8376,-582.1645 207.1953,-146.1838 287,-60.1645 333.9328,-9.5769 369.7473,-33.1475 438.3128,-25.3645 575.7656,-9.7619 639.322,33.7921 748.4966,-51.1645 809.9878,-99.0151 850.5454,-171.4717 877.2436,-243.806" class="hover-path"></path></g>
+<!-- Album&#45;&gt;Artist -->
+<g class="edge" data-from="FIELD::Album::artist" data-to="TYPE::Artist">
+
+<path fill="none" stroke="#000000" d="M557.8128,-1151.1645C612.1901,-1151.1645 588.9043,-1219.3954 637.3128,-1244.1645 702.0862,-1277.307 785.7231,-1280.8059 846.6422,-1277.4969"></path>
+<polygon fill="#000000" stroke="#000000" points="847.2135,-1280.9683 856.9788,-1276.8586 846.7821,-1273.9817 847.2135,-1280.9683"></polygon>
+<text text-anchor="middle" x="692.9047" y="-1278.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Album:artist</text>
+<path fill="none" stroke="#000000" d="M557.8128,-1151.1645C612.1901,-1151.1645 588.9043,-1219.3954 637.3128,-1244.1645 702.0862,-1277.307 785.7231,-1280.8059 846.6422,-1277.4969" class="hover-path"></path></g>
+<!-- Album&#45;&gt;Track -->
+<g class="edge" data-from="FIELD::Album::tracks" data-to="TYPE::Track">
+
+<path fill="none" stroke="#000000" d="M557.8128,-1182.1645C643.47,-1182.1645 686.0009,-1212.7429 748.4966,-1154.1645 860.2412,-1049.4242 780.5234,-965.0142 820.4966,-817.1645 827.6121,-790.8463 835.6055,-763.5235 843.9379,-736.3899"></path>
+<polygon fill="#000000" stroke="#000000" points="847.2922,-737.3898 846.8984,-726.8023 840.6038,-735.3245 847.2922,-737.3898"></polygon>
+<text text-anchor="middle" x="692.9047" y="-1193.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Album:tracks</text>
+<path fill="none" stroke="#000000" d="M557.8128,-1182.1645C643.47,-1182.1645 686.0009,-1212.7429 748.4966,-1154.1645 860.2412,-1049.4242 780.5234,-965.0142 820.4966,-817.1645 827.6121,-790.8463 835.6055,-763.5235 843.9379,-736.3899" class="hover-path"></path></g>
+<!-- Artist&#45;&gt;Album -->
+<g class="edge" data-from="FIELD::Artist::albums" data-to="TYPE::Album">
+
+<path fill="none" stroke="#000000" d="M864.9966,-1221.1645C763.7991,-1221.1645 738.4755,-1220.7114 637.3128,-1223.3645 617.2777,-1223.8899 595.5857,-1224.7072 575.5536,-1225.5641"></path>
+<polygon fill="#000000" stroke="#000000" points="575.3963,-1222.0675 565.5585,-1226.0006 575.7017,-1229.0608 575.3963,-1222.0675"></polygon>
+<text text-anchor="middle" x="692.9047" y="-1227.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Artist:albums</text>
+<path fill="none" stroke="#000000" d="M864.9966,-1221.1645C763.7991,-1221.1645 738.4755,-1220.7114 637.3128,-1223.3645 617.2777,-1223.8899 595.5857,-1224.7072 575.5536,-1225.5641" class="hover-path"></path></g>
+<!-- Customer&#45;&gt;Employee -->
+<g class="edge" data-from="FIELD::Customer::employee" data-to="TYPE::Employee">
+
+<path fill="none" stroke="#000000" d="M2336.0066,-457.1645C2467.509,-457.1645 2340.9491,-633.8405 2415.5066,-742.1645 2461.2232,-808.5858 2534.6327,-862.327 2595.6852,-899.0821"></path>
+<polygon fill="#000000" stroke="#000000" points="2594.2142,-902.2793 2604.5985,-904.3812 2597.7914,-896.2624 2594.2142,-902.2793"></polygon>
+<text text-anchor="middle" x="2474.2135" y="-861.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Customer:employee</text>
+<path fill="none" stroke="#000000" d="M2336.0066,-457.1645C2467.509,-457.1645 2340.9491,-633.8405 2415.5066,-742.1645 2461.2232,-808.5858 2534.6327,-862.327 2595.6852,-899.0821" class="hover-path"></path></g>
+<!-- Customer&#45;&gt;Invoice -->
+<g class="edge" data-from="FIELD::Customer::invoices" data-to="TYPE::Invoice">
+
+<path fill="none" stroke="#000000" d="M2175.0066,-488.1645C2080.3306,-488.1645 1991.6031,-545.6083 1925.3407,-604.7517"></path>
+<polygon fill="#000000" stroke="#000000" points="1922.8462,-602.2887 1917.7806,-611.5941 1927.5435,-607.4787 1922.8462,-602.2887"></polygon>
+<text text-anchor="middle" x="2042.015" y="-558.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Customer:invoices</text>
+<path fill="none" stroke="#000000" d="M2175.0066,-488.1645C2080.3306,-488.1645 1991.6031,-545.6083 1925.3407,-604.7517" class="hover-path"></path></g>
+<!-- Employee&#45;&gt;Customer -->
+<g class="edge" data-from="FIELD::Employee::customers" data-to="TYPE::Customer">
+
+<path fill="none" stroke="#000000" d="M2612.9204,-736.1645C2576.7615,-736.1645 2568.6874,-726.6737 2532.9204,-721.3645 2473.7031,-712.5742 2407.057,-705.0136 2353.8762,-699.5373"></path>
+<polygon fill="#000000" stroke="#000000" points="2354.0711,-696.0391 2343.7672,-698.5047 2353.3597,-703.0029 2354.0711,-696.0391"></polygon>
+<text text-anchor="middle" x="2474.2135" y="-726.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Employee:customers</text>
+<path fill="none" stroke="#000000" d="M2612.9204,-736.1645C2576.7615,-736.1645 2568.6874,-726.6737 2532.9204,-721.3645 2473.7031,-712.5742 2407.057,-705.0136 2353.8762,-699.5373" class="hover-path"></path></g>
+<!-- Employee&#45;&gt;Employee -->
+<g class="edge" data-from="FIELD::Employee::employees" data-to="TYPE::Employee">
+
+<path fill="none" stroke="#000000" d="M2612.9017,-704.201C2551.855,-712.1191 2491.9204,-742.3158 2491.9204,-829.6645 2491.9204,-908.376 2540.5883,-940.6793 2594.8822,-952.0919"></path>
+<polygon fill="#000000" stroke="#000000" points="2594.2409,-955.5326 2604.7134,-953.9272 2595.5255,-948.6514 2594.2409,-955.5326"></polygon>
+<text text-anchor="middle" x="2431.6588" y="-949.9645" font-family="Times,serif" font-size="14.00" fill="#000000">Employee:employees</text>
+<path fill="none" stroke="#000000" d="M2612.9017,-704.201C2551.855,-712.1191 2491.9204,-742.3158 2491.9204,-829.6645 2491.9204,-908.376 2540.5883,-940.6793 2594.8822,-952.0919" class="hover-path"></path></g>
+<!-- Employee&#45;&gt;Employee -->
+<g class="edge" data-from="FIELD::Employee::employee" data-to="TYPE::Employee">
+
+<path fill="none" stroke="#000000" d="M2612.9017,-673.8414C2551.855,-682.9716 2491.9204,-716.6742 2491.9204,-814.1645 2491.9204,-902.0148 2540.5883,-938.0686 2594.8822,-951.0205"></path>
+<polygon fill="#000000" stroke="#000000" points="2594.2042,-954.4545 2604.7134,-953.1098 2595.6594,-947.6074 2594.2042,-954.4545"></polygon>
+<text text-anchor="middle" x="2434.3811" y="-949.9645" font-family="Times,serif" font-size="14.00" fill="#000000">Employee:employee</text>
+<path fill="none" stroke="#000000" d="M2612.9017,-673.8414C2551.855,-682.9716 2491.9204,-716.6742 2491.9204,-814.1645 2491.9204,-902.0148 2540.5883,-938.0686 2594.8822,-951.0205" class="hover-path"></path></g>
+<!-- Genre&#45;&gt;Track -->
+<g class="edge" data-from="FIELD::Genre::tracks" data-to="TYPE::Track">
+
+<path fill="none" stroke="#000000" d="M1309.341,-698.1645C1294.3727,-698.1645 1151.2619,-618.1426 1044.7301,-557.3674"></path>
+<polygon fill="#000000" stroke="#000000" points="1046.2555,-554.2081 1035.8358,-552.2896 1042.7849,-560.2872 1046.2555,-554.2081"></polygon>
+<text text-anchor="middle" x="1161.9188" y="-658.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Genre:tracks</text>
+<path fill="none" stroke="#000000" d="M1309.341,-698.1645C1294.3727,-698.1645 1151.2619,-618.1426 1044.7301,-557.3674" class="hover-path"></path></g>
+<!-- Invoice&#45;&gt;Customer -->
+<g class="edge" data-from="FIELD::Invoice::customer" data-to="TYPE::Customer">
+
+<path fill="none" stroke="#000000" d="M1910.0234,-561.1645C1959.0985,-561.1645 2073.349,-607.5415 2156.9744,-644.6809"></path>
+<polygon fill="#000000" stroke="#000000" points="2155.6864,-647.9387 2166.2449,-648.8158 2158.5378,-641.5458 2155.6864,-647.9387"></polygon>
+<text text-anchor="middle" x="2042.015" y="-618.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Invoice:customer</text>
+<path fill="none" stroke="#000000" d="M1910.0234,-561.1645C1959.0985,-561.1645 2073.349,-607.5415 2156.9744,-644.6809" class="hover-path"></path></g>
+<!-- Invoice&#45;&gt;InvoiceItem -->
+<g class="edge" data-from="FIELD::Invoice::invoiceItems" data-to="TYPE::InvoiceItem">
+
+<path fill="none" stroke="#000000" d="M1711.0234,-592.1645C1621.2631,-592.1645 1520.2596,-572.7054 1450.531,-556.1378"></path>
+<polygon fill="#000000" stroke="#000000" points="1451.0166,-552.6547 1440.4752,-553.717 1449.3783,-559.4603 1451.0166,-552.6547"></polygon>
+<text text-anchor="middle" x="1571.4322" y="-591.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Invoice:invoiceItems</text>
+<path fill="none" stroke="#000000" d="M1711.0234,-592.1645C1621.2631,-592.1645 1520.2596,-572.7054 1450.531,-556.1378" class="hover-path"></path></g>
+<!-- InvoiceItem&#45;&gt;Invoice -->
+<g class="edge" data-from="FIELD::InvoiceItem::invoice" data-to="TYPE::Invoice">
+
+<path fill="none" stroke="#000000" d="M1432.341,-424.1645C1521.5139,-424.1645 1448.8015,-545.5982 1512.341,-608.1645 1561.5671,-656.6366 1632.5028,-687.1903 1692.7813,-705.8375"></path>
+<polygon fill="#000000" stroke="#000000" points="1691.7743,-709.1895 1702.3591,-708.729 1693.7974,-702.4882 1691.7743,-709.1895"></polygon>
+<text text-anchor="middle" x="1571.4322" y="-687.3645" font-family="Times,serif" font-size="14.00" fill="#000000">InvoiceItem:invoice</text>
+<path fill="none" stroke="#000000" d="M1432.341,-424.1645C1521.5139,-424.1645 1448.8015,-545.5982 1512.341,-608.1645 1561.5671,-656.6366 1632.5028,-687.1903 1692.7813,-705.8375" class="hover-path"></path></g>
+<!-- InvoiceItem&#45;&gt;Track -->
+<g class="edge" data-from="FIELD::InvoiceItem::track" data-to="TYPE::Track">
+
+<path fill="none" stroke="#000000" d="M1296.341,-455.1645C1212.29,-455.1645 1117.9325,-464.3079 1045.7616,-473.248"></path>
+<polygon fill="#000000" stroke="#000000" points="1045.2149,-469.789 1035.7286,-474.5071 1046.0866,-476.7346 1045.2149,-469.789"></polygon>
+<text text-anchor="middle" x="1161.9188" y="-470.3645" font-family="Times,serif" font-size="14.00" fill="#000000">InvoiceItem:track</text>
+<path fill="none" stroke="#000000" d="M1296.341,-455.1645C1212.29,-455.1645 1117.9325,-464.3079 1045.7616,-473.248" class="hover-path"></path></g>
+<!-- MediaType&#45;&gt;Track -->
+<g class="edge" data-from="FIELD::MediaType::tracks" data-to="TYPE::Track">
+
+<path fill="none" stroke="#000000" d="M1297.341,-269.1645C1255.7195,-269.1645 1255.1775,-301.1955 1216.341,-316.1645 1170.1886,-333.9532 1151.9402,-317.656 1107.4966,-339.3645 1085.3809,-350.1669 1063.6974,-364.2805 1043.476,-379.5382"></path>
+<polygon fill="#000000" stroke="#000000" points="1041.2963,-376.7991 1035.5029,-385.6697 1045.5636,-382.348 1041.2963,-376.7991"></polygon>
+<text text-anchor="middle" x="1161.9188" y="-344.3645" font-family="Times,serif" font-size="14.00" fill="#000000">MediaType:tracks</text>
+<path fill="none" stroke="#000000" d="M1297.341,-269.1645C1255.7195,-269.1645 1255.1775,-301.1955 1216.341,-316.1645 1170.1886,-333.9532 1151.9402,-317.656 1107.4966,-339.3645 1085.3809,-350.1669 1063.6974,-364.2805 1043.476,-379.5382" class="hover-path"></path></g>
+<!-- Playlist&#45;&gt;Track -->
+<g class="edge" data-from="FIELD::Playlist::tracks" data-to="TYPE::Track">
+
+<path fill="none" stroke="#000000" d="M1309.341,-108.1645C1281.3193,-108.1645 1127.4894,-239.7302 1107.4966,-259.3645 1084.9318,-281.5247 1062.7183,-306.5692 1042.0216,-331.7814"></path>
+<polygon fill="#000000" stroke="#000000" points="1039.2486,-329.6439 1035.6485,-339.6083 1044.6767,-334.0638 1039.2486,-329.6439"></polygon>
+<text text-anchor="middle" x="1161.9188" y="-264.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Playlist:tracks</text>
+<path fill="none" stroke="#000000" d="M1309.341,-108.1645C1281.3193,-108.1645 1127.4894,-239.7302 1107.4966,-259.3645 1084.9318,-281.5247 1062.7183,-306.5692 1042.0216,-331.7814" class="hover-path"></path></g>
+<!-- Track&#45;&gt;Album -->
+<g class="edge" data-from="FIELD::Track::album" data-to="TYPE::Album">
+
+<path fill="none" stroke="#000000" d="M828.9966,-303.1645C682.3459,-303.1645 809.6809,-824.8869 748.4966,-958.1645 708.6771,-1044.903 630.817,-1123.0436 573.173,-1172.8777"></path>
+<polygon fill="#000000" stroke="#000000" points="570.8555,-1170.2543 565.5362,-1179.4171 575.4085,-1175.5713 570.8555,-1170.2543"></polygon>
+<text text-anchor="middle" x="692.9047" y="-1114.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Track:album</text>
+<path fill="none" stroke="#000000" d="M828.9966,-303.1645C682.3459,-303.1645 809.6809,-824.8869 748.4966,-958.1645 708.6771,-1044.903 630.817,-1123.0436 573.173,-1172.8777" class="hover-path"></path></g>
+<!-- Track&#45;&gt;Genre -->
+<g class="edge" data-from="FIELD::Track::genre" data-to="TYPE::Genre">
+
+<path fill="none" stroke="#000000" d="M1027.9966,-334.1645C1182.7509,-334.1645 1000.4444,-561.4116 1107.4966,-673.1645 1154.792,-722.5366 1232.9594,-738.9089 1290.6611,-743.923"></path>
+<polygon fill="#000000" stroke="#000000" points="1290.5822,-747.4272 1300.8221,-744.708 1291.1215,-740.448 1290.5822,-747.4272"></polygon>
+<text text-anchor="middle" x="1161.9188" y="-735.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Track:genre</text>
+<path fill="none" stroke="#000000" d="M1027.9966,-334.1645C1182.7509,-334.1645 1000.4444,-561.4116 1107.4966,-673.1645 1154.792,-722.5366 1232.9594,-738.9089 1290.6611,-743.923" class="hover-path"></path></g>
+<!-- Track&#45;&gt;InvoiceItem -->
+<g class="edge" data-from="FIELD::Track::invoiceItems" data-to="TYPE::InvoiceItem">
+
+<path fill="none" stroke="#000000" d="M1027.9966,-396.1645C1081.7013,-396.1645 1060.7573,-460.7139 1107.4966,-487.1645 1159.3345,-516.5004 1225.6779,-527.8365 1277.9519,-531.9238"></path>
+<polygon fill="#000000" stroke="#000000" points="1277.989,-535.435 1288.2106,-532.6478 1278.4818,-528.4524 1277.989,-535.435"></polygon>
+<text text-anchor="middle" x="1161.9188" y="-528.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Track:invoiceItems</text>
+<path fill="none" stroke="#000000" d="M1027.9966,-396.1645C1081.7013,-396.1645 1060.7573,-460.7139 1107.4966,-487.1645 1159.3345,-516.5004 1225.6779,-527.8365 1277.9519,-531.9238" class="hover-path"></path></g>
+<!-- Track&#45;&gt;MediaType -->
+<g class="edge" data-from="FIELD::Track::mediaType" data-to="TYPE::MediaType">
+
+<path fill="none" stroke="#000000" d="M1027.9966,-365.1645C1111.8007,-365.1645 1133.5527,-369.173 1216.341,-356.1645 1236.7905,-352.9512 1258.4746,-347.9985 1278.7558,-342.6598"></path>
+<polygon fill="#000000" stroke="#000000" points="1279.8408,-345.9925 1288.5877,-340.014 1278.0217,-339.2329 1279.8408,-345.9925"></polygon>
+<text text-anchor="middle" x="1161.9188" y="-370.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Track:mediaType</text>
+<path fill="none" stroke="#000000" d="M1027.9966,-365.1645C1111.8007,-365.1645 1133.5527,-369.173 1216.341,-356.1645 1236.7905,-352.9512 1258.4746,-347.9985 1278.7558,-342.6598" class="hover-path"></path></g>
+<!-- Track&#45;&gt;Playlist -->
+<g class="edge" data-from="FIELD::Track::playlists" data-to="TYPE::Playlist">
+
+<path fill="none" stroke="#000000" d="M1027.9966,-272.1645C1111.7241,-272.1645 1137.4816,-304.298 1216.341,-276.1645 1245.1275,-265.8947 1272.3551,-247.3558 1295.4203,-227.826"></path>
+<polygon fill="#000000" stroke="#000000" points="1297.8233,-230.3747 1303.0791,-221.1754 1293.2337,-225.0893 1297.8233,-230.3747"></polygon>
+<text text-anchor="middle" x="1161.9188" y="-292.3645" font-family="Times,serif" font-size="14.00" fill="#000000">Track:playlists</text>
+<path fill="none" stroke="#000000" d="M1027.9966,-272.1645C1111.7241,-272.1645 1137.4816,-304.298 1216.341,-276.1645 1245.1275,-265.8947 1272.3551,-247.3558 1295.4203,-227.826" class="hover-path"></path></g>
+</g>
+</g><defs><style id="svg-pan-zoom-controls-styles" type="text/css">.svg-pan-zoom-control { cursor: pointer; fill: black; fill-opacity: 0.333; } .svg-pan-zoom-control:hover { fill-opacity: 0.8; } .svg-pan-zoom-control-background { fill: white; fill-opacity: 0.5; } .svg-pan-zoom-control-background { fill-opacity: 0.8; }</style></defs><g id="svg-pan-zoom-controls" transform="translate(397 202) scale(0.75)" class="svg-pan-zoom-control"><g id="svg-pan-zoom-zoom-in" transform="translate(30.5 5) scale(0.015)" class="svg-pan-zoom-control"><rect x="0" y="0" width="1500" height="1400" class="svg-pan-zoom-control-background"></rect><path d="M1280 576v128q0 26 -19 45t-45 19h-320v320q0 26 -19 45t-45 19h-128q-26 0 -45 -19t-19 -45v-320h-320q-26 0 -45 -19t-19 -45v-128q0 -26 19 -45t45 -19h320v-320q0 -26 19 -45t45 -19h128q26 0 45 19t19 45v320h320q26 0 45 19t19 45zM1536 1120v-960 q0 -119 -84.5 -203.5t-203.5 -84.5h-960q-119 0 -203.5 84.5t-84.5 203.5v960q0 119 84.5 203.5t203.5 84.5h960q119 0 203.5 -84.5t84.5 -203.5z" class="svg-pan-zoom-control-element"></path></g><g id="svg-pan-zoom-reset-pan-zoom" transform="translate(5 35) scale(0.4)" class="svg-pan-zoom-control"><rect x="2" y="2" width="182" height="58" class="svg-pan-zoom-control-background"></rect><path d="M33.051,20.632c-0.742-0.406-1.854-0.609-3.338-0.609h-7.969v9.281h7.769c1.543,0,2.701-0.188,3.473-0.562c1.365-0.656,2.048-1.953,2.048-3.891C35.032,22.757,34.372,21.351,33.051,20.632z" class="svg-pan-zoom-control-element"></path><path d="M170.231,0.5H15.847C7.102,0.5,0.5,5.708,0.5,11.84v38.861C0.5,56.833,7.102,61.5,15.847,61.5h154.384c8.745,0,15.269-4.667,15.269-10.798V11.84C185.5,5.708,178.976,0.5,170.231,0.5z M42.837,48.569h-7.969c-0.219-0.766-0.375-1.383-0.469-1.852c-0.188-0.969-0.289-1.961-0.305-2.977l-0.047-3.211c-0.03-2.203-0.41-3.672-1.142-4.406c-0.732-0.734-2.103-1.102-4.113-1.102h-7.05v13.547h-7.055V14.022h16.524c2.361,0.047,4.178,0.344,5.45,0.891c1.272,0.547,2.351,1.352,3.234,2.414c0.731,0.875,1.31,1.844,1.737,2.906s0.64,2.273,0.64,3.633c0,1.641-0.414,3.254-1.242,4.84s-2.195,2.707-4.102,3.363c1.594,0.641,2.723,1.551,3.387,2.73s0.996,2.98,0.996,5.402v2.32c0,1.578,0.063,2.648,0.19,3.211c0.19,0.891,0.635,1.547,1.333,1.969V48.569z M75.579,48.569h-26.18V14.022h25.336v6.117H56.454v7.336h16.781v6H56.454v8.883h19.125V48.569z M104.497,46.331c-2.44,2.086-5.887,3.129-10.34,3.129c-4.548,0-8.125-1.027-10.731-3.082s-3.909-4.879-3.909-8.473h6.891c0.224,1.578,0.662,2.758,1.316,3.539c1.196,1.422,3.246,2.133,6.15,2.133c1.739,0,3.151-0.188,4.236-0.562c2.058-0.719,3.087-2.055,3.087-4.008c0-1.141-0.504-2.023-1.512-2.648c-1.008-0.609-2.607-1.148-4.796-1.617l-3.74-0.82c-3.676-0.812-6.201-1.695-7.576-2.648c-2.328-1.594-3.492-4.086-3.492-7.477c0-3.094,1.139-5.664,3.417-7.711s5.623-3.07,10.036-3.07c3.685,0,6.829,0.965,9.431,2.895c2.602,1.93,3.966,4.73,4.093,8.402h-6.938c-0.128-2.078-1.057-3.555-2.787-4.43c-1.154-0.578-2.587-0.867-4.301-0.867c-1.907,0-3.428,0.375-4.565,1.125c-1.138,0.75-1.706,1.797-1.706,3.141c0,1.234,0.561,2.156,1.682,2.766c0.721,0.406,2.25,0.883,4.589,1.43l6.063,1.43c2.657,0.625,4.648,1.461,5.975,2.508c2.059,1.625,3.089,3.977,3.089,7.055C108.157,41.624,106.937,44.245,104.497,46.331z M139.61,48.569h-26.18V14.022h25.336v6.117h-18.281v7.336h16.781v6h-16.781v8.883h19.125V48.569z M170.337,20.14h-10.336v28.43h-7.266V20.14h-10.383v-6.117h27.984V20.14z" class="svg-pan-zoom-control-element"></path></g><g id="svg-pan-zoom-zoom-out" transform="translate(30.5 70) scale(0.015)" class="svg-pan-zoom-control"><rect x="0" y="0" width="1500" height="1400" class="svg-pan-zoom-control-background"></rect><path d="M1280 576v128q0 26 -19 45t-45 19h-896q-26 0 -45 -19t-19 -45v-128q0 -26 19 -45t45 -19h896q26 0 45 19t19 45zM1536 1120v-960q0 -119 -84.5 -203.5t-203.5 -84.5h-960q-119 0 -203.5 84.5t-84.5 203.5v960q0 119 84.5 203.5t203.5 84.5h960q119 0 203.5 -84.5 t84.5 -203.5z" class="svg-pan-zoom-control-element"></path></g></g></svg>

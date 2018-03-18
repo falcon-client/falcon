@@ -1,0 +1,20 @@
+{
+  "name": "@falcon-client/svg-zoom",
+  "version": "1.0.1",
+  "main": "index.js",
+  "author": "Amila Welihinda <amilajack@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "d3": "^4.12.2",
+    "http-server": "^0.11.1"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production rm -rf es && babel -d es/ src/ --source-maps",
+    "example": "http-server .",
+    "test": "npm run build",
+    "watch": "cross-env NODE_ENV=development babel --out-dir lib src --source-maps --watch"
+  },
+  "peerDependencies": {
+    "d3": "^4.12.2"
+  }
+}
