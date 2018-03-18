@@ -1,4 +1,4 @@
-const webdriver = require("selenium-webdriver");
+const webdriver = require('selenium-webdriver');
 const argv = require('minimist')(process.argv.slice(2));
 const path = require('path');
 
@@ -6,43 +6,49 @@ const path = require('path');
 
 function build(file, capabilities) {
   let browser;
-  
+
   if (process.env.SAUCE_USERNAME != undefined) {
     browser = new webdriver.Builder()
-    .usingServer("http://"+ process.env.SAUCE_USERNAME+":"+process.env.SAUCE_ACCESS_KEY+"@ondemand.saucelabs.com:80/wd/hub")
-    .withCapabilities({
-      "tunnel-identifier": process.env.TRAVIS_JOB_NUMBER,
-      build: process.env.TRAVIS_BUILD_NUMBER,
-      username: process.env.SAUCE_USERNAME,
-      accessKey: process.env.SAUCE_ACCESS_KEY,
-      ...capabilities
-    })
-    .build();
+      .usingServer(
+        `http://${process.env.SAUCE_USERNAME}:${
+          process.env.SAUCE_ACCESS_KEY
+        }@ondemand.saucelabs.com:80/wd/hub`
+      )
+      .withCapabilities({
+        'tunnel-identifier': process.env.TRAVIS_JOB_NUMBER,
+        build: process.env.TRAVIS_BUILD_NUMBER,
+        username: process.env.SAUCE_USERNAME,
+        accessKey: process.env.SAUCE_ACCESS_KEY,
+        ...capabilities
+      })
+      .build();
   } else {
-    browser = new webdriver.Builder()
-    .withCapabilities(capabilities)
-    .build();
+    browser = new webdriver.Builder().withCapabilities(capabilities).build();
   }
-  
-  browser.manage().timeouts().setScriptTimeout(60000);
 
-  return browser.get(`http://localhost:8000/test-browser/${file}?noautostart`)
-  .then(function() {
-    return browser.executeAsyncScript(function(callback) {
-      var log = [];
-      QUnit.log(function(details) {
-        log.push(details);
-      });
-      QUnit.done(function(details) {
-        callback({ details: details, log: log });
-      });
-      QUnit.start();
+  browser
+    .manage()
+    .timeouts()
+    .setScriptTimeout(60000);
+
+  return browser
+    .get(`http://localhost:8000/test-browser/${file}?noautostart`)
+    .then(() =>
+      browser.executeAsyncScript(callback => {
+        const log = [];
+        QUnit.log(details => {
+          log.push(details);
+        });
+        QUnit.done(details => {
+          callback({ details, log });
+        });
+        QUnit.start();
+      })
+    )
+    .then(output => {
+      browser.quit();
+      return { file, capabilities, ...output };
     });
-  })
-  .then(function(output) {
-    browser.quit();
-    return { file, capabilities, ...output };
-  });
 }
 
 // Print to the console with colors.
@@ -53,7 +59,7 @@ const colors = {
 };
 
 function color(code, string) {
-  return '\u001b[' + code + 'm' + string + '\u001b[0m';
+  return `\u001b[${code}m${string}\u001b[0m`;
 }
 
 // Parse --files, which may be given multiple times. Files are relative to test-browser/.
@@ -86,55 +92,59 @@ if (argv.capabilities) {
 
 // Assemble the tests.
 
-let tests = files.reduce((a, f) => {
-  return a.concat(capabilities.map(c => {
-    return build(f, c);
-  }))
-}, []);
+const tests = files.reduce(
+  (a, f) => a.concat(capabilities.map(c => build(f, c))),
+  []
+);
 
 // Run tests and report results.
 
-Promise.all(tests).then(function(outputs) {
-  // Set exit code to 1 if there are any failing tests.
-  
-  if (outputs.some(({ details }) => details.failed > 0)) {
-    process.exitCode = 1;
-  }
-  
-  // Report test results.
-  
-  outputs.forEach(({ file, capabilities, log, details }) => {
-    let label = `${capabilities.browserName}, ${file}`;
-    let summary = `(${details.passed} passed, ${details.failed} failed, ${details.total} total, ${details.runtime}ms runtime)`;
-    
-    if (details.failed == 0) {
-      console.log(`${color(colors.pass, "✓")} ${label} ${summary}`);
-    } else {
-      console.log(`${color(colors.fail, "✖")} ${label} ${summary}`);
-    }
-    
-    log.forEach(({ result, module, name, message, actual, expected, source }) => {
-      if (result) {
-        return;
-      }
-      
-      console.log(`FAILED: ${module}: ${name}`);
+Promise.all(tests)
+  .then(outputs => {
+    // Set exit code to 1 if there are any failing tests.
 
-      if (message) {
-        console.log(message);
+    if (outputs.some(({ details }) => details.failed > 0)) {
+      process.exitCode = 1;
+    }
+
+    // Report test results.
+
+    outputs.forEach(({ file, capabilities, log, details }) => {
+      const label = `${capabilities.browserName}, ${file}`;
+      const summary = `(${details.passed} passed, ${details.failed} failed, ${
+        details.total
+      } total, ${details.runtime}ms runtime)`;
+
+      if (details.failed == 0) {
+        console.log(`${color(colors.pass, '✓')} ${label} ${summary}`);
+      } else {
+        console.log(`${color(colors.fail, '✖')} ${label} ${summary}`);
       }
-      
-      if (actual) {
-        console.log(`expected: ${expected}, actual: ${actual}`);
-      }
-      
-      if (source) {
-        console.log(source);
-      }
+
+      log.forEach(
+        ({ result, module, name, message, actual, expected, source }) => {
+          if (result) {
+            return;
+          }
+
+          console.log(`FAILED: ${module}: ${name}`);
+
+          if (message) {
+            console.log(message);
+          }
+
+          if (actual) {
+            console.log(`expected: ${expected}, actual: ${actual}`);
+          }
+
+          if (source) {
+            console.log(source);
+          }
+        }
+      );
     });
+  })
+  .catch(error => {
+    console.log(error);
+    process.exitCode = 1;
   });
-})
-.catch(function(error) {
-  console.log(error);
-  process.exitCode = 1;
-});
