@@ -49,3 +49,13 @@ main.js.map
 .idea
 npm-debug.log.*
 vs
+es
+build
+build-lite
+build/
+build-lite/
+prefix/
+prefix-lite/
+sources/
+viz.js
+viz-lite.js
