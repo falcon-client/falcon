@@ -1,0 +1,34 @@
+language: node_js
+
+node_js:
+  - node
+
+services:
+  - docker
+
+addons:
+  sauce_connect: true
+
+before_install:
+  - docker run -dit --name emscripten -v $(pwd):/src trzeci/emscripten:sdk-tag-1.37.33-64bit bash
+
+before_script:
+  - python -m SimpleHTTPServer &
+
+script:
+  - docker exec -it emscripten make
+  - node test-browser/runner --file full.html --browser chrome --browser safari --browser firefox
+  - node test-browser/runner --file lite.html --browser chrome --browser safari --browser firefox
+  - node test-browser/runner --file fabric.html --browser chrome --browser safari --browser firefox --browser MicrosoftEdge --browser "internet explorer"
+  - node_modules/.bin/tsc --project test-types
+
+before_deploy:
+  - rvm $(travis_internal_ruby) do ruby -S gem install octokit git
+  - printf "//registry.npmjs.org/:_authToken=%s\n" "$NPM_TOKEN" >> ~/.npmrc
+
+deploy:
+  provider: script
+  script: rvm $(travis_internal_ruby) do ruby -rubygems deploy.rb
+  skip_cleanup: true
+  on:
+    tags: true
