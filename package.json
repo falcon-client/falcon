@@ -123,6 +123,7 @@
     ]
   },
   "devDependencies": {
+    "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
     "babel-eslint": "^8.2.2",
     "babel-jest": "^22.4.1",
@@ -187,6 +188,7 @@
     "react-test-renderer": "^16.2.0",
     "redux-logger": "^3.0.6",
     "rimraf": "^2.6.2",
+    "rollup": "^0.57.1",
     "sass-loader": "^6.0.7",
     "sinon": "^4.4.2",
     "spectron": "^3.8.0",
@@ -214,7 +216,6 @@
     "express": "^4.16.2",
     "font-awesome": "^4.7.0",
     "graphql": "^0.13.1",
-    "handsontable": "^0.37.0",
     "history": "^4.7.2",
     "jquery": "^3.3.1",
     "lodash": "^4.17.5",
