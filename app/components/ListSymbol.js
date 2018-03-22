@@ -2,7 +2,7 @@
 import React from 'react';
 
 type Props = {
-  type?: 'connection' | 'database' | 'table' | 'query'
+  type?: 'connection' | 'database' | 'table' | 'query' | 'graph'
 };
 
 export default function ListSymbol(props: Props = { type: 'connection' }) {
@@ -14,6 +14,8 @@ export default function ListSymbol(props: Props = { type: 'connection' }) {
             return 'C';
           case 'database':
             return 'D';
+          case 'graph':
+            return 'G';
           case 'table':
             return 'T';
           case 'query':

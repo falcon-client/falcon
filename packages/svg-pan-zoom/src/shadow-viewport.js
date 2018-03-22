@@ -1,5 +1,5 @@
-let SvgUtils = require('./svg-utilities'),
-  Utils = require('./utilities');
+import SvgUtils from './svg-utilities';
+import Utils from './utilities';
 
 const ShadowViewport = function(viewport, options) {
   this.init(viewport, options);
@@ -130,14 +130,15 @@ ShadowViewport.prototype.processCTM = function() {
   }
 
   if (this.options.center) {
-    let offsetX =
-        (this.options.width -
-          (this.viewBox.width + this.viewBox.x * 2) * newCTM.a) *
-        0.5,
-      offsetY =
-        (this.options.height -
-          (this.viewBox.height + this.viewBox.y * 2) * newCTM.a) *
-        0.5;
+    const offsetX =
+      (this.options.width -
+        (this.viewBox.width + this.viewBox.x * 2) * newCTM.a) *
+      0.5;
+
+    const offsetY =
+      (this.options.height -
+        (this.viewBox.height + this.viewBox.y * 2) * newCTM.a) *
+      0.5;
 
     newCTM.e = offsetX;
     newCTM.f = offsetY;
@@ -230,8 +231,8 @@ ShadowViewport.prototype.getCTM = function() {
  * @param {SVGMatrix} newCTM
  */
 ShadowViewport.prototype.setCTM = function(newCTM) {
-  let willZoom = this.isZoomDifferent(newCTM),
-    willPan = this.isPanDifferent(newCTM);
+  let willZoom = this.isZoomDifferent(newCTM);
+  let willPan = this.isPanDifferent(newCTM);
 
   if (willZoom || willPan) {
     // Before zoom
@@ -253,13 +254,15 @@ ShadowViewport.prototype.setCTM = function(newCTM) {
 
     // Before pan
     if (willPan) {
-      let preventPan = this.options.beforePan(this.getPan(), {
-          x: newCTM.e,
-          y: newCTM.f
-        }),
-        // If prevent pan is an object
-        preventPanX = false,
-        preventPanY = false;
+      const preventPan = this.options.beforePan(this.getPan(), {
+        x: newCTM.e,
+        y: newCTM.f
+      });
+
+      let // If prevent pan is an object
+      preventPanX = false;
+
+      let preventPanY = false;
 
       // If prevent pan is Boolean false
       if (preventPan === false) {
@@ -359,6 +362,6 @@ ShadowViewport.prototype.updateCTM = function() {
   }
 };
 
-module.exports = function(viewport, options) {
+export default function(viewport, options) {
   return new ShadowViewport(viewport, options);
-};
+}

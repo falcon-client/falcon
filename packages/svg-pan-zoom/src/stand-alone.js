@@ -7,7 +7,7 @@ const svgPanZoom = require('./svg-pan-zoom.js');
     define('svg-pan-zoom', () => svgPanZoom);
     // CMD
   } else if (typeof module !== 'undefined' && module.exports) {
-    module.exports = svgPanZoom;
+    export default svgPanZoom;
 
     // Browser
     // Keep exporting globally as module.exports is available because of browserify

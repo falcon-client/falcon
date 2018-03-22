@@ -12,9 +12,14 @@ type Props = {
 const activeFooterButton = 'FooterButton FooterButton--active';
 const footerButton = 'FooterButton';
 
+const footerStyles = {
+  // display: 'flex',
+  // justifyContent: 'space-between'
+}
+
 export default function Footer(props: Props) {
   return (
-    <div className="Footer" style={{ left: props.offset }}>
+    <div className="Footer" style={{ ...footerStyles, left: props.offset }}>
       <div className="FooterButtonContainer">
         {props.hasActiveConnection ? null : (
           <div
@@ -34,17 +39,19 @@ export default function Footer(props: Props) {
         </div>
         <div
           className={
-            props.pathname === '/query' ? activeFooterButton : footerButton
-          }
-        >
-          <Link to="/query">Query</Link>
-        </div>
-        <div
-          className={
             props.pathname === '/structure' ? activeFooterButton : footerButton
           }
         >
           <Link to="/structure">Structure</Link>
+        </div>
+      </div>
+      <div className="FooterButtonContainer" style={{ ...footerStyles,left: props.offset  }}>
+        <div
+          className={
+            props.pathname === '/query' ? activeFooterButton : footerButton
+          }
+        >
+          <Link to="/query">Query</Link>
         </div>
         <div
           className={

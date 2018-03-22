@@ -1,3 +1,3 @@
-const SvgPanZoom = require('./svg-pan-zoom.js');
+import SvgPanZoom from './svg-pan-zoom.js';
 
-module.exports = SvgPanZoom;
+export default SvgPanZoom;

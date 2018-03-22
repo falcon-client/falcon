@@ -1,8 +1,8 @@
-let Wheel = require('./uniwheel'),
-  ControlIcons = require('./control-icons'),
-  Utils = require('./utilities'),
-  SvgUtils = require('./svg-utilities'),
-  ShadowViewport = require('./shadow-viewport');
+import Wheel from './uniwheel';
+import ControlIcons from './control-icons';
+import Utils from './utilities';
+import SvgUtils from './svg-utilities';
+import ShadowViewport from './shadow-viewport';
 
 const SvgPanZoom = function(svg, options) {
   this.init(svg, options);
@@ -954,4 +954,4 @@ const svgPanZoom = function(elementOrSelector, options) {
   return instancesStore[instancesStore.length - 1].instance.getPublicInstance();
 };
 
-module.exports = svgPanZoom;
+export default svgPanZoom;

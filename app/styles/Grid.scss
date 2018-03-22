@@ -23,26 +23,6 @@
   .hoveredItem {
     background-color: rgba(0, 0, 0, .1);
   }
-
-  // All below are handsontable overrides
-  // 4 rules below makes it visually appear that you can only select one row at a time during multiselect
-  .handsontable .currentRow,  .handsontable  .highlight {
-    background: linear-gradient(to bottom,  rgba(181,209,255,0.34) 0%,rgba(181,209,255,0.34) 100%);
-  }
-
-  .handsontable  .htContextMenu .wtBorder {
-    visibility: hidden;
-  }
-
-  .handsontable .wtBorder.corner {
-    display: none !important;
-  }
-
-  .handsontable div.wtBorder.area {
-    display:none !important;
-  }
-
-
 }
 
 .HomePage {

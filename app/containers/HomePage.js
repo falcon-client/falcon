@@ -266,6 +266,7 @@ export default class HomePage extends Component<Props, State> {
               >
                 {/* Currently only supports one database file at a time (since using SQLite only) */}
                 <Sidebar
+                  pathname={this.props.location.pathname}
                   databaseName={this.state.databaseName}
                   tables={this.state.tables}
                   onTableSelect={this.onTableSelect}

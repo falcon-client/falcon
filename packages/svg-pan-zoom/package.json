@@ -1,5 +1,5 @@
 {
-  "name": "svg-pan-zoom",
+  "name": "@falcon-client/svg-pan-zoom",
   "version": "3.5.3",
   "main": "dist/svg-pan-zoom.js",
   "module": "src/svg-pan-zoom.js",
@@ -8,10 +8,10 @@
   "license": "BSD-2-Clause",
   "description": "JavaScript library for panning and zooming an SVG image from the mouse, touches and programmatically.",
   "scripts": {
-    "start": "gulp",
-    "lint": "tslint 'dist/svg-pan-zoom.d.ts'",
-    "test": "tsc && gulp test",
-    "build": "gulp build"
+    "build": "cross-env NODE_ENV=production rm -rf es && babel -d es/ src/ --source-maps",
+    "example": "http-server .",
+    "test": "npm run build",
+    "watch": "cross-env NODE_ENV=development babel --out-dir lib src --source-maps --watch"
   },
   "repository": {
     "type": "git",
@@ -47,24 +47,5 @@
     "svg",
     "pan",
     "zoom"
-  ],
-  "devDependencies": {
-    "browserify": "^8.0.3",
-    "gulp": "^3.8.10",
-    "gulp-concat": "^2.4.3",
-    "gulp-config-sync": "git://github.com/bumbu/gulp-config-sync",
-    "gulp-header": "^1.2.2",
-    "gulp-jscs": "^1.4.0",
-    "gulp-jshint": "^1.9.0",
-    "gulp-plumber": "^0.6.6",
-    "gulp-qunit": "^1.1.0",
-    "gulp-rename": "^1.2.0",
-    "gulp-uglify": "^1.0.2",
-    "gulp-watch": "^3.0.0",
-    "qunitjs": "^2.2.1",
-    "tslint": "^4.5.1",
-    "typescript": "^2.2.1",
-    "vinyl-buffer": "^1.0.0",
-    "vinyl-source-stream": "^1.0.0"
-  }
+  ]
 }

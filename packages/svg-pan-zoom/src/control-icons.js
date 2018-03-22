@@ -1,6 +1,6 @@
-const SvgUtils = require('./svg-utilities');
+import SvgUtils from './svg-utilities';
 
-module.exports = {
+export default {
   enable(instance) {
     // Select (and create if necessary) defs
     let defs = instance.svg.querySelector('defs');

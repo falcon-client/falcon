@@ -2,7 +2,7 @@
 // A unified cross browser mouse wheel event handler
 // https://github.com/teemualap/uniwheel
 
-module.exports = (function() {
+export default (function uniwhel() {
   // Full details: https://developer.mozilla.org/en-US/docs/Web/Reference/Events/wheel
 
   let prefix = '',
@@ -40,7 +40,7 @@ module.exports = (function() {
         originalEvent,
         target: originalEvent.target || originalEvent.srcElement,
         type: 'wheel',
-        deltaMode: originalEvent.type == 'MozMousePixelScroll' ? 0 : 1,
+        deltaMode: originalEvent.type === 'MozMousePixelScroll' ? 0 : 1,
         deltaX: 0,
         delatZ: 0,
         preventDefault() {
@@ -51,7 +51,7 @@ module.exports = (function() {
       };
 
       // calculate deltaY (and deltaX) according to the event
-      if (support == 'mousewheel') {
+      if (support === 'mousewheel') {
         event.deltaY = -1 / 40 * originalEvent.wheelDelta;
         // Webkit also support wheelDeltaX
         originalEvent.wheelDeltaX &&
@@ -120,7 +120,7 @@ module.exports = (function() {
     _addWheelListener(elem, support, callback, useCapture);
 
     // handle MozMousePixelScroll in older Firefox
-    if (support == 'DOMMouseScroll') {
+    if (support === 'DOMMouseScroll') {
       _addWheelListener(elem, 'MozMousePixelScroll', callback, useCapture);
     }
   }
@@ -129,7 +129,7 @@ module.exports = (function() {
     _removeWheelListener(elem, support, callback, useCapture);
 
     // handle MozMousePixelScroll in older Firefox
-    if (support == 'DOMMouseScroll') {
+    if (support === 'DOMMouseScroll') {
       _removeWheelListener(elem, 'MozMousePixelScroll', callback, useCapture);
     }
   }
