@@ -6,8 +6,7 @@ export default {
    * @param  {Object} source object to take properties from
    * @return {Object}        extended object
    */
-  extend(target, source) {
-    target = target || {};
+  extend(target = {}, source) {
     for (const prop in source) {
       // Go recursively
       if (this.isObject(source[prop])) {
