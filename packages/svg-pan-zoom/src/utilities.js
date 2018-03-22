@@ -65,7 +65,8 @@ export default {
    * @return {Object|Null}                   SVG or null
    */
   getSvg(elementOrSelector) {
-    let element, svg;
+    let element;
+    let svg;
 
     if (!this.isElement(elementOrSelector)) {
       // If selector provided
@@ -77,9 +78,7 @@ export default {
         element = document.querySelector(elementOrSelector);
 
         if (!element) {
-          throw new Error(
-            `Provided selector did not find any elements. Selector: ${elementOrSelector}`
-          );
+          throw new Error(`Provided selector did not find any elements. Selector: ${elementOrSelector}`);
           return null;
         }
       } else {
@@ -98,9 +97,7 @@ export default {
       svg = element.getSVGDocument().documentElement;
     } else {
       if (element.tagName.toLowerCase() === 'img') {
-        throw new Error(
-          'Cannot script an SVG in an "img" element. Please use an "object" element or an in-line SVG.'
-        );
+        throw new Error('Cannot script an SVG in an "img" element. Please use an "object" element or an in-line SVG.');
       } else {
         throw new Error('Cannot get SVG.');
       }
@@ -117,7 +114,7 @@ export default {
    * @return {Function}           Function with certain context
    */
   proxy(fn, context) {
-    return function() {
+    return function () {
       return fn.apply(context, arguments);
     };
   },
@@ -186,11 +183,11 @@ export default {
       return true;
     } else if (prevEvt !== void 0 && prevEvt !== null) {
       // Try to compare events
-      let timeStampDiff = evt.timeStamp - prevEvt.timeStamp, // should be lower than 250 ms
-        touchesDistance = Math.sqrt(
-          Math.pow(evt.clientX - prevEvt.clientX, 2) +
-            Math.pow(evt.clientY - prevEvt.clientY, 2)
-        );
+      const // should be lower than 250 ms
+        timeStampDiff = evt.timeStamp - prevEvt.timeStamp;
+
+      const touchesDistance = Math.sqrt((evt.clientX - prevEvt.clientX) ** 2 +
+          (evt.clientY - prevEvt.clientY) ** 2);
 
       return timeStampDiff < 250 && touchesDistance < 10;
     }
@@ -206,9 +203,7 @@ export default {
    */
   now:
     Date.now ||
-    function() {
-      return new Date().getTime();
-    },
+    (() => new Date().getTime()),
 
   // From underscore.
   // Returns a function, that, when invoked, will only be triggered at most once
@@ -220,17 +215,19 @@ export default {
   // jshint ignore:start
   throttle(func, wait, options) {
     const that = this;
-    let context, args, result;
+    let context;
+    let args;
+    let result;
     let timeout = null;
     let previous = 0;
     if (!options) options = {};
-    const later = function() {
+    const later = () => {
       previous = options.leading === false ? 0 : that.now();
       timeout = null;
       result = func.apply(context, args);
       if (!timeout) context = args = null;
     };
-    return function() {
+    return function () {
       const now = that.now();
       if (!previous && options.leading === false) previous = now;
       const remaining = wait - (now - previous);
@@ -279,7 +276,7 @@ export default {
  * @return {Function}
  */
 function requestTimeout(timeout) {
-  return function(callback) {
+  return (callback) => {
     window.setTimeout(callback, timeout);
   };
 }

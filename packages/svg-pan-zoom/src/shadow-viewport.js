@@ -1,7 +1,7 @@
 import SvgUtils from './svg-utilities';
 import Utils from './utilities';
 
-const ShadowViewport = function(viewport, options) {
+const ShadowViewport = function (viewport, options) {
   this.init(viewport, options);
 };
 
@@ -11,7 +11,7 @@ const ShadowViewport = function(viewport, options) {
  * @param  {SVGElement} viewport
  * @param  {Object} options
  */
-ShadowViewport.prototype.init = function(viewport, options) {
+ShadowViewport.prototype.init = function (viewport, options) {
   // DOM Elements
   this.viewport = viewport;
   this.options = options;
@@ -23,12 +23,12 @@ ShadowViewport.prototype.init = function(viewport, options) {
   this.updateCTMCached = Utils.proxy(this.updateCTM, this);
 
   // Create a custom requestAnimationFrame taking in account refreshRate
-  this.requestAnimationFrame = Utils.createRequestAnimationFrame(
-    this.options.refreshRate
-  );
+  this.requestAnimationFrame = Utils.createRequestAnimationFrame(this.options.refreshRate);
 
   // ViewBox
-  this.viewBox = { x: 0, y: 0, width: 0, height: 0 };
+  this.viewBox = {
+    x: 0, y: 0, width: 0, height: 0
+  };
   this.cacheViewBox();
 
   // Process CTM
@@ -45,7 +45,7 @@ ShadowViewport.prototype.init = function(viewport, options) {
  * Cache initial viewBox value
  * If no viewBox is defined, then use viewport size/position instead for viewBox values
  */
-ShadowViewport.prototype.cacheViewBox = function() {
+ShadowViewport.prototype.cacheViewBox = function () {
   const svgViewBox = this.options.svg.getAttribute('viewBox');
 
   if (svgViewBox) {
@@ -82,7 +82,7 @@ ShadowViewport.prototype.cacheViewBox = function() {
 /**
  * Recalculate viewport sizes and update viewBox cache
  */
-ShadowViewport.prototype.simpleViewBoxCache = function() {
+ShadowViewport.prototype.simpleViewBoxCache = function () {
   const bBox = this.viewport.getBBox();
 
   this.viewBox.x = bBox.x;
@@ -96,7 +96,7 @@ ShadowViewport.prototype.simpleViewBoxCache = function() {
  *
  * @return {Object} viewbox object
  */
-ShadowViewport.prototype.getViewBox = function() {
+ShadowViewport.prototype.getViewBox = function () {
   return Utils.extend({}, this.viewBox);
 };
 
@@ -106,7 +106,7 @@ ShadowViewport.prototype.getViewBox = function() {
  *
  * @return {CTM} CTM object based on options
  */
-ShadowViewport.prototype.processCTM = function() {
+ShadowViewport.prototype.processCTM = function () {
   const newCTM = this.getCTM();
 
   if (this.options.fit || this.options.contain) {
@@ -157,7 +157,7 @@ ShadowViewport.prototype.processCTM = function() {
  *
  * @return {Object}
  */
-ShadowViewport.prototype.getOriginalState = function() {
+ShadowViewport.prototype.getOriginalState = function () {
   return Utils.extend({}, this.originalState);
 };
 
@@ -166,7 +166,7 @@ ShadowViewport.prototype.getOriginalState = function() {
  *
  * @return {Object}
  */
-ShadowViewport.prototype.getState = function() {
+ShadowViewport.prototype.getState = function () {
   return Utils.extend({}, this.activeState);
 };
 
@@ -175,7 +175,7 @@ ShadowViewport.prototype.getState = function() {
  *
  * @return {Float} zoom scale
  */
-ShadowViewport.prototype.getZoom = function() {
+ShadowViewport.prototype.getZoom = function () {
   return this.activeState.zoom;
 };
 
@@ -184,7 +184,7 @@ ShadowViewport.prototype.getZoom = function() {
  *
  * @return {Float} zoom scale
  */
-ShadowViewport.prototype.getRelativeZoom = function() {
+ShadowViewport.prototype.getRelativeZoom = function () {
   return this.activeState.zoom / this.originalState.zoom;
 };
 
@@ -193,7 +193,7 @@ ShadowViewport.prototype.getRelativeZoom = function() {
  *
  * @return {Float} zoom scale
  */
-ShadowViewport.prototype.computeRelativeZoom = function(scale) {
+ShadowViewport.prototype.computeRelativeZoom = function (scale) {
   return scale / this.originalState.zoom;
 };
 
@@ -202,7 +202,7 @@ ShadowViewport.prototype.computeRelativeZoom = function(scale) {
  *
  * @return {Object}
  */
-ShadowViewport.prototype.getPan = function() {
+ShadowViewport.prototype.getPan = function () {
   return { x: this.activeState.x, y: this.activeState.y };
 };
 
@@ -211,7 +211,7 @@ ShadowViewport.prototype.getPan = function() {
  *
  * @return {SVGMatrix}
  */
-ShadowViewport.prototype.getCTM = function() {
+ShadowViewport.prototype.getCTM = function () {
   const safeCTM = this.options.svg.createSVGMatrix();
 
   // Copy values manually as in FF they are not itterable
@@ -230,7 +230,7 @@ ShadowViewport.prototype.getCTM = function() {
  *
  * @param {SVGMatrix} newCTM
  */
-ShadowViewport.prototype.setCTM = function(newCTM) {
+ShadowViewport.prototype.setCTM = function (newCTM) {
   let willZoom = this.isZoomDifferent(newCTM);
   let willPan = this.isPanDifferent(newCTM);
 
@@ -260,7 +260,7 @@ ShadowViewport.prototype.setCTM = function(newCTM) {
       });
 
       let // If prevent pan is an object
-      preventPanX = false;
+        preventPanX = false;
 
       let preventPanY = false;
 
@@ -310,11 +310,11 @@ ShadowViewport.prototype.setCTM = function(newCTM) {
   }
 };
 
-ShadowViewport.prototype.isZoomDifferent = function(newCTM) {
+ShadowViewport.prototype.isZoomDifferent = function (newCTM) {
   return this.activeState.zoom !== newCTM.a;
 };
 
-ShadowViewport.prototype.isPanDifferent = function(newCTM) {
+ShadowViewport.prototype.isPanDifferent = function (newCTM) {
   return this.activeState.x !== newCTM.e || this.activeState.y !== newCTM.f;
 };
 
@@ -323,7 +323,7 @@ ShadowViewport.prototype.isPanDifferent = function(newCTM) {
  *
  * @param {SVGMatrix} newCTM
  */
-ShadowViewport.prototype.updateCache = function(newCTM) {
+ShadowViewport.prototype.updateCache = function (newCTM) {
   this.activeState.zoom = newCTM.a;
   this.activeState.x = newCTM.e;
   this.activeState.y = newCTM.f;
@@ -334,7 +334,7 @@ ShadowViewport.prototype.pendingUpdate = false;
 /**
  * Place a request to update CTM on next Frame
  */
-ShadowViewport.prototype.updateCTMOnNextFrame = function() {
+ShadowViewport.prototype.updateCTMOnNextFrame = function () {
   if (!this.pendingUpdate) {
     // Lock
     this.pendingUpdate = true;
@@ -347,7 +347,7 @@ ShadowViewport.prototype.updateCTMOnNextFrame = function() {
 /**
  * Update viewport CTM with cached CTM
  */
-ShadowViewport.prototype.updateCTM = function() {
+ShadowViewport.prototype.updateCTM = function () {
   const ctm = this.getCTM();
 
   // Updates SVG element
@@ -362,6 +362,6 @@ ShadowViewport.prototype.updateCTM = function() {
   }
 };
 
-export default function(viewport, options) {
+export default function (viewport, options) {
   return new ShadowViewport(viewport, options);
 }

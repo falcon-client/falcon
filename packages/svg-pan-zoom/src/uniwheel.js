@@ -5,12 +5,13 @@
 export default (function uniwhel() {
   // Full details: https://developer.mozilla.org/en-US/docs/Web/Reference/Events/wheel
 
-  let prefix = '',
-    _addEventListener,
-    _removeEventListener,
-    onwheel,
-    support,
-    fns = [];
+  let prefix = '';
+
+  let _addEventListener;
+  let _removeEventListener;
+  let onwheel;
+  let support;
+  const fns = [];
 
   // detect event model
   if (window.addEventListener) {
@@ -31,7 +32,7 @@ export default (function uniwhel() {
         : 'DOMMouseScroll'; // let's assume that remaining browsers are older Firefox
 
   function createCallback(element, callback, capture) {
-    const fn = function(originalEvent) {
+    const fn = (originalEvent) => {
       !originalEvent && (originalEvent = window.event);
 
       // create a normalized event object
@@ -79,7 +80,7 @@ export default (function uniwhel() {
         return fns[i].fn;
       }
     }
-    return function() {};
+    return () => {};
   }
 
   function removeCallback(element, capture) {
@@ -138,4 +139,4 @@ export default (function uniwhel() {
     on: addWheelListener,
     off: removeWheelListener
   };
-})();
+}());
