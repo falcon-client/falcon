@@ -8,6 +8,5 @@ cd falcon-ui-rewrite
 yarn
 lerna bootstrap
 lerna run build
-yarn electron-rebuild
 yarn dev
 ```
