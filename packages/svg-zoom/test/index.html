@@ -6,19 +6,30 @@
     }
   </style>
   <body>
-    <svg id="svg-zoom" width="960" height="500"></svg>
+    <!-- <svg id="svg-zoom" width="960" height="500"></svg> -->
+    <svg id="foo" width="960" height="500">
+      <rect width="300" height="100" style="fill:rgb(0,0,255);stroke-width:3;stroke:rgb(0,0,0)" />
+    </svg>
   </body>
   <script src="https://d3js.org/d3.v4.min.js"></script>
   <script src="../src/index.js"></script>
   <script>
-    const url = 'https://raw.githubusercontent.com/amilajack/svg-zoom/master/test/example.svg';
-    const instance =
-      new SvgPanZoom(url, '#svg-zoom');
-    setTimeout(() => {
-      instance.translate();
-      setTimeout(() => {
-        instance.zoom(2);
-      }, 3000);
-    }, 3000);
+    (async () => {
+      const url = 'https://raw.githubusercontent.com/amilajack/svg-zoom/master/test/example.svg';
+      const url2 = 'https://raw.githubusercontent.com/pcwalton/pathfinder/master/resources/svg/Ghostscript_Tiger.svg';
+
+      const instance =
+        // new SvgPanZoom(url, '#svg-zoom');
+        new SvgPanZoom(document.querySelector('#foo'));
+      await instance.init();
+      instance.zoom(2);
+      instance.translate(100, 200);
+
+      // const instance2 =
+      //   new SvgPanZoom(url2, '#svg-zoom');
+      // await instance2.init();
+      // instance2.zoom(2);
+      // instance2.translate(100, 200);
+    })()
   </script>
 </html>
