@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`config .prepare should include id for those servers without it 1`] = `
+Object {
+  "client": "postgresql",
+  "database": "company",
+  "host": "10.10.10.10",
+  "name": "without-id",
+  "password": "password",
+  "port": 5432,
+  "user": "user",
+}
+`;

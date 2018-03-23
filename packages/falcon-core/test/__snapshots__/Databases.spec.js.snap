@@ -1,0 +1,791 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Database should fail on unsupported database 1`] = `"Invalid SQL client: \\"baz\\""`;
+
+exports[`Database sqlite given is already connected .query should execute query 1`] = `
+Array [
+  Object {
+    "affectedRows": 0,
+    "command": "SELECT",
+    "fields": Array [
+      Object {
+        "name": "name",
+      },
+    ],
+    "rowCount": 2,
+    "rows": Array [
+      Object {
+        "name": "roles",
+      },
+      Object {
+        "name": "users",
+      },
+    ],
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected CRUD .delete should add 2 then delete 3 rows in the table 1`] = `
+Array [
+  Object {
+    "createdat": "2016-10-25",
+    "email": "maxcnunes@gmail.com",
+    "id": 1,
+    "password": "123456",
+    "role_id": 1,
+    "username": "maxcnunes",
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected CRUD .delete should add 2 then delete 3 rows in the table 2`] = `Array []`;
+
+exports[`Database sqlite given is already connected CRUD .delete should add 2 then delete 3 rows in the table 3`] = `Array []`;
+
+exports[`Database sqlite given is already connected CRUD .insert should insert 1 empty record and 1 filled record 1`] = `
+Array [
+  Object {
+    "createdat": "2016-10-25",
+    "email": "maxcnunes@gmail.com",
+    "id": 1,
+    "password": "123456",
+    "role_id": 1,
+    "username": "maxcnunes",
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected CRUD .insert should insert 1 empty record and 1 filled record 2`] = `
+Array [
+  Object {
+    "createdat": "2016-10-25",
+    "email": "maxcnunes@gmail.com",
+    "id": 1,
+    "password": "123456",
+    "role_id": 1,
+    "username": "maxcnunes",
+  },
+  Object {
+    "createdat": null,
+    "email": null,
+    "id": 2,
+    "password": null,
+    "role_id": null,
+    "username": null,
+  },
+  Object {
+    "createdat": "2017-7-20",
+    "email": "jptran318@gmail.com",
+    "id": 3,
+    "password": "password123",
+    "role_id": 1,
+    "username": "jooohhn",
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected CRUD .insert should insert 1 empty record and 1 filled record 3`] = `
+Array [
+  Object {
+    "createdat": "2016-10-25",
+    "email": "maxcnunes@gmail.com",
+    "id": 1,
+    "password": "123456",
+    "role_id": 1,
+    "username": "maxcnunes",
+  },
+  Object {
+    "createdat": null,
+    "email": null,
+    "id": 2,
+    "password": null,
+    "role_id": null,
+    "username": null,
+  },
+  Object {
+    "createdat": "2017-7-20",
+    "email": "jptran318@gmail.com",
+    "id": 3,
+    "password": "password123",
+    "role_id": 1,
+    "username": "jooohhn",
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected CRUD .update should insert an empty record then update it 1`] = `
+Array [
+  Object {
+    "createdat": "2016-10-25",
+    "email": "maxcnunes@gmail.com",
+    "id": 1,
+    "password": "123456",
+    "role_id": 1,
+    "username": "maxcnunes",
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected CRUD .update should insert an empty record then update it 2`] = `
+Array [
+  Object {
+    "createdat": "2016-10-25",
+    "email": "maxcnunes@gmail.com",
+    "id": 1,
+    "password": "123456",
+    "role_id": 1,
+    "username": "maxcnunes",
+  },
+  Object {
+    "createdat": "2017-7-20",
+    "email": "jptran318@gmail.com",
+    "id": 2,
+    "password": "password123",
+    "role_id": 1,
+    "username": "jooohhn",
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected CRUD .update should insert an empty record then update it 3`] = `
+Array [
+  Object {
+    "createdat": "2016-10-25",
+    "email": "maxcnunes@gmail.com",
+    "id": 1,
+    "password": "123456",
+    "role_id": 1,
+    "username": "maxcnunes",
+  },
+  Object {
+    "createdat": "2017-7-20",
+    "email": "jptran318@gmail.com",
+    "id": 2,
+    "password": "password123",
+    "role_id": 1,
+    "username": "jooohhn",
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected Export CSV should export single table 1`] = `
+"\\"id\\",\\"username\\",\\"email\\",\\"password\\",\\"role_id\\",\\"createdat\\"
+1,\\"maxcnunes\\",\\"maxcnunes@gmail.com\\",\\"123456\\",1,\\"2016-10-25\\""
+`;
+
+exports[`Database sqlite given is already connected Export CSV should fail on exporting multiple tables 1`] = `"Exporting multiple tables to csv is currently not supported"`;
+
+exports[`Database sqlite given is already connected Export CSV should get csv string 1`] = `
+"\\"id\\",\\"username\\",\\"email\\",\\"password\\",\\"role_id\\",\\"createdat\\"
+1,\\"maxcnunes\\",\\"maxcnunes@gmail.com\\",\\"123456\\",1,\\"2016-10-25\\""
+`;
+
+exports[`Database sqlite given is already connected Export JSON shoud get database json string 1`] = `"[{\\"id\\":1,\\"username\\":\\"maxcnunes\\",\\"email\\":\\"maxcnunes@gmail.com\\",\\"password\\":\\"123456\\",\\"role_id\\":1,\\"createdat\\":\\"2016-10-25\\"}]"`;
+
+exports[`Database sqlite given is already connected Export JSON shoud get database json string 2`] = `
+Array [
+  Object {
+    "createdat": "2016-10-25",
+    "email": "maxcnunes@gmail.com",
+    "id": 1,
+    "password": "123456",
+    "role_id": 1,
+    "username": "maxcnunes",
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected Export JSON shoud get selected tables json string 1`] = `"[[{\\"id\\":1,\\"username\\":\\"maxcnunes\\",\\"email\\":\\"maxcnunes@gmail.com\\",\\"password\\":\\"123456\\",\\"role_id\\":1,\\"createdat\\":\\"2016-10-25\\"}],[{\\"id\\":1,\\"name\\":\\"developer\\"}]]"`;
+
+exports[`Database sqlite given is already connected Export JSON shoud get selected tables json string 2`] = `
+Array [
+  Array [
+    Object {
+      "createdat": "2016-10-25",
+      "email": "maxcnunes@gmail.com",
+      "id": 1,
+      "password": "123456",
+      "role_id": 1,
+      "username": "maxcnunes",
+    },
+  ],
+  Array [
+    Object {
+      "id": 1,
+      "name": "developer",
+    },
+  ],
+]
+`;
+
+exports[`Database sqlite given is already connected Export JSON should export json file to filepath 1`] = `"[[{\\"id\\":1,\\"username\\":\\"maxcnunes\\",\\"email\\":\\"maxcnunes@gmail.com\\",\\"password\\":\\"123456\\",\\"role_id\\":1,\\"createdat\\":\\"2016-10-25\\"}],[{\\"id\\":1,\\"name\\":\\"developer\\"}]]"`;
+
+exports[`Database sqlite given is already connected Export shoud fail on unsupported option 1`] = `"Unsupported properties passed: {\\"tables\\":[\\"users\\",\\"roles\\"],\\"views\\":[\\"foo\\"]}"`;
+
+exports[`Database sqlite given is already connected Export shoud fail when passing both "tables" and "table" 1`] = `"You cannot give both \\"tables\\" and \\"table\\". Choose one"`;
+
+exports[`Database sqlite given is already connected Get .getTableColumns should list all tables keys 1`] = `
+Array [
+  Object {
+    "cid": 0,
+    "dflt_value": null,
+    "name": "id",
+    "notnull": 1,
+    "pk": 1,
+    "type": "INTEGER",
+  },
+  Object {
+    "cid": 1,
+    "dflt_value": null,
+    "name": "username",
+    "notnull": 0,
+    "pk": 0,
+    "type": "VARCHAR(45)",
+  },
+  Object {
+    "cid": 2,
+    "dflt_value": null,
+    "name": "email",
+    "notnull": 0,
+    "pk": 0,
+    "type": "VARCHAR(150)",
+  },
+  Object {
+    "cid": 3,
+    "dflt_value": null,
+    "name": "password",
+    "notnull": 0,
+    "pk": 0,
+    "type": "VARCHAR(45)",
+  },
+  Object {
+    "cid": 4,
+    "dflt_value": null,
+    "name": "role_id",
+    "notnull": 0,
+    "pk": 0,
+    "type": "INT",
+  },
+  Object {
+    "cid": 5,
+    "dflt_value": null,
+    "name": "createdat",
+    "notnull": 0,
+    "pk": 0,
+    "type": "DATETIME",
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected Get .getTableCreateScript should return table create script 1`] = `
+"CREATE TABLE users (
+  id INTEGER NOT NULL,
+  username VARCHAR(45) NULL,
+  email VARCHAR(150) NULL,
+  password VARCHAR(45) NULL,
+  role_id INT,
+  createdat DATETIME NULL,
+  PRIMARY KEY (id),
+  FOREIGN KEY (role_id) REFERENCES roles (id)
+)"
+`;
+
+exports[`Database sqlite given is already connected Get .getTableDeleteScript should return table DELETE script 1`] = `"DELETE FROM \\"roles\\" WHERE <condition>;"`;
+
+exports[`Database sqlite given is already connected Get .getTableDeleteScript should return table DELETE script with schema if defined 1`] = `"DELETE FROM \\"public\\".\\"roles\\" WHERE <condition>;"`;
+
+exports[`Database sqlite given is already connected Get .getTableInsertScript should return INSERT INTO table script 1`] = `
+"INSERT INTO \\"users\\" (\\"id\\", \\"username\\", \\"email\\", \\"password\\", \\"role_id\\", \\"createdat\\")
+ VALUES (?, ?, ?, ?, ?, ?);"
+`;
+
+exports[`Database sqlite given is already connected Get .getTableInsertScript should return INSERT INTO table script with schema if defined 1`] = `
+"INSERT INTO \\"public\\".\\"users\\" (\\"id\\", \\"username\\", \\"email\\", \\"password\\", \\"role_id\\", \\"createdat\\")
+ VALUES (?, ?, ?, ?, ?, ?);"
+`;
+
+exports[`Database sqlite given is already connected Get .getTableReferences should list all tables that selected table has references to 1`] = `Array []`;
+
+exports[`Database sqlite given is already connected Get .getTableSelectScript should return SELECT table script 1`] = `"SELECT \\"id\\", \\"username\\", \\"email\\", \\"password\\", \\"role_id\\", \\"createdat\\" FROM \\"users\\";"`;
+
+exports[`Database sqlite given is already connected Get .getTableSelectScript should return SELECT table script with schema if defined 1`] = `"SELECT \\"id\\", \\"username\\", \\"email\\", \\"password\\", \\"role_id\\", \\"createdat\\" FROM \\"public\\".\\"users\\";"`;
+
+exports[`Database sqlite given is already connected Get .getTableUpdateScript should return UPDATE table script 1`] = `
+"UPDATE \\"users\\"
+ SET \\"id\\"=?, \\"username\\"=?, \\"email\\"=?, \\"password\\"=?, \\"role_id\\"=?, \\"createdat\\"=?
+ WHERE <condition>;"
+`;
+
+exports[`Database sqlite given is already connected Get .getTableUpdateScript should return UPDATE table script with schema if defined 1`] = `
+"UPDATE \\"public\\".\\"users\\"
+ SET \\"id\\"=?, \\"username\\"=?, \\"email\\"=?, \\"password\\"=?, \\"role_id\\"=?, \\"createdat\\"=?
+ WHERE <condition>;"
+`;
+
+exports[`Database sqlite given is already connected Get .getTableValues should list all tables keys 1`] = `
+Array [
+  Object {
+    "createdat": "2016-10-25",
+    "email": "maxcnunes@gmail.com",
+    "id": 1,
+    "password": "123456",
+    "role_id": 1,
+    "username": "maxcnunes",
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected Get .getTablenames should list all tables names 1`] = `
+Array [
+  "roles",
+  "users",
+]
+`;
+
+exports[`Database sqlite given is already connected Get .getVersion should get version of database 1`] = `"3.15.0"`;
+
+exports[`Database sqlite given is already connected Get .getViewCreateScript should return CREATE VIEW script 1`] = `
+"CREATE VIEW email_view AS
+  SELECT users.email, users.password
+  FROM users"
+`;
+
+exports[`Database sqlite given is already connected List .listRoutines should list all routines with their type 1`] = `Array []`;
+
+exports[`Database sqlite given is already connected List .listSchemas should list all schema 1`] = `Array []`;
+
+exports[`Database sqlite given is already connected List .listTableColumns should list all columns and their type from users table 1`] = `
+Array [
+  Object {
+    "columnName": "id",
+    "dataType": "INTEGER",
+  },
+  Object {
+    "columnName": "username",
+    "dataType": "VARCHAR(45)",
+  },
+  Object {
+    "columnName": "email",
+    "dataType": "VARCHAR(150)",
+  },
+  Object {
+    "columnName": "password",
+    "dataType": "VARCHAR(45)",
+  },
+  Object {
+    "columnName": "role_id",
+    "dataType": "INT",
+  },
+  Object {
+    "columnName": "createdat",
+    "dataType": "DATETIME",
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected List .listTableColumns should list all columns and their type from users table 2`] = `
+Object {
+  "columnName": "id",
+  "dataType": "INTEGER",
+}
+`;
+
+exports[`Database sqlite given is already connected List .listTableColumns should list all columns and their type from users table 3`] = `
+Object {
+  "columnName": "username",
+  "dataType": "VARCHAR(45)",
+}
+`;
+
+exports[`Database sqlite given is already connected List .listTableColumns should list all columns and their type from users table 4`] = `
+Object {
+  "columnName": "email",
+  "dataType": "VARCHAR(150)",
+}
+`;
+
+exports[`Database sqlite given is already connected List .listTableColumns should list all columns and their type from users table 5`] = `
+Object {
+  "columnName": "password",
+  "dataType": "VARCHAR(45)",
+}
+`;
+
+exports[`Database sqlite given is already connected List .listTableColumns should list all columns and their type from users table 6`] = `
+Object {
+  "columnName": "role_id",
+  "dataType": "INT",
+}
+`;
+
+exports[`Database sqlite given is already connected List .listTableColumns should list all columns and their type from users table 7`] = `
+Object {
+  "columnName": "createdat",
+  "dataType": "DATETIME",
+}
+`;
+
+exports[`Database sqlite given is already connected List .listTableIndexes should list all indexes 1`] = `
+Array [
+  "users_id_index",
+]
+`;
+
+exports[`Database sqlite given is already connected List .listTableTriggers should list all table related triggers 1`] = `
+Array [
+  "dummy_trigger",
+]
+`;
+
+exports[`Database sqlite given is already connected List .listTables should list all tables 1`] = `
+Array [
+  Object {
+    "name": "roles",
+  },
+  Object {
+    "name": "users",
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected List .listViews should list all views 1`] = `
+Array [
+  Object {
+    "name": "email_view",
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected Query .executeQuery DELETE should execute a single query 1`] = `
+Array [
+  Object {
+    "affectedRows": 1,
+    "command": "DELETE",
+    "fields": Array [],
+    "rowCount": 0,
+    "rows": Array [],
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected Query .executeQuery DELETE should execute multiple queries 1`] = `
+Array [
+  Object {
+    "affectedRows": 2,
+    "command": "DELETE",
+    "fields": Array [],
+    "rowCount": 0,
+    "rows": Array [],
+  },
+  Object {
+    "affectedRows": 2,
+    "command": "DELETE",
+    "fields": Array [],
+    "rowCount": 0,
+    "rows": Array [],
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected Query .executeQuery INSERT should execute a single query 1`] = `
+Array [
+  Object {
+    "affectedRows": 1,
+    "command": "INSERT",
+    "fields": Array [],
+    "rowCount": 0,
+    "rows": Array [],
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected Query .executeQuery INSERT should execute multiple queries 1`] = `
+Array [
+  Object {
+    "affectedRows": 1,
+    "command": "INSERT",
+    "fields": Array [],
+    "rowCount": 0,
+    "rows": Array [],
+  },
+  Object {
+    "affectedRows": 1,
+    "command": "INSERT",
+    "fields": Array [],
+    "rowCount": 0,
+    "rows": Array [],
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected Query .executeQuery SELECT should execute a single query 1`] = `
+Array [
+  Object {
+    "affectedRows": 0,
+    "command": "SELECT",
+    "fields": Array [
+      Object {
+        "name": "id",
+      },
+      Object {
+        "name": "username",
+      },
+      Object {
+        "name": "email",
+      },
+      Object {
+        "name": "password",
+      },
+      Object {
+        "name": "role_id",
+      },
+      Object {
+        "name": "createdat",
+      },
+    ],
+    "rowCount": 2,
+    "rows": Array [
+      Object {
+        "createdat": "2016-10-25",
+        "email": "maxcnunes@gmail.com",
+        "id": 1,
+        "password": "123456",
+        "role_id": 1,
+        "username": "maxcnunes",
+      },
+      Object {
+        "createdat": "2016-10-25",
+        "email": "maxcnunes@gmail.com",
+        "id": 2,
+        "password": "123456",
+        "role_id": 1,
+        "username": "maxcnunes",
+      },
+    ],
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected Query .executeQuery SELECT should execute a single query 2`] = `
+Object {
+  "name": "id",
+}
+`;
+
+exports[`Database sqlite given is already connected Query .executeQuery SELECT should execute a single query 3`] = `
+Object {
+  "name": "username",
+}
+`;
+
+exports[`Database sqlite given is already connected Query .executeQuery SELECT should execute a single query 4`] = `
+Object {
+  "name": "email",
+}
+`;
+
+exports[`Database sqlite given is already connected Query .executeQuery SELECT should execute a single query 5`] = `
+Object {
+  "name": "password",
+}
+`;
+
+exports[`Database sqlite given is already connected Query .executeQuery SELECT should execute a single query 6`] = `
+Object {
+  "name": "role_id",
+}
+`;
+
+exports[`Database sqlite given is already connected Query .executeQuery SELECT should execute a single query 7`] = `
+Object {
+  "name": "createdat",
+}
+`;
+
+exports[`Database sqlite given is already connected Query .executeQuery SELECT should execute a single query with empty result 1`] = `
+Array [
+  Object {
+    "affectedRows": 0,
+    "command": "SELECT",
+    "fields": Array [],
+    "rowCount": 0,
+    "rows": Array [],
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected Query .executeQuery SELECT should execute an query with only comments 1`] = `Array []`;
+
+exports[`Database sqlite given is already connected Query .executeQuery SELECT should execute multiple queries 1`] = `
+Array [
+  Object {
+    "affectedRows": 0,
+    "command": "SELECT",
+    "fields": Array [
+      Object {
+        "name": "id",
+      },
+      Object {
+        "name": "username",
+      },
+      Object {
+        "name": "email",
+      },
+      Object {
+        "name": "password",
+      },
+      Object {
+        "name": "role_id",
+      },
+      Object {
+        "name": "createdat",
+      },
+    ],
+    "rowCount": 2,
+    "rows": Array [
+      Object {
+        "createdat": "2016-10-25",
+        "email": "maxcnunes@gmail.com",
+        "id": 1,
+        "password": "123456",
+        "role_id": 1,
+        "username": "maxcnunes",
+      },
+      Object {
+        "createdat": "2016-10-25",
+        "email": "maxcnunes@gmail.com",
+        "id": 2,
+        "password": "123456",
+        "role_id": 1,
+        "username": "maxcnunes",
+      },
+    ],
+  },
+  Object {
+    "affectedRows": 0,
+    "command": "SELECT",
+    "fields": Array [
+      Object {
+        "name": "id",
+      },
+      Object {
+        "name": "name",
+      },
+    ],
+    "rowCount": 2,
+    "rows": Array [
+      Object {
+        "id": 1,
+        "name": "developer",
+      },
+      Object {
+        "id": 2,
+        "name": "developer",
+      },
+    ],
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected Query .executeQuery SELECT should get query selector top 1`] = `"SELECT * FROM \\"users\\" LIMIT 10"`;
+
+exports[`Database sqlite given is already connected Query .executeQuery UPDATE should execute a single query 1`] = `
+Array [
+  Object {
+    "affectedRows": 1,
+    "command": "UPDATE",
+    "fields": Array [],
+    "rowCount": 0,
+    "rows": Array [],
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected Query .executeQuery UPDATE should execute multiple queries 1`] = `
+Array [
+  Object {
+    "affectedRows": 2,
+    "command": "UPDATE",
+    "fields": Array [],
+    "rowCount": 0,
+    "rows": Array [],
+  },
+  Object {
+    "affectedRows": 2,
+    "command": "UPDATE",
+    "fields": Array [],
+    "rowCount": 0,
+    "rows": Array [],
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected Timing should log profiles 1`] = `
+Array [
+  Object {
+    "duration": 1,
+    "query": "SELECT sqlite_version()",
+    "type": "trace",
+  },
+  Object {
+    "duration": 1,
+    "query": "SELECT sqlite_version()",
+    "type": "profile",
+  },
+  Object {
+    "duration": 1,
+    "query": "INSERT INTO roles ( name)            VALUES ( 'developer')          ",
+    "type": "trace",
+  },
+  Object {
+    "duration": 1,
+    "query": "INSERT INTO roles ( name)            VALUES ( 'developer')          ",
+    "type": "profile",
+  },
+  Object {
+    "duration": 1,
+    "query": "INSERT INTO users ( username, email, password, role_id, createdat)            VALUES ( 'maxcnunes', 'maxcnunes@gmail.com', '123456', 1,'2016-10-25')          ",
+    "type": "trace",
+  },
+  Object {
+    "duration": 1,
+    "query": "-- TRIGGER dummy_trigger",
+    "type": "trace",
+  },
+]
+`;
+
+exports[`Database sqlite given is already connected Timing should log traces 1`] = `
+Array [
+  Object {
+    "duration": 1,
+    "query": "SELECT sqlite_version()",
+    "type": "trace",
+  },
+  Object {
+    "duration": 1,
+    "query": "SELECT sqlite_version()",
+    "type": "profile",
+  },
+  Object {
+    "duration": 1,
+    "query": "INSERT INTO roles ( name)            VALUES ( 'developer')          ",
+    "type": "trace",
+  },
+  Object {
+    "duration": 1,
+    "query": "INSERT INTO roles ( name)            VALUES ( 'developer')          ",
+    "type": "profile",
+  },
+  Object {
+    "duration": 1,
+    "query": "INSERT INTO users ( username, email, password, role_id, createdat)            VALUES ( 'maxcnunes', 'maxcnunes@gmail.com', '123456', 1,'2016-10-25')          ",
+    "type": "trace",
+  },
+  Object {
+    "duration": 1,
+    "query": "-- TRIGGER dummy_trigger",
+    "type": "trace",
+  },
+]
+`;

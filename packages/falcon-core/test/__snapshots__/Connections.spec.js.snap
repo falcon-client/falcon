@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Connections should delete a single connection 1`] = `
+Array [
+  Object {
+    "color": "gray",
+    "database": "/Users/amila/Desktop/demo.sqlite",
+    "id": "test-id-2",
+    "name": "test-connection-2",
+    "type": "sqlite",
+  },
+  Object {
+    "color": "gray",
+    "database": "/Users/amila/Desktop/demo.sqlite",
+    "id": "test-id-3",
+    "name": "test-connection-3",
+    "type": "sqlite",
+  },
+]
+`;
+
+exports[`Connections should get a single connection 1`] = `
+Object {
+  "color": "gray",
+  "database": "/Users/amila/Desktop/demo.sqlite",
+  "id": "test-id-3",
+  "name": "test-connection-3",
+  "type": "sqlite",
+}
+`;
+
+exports[`Connections should get all connections 1`] = `
+Array [
+  Object {
+    "color": "gray",
+    "database": "/Users/amila/Desktop/demo.sqlite",
+    "id": "test-id-1",
+    "name": "test-connection-1",
+    "type": "sqlite",
+  },
+  Object {
+    "color": "gray",
+    "database": "/Users/amila/Desktop/demo.sqlite",
+    "id": "test-id-2",
+    "name": "test-connection-2",
+    "type": "sqlite",
+  },
+  Object {
+    "color": "gray",
+    "database": "/Users/amila/Desktop/demo.sqlite",
+    "id": "test-id-3",
+    "name": "test-connection-3",
+    "type": "sqlite",
+  },
+]
+`;
+
+exports[`Connections should perform basic validation 1`] = `"Failed validation: [{\\"message\\":\\"\\\\\\"id\\\\\\" must be a string\\",\\"fieldName\\":\\"id\\"},{\\"message\\":\\"\\\\\\"name\\\\\\" is required\\",\\"fieldName\\":\\"name\\"},{\\"message\\":\\"\\\\\\"database\\\\\\" needs to be a file\\",\\"fieldName\\":\\"database\\"},{\\"message\\":\\"\\\\\\"database\\\\\\" does not exist\\",\\"fieldName\\":\\"database\\"},{\\"message\\":\\"\\\\\\"database\\\\\\" is not valid\\",\\"fieldName\\":\\"database\\"}]"`;
+
+exports[`Connections should perform basic validation 2`] = `"Failed validation: [{\\"message\\":\\"\\\\\\"id\\\\\\" must be a string\\",\\"fieldName\\":\\"id\\"},{\\"message\\":\\"\\\\\\"name\\\\\\" is required\\",\\"fieldName\\":\\"name\\"},{\\"message\\":\\"\\\\\\"database\\\\\\" does not exist\\",\\"fieldName\\":\\"database\\"},{\\"message\\":\\"\\\\\\"database\\\\\\" is not valid\\",\\"fieldName\\":\\"database\\"}]"`;
+
+exports[`Connections should perform basic validation 3`] = `"Failed validation: [{\\"message\\":\\"\\\\\\"name\\\\\\" is required\\",\\"fieldName\\":\\"name\\"},{\\"message\\":\\"\\\\\\"database\\\\\\" does not exist\\",\\"fieldName\\":\\"database\\"},{\\"message\\":\\"\\\\\\"database\\\\\\" is not valid\\",\\"fieldName\\":\\"database\\"}]"`;
+
+exports[`Connections should perform basic validation 4`] = `"Failed validation: [{\\"message\\":\\"\\\\\\"database\\\\\\" does not exist\\",\\"fieldName\\":\\"database\\"},{\\"message\\":\\"\\\\\\"database\\\\\\" is not valid\\",\\"fieldName\\":\\"database\\"}]"`;
+
+exports[`Connections should perform basic validation 5`] = `"Failed validation: [{\\"message\\":\\"\\\\\\"database\\\\\\" is not valid\\",\\"fieldName\\":\\"database\\"}]"`;
+
+exports[`Connections should update a single connection 1`] = `
+Array [
+  Object {
+    "color": "gray",
+    "database": "/Users/amila/Desktop/demo.sqlite",
+    "id": "test-id-1",
+    "name": "test-connection-1",
+    "type": "sqlite",
+  },
+  Object {
+    "color": "gray",
+    "database": "/Users/amila/Desktop/demo.sqlite",
+    "id": "test-id-2",
+    "name": "test-connection-2",
+    "type": "sqlite",
+  },
+  Object {
+    "color": "gray",
+    "database": "/Users/amila/Desktop/demo.sqlite",
+    "id": "test-id-3",
+    "name": "test-connection-3",
+    "type": "sqlite",
+  },
+]
+`;

@@ -1,0 +1,52 @@
+mysql:
+  image: mysql:5.7
+  ports:
+    - "3306:3306"
+  environment:
+    MYSQL_ROOT_PASSWORD: password
+    MYSQL_DATABASE: sqlectron
+  volumes:
+    - ./test/databases/mysql/schema:/docker-entrypoint-initdb.d
+
+postgres:
+  image: postgres:9.4.5
+  ports:
+    - "5432:5432"
+  environment:
+    POSTGRES_USER: user
+    POSTGRES_PASSWORD: password
+    POSTGRES_DB: sqlectron
+  volumes:
+    - ./test/databases/postgresql/schema:/docker-entrypoint-initdb.d
+
+cassandra:
+  image: cassandra:3.7
+  environment:
+    JVM_OPTS: -Xms128m -Xmx512m
+  ports:
+    - "7000:7000" # cluster
+    - "9042:9042" # native
+
+# mssql:
+#   image: microsoft/mssql-server-linux
+#   environment:
+#     ACCEPT_EULA: "Y"
+#     SA_PASSWORD: "password"
+#   ports:
+#     - "1433:1433"
+#   volumes:
+#     - ./test/databases/mssql/schema:/
+
+# test:
+#   image: node:6.5.0-onbuild
+#   command: npm rb && npm test
+#   environment:
+#     DB_CLIENTS: mysql,postgresql,cassandra
+#     MYSQL_ENV_MYSQL_USER: root
+#     MYSQL_ENV_MYSQL_PASSWORD: password
+#   volumes:
+#     - .:/usr/src/app
+#   links:
+#     - mysql:mysql
+#     - postgres:postgres
+#     - cassandra:cassandra
