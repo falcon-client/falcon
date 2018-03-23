@@ -6,11 +6,7 @@
 git clone https://github.com/amilajack/falcon-ui-rewrite.git
 cd falcon-ui-rewrite
 yarn
+lerna bootstrap
+lerna run build
 yarn dev
 ```
-
-## Roadmap
-- [x] Content Page
-- [x] Login Page
-- [ ] Structure Page
-- [ ] Query Page

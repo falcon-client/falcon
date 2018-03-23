@@ -1,0 +1,31 @@
+{
+  "name": "@falcon-client/react-clipboard.js",
+  "version": "0.0.1",
+  "description": "Clipboard.js wrapper for React",
+  "scripts": {
+    "build": ""
+  },
+  "keywords": [
+    "clipboard",
+    "react",
+    "react-component"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nihey/react-clipboard.js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nihey/react-clipboard.js/issues"
+  },
+  "author": "Nihey Takizawa <nihey.takizawa@gmail.com>",
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=15.5.0"
+  },
+  "dependencies": {
+    "@falcon-client/graphql-voyager": "^0.0.1",
+    "@falcon-client/svg-pan-zoom": "^3.5.3",
+    "clipboard": "^1.6.1",
+    "prop-types": "^15.5.0"
+  }
+}

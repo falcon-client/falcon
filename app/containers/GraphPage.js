@@ -1,33 +1,38 @@
+// @flow
 import React from 'react';
-import { Voyager } from 'graphql-voyager/dist/voyager';
-import { db } from 'falcon-core';
-import path from 'path';
-import os from 'os';
+import { Voyager } from '@falcon-client/graphql-voyager';
 
-const serverInfo = {
-  database: path.join(os.homedir(), 'Desktop/demo.sqlite'),
-  client: 'sqlite'
+type Props = {
+  databasePath: string,
+  connection?: ?Object
 };
 
-export default function GraphPage() {
+export default function GraphPage(props: Props) {
+  async function introspectionProvider(query) {
+    try {
+      await props.connection.startGraphQLServer();
+    } catch (e) {
+      console.log(e);
+    }
+    return fetch(
+      `http://localhost:${props.connection.getGraphQLServerPort()}/graphql`,
+      {
+        method: 'post',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query })
+      }
+    ).then(response => response.json());
+  }
+
+  const worker = import('worker-loader!@falcon-client/graphql-voyager/es/worker.js').then(
+    VoyagerWorker => new VoyagerWorker()
+  );
+
   return (
     <Voyager
+      className="Graph"
       introspection={introspectionProvider}
-      workerURI="https://unpkg.com/voyager-worker-test@1.0.0/index.js"
+      workerURI={worker}
     />
   );
-}
-
-async function introspectionProvider(query) {
-  const serverSession = db.createServer(serverInfo);
-  const connection = await serverSession.createConnection(serverInfo.database);
-  await connection.connect(serverInfo);
-
-  await connection.startGraphQLServer();
-
-  return fetch(`http://localhost:${connection.getGraphQLServerPort()}/graphql`, {
-    method: 'post',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ query }),
-  }).then(response => response.json());
 }

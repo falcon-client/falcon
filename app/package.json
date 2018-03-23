@@ -15,6 +15,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "falcon-core": "git+ssh://git@github.com:amilajack/falcon-core.git"
+    "falcon-core": "git+ssh://git@github.com:amilajack/falcon-core.git#add-es-support"
   }
 }

@@ -1,35 +1,84 @@
 // @flow
-import React from 'react';
-import { remote } from 'electron';
+import React, { Component } from 'react';
+import NProgress from 'nprogress';
 import ListSymbol from './ListSymbol';
 
-export default function Header() {
-  const shouldHideMargin =
-    remote.getCurrentWindow().isFullScreen() ||
-    process.platform !== 'darwin';
+type Props = {
+  databaseName?: ?string,
+  databaseType: string,
+  databaseVersion?: number | string,
+  isLoading: boolean,
+  selectedTable?: ?{
+    name: string
+  }
+};
 
-  return (
-    <div className="Header col-sm-12">
-      <div className="Header--container" style={{ marginLeft: shouldHideMargin ? '10px' : '80px' }}>
-        {/* @TODO: Create a separate breadcrumbs component  */}
-        <div className="Header--breadcrumb">
-          <ListSymbol type="connection" /> Falcon Test Database
+export default class Header extends Component<Props, {}> {
+  static defaultProps = {
+    databaseName: '',
+    selectedTable: {
+      name: ''
+    }
+  };
+
+  componentDidMount() {
+    NProgress.configure({
+      parent: '#falcon-status-bar-container',
+      showSpinner: false
+    });
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (this.props.isLoading !== newProps.isLoading) {
+      if (newProps.isLoading) {
+        NProgress.start();
+      } else {
+        NProgress.done();
+      }
+    }
+  }
+
+  render() {
+    const { props } = this;
+    const shouldHideMargin = false;
+    // @NOTE: Temporarily disabled for performance. fullscreen prop should be passed from parent
+    // import { remote } from 'electron';
+    // remote.getCurrentWindow().isFullScreen() || process.platform !== 'darwin';
+
+    return (
+      <div className="Header col-sm-12">
+        <div
+          className="Header--container"
+          style={{ marginLeft: shouldHideMargin ? '10px' : '80px' }}
+        >
+          {/* @TODO: Create a separate breadcrumbs component  */}
+          <div className="Header--breadcrumb">
+            <ListSymbol type="database" /> {props.databaseName || ''}
+          </div>
+          <div className="Header--breadcrumb">
+            <ListSymbol type="table" />{' '}
+            {props.selectedTable ? props.selectedTable.name : ''}
+          </div>
         </div>
-        <div className="Header--breadcrumb">
-          <ListSymbol type="database" /> falcon-db
+        <div
+          className="Header--container Header--container-status"
+          id="falcon-status-bar-container"
+        >
+          <span className="Connection">
+            <i className="ion-locked Connection--lock Connection--lock-secure" />{' '}
+            <a href="">Connected</a>
+          </span>
+          <span>
+            <a href="">
+              {props.databaseType} {props.databaseVersion || ''}
+            </a>
+          </span>
         </div>
-        <div className="Header--breadcrumb">
-          <ListSymbol type="table" /> Lorem
-         </div>
+        <div className="Header--container Header--container-hidden">
+          <div className="Header--button ion-android-refresh" />
+          <div className="Header--button ion-android-add" />
+        </div>
       </div>
-      <div className="Header--container Header--container-status" id="falcon-status-bar-container">
-        <span className="Connection"><i className="ion-locked Connection--lock Connection--lock-secure" /> <a href="">Connected</a></span>
-        <span><a href="">SQLite 3.1.6</a></span>
-      </div>
-      <div className="Header--container Header--container-hidden">
-        <div className="Header--button ion-android-refresh" />
-        <div className="Header--button ion-android-add" />
-      </div>
-    </div>
-  );
+    );
+  }
 }

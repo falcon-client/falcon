@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "module": "esnext",
+    "moduleResolution": "node",
+    "target": "esnext",
+    "noImplicitAny": false,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "sourceMap": true,
+    "outDir": "lib",
+    "pretty": true,
+    "lib": ["esnext"],
+    "jsx": "react"
+  },
+  "compileOnSave": false,
+  "exclude": ["node_modules", ".tmp", "dist", "demo-dist", "**/**/voyager.worker.js"],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "./manual-types.d.ts"],
+  "awesomeTypescriptLoaderOptions": {
+    "resolveGlobs": true,
+    "useWebpackText": true
+  }
+}

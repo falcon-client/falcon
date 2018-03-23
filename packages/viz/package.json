@@ -1,0 +1,39 @@
+{
+  "name": "@falcon-client/viz",
+  "version": "1.8.1",
+  "description": "A hack to put Graphviz on the web.",
+  "main": "viz.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mdaines/viz.js.git"
+  },
+  "keywords": [
+    "graphviz",
+    "emscripten"
+  ],
+  "files": [
+    "viz.js",
+    "viz-lite.js",
+    "index.d.ts"
+  ],
+  "browser": {
+    "fs": false,
+    "path": false,
+    "crypto": false
+  },
+  "author": "Mike Daines <mdaines@fastmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mdaines/viz.js/issues"
+  },
+  "homepage": "https://github.com/mdaines/viz.js",
+  "devDependencies": {
+    "minimist": "^1.2.0",
+    "selenium-webdriver": "^2.45.1",
+    "typescript": "^2.7.2"
+  },
+  "dependencies": {
+    "@falcon-client/graphql-voyager": "^0.0.1",
+    "@falcon-client/svg-pan-zoom": "^3.5.3"
+  }
+}

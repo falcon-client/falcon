@@ -10,7 +10,7 @@
  *
  * @flow
  */
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, protocol } from 'electron';
 import MenuBuilder from './menu';
 
 let mainWindow = null;
@@ -20,7 +20,10 @@ if (process.env.NODE_ENV === 'production') {
   sourceMapSupport.install();
 }
 
-if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
+if (
+  process.env.NODE_ENV === 'development' ||
+  process.env.DEBUG_PROD === 'true'
+) {
   require('electron-debug')();
   const path = require('path');
   const p = path.join(__dirname, '..', 'app', 'node_modules');
@@ -30,19 +33,17 @@ if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true')
 const installExtensions = async () => {
   const installer = require('electron-devtools-installer');
   const forceDownload = !!process.env.UPGRADE_EXTENSIONS;
-  const extensions = [
-    'REACT_DEVELOPER_TOOLS',
-    'REDUX_DEVTOOLS'
-  ];
+  const extensions = ['REACT_DEVELOPER_TOOLS', 'REDUX_DEVTOOLS'];
 
-  return Promise
-    .all(extensions.map(name => installer.default(installer[name], forceDownload)))
-    .catch(console.log);
+  return Promise.all(
+    extensions.map(name => installer.default(installer[name], forceDownload))
+  ).catch(console.log);
 };
 
-
-app.commandLine.appendSwitch('--enable-experimental-web-platform-features');
-
+// These don't really work :(
+// See this for all the flags: chrome://flags
+// app.commandLine.appendSwitch('--enable-gpu-rasterization', 'enabled');
+// app.commandLine.appendSwitch('--ignore-gpu-blacklist', 'enabled');
 
 /**
  * Add event listeners...
@@ -56,11 +57,15 @@ app.on('window-all-closed', () => {
   }
 });
 
-
 app.on('ready', async () => {
-  if (process.env.NODE_ENV === 'development' || process.env.DEBUG_PROD === 'true') {
+  if (
+    process.env.NODE_ENV === 'development' ||
+    process.env.DEBUG_PROD === 'true'
+  ) {
     await installExtensions();
   }
+
+  protocol.registerServiceWorkerSchemes(['file:']);
 
   mainWindow = new BrowserWindow({
     show: false,
@@ -69,6 +74,11 @@ app.on('ready', async () => {
     minWidth: 650,
     minHeight: 500,
     titleBarStyle: 'hiddenInset',
+    webPreferences: {
+      experimentalFeatures: true
+      // See here for options: https://cs.chromium.org/codesearch/f/chromium/src/third_party/WebKit/Source/platform/runtime_enabled_features.json5?cl=cbbf6d7ba09944355e52c1cad494d8963398dc62
+      // enableBlinkFeatures: ''
+    }
   });
 
   mainWindow.loadURL(`file://${__dirname}/app.html`);
@@ -80,7 +90,6 @@ app.on('ready', async () => {
       throw new Error('"mainWindow" is not defined');
     }
     mainWindow.show();
-    mainWindow.focus();
   });
 
   mainWindow.on('closed', () => {
