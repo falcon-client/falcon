@@ -15,7 +15,6 @@
   },
   "license": "MIT",
   "dependencies": {
-    "falcon-core": "git+ssh://git@github.com:amilajack/falcon-core.git#add-es-support",
-    "rndm": "^1.2.0"
+    "falcon-core": "git+ssh://git@github.com:amilajack/falcon-core.git#add-es-support"
   }
 }

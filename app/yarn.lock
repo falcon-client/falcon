@@ -496,7 +496,7 @@ extsprintf@^1.2.0:
 
 "falcon-core@git+ssh://git@github.com:amilajack/falcon-core.git#add-es-support":
   version "0.1.0-4"
-  resolved "git+ssh://git@github.com:amilajack/falcon-core.git#7968af3f5ca3cfcaaf0b039814b67b4ce2ce6c5b"
+  resolved "git+ssh://git@github.com:amilajack/falcon-core.git#17bfa629d79b54adb0b4b34587e9e6eb69b2b1d5"
   dependencies:
     better-sqlite3 "^4.1.0"
     cassandra-driver "^3.4.0"
@@ -513,6 +513,7 @@ extsprintf@^1.2.0:
     mysql "^2.15.0"
     pg "^7.4.1"
     portfinder "^1.0.13"
+    rndm "^1.2.0"
     sql-query-identifier "^1.1.0"
     sqlite-json-export "0.0.1"
     sqlite3 "^3.1.13"
