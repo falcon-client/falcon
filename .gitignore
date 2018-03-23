@@ -57,3 +57,4 @@ build-lite/
 prefix/
 prefix-lite/
 sources/
+.cache

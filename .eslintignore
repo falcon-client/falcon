@@ -62,3 +62,4 @@ viz-lite.js
 node_modules/
 packages/viz/src/boilerplate
 test-browser
+.cache

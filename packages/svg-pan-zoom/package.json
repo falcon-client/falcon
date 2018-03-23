@@ -7,12 +7,6 @@
   "browser": "src/browserify.js",
   "license": "BSD-2-Clause",
   "description": "JavaScript library for panning and zooming an SVG image from the mouse, touches and programmatically.",
-  "scripts": {
-    "build": "cross-env NODE_ENV=production rm -rf es && babel -d es/ src/ --source-maps",
-    "example": "http-server .",
-    "test": "npm run build",
-    "watch": "cross-env NODE_ENV=development babel --out-dir lib src --source-maps --watch"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/ariutta/svg-pan-zoom"

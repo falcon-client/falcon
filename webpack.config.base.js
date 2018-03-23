@@ -65,6 +65,14 @@ export default {
       '@falcon-client/react-clipboard.js': path.resolve(
         __dirname,
         'packages/react-clipboard.js'
+      ),
+      '@falcon-client/svg-pan-zoom': path.resolve(
+        __dirname,
+        'packages/svg-pan-zoom'
+      ),
+      '@falcon-client/svg-zoom': path.resolve(
+        __dirname,
+        'packages/svg-zoom'
       )
     }
   },

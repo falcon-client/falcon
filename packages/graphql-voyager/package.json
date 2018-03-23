@@ -60,6 +60,7 @@
   "dependencies": {
     "@f/animate": "^1.0.1",
     "@falcon-client/react-clipboard.js": "^0.0.1",
+    "@falcon-client/svg-pan-zoom": "^3.5.3",
     "classnames": "^2.2.5",
     "clipboard": "^2.0.0",
     "commonmark": "^0.28.1",
@@ -71,8 +72,7 @@
     "react-toolbox": "^2.0.0-beta.12",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "reselect": "^3.0.1",
-    "svg-pan-zoom": "^3.5.3"
+    "reselect": "^3.0.1"
   },
   "repository": {
     "type": "git",

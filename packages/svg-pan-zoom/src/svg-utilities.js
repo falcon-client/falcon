@@ -41,8 +41,8 @@ export default {
 
     // Check if there is just one main group in SVG
     if (!viewport) {
-      const childNodes = Array.prototype.slice
-        .call(svg.childNodes || svg.children)
+      const childNodes = Array
+        .from(svg.childNodes || svg.children)
         .filter(el => el.nodeName !== 'defs' && el.nodeName !== '#text');
 
       // Node name should be SVGGElement and should have no transform attribute
@@ -106,7 +106,7 @@ export default {
     // Needed for Internet Explorer, otherwise the viewport overflows
     if (svg.parentNode !== null) {
       const style = svg.getAttribute('style') || '';
-      if (style.toLowerCase().indexOf('overflow') === -1) {
+      if (!style.toLowerCase().includes('overflow')) {
         svg.setAttribute('style', `overflow: hidden; ${style}`);
       }
     }

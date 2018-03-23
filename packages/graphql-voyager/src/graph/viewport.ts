@@ -1,5 +1,6 @@
 import _ from 'lodash';
-import svgPanZoom from 'svg-pan-zoom/src/svg-pan-zoom';
+// import svgPanZoom from 'svg-pan-zoom/src/svg-pan-zoom';
+import svgPanZoom from '@falcon-client/svg-pan-zoom';
 import animate from '@f/animate';
 
 import * as Actions from '../actions';

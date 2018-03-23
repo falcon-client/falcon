@@ -31,5 +31,9 @@
     "minimist": "^1.2.0",
     "selenium-webdriver": "^2.45.1",
     "typescript": "^2.7.2"
+  },
+  "dependencies": {
+    "@falcon-client/graphql-voyager": "^0.0.1",
+    "@falcon-client/svg-pan-zoom": "^3.5.3"
   }
 }

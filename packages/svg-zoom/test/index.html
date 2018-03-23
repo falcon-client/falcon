@@ -9,39 +9,16 @@
     <svg id="svg-zoom" width="960" height="500"></svg>
   </body>
   <script src="https://d3js.org/d3.v4.min.js"></script>
-  <!-- <script src="../lib/index.js"></script> -->
+  <script src="../src/index.js"></script>
   <script>
-    function SvgZoom(svgPath, targetSvgElementSelector) {
-      if (!(document.querySelector(targetSvgElementSelector) instanceof SVGElement)) {
-        throw new Error(`"${targetSvgElementSelector}" does not select an SVG element`);
-      }
-
-      const svg = d3.select(targetSvgElementSelector);
-      const width = +svg.attr('width');
-      const height = +svg.attr('height');
-      const g = svg.append('g');
-
-      d3.xml(svgPath).mimeType('image/svg+xml').get((error, xml) => {
-        if (error) {
-          console.log(error);
-        } else {
-          const svgElement = document.body.appendChild(xml.documentElement);
-          g.append(() => svgElement);
-
-          svg.append('rect')
-            .attr('fill', 'none')
-            .attr('pointer-events', 'all')
-            .attr('width', width)
-            .attr('height', height)
-            .call(d3.zoom()
-              .scaleExtent([1, 8])
-              .on('zoom', () => {
-                g.attr('transform', d3.event.transform);
-              }));
-        }
-      });
-    }
-
-    SvgZoom('example.svg', '#svg-zoom')
+    const url = 'https://raw.githubusercontent.com/amilajack/svg-zoom/master/test/example.svg';
+    const instance =
+      new SvgPanZoom(url, '#svg-zoom');
+    setTimeout(() => {
+      instance.translate();
+      setTimeout(() => {
+        instance.zoom(2);
+      }, 3000);
+    }, 3000);
   </script>
 </html>

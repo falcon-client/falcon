@@ -68,7 +68,7 @@ class ChromeTabs {
   }
 
   get tabEls() {
-    return Array.prototype.slice.call(this.el.querySelectorAll('.chrome-tab'));
+    return Array.from(this.el.querySelectorAll('.chrome-tab'));
   }
 
   get tabContentEl() {

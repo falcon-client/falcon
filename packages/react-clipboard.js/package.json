@@ -23,6 +23,8 @@
     "react": ">=15.5.0"
   },
   "dependencies": {
+    "@falcon-client/graphql-voyager": "^0.0.1",
+    "@falcon-client/svg-pan-zoom": "^3.5.3",
     "clipboard": "^1.6.1",
     "prop-types": "^15.5.0"
   }
