@@ -43,13 +43,18 @@ class SvgPanZoom {
     SvgUtils.setupSvgAttributes(this.svg);
 
     // Set options
-    this.options = Utils.extend(Utils.extend({}, this.optionsDefaults), options);
+    this.options = Utils.extend(
+      Utils.extend({}, this.optionsDefaults),
+      options
+    );
 
     // Set default state
     this.state = 'none';
 
     // Get dimensions
-    const boundingClientRectNormalized = SvgUtils.getBoundingClientRectNormalized(svg);
+    const boundingClientRectNormalized = SvgUtils.getBoundingClientRectNormalized(
+      svg
+    );
     this.width = boundingClientRectNormalized.width;
     this.height = boundingClientRectNormalized.height;
 
@@ -270,7 +275,10 @@ class SvgPanZoom {
 
     const inversedScreenCTM = this.svg.getScreenCTM().inverse(); // multiplying by neg. 1 so as to make zoom in/out behavior match Google maps behavior
 
-    const relativeMousePoint = SvgUtils.getEventPoint(evt, this.svg).matrixTransform(inversedScreenCTM);
+    const relativeMousePoint = SvgUtils.getEventPoint(
+      evt,
+      this.svg
+    ).matrixTransform(inversedScreenCTM);
 
     const zoom = (1 + this.options.zoomScaleSensitivity) ** (-1 * delta);
 
@@ -463,7 +471,9 @@ class SvgPanZoom {
       zoomFactor = (1 + this.options.zoomScaleSensitivity) * 2;
     }
 
-    const point = SvgUtils.getEventPoint(evt, this.svg).matrixTransform(this.svg.getScreenCTM().inverse());
+    const point = SvgUtils.getEventPoint(evt, this.svg).matrixTransform(
+      this.svg.getScreenCTM().inverse()
+    );
     this.zoomAtPoint(zoomFactor, point);
   }
 
@@ -490,7 +500,9 @@ class SvgPanZoom {
       // Pan mode
       this.state = 'pan';
       this.firstEventCTM = this.viewport.getCTM();
-      this.stateOrigin = SvgUtils.getEventPoint(evt, this.svg).matrixTransform(this.firstEventCTM.inverse());
+      this.stateOrigin = SvgUtils.getEventPoint(evt, this.svg).matrixTransform(
+        this.firstEventCTM.inverse()
+      );
     }
   }
 
@@ -510,7 +522,9 @@ class SvgPanZoom {
 
     if (this.state === 'pan' && this.options.panEnabled) {
       // Pan mode
-      const point = SvgUtils.getEventPoint(evt, this.svg).matrixTransform(this.firstEventCTM.inverse());
+      const point = SvgUtils.getEventPoint(evt, this.svg).matrixTransform(
+        this.firstEventCTM.inverse()
+      );
 
       const viewportCTM = this.firstEventCTM.translate(
         point.x - this.stateOrigin.x,
@@ -600,7 +614,7 @@ class SvgPanZoom {
    *
    * @param  {Object} point {x: 0, y: 0}
    */
-  pan({x, y}) {
+  pan({ x, y }) {
     const viewportCTM = this.viewport.getCTM();
     viewportCTM.e = x;
     viewportCTM.f = y;
@@ -612,7 +626,7 @@ class SvgPanZoom {
    *
    * @param  {Object} point {x: 0, y: 0}
    */
-  panBy({x, y}) {
+  panBy({ x, y }) {
     const viewportCTM = this.viewport.getCTM();
     viewportCTM.e += x;
     viewportCTM.f += y;
@@ -635,7 +649,9 @@ class SvgPanZoom {
    */
   resize() {
     // Get dimensions
-    const boundingClientRectNormalized = SvgUtils.getBoundingClientRectNormalized(this.svg);
+    const boundingClientRectNormalized = SvgUtils.getBoundingClientRectNormalized(
+      this.svg
+    );
     this.width = boundingClientRectNormalized.width;
     this.height = boundingClientRectNormalized.height;
 
@@ -694,7 +710,7 @@ class SvgPanZoom {
     this.reset();
 
     // Remove instance from instancesStore
-    instancesStore = instancesStore.filter(({svg}) => svg !== that.svg);
+    instancesStore = instancesStore.filter(({ svg }) => svg !== that.svg);
 
     // Delete options and its contents
     delete this.options;

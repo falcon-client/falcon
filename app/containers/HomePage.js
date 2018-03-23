@@ -32,6 +32,10 @@ const GraphPage = Loadable({
   loader: () => import('./GraphPage'),
   loading: () => <div>Loading...</div>
 });
+const LogPage = Loadable({
+  loader: () => import('./LogPage'),
+  loading: () => <div>Loading...</div>
+});
 
 type Props = {
   location: {
@@ -50,6 +54,7 @@ type State = {
   activeConnections: Array<connectionType>,
   connections: Array<connectionType>,
   isLoading: boolean,
+  logs: Array<{ query: string, time: string, duration: string }>,
   tables: Array<{
     name: string
   }>
@@ -72,6 +77,7 @@ export default class HomePage extends Component<Props, State> {
     tableColumns: [],
     tableDefinition: '',
     rows: [],
+    logs: [],
     activeConnections: [],
     connections: [],
     isLoading: true
@@ -96,9 +102,11 @@ export default class HomePage extends Component<Props, State> {
    * @TODO: Since supporting just SQLite, getDatabases will only return 1 db
    */
   getInitialViewData = async () => {
-    const [databases, tableNames, databaseVersion] = await Promise.all([
+    const [databases, tableNames, databaseVersion, logs] = await Promise.all([
       this.core.connection.listDatabases(),
-      this.core.connection.listTables()
+      this.core.connection.listTables(),
+      this.core.connection.getVersion(),
+      this.core.connection.getLogs()
     ]);
     const selectedTable = this.state.selectedTable || {
       name: tableNames[0].name
@@ -107,9 +115,16 @@ export default class HomePage extends Component<Props, State> {
 
     await this.onTableSelect(selectedTable);
 
+    this.getLogsInterval = setInterval(async () => {
+      this.setState({
+        logs: await this.core.connection.getLogs()
+      });
+    }, 1000);
+
     this.setState({
       databaseName,
       selectedTable,
+      logs,
       databaseVersion,
       isLoading: false,
       tables: tableNames
@@ -239,7 +254,12 @@ export default class HomePage extends Component<Props, State> {
       StructurePage.preload();
       QueryPage.preload();
       GraphPage.preload();
+      LogPage.preload();
     });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.getLogsInterval);
   }
 
   render() {
@@ -346,6 +366,12 @@ export default class HomePage extends Component<Props, State> {
                         />
                       ) : null
                     }
+                  />
+                  <Route
+                    exact
+                    strict
+                    path="/logs"
+                    render={() => <LogPage logs={this.state.logs} />}
                   />
                 </Switch>
               </div>

@@ -77,7 +77,9 @@ export default {
         element = document.querySelector(elementOrSelector);
 
         if (!element) {
-          throw new Error(`Provided selector did not find any elements. Selector: ${elementOrSelector}`);
+          throw new Error(
+            `Provided selector did not find any elements. Selector: ${elementOrSelector}`
+          );
           return null;
         }
       } else {
@@ -96,7 +98,9 @@ export default {
       svg = element.getSVGDocument().documentElement;
     } else {
       if (element.tagName.toLowerCase() === 'img') {
-        throw new Error('Cannot script an SVG in an "img" element. Please use an "object" element or an in-line SVG.');
+        throw new Error(
+          'Cannot script an SVG in an "img" element. Please use an "object" element or an in-line SVG.'
+        );
       } else {
         throw new Error('Cannot get SVG.');
       }
@@ -113,7 +117,7 @@ export default {
    * @return {Function}           Function with certain context
    */
   proxy(fn, context) {
-    return function () {
+    return function() {
       return fn.apply(context, arguments);
     };
   },
@@ -183,10 +187,12 @@ export default {
     } else if (prevEvt !== void 0 && prevEvt !== null) {
       // Try to compare events
       const // should be lower than 250 ms
-        timeStampDiff = evt.timeStamp - prevEvt.timeStamp;
+      timeStampDiff = evt.timeStamp - prevEvt.timeStamp;
 
-      const touchesDistance = Math.sqrt((evt.clientX - prevEvt.clientX) ** 2 +
-          (evt.clientY - prevEvt.clientY) ** 2);
+      const touchesDistance = Math.sqrt(
+        (evt.clientX - prevEvt.clientX) ** 2 +
+          (evt.clientY - prevEvt.clientY) ** 2
+      );
 
       return timeStampDiff < 250 && touchesDistance < 10;
     }
@@ -200,9 +206,7 @@ export default {
    *
    * @return {Number}
    */
-  now:
-    Date.now ||
-    (() => new Date().getTime()),
+  now: Date.now || (() => new Date().getTime()),
 
   // From underscore.
   // Returns a function, that, when invoked, will only be triggered at most once
@@ -226,7 +230,7 @@ export default {
       result = func.apply(context, args);
       if (!timeout) context = args = null;
     };
-    return function () {
+    return function() {
       const now = that.now();
       if (!previous && options.leading === false) previous = now;
       const remaining = wait - (now - previous);
@@ -275,7 +279,7 @@ export default {
  * @return {Function}
  */
 function requestTimeout(timeout) {
-  return (callback) => {
+  return callback => {
     window.setTimeout(callback, timeout);
   };
 }

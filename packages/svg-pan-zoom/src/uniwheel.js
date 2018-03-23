@@ -32,7 +32,7 @@ export default (function uniwhel() {
         : 'DOMMouseScroll'; // let's assume that remaining browsers are older Firefox
 
   function createCallback(element, callback, capture) {
-    const fn = (originalEvent) => {
+    const fn = originalEvent => {
       !originalEvent && (originalEvent = window.event);
 
       // create a normalized event object
@@ -139,4 +139,4 @@ export default (function uniwhel() {
     on: addWheelListener,
     off: removeWheelListener
   };
-}());
+})();

@@ -2,7 +2,7 @@ import SvgUtils from './svg-utilities';
 import Utils from './utilities';
 
 class ShadowViewport {
-  pendingUpdate = false
+  pendingUpdate = false;
 
   constructor(viewport, options) {
     this.init(viewport, options);
@@ -26,11 +26,16 @@ class ShadowViewport {
     this.updateCTMCached = Utils.proxy(this.updateCTM, this);
 
     // Create a custom requestAnimationFrame taking in account refreshRate
-    this.requestAnimationFrame = Utils.createRequestAnimationFrame(this.options.refreshRate);
+    this.requestAnimationFrame = Utils.createRequestAnimationFrame(
+      this.options.refreshRate
+    );
 
     // ViewBox
     this.viewBox = {
-      x: 0, y: 0, width: 0, height: 0
+      x: 0,
+      y: 0,
+      width: 0,
+      height: 0
     };
     this.cacheViewBox();
 
@@ -71,7 +76,8 @@ class ShadowViewport {
       // Update active state
       this.activeState.zoom = zoom;
       this.activeState.x = (this.options.width - this.viewBox.width * zoom) / 2;
-      this.activeState.y = (this.options.height - this.viewBox.height * zoom) / 2;
+      this.activeState.y =
+        (this.options.height - this.viewBox.height * zoom) / 2;
 
       // Force updating CTM
       this.updateCTMOnNextFrame();
@@ -263,7 +269,7 @@ class ShadowViewport {
         });
 
         let // If prevent pan is an object
-          preventPanX = false;
+        preventPanX = false;
 
         let preventPanY = false;
 
@@ -313,11 +319,11 @@ class ShadowViewport {
     }
   }
 
-  isZoomDifferent({a}) {
+  isZoomDifferent({ a }) {
     return this.activeState.zoom !== a;
   }
 
-  isPanDifferent({e, f}) {
+  isPanDifferent({ e, f }) {
     return this.activeState.x !== e || this.activeState.y !== f;
   }
 
@@ -326,7 +332,7 @@ class ShadowViewport {
    *
    * @param {SVGMatrix} newCTM
    */
-  updateCache({a, e, f}) {
+  updateCache({ a, e, f }) {
     this.activeState.zoom = a;
     this.activeState.x = e;
     this.activeState.y = f;
@@ -364,6 +370,6 @@ class ShadowViewport {
   }
 }
 
-export default function (viewport, options) {
+export default function(viewport, options) {
   return new ShadowViewport(viewport, options);
 }

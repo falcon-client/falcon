@@ -15,7 +15,7 @@ const footerButton = 'FooterButton';
 const footerStyles = {
   // display: 'flex',
   // justifyContent: 'space-between'
-}
+};
 
 export default function Footer(props: Props) {
   return (
@@ -45,7 +45,10 @@ export default function Footer(props: Props) {
           <Link to="/structure">Structure</Link>
         </div>
       </div>
-      <div className="FooterButtonContainer" style={{ ...footerStyles,left: props.offset  }}>
+      <div
+        className="FooterButtonContainer"
+        style={{ ...footerStyles, left: props.offset }}
+      >
         <div
           className={
             props.pathname === '/query' ? activeFooterButton : footerButton
@@ -60,7 +63,11 @@ export default function Footer(props: Props) {
         >
           <Link to="/graph">Graph</Link>
         </div>
-        <div className="FooterButton">
+        <div
+          className={
+            props.pathname === '/logs' ? activeFooterButton : footerButton
+          }
+        >
           <Link to="/logs">Logs</Link>
         </div>
       </div>

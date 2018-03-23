@@ -41,9 +41,9 @@ export default {
 
     // Check if there is just one main group in SVG
     if (!viewport) {
-      const childNodes = Array
-        .from(svg.childNodes || svg.children)
-        .filter(el => el.nodeName !== 'defs' && el.nodeName !== '#text');
+      const childNodes = Array.from(svg.childNodes || svg.children).filter(
+        el => el.nodeName !== 'defs' && el.nodeName !== '#text'
+      );
 
       // Node name should be SVGGElement and should have no transform attribute
       // Groups with transform are not used as viewport because it involves parsing of all transform possibilities
@@ -147,9 +147,9 @@ export default {
   setCTM(element, matrix, defs) {
     const that = this;
 
-    const s = `matrix(${matrix.a},${matrix.b},${matrix.c},${matrix.d},${matrix.e},${
-      matrix.f
-    })`;
+    const s = `matrix(${matrix.a},${matrix.b},${matrix.c},${matrix.d},${
+      matrix.e
+    },${matrix.f})`;
 
     element.setAttributeNS(null, 'transform', s);
     if ('transform' in element.style) {
