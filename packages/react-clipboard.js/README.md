@@ -15,10 +15,10 @@ $ npm i --save react-clipboard.js
 # Usage
 You can use `clipboard.js` original `data-*` attributes:
 ```javascript
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Clipboard from 'react-clipboard.js';
 
-class MyView extends Component {
+class MyView extends PureComponent {
   render() {
     return (
       <Clipboard data-clipboard-text="I'll be copied">
@@ -36,10 +36,10 @@ React.render(<MyView/>, document.getElementById('app'));
 
 - callbacks will be connected via `on*` attributes (such as onSuccess)
 ```javascript
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Clipboard from 'react-clipboard.js';
 
-class MyView extends Component {
+class MyView extends PureComponent {
   constructor() {
     super();
 
@@ -78,10 +78,10 @@ React.render(<MyView/>, document.getElementById('app'));
 
 Custom HTML tags may be used as well:
 ```javascript
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Clipboard from 'react-clipboard.js';
 
-class MyView extends Component {
+class MyView extends PureComponent {
   render() {
     // Clipboard is now rendered as an '<a>'
     return (
@@ -96,10 +96,10 @@ class MyView extends Component {
 
 Default html properties may be passed with the `button-*` pattern:
 ```javascript
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Clipboard from 'react-clipboard.js';
 
-class MyView extends Component {
+class MyView extends PureComponent {
   render() {
     return (
       <Clipboard data-clipboard-text="I'll be copied" button-title="I'm a tooltip">

@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { remote, ipcRenderer } from 'electron';
 import { connect } from 'react-redux';
 import { OPEN_FILE_CHANNEL } from '../types/channels';
@@ -25,7 +25,7 @@ type State = {
   errorMessages: Array<string>
 };
 
-class Login extends Component<Props, State> {
+class Login extends PureComponent<Props, State> {
   state = {
     connectionName: '',
     databasePath: '',

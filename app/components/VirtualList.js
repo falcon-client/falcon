@@ -1,6 +1,6 @@
 // @flow
 /* eslint no-bitwise: 0, no-mixed-operators: 0 */
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
 const styleInner = {
   position: 'relative',
@@ -44,7 +44,7 @@ type State = {
  *			sync
  *		/>
  */
-export default class VirtualList extends Component<Props, State> {
+export default class VirtualList extends PureComponent<Props, State> {
   static defaultProps = {
     sync: false
   };

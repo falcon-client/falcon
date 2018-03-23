@@ -1,8 +1,8 @@
 // @flow
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Login from '../components/Login';
 
-export default class LoginPage extends Component {
+export default class LoginPage extends PureComponent {
   render() {
     return (
       <Login

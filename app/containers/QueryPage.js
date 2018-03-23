@@ -1,5 +1,5 @@
 // @flow
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { ResizableBox } from 'react-resizable';
 import debounce from 'lodash/debounce';
 import Editor from '../components/Editor';
@@ -17,7 +17,7 @@ type State = {
   rows: Array<Object>
 };
 
-export default class QueryPage extends Component<Props, State> {
+export default class QueryPage extends PureComponent<Props, State> {
   state = {
     queryHeight: (window.innerHeight - 40) / 2,
     queryResultsHeight: (window.innerHeight - 40) / 2 - 40,

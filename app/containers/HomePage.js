@@ -1,6 +1,6 @@
 // @flow
 import path from 'path';
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { ResizableBox } from 'react-resizable';
 import { ipcRenderer } from 'electron';
 import { Switch, Route } from 'react-router';
@@ -60,7 +60,7 @@ type State = {
   }>
 };
 
-export default class HomePage extends Component<Props, State> {
+export default class HomePage extends PureComponent<Props, State> {
   core: Database;
 
   state = {
