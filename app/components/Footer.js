@@ -60,6 +60,9 @@ export default function Footer(props: Props) {
         >
           <Link to="/graph">Graph</Link>
         </div>
+        <div className="FooterButton">
+          <Link to="/logs">Logs</Link>
+        </div>
       </div>
     </div>
   );

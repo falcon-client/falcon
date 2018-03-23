@@ -13,9 +13,5 @@
     "electron-rebuild": "node -r babel-register ../internals/scripts/ElectronRebuild.js",
     "postinstall": "npm run electron-rebuild"
   },
-  "license": "MIT",
-  "dependencies": {
-    "falcon-core": "git+ssh://git@github.com:amilajack/falcon-core.git",
-    "rndm": "^1.2.0"
-  }
+  "license": "MIT"
 }

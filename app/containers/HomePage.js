@@ -185,8 +185,8 @@ export default class HomePage extends Component<Props, State> {
    */
   async componentDidMount() {
     const [a, b] = await Promise.all([
-      import('falcon-core/lib/database/provider_clients/SqliteProviderFactory'),
-      import('falcon-core/lib/config/ConnectionManager')
+      import('@falcon-client/falcon-core/es/database/provider_clients/SqliteProviderFactory'),
+      import('@falcon-client/falcon-core/es/config/ConnectionManager')
     ]);
 
     const { default: SqliteProviderFactory } = a;
