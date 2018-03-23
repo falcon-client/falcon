@@ -11,7 +11,7 @@ if (
   fs.existsSync(nodeModulesPath)
 ) {
   const electronRebuildCmd =
-    '../node_modules/.bin/electron-rebuild --parallel --force --types prod,dev,optional --module-dir falcon-core';
+    '../node_modules/.bin/electron-rebuild --parallel --force --types prod,dev,optional --module-dir .';
 
   const cmd =
     process.platform === 'win32'
@@ -19,7 +19,7 @@ if (
       : electronRebuildCmd;
 
   execSync(cmd, {
-    cwd: path.join(__dirname, '..', '..', 'packages'),
+    cwd: path.join(__dirname, '..', '..', 'app'),
     stdio: 'inherit'
   });
 }

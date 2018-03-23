@@ -12,6 +12,7 @@ export default {
     ...Object.keys(externals || {}),
     'pg-native',
     'sqlite3',
+    // '@falcon-client/falcon-core',
     'better-sqlite',
     'pg-hstore',
     'bindings'
