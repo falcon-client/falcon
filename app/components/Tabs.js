@@ -1,5 +1,5 @@
 /* eslint-disable */
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import Draggabilly from 'draggabilly';
 
 const tabTemplate = `
@@ -277,7 +277,7 @@ class ChromeTabs {
   }
 }
 
-export default class Tab extends PureComponent {
+export default class Tab extends Component {
   componentDidMount() {
     setTimeout(() => {
       const el = document.querySelector('.chrome-tabs');

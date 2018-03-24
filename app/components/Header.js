@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import NProgress from 'nprogress';
 import ListSymbol from './ListSymbol';
 
@@ -13,7 +13,7 @@ type Props = {
   }
 };
 
-export default class Header extends PureComponent<Props, {}> {
+export default class Header extends Component<Props, {}> {
   static defaultProps = {
     databaseName: '',
     selectedTable: {

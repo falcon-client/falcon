@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import VirtualList from './VirtualList';
 import type { TableType } from '../types/TableType';
 
@@ -7,7 +7,7 @@ type Props = {
   table: TableType
 };
 
-export default class Content extends PureComponent<Props, {}> {
+export default class Content extends Component<Props, {}> {
   rowHeight = 30;
 
   state = {

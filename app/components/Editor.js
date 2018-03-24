@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import AceEditor from 'react-ace';
 import 'brace';
 import 'brace/mode/sql';
@@ -12,7 +12,7 @@ type Props = {
   sql: string
 };
 
-export default class Editor extends PureComponent<Props, {}> {
+export default class Editor extends Component<Props, {}> {
   props: Props;
 
   render() {

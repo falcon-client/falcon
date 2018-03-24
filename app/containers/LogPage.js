@@ -1,11 +1,11 @@
 // @flow
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import ReactTable from 'react-table';
 
 /**
  * @TOOD: Migrate to react-virtualized for faster row rendering
  */
-export default class LogPage extends PureComponent {
+export default class LogPage extends Component {
   props: {
     logs: Array<logType>
   };

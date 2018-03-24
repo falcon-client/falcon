@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import Select from 'react-select';
 import _ from 'lodash';
@@ -45,7 +45,7 @@ type State = {
   tableColumns: ?TableColumnType
 };
 
-export default class StructurePage extends PureComponent<Props, State> {
+export default class StructurePage extends Component<Props, State> {
   state = {
     tableColumns: []
   };
