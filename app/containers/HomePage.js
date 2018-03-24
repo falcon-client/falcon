@@ -115,11 +115,13 @@ export default class HomePage extends Component<Props, State> {
 
     await this.onTableSelect(selectedTable);
 
-    this.getLogsInterval = setInterval(async () => {
-      this.setState({
-        logs: await this.core.connection.getLogs()
-      });
-    }, 1000);
+    this.getLogsInterval = setInterval(() => {
+      this.core.connection.getLogs().then(logs => {
+        this.setState({
+          logs
+        });
+      })
+    }, 5000);
 
     this.setState({
       databaseName,
@@ -302,6 +304,7 @@ export default class HomePage extends Component<Props, State> {
                   onTableSelect={this.onTableSelect}
                   onConnectionSelect={this.onConnectionSelect}
                   selectedTable={this.state.selectedTable}
+                  selectedConnection={this.state.selectedConnection}
                   connections={this.state.connections}
                   activeConnections={this.state.activeConnections}
                 />
