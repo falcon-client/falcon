@@ -162,6 +162,15 @@ export default class HomePage extends Component<Props, State> {
   };
 
   onConnectionSelect = async (selectedConnection: connectionType) => {
+    const a = await import('falcon-core/es/database/provider_clients/SqliteProviderFactory');
+    const { default: SqliteProviderFactory } = a;
+
+    this.core.connection = await SqliteProviderFactory(
+      selectedConnection,
+      selectedConnection
+    );
+    this.state.selectedTable = undefined;
+    await this.getInitialViewData();
     this.setState({
       selectedConnection
     });
@@ -268,6 +277,7 @@ export default class HomePage extends Component<Props, State> {
         <div className="row">
           <div className="sticky">
             <Header
+              history={this.props.history}
               isLoading={this.state.isLoading}
               selectedTable={this.state.selectedTable}
               databaseType={this.state.databaseType}
@@ -310,7 +320,13 @@ export default class HomePage extends Component<Props, State> {
                     strict
                     path="/login"
                     render={() => (
-                      <LoginPage connectionManager={this.connectionManager} />
+                      <LoginPage
+                        connectionManager={this.connectionManager}
+                        onSuccess={() => {
+                          this.setConnections();
+                          this.props.history.push('/content');
+                        }}
+                      />
                     )}
                   />
                   <Route

@@ -23,6 +23,12 @@ export default class LogPage extends Component {
   ];
 
   render() {
-    return <ReactTable className="LogPage" data={this.props.logs} columns={this.columns} />;
+    return (
+      <ReactTable
+        className="LogPage"
+        data={this.props.logs}
+        columns={this.columns}
+      />
+    );
   }
 }

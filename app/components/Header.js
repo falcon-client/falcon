@@ -76,7 +76,10 @@ export default class Header extends Component<Props, {}> {
         </div>
         <div className="Header--container Header--container-hidden">
           <div className="Header--button ion-android-refresh" />
-          <div className="Header--button ion-android-add" />
+          <div
+            className="Header--button ion-android-add"
+            onClick={() => this.props.history.push('/login')}
+          />
         </div>
       </div>
     );

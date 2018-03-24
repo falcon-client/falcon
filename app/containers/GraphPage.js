@@ -15,7 +15,7 @@ export default class GraphPage extends Component {
   }
 
   render() {
-    const {  props} = this;
+    const { props } = this;
     const worker = import('worker-loader!@falcon-client/graphql-voyager/es/worker.js').then(
       VoyagerWorker => new VoyagerWorker()
     );
