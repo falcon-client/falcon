@@ -51,17 +51,17 @@ export default class MenuBuilder {
 
   buildDarwinTemplate() {
     const subMenuAbout = {
-      label: 'Electron',
+      label: 'Falcon',
       submenu: [
         {
-          label: 'About ElectronReact',
+          label: 'About Falcon',
           selector: 'orderFrontStandardAboutPanel:'
         },
         { type: 'separator' },
         { label: 'Services', submenu: [] },
         { type: 'separator' },
         {
-          label: 'Hide ElectronReact',
+          label: 'Hide Falcon',
           accelerator: 'Command+H',
           selector: 'hide:'
         },
@@ -167,13 +167,6 @@ export default class MenuBuilder {
             this.mainWindow.setFullScreen(!this.mainWindow.isFullScreen());
           }
         }
-        // {
-        //   label: 'Toggle Developer Tools',
-        //   accelerator: 'Alt+Command+I',
-        //   click: () => {
-        //     this.mainWindow.toggleDevTools();
-        //   }
-        // }
       ]
     };
     const subMenuViewProd = {
@@ -253,27 +246,25 @@ export default class MenuBuilder {
         {
           label: 'Learn More',
           click() {
-            shell.openExternal('http://electron.atom.io');
+            shell.openExternal('https://github.com/amilajack/falcon');
           }
         },
         {
           label: 'Documentation',
           click() {
-            shell.openExternal(
-              'https://github.com/atom/electron/tree/master/docs#readme'
-            );
+            shell.openExternal('https://github.com/amilajack/falcon#readme');
           }
         },
         {
           label: 'Community Discussions',
           click() {
-            shell.openExternal('https://discuss.atom.io/c/electron');
+            shell.openExternal('https://github.com/amilajack/falcon/issues');
           }
         },
         {
           label: 'Search Issues',
           click() {
-            shell.openExternal('https://github.com/atom/electron/issues');
+            shell.openExternal('https://github.com/amilajack/falcon/issues');
           }
         }
       ]
@@ -335,13 +326,6 @@ export default class MenuBuilder {
                     );
                   }
                 }
-                // {
-                //   label: 'Toggle &Developer Tools',
-                //   accelerator: 'Alt+Ctrl+I',
-                //   click: () => {
-                //     this.mainWindow.toggleDevTools();
-                //   }
-                // }
               ]
             : [
                 {
@@ -361,27 +345,25 @@ export default class MenuBuilder {
           {
             label: 'Learn More',
             click() {
-              shell.openExternal('http://electron.atom.io');
+              shell.openExternal('https://github.com/amilajack/falcon');
             }
           },
           {
             label: 'Documentation',
             click() {
-              shell.openExternal(
-                'https://github.com/atom/electron/tree/master/docs#readme'
-              );
+              shell.openExternal('https://github.com/amilajack/falcon#readme');
             }
           },
           {
             label: 'Community Discussions',
             click() {
-              shell.openExternal('https://discuss.atom.io/c/electron');
+              shell.openExternal('https://github.com/amilajack/falcon/issues');
             }
           },
           {
             label: 'Search Issues',
             click() {
-              shell.openExternal('https://github.com/atom/electron/issues');
+              shell.openExternal('https://github.com/amilajack/falcon/issues');
             }
           }
         ]
