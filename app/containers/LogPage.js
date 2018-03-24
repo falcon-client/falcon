@@ -2,9 +2,6 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 
-/**
- * @TOOD: Migrate to react-virtualized for faster row rendering
- */
 export default class LogPage extends Component {
   props: {
     logs: Array<logType>
@@ -26,6 +23,6 @@ export default class LogPage extends Component {
   ];
 
   render() {
-    return <ReactTable data={this.props.logs} columns={this.columns} />;
+    return <ReactTable className="LogPage" data={this.props.logs} columns={this.columns} />;
   }
 }
