@@ -84,11 +84,10 @@
     "url": "git+https://github.com/amilajack/falcon.git"
   },
   "author": {
-    "name": "C. T. Lin",
-    "email": "chentsulin@gmail.com",
-    "url": "https://github.com/chentsulin"
+    "name": "The Falcon Team",
+    "email": "amilajack@gmail.com",
+    "url": "https://github.com/falcon-client"
   },
-  "license": "MIT",
   "bugs": {
     "url": "https://github.com/amilajack/falcon/issues"
   },
@@ -233,7 +232,7 @@
   },
   "devEngines": {
     "node": ">=7.x",
-    "npm": ">=4.x",
+    "npm": ">=5.x",
     "yarn": ">=0.21.3"
   }
 }
