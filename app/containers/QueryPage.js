@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from 'react';
 import { ResizableBox } from 'react-resizable';
-import debounce from 'lodash/debounce';
 import Editor from '../components/Editor';
 import Content from '../components/Content';
 
@@ -25,24 +24,28 @@ export default class QueryPage extends Component<Props, State> {
     rows: []
   };
 
+  onInputChangeTimeoutId: number;
+
+  query = 'SELECT * FROM sqlite_master';
+
   item = null;
 
   didMount: boolean = false;
 
-  async onInputChange(query: string, self: QueryView) {
-    if (!self || !self.didMount) {
-      return;
-    }
-
+  setQuery(query: string) {
+    this.query = query;
     this.setState({ query });
+  }
 
+  async onInputChange(query: string, self: QueryPage) {
     try {
-      const queryResults = await this.props.executeQuery(this.state.query);
+      const queryResults = await self.props.executeQuery(query);
+      // @HACK: This should be abstracted to falcon-core
       const rows = queryResults[0].rows.map((value, index) => ({
         rowID: value[Object.keys(value)[index]],
         value: Object.values(value).filter(e => !(e instanceof Buffer))
       }));
-      this.setState({
+      self.setState({
         rows
       });
     } catch (error) {
@@ -99,7 +102,15 @@ export default class QueryPage extends Component<Props, State> {
         >
           <Editor
             sql={this.state.query}
-            onChange={debounce(e => this.onInputChange(e, this), 500)}
+            onChange={query => {
+              this.setQuery(query);
+              if (this.onInputChangeTimeoutId) {
+                clearTimeout(this.onInputChangeTimeoutId);
+              }
+              this.onInputChangeTimeoutId = setTimeout(() => {
+                this.onInputChange(query, this);
+              }, 500);
+            }}
           />
         </ResizableBox>
         <div style={{ height: this.state.queryResultsHeight }}>

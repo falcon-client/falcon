@@ -64,10 +64,14 @@ export default function Sidebar(props: Props) {
           <ListSymbol type="connection" /> <a>Connections</a>
         </div>
         {connections}
-        <div className="Sidebar--list-item">
-          <ListSymbol type="database" /> <a>{props.databaseName}</a>
-        </div>
-        {tables}
+        {tables.length ? (
+          <div>
+            <div className="Sidebar--list-item">
+              <ListSymbol type="database" /> <a>{props.databaseName}</a>
+            </div>
+            {tables}
+          </div>
+        ) : null}
       </ul>
     </div>
   );

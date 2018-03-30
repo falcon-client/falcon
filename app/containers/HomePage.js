@@ -120,7 +120,7 @@ export default class HomePage extends Component<Props, State> {
         this.setState({
           logs
         });
-      })
+      });
     }, 5000);
 
     this.setState({
@@ -141,7 +141,9 @@ export default class HomePage extends Component<Props, State> {
       connections
     });
     // @HACK
-    await this.onConnectionSelect(connections[0]);
+    if (connections.length) {
+      await this.onConnectionSelect(connections[0]);
+    }
     return connections;
   }
 
@@ -190,6 +192,7 @@ export default class HomePage extends Component<Props, State> {
       this.core.connection.getTableValues(selectedTable.name)
     ]);
 
+    // @HACK: This should be abstracted to falcon-core
     const rows = tableValues.map((value, index) => ({
       rowID: value[Object.keys(value)[index]],
       value: Object.values(value).filter(e => !(e instanceof Buffer))
