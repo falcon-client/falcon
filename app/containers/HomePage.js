@@ -400,6 +400,7 @@ export default class HomePage extends Component<Props, State> {
               <Footer
                 offset={this.state.widthSidebar}
                 pathname={this.props.location.pathname}
+                history={this.props.history}
                 hasActiveConnection={
                   this.state.activeConnections.length !== 0 ||
                   this.state.connections.length !== 0

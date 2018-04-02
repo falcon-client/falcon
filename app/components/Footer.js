@@ -1,11 +1,13 @@
 // @flow
 import React from 'react';
-import { Link } from 'react-router-dom';
 
 type Props = {
   pathname: string,
   offset: number,
-  hasActiveConnection?: boolean
+  hasActiveConnection?: boolean,
+  history: {
+    push: string => void
+  }
 };
 
 // @TODO: Clean this up with <NavLink>
@@ -25,18 +27,20 @@ export default function Footer(props: Props) {
     <div className="Footer" style={{ ...footerStyles, left: props.offset }}>
       <div className="FooterButtonContainer">
         <div
+          onClick={() => props.history.push('/content')}
           className={
             props.pathname === '/content' ? activeFooterButton : footerButton
           }
         >
-          <Link to="/content">Content</Link>
+          <a>Content</a>
         </div>
         <div
+          onClick={() => props.history.push('/structure')}
           className={
             props.pathname === '/structure' ? activeFooterButton : footerButton
           }
         >
-          <Link to="/structure">Structure</Link>
+          <a>Structure</a>
         </div>
       </div>
       <div
@@ -44,25 +48,28 @@ export default function Footer(props: Props) {
         style={{ ...footerStyles, left: props.offset }}
       >
         <div
+          onClick={() => props.history.push('/query')}
           className={
             props.pathname === '/query' ? activeFooterButton : footerButton
           }
         >
-          <Link to="/query">Query</Link>
+          <a>Query</a>
         </div>
         <div
+          onClick={() => props.history.push('/graph')}
           className={
             props.pathname === '/graph' ? activeFooterButton : footerButton
           }
         >
-          <Link to="/graph">Graph</Link>
+          <a>Graph</a>
         </div>
         <div
+          onClick={() => props.history.push('/logs')}
           className={
             props.pathname === '/logs' ? activeFooterButton : footerButton
           }
         >
-          <Link to="/logs">Logs</Link>
+          <a>Logs</a>
         </div>
       </div>
     </div>
