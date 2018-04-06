@@ -85,6 +85,8 @@ export default class HomePage extends Component<Props, State> {
 
   ipcConnection = null;
 
+  refreshQueryFn = () => {};
+
   constructor(props: Props) {
     super(props);
     ipcRenderer.on(OPEN_FILE_CHANNEL, (event, filePath) => {
@@ -135,6 +137,27 @@ export default class HomePage extends Component<Props, State> {
     });
   };
 
+  /**
+   * Allow child components of HomePage to define fn's that are called onclick
+   * of the refresh button in the Header
+   */
+  setRefreshQueryFn(refreshQueryFn) {
+    this.refreshQueryFn = refreshQueryFn;
+  }
+
+  /**
+   * Call the fn defined in setRefreshQueryFn()
+   */
+  async callRefreshQueryFn() {
+    this.setState({
+      isLoading: true
+    });
+    await this.refreshQueryFn();
+    this.setState({
+      isLoading: false
+    });
+  }
+
   async setConnections() {
     const connections = await this.connectionManager.getAll();
     this.setState({
@@ -181,6 +204,14 @@ export default class HomePage extends Component<Props, State> {
   };
 
   onTableSelect = async (selectedTable: TableType) => {
+    // Redefine the refresh query to the select table
+    this.setRefreshQueryFn(() => {
+      this.setState({
+        rows: []
+      });
+      this.onTableSelect(selectedTable);
+    });
+
     this.setState({
       selectedTable,
       isLoading: true
@@ -288,6 +319,7 @@ export default class HomePage extends Component<Props, State> {
               databaseType={this.state.databaseType}
               databaseName={this.state.databaseName}
               databaseVersion={this.state.databaseVersion}
+              onRefreshClick={() => this.callRefreshQueryFn()}
             />
             <div className="row no-margin">
               <ResizableBox
@@ -359,6 +391,11 @@ export default class HomePage extends Component<Props, State> {
                       <StructurePage
                         tableColumns={this.state.tableColumns}
                         tableDefinition={this.state.tableDefinition}
+                        setRefreshQueryFn={() =>
+                          this.setRefreshQueryFn(() =>
+                            this.onTableSelect(this.state.selectedTable)
+                          )
+                        }
                       />
                     )}
                   />
@@ -369,7 +406,8 @@ export default class HomePage extends Component<Props, State> {
                     render={() => (
                       <QueryPage
                         tableColumns={this.state.tableColumns}
-                        executeQuery={e => this.executeQuery(e)}
+                        setRefreshQueryFn={e => this.setRefreshQueryFn(e)}
+                        executeQuery={query => this.executeQuery(query)}
                       />
                     )}
                   />

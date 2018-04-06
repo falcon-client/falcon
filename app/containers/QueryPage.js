@@ -24,7 +24,7 @@ export default class QueryPage extends Component<Props, State> {
     rows: []
   };
 
-  onInputChangeTimeoutId: number;
+  onQueryChangeTimeoutId: number;
 
   query = 'SELECT * FROM sqlite_master';
 
@@ -37,7 +37,7 @@ export default class QueryPage extends Component<Props, State> {
     this.setState({ query });
   }
 
-  async onInputChange(query: string, self: QueryPage) {
+  async onQueryChange(query: string, self: QueryPage) {
     try {
       const queryResults = await self.props.executeQuery(query);
       // @HACK: This should be abstracted to falcon-core
@@ -47,6 +47,13 @@ export default class QueryPage extends Component<Props, State> {
       }));
       self.setState({
         rows
+      });
+      // Redefine the refresh query every time the query changes
+      this.props.setRefreshQueryFn(() => {
+        this.setState({
+          rows: []
+        });
+        this.onQueryChange(this.state.query, this);
       });
     } catch (error) {
       console.error(error.message);
@@ -82,7 +89,7 @@ export default class QueryPage extends Component<Props, State> {
         });
       }
     };
-    this.onInputChange(this.state.query, this);
+    this.onQueryChange(this.state.query, this);
   }
 
   componentWillUnmount() {
@@ -104,11 +111,11 @@ export default class QueryPage extends Component<Props, State> {
             sql={this.state.query}
             onChange={query => {
               this.setQuery(query);
-              if (this.onInputChangeTimeoutId) {
-                clearTimeout(this.onInputChangeTimeoutId);
+              if (this.onQueryChangeTimeoutId) {
+                clearTimeout(this.onQueryChangeTimeoutId);
               }
-              this.onInputChangeTimeoutId = setTimeout(() => {
-                this.onInputChange(query, this);
+              this.onQueryChangeTimeoutId = setTimeout(() => {
+                this.onQueryChange(query, this);
               }, 500);
             }}
           />

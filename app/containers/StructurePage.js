@@ -115,6 +115,7 @@ export default class StructurePage extends Component<Props, State> {
   );
 
   async componentDidMount() {
+    this.props.setRefreshQueryFn();
     this.setState({
       tableColumns: this.props.tableColumns.map(convertColumnData)
     });
@@ -122,6 +123,7 @@ export default class StructurePage extends Component<Props, State> {
 
   async componentWillReceiveProps(nextProps: Props) {
     const { tableColumns } = await nextProps;
+    this.props.setRefreshQueryFn();
     this.setState({ tableColumns: tableColumns.map(convertColumnData) });
   }
 
