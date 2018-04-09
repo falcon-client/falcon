@@ -71,7 +71,7 @@ export default class Header extends Component<Props, {}> {
             <a href="">Connected</a>
           </span>
           <span>
-            <a href="">
+            <a>
               {props.databaseType} {props.databaseVersion || ''}
             </a>
           </span>

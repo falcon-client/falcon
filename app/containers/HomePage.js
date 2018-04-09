@@ -63,6 +63,8 @@ type State = {
 export default class HomePage extends Component<Props, State> {
   core: Database;
 
+  sqlFormatter: ((sql: string, numSpaces: number) => string) | (() => {});
+
   state = {
     // @TODO: See LoginPage line 131 for why replace'_' with '/'
     widthSidebar: 200,
@@ -80,7 +82,8 @@ export default class HomePage extends Component<Props, State> {
     logs: [],
     activeConnections: [],
     connections: [],
-    isLoading: true
+    isLoading: true,
+    sqlFormatter: () => {}
   };
 
   ipcConnection = null;
@@ -244,18 +247,21 @@ export default class HomePage extends Component<Props, State> {
    * grid/sidebar resizing data. Also core
    */
   async componentDidMount() {
-    const [a, b] = await Promise.all([
+    const [a, b, c] = await Promise.all([
       import('falcon-core/es/database/provider_clients/SqliteProviderFactory'),
-      import('falcon-core/es/config/ConnectionManager')
+      import('falcon-core/es/config/ConnectionManager'),
+      import('falcon-core/es/formatters/SqliteFormatter')
     ]);
 
     const { default: SqliteProviderFactory } = a;
     const { default: ConnectionManager } = b;
+    const { default: SqliteFormatter } = c;
 
     // @HACK: This is a temporary way if improving require performance.
     //        The API itself in falcon-core needs to be changed to reflect this
     this.core = {};
     this.connectionManager = new ConnectionManager();
+    this.sqlFormatter = SqliteFormatter;
     this.setConnections()
       .then(async connections => {
         if (connections.length) {
@@ -348,8 +354,7 @@ export default class HomePage extends Component<Props, State> {
                 className="Grid"
                 style={{
                   position: 'relative',
-                  width: this.state.widthGrid,
-                  overflow: 'scroll'
+                  width: this.state.widthGrid
                 }}
               >
                 <Switch>
@@ -408,6 +413,7 @@ export default class HomePage extends Component<Props, State> {
                         tableColumns={this.state.tableColumns}
                         setRefreshQueryFn={e => this.setRefreshQueryFn(e)}
                         executeQuery={query => this.executeQuery(query)}
+                        sqlFormatter={this.sqlFormatter}
                       />
                     )}
                   />

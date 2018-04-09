@@ -1,7 +1,15 @@
 .QueryPage {
-  // contain: strict;
+  overflow: hidden;
 
   .ace-xcode .ace_gutter {
     background: white;
+  }
+
+  .QueryPage--actions-container {
+    border: 1px solid red;
+
+    .QueryPage--actions-container-child {
+      border: 1px solid green;
+    }
   }
 }

@@ -6,7 +6,8 @@ import Content from '../components/Content';
 
 type Props = {
   executeQuery: (query: string) => void,
-  tableColumns: Array<TableColumnType>
+  tableColumns: Array<TableColumnType>,
+  sqlFormatter: ((sql: string, numSpaces: number) => string) | (() => {})
 };
 
 type State = {
@@ -107,18 +108,38 @@ export default class QueryPage extends Component<Props, State> {
           style={{ height: `${this.state.queryHeight}px` }}
           onResize={this.onQueryResize}
         >
-          <Editor
-            sql={this.state.query}
-            onChange={query => {
-              this.setQuery(query);
-              if (this.onQueryChangeTimeoutId) {
-                clearTimeout(this.onQueryChangeTimeoutId);
-              }
-              this.onQueryChangeTimeoutId = setTimeout(() => {
-                this.onQueryChange(query, this);
-              }, 500);
-            }}
-          />
+          <div className="row" style={{ height: '100%' }}>
+            <Editor
+              className="col-sm-6"
+              sql={this.state.query}
+              onChange={query => {
+                this.setQuery(query);
+                if (this.onQueryChangeTimeoutId) {
+                  clearTimeout(this.onQueryChangeTimeoutId);
+                }
+                this.onQueryChangeTimeoutId = setTimeout(() => {
+                  this.onQueryChange(query, this);
+                }, 500);
+              }}
+            />
+            <div className="col-sm-6 QueryPage--actions-container">
+              <div className="row">
+                <div className="col-sm-12 QueryPage--actions-container-child">
+                  <input placeholder="My Query" />
+                  <button>Save</button>
+                </div>
+                <div className="col-sm-12 QueryPage--actions-container-child">
+                  <input type="checkbox" checked /> Auto Run
+                </div>
+                <div className="col-sm-12 QueryPage--actions-container-child">
+                  <select>
+                    <option>First saved query</option>
+                    <option>second saved query</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
         </ResizableBox>
         <div style={{ height: this.state.queryResultsHeight }}>
           <Content
