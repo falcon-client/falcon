@@ -7,9 +7,13 @@
 
   .QueryPage--actions-container {
     border: 1px solid red;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 
     .QueryPage--actions-container-child {
       border: 1px solid green;
+      width: 100%;
     }
   }
 }

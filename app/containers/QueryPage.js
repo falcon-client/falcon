@@ -110,7 +110,7 @@ export default class QueryPage extends Component<Props, State> {
         >
           <div className="row" style={{ height: '100%' }}>
             <Editor
-              className="col-sm-6"
+              className="col-sm-8"
               sql={this.state.query}
               onChange={query => {
                 this.setQuery(query);
@@ -122,22 +122,23 @@ export default class QueryPage extends Component<Props, State> {
                 }, 500);
               }}
             />
-            <div className="col-sm-6 QueryPage--actions-container">
-              <div className="row">
-                <div className="col-sm-12 QueryPage--actions-container-child">
-                  <input placeholder="My Query" />
-                  <button>Save</button>
-                </div>
-                <div className="col-sm-12 QueryPage--actions-container-child">
-                  <input type="checkbox" checked /> Auto Run
-                </div>
-                <div className="col-sm-12 QueryPage--actions-container-child">
-                  <select>
-                    <option>First saved query</option>
-                    <option>second saved query</option>
-                  </select>
-                </div>
-              </div>
+            <div className="col-sm-4 QueryPage--actions-container">
+              <div className="QueryPage--actions-container-child">
+              <input placeholder="My Query" />
+              <button>Save</button>
+            </div>
+              <div className="QueryPage--actions-container-child">
+            <input type="checkbox" checked /> Auto Run
+          </div>
+              <div className="QueryPage--actions-container-child">
+            <select>
+              <option>First saved query</option>
+              <option>second saved query</option>
+            </select>
+          </div>
+              <div className="QueryPage--actions-container-child" style={{flex: 1}}>
+            <textarea placeholder="Notes here..." style={{height: '100%'}} />
+          </div>
             </div>
           </div>
         </ResizableBox>

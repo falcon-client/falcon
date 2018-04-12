@@ -134,7 +134,7 @@ export default class StructurePage extends Component<Props, State> {
     const columns = [
       {
         accessor: 'cid',
-        Header: 'Column ID',
+        Header: 'ID',
         Cell: this.renderEditable
       },
       {
