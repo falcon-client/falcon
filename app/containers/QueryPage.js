@@ -1,13 +1,13 @@
 // @flow
 import React, { Component } from 'react';
 import { ResizableBox } from 'react-resizable';
-import debounce from 'lodash/debounce';
 import Editor from '../components/Editor';
 import Content from '../components/Content';
 
 type Props = {
   executeQuery: (query: string) => void,
-  tableColumns: Array<TableColumnType>
+  tableColumns: Array<TableColumnType>,
+  sqlFormatter: ((sql: string, numSpaces: number) => string) | (() => {})
 };
 
 type State = {
@@ -25,25 +25,36 @@ export default class QueryPage extends Component<Props, State> {
     rows: []
   };
 
+  onQueryChangeTimeoutId: number;
+
+  query = 'SELECT * FROM sqlite_master';
+
   item = null;
 
   didMount: boolean = false;
 
-  async onInputChange(query: string, self: QueryView) {
-    if (!self || !self.didMount) {
-      return;
-    }
-
+  setQuery(query: string) {
+    this.query = query;
     this.setState({ query });
+  }
 
+  async onQueryChange(query: string, self: QueryPage) {
     try {
-      const queryResults = await this.props.executeQuery(this.state.query);
+      const queryResults = await self.props.executeQuery(query);
+      // @HACK: This should be abstracted to falcon-core
       const rows = queryResults[0].rows.map((value, index) => ({
         rowID: value[Object.keys(value)[index]],
         value: Object.values(value).filter(e => !(e instanceof Buffer))
       }));
-      this.setState({
+      self.setState({
         rows
+      });
+      // Redefine the refresh query every time the query changes
+      this.props.setRefreshQueryFn(() => {
+        this.setState({
+          rows: []
+        });
+        this.onQueryChange(this.state.query, this);
       });
     } catch (error) {
       console.error(error.message);
@@ -79,7 +90,7 @@ export default class QueryPage extends Component<Props, State> {
         });
       }
     };
-    this.onInputChange(this.state.query, this);
+    this.onQueryChange(this.state.query, this);
   }
 
   componentWillUnmount() {
@@ -97,10 +108,39 @@ export default class QueryPage extends Component<Props, State> {
           style={{ height: `${this.state.queryHeight}px` }}
           onResize={this.onQueryResize}
         >
-          <Editor
-            sql={this.state.query}
-            onChange={debounce(e => this.onInputChange(e, this), 500)}
-          />
+          <div className="row" style={{ height: '100%' }}>
+            <Editor
+              className="col-sm-8"
+              sql={this.state.query}
+              onChange={query => {
+                this.setQuery(query);
+                if (this.onQueryChangeTimeoutId) {
+                  clearTimeout(this.onQueryChangeTimeoutId);
+                }
+                this.onQueryChangeTimeoutId = setTimeout(() => {
+                  this.onQueryChange(query, this);
+                }, 500);
+              }}
+            />
+            <div className="col-sm-4 QueryPage--actions-container">
+              <div className="QueryPage--actions-container-child">
+              <input placeholder="My Query" />
+              <button>Save</button>
+            </div>
+              <div className="QueryPage--actions-container-child">
+            <input type="checkbox" checked /> Auto Run
+          </div>
+              <div className="QueryPage--actions-container-child">
+            <select>
+              <option>First saved query</option>
+              <option>second saved query</option>
+            </select>
+          </div>
+              <div className="QueryPage--actions-container-child" style={{flex: 1}}>
+            <textarea placeholder="Notes here..." style={{height: '100%'}} />
+          </div>
+            </div>
+          </div>
         </ResizableBox>
         <div style={{ height: this.state.queryResultsHeight }}>
           <Content

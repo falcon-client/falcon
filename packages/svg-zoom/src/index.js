@@ -47,8 +47,8 @@ export class SvgPanZoom {
         const div = document.createElement('svg');
         div.innerHTML = str.trim();
         g.append(() => div.childNodes[0]);
-        this.targetSvgElementSelector.children[0].remove()
-        this.zoomer = d3.zoom()
+        this.targetSvgElementSelector.children[0].remove();
+        this.zoomer = d3.zoom();
 
         svg
           .append('rect')
@@ -57,13 +57,11 @@ export class SvgPanZoom {
           .attr('width', width)
           .attr('height', height)
           .call(
-            this.zoomer
-              .scaleExtent([1, 8])
-              .on('zoom', () => {
-                this.transformData = d3.event.transform
-                console.log(this.transformData)
-                g.attr('transform', d3.event.transform);
-              })
+            this.zoomer.scaleExtent([1, 8]).on('zoom', () => {
+              this.transformData = d3.event.transform;
+              console.log(this.transformData);
+              g.attr('transform', d3.event.transform);
+            })
           );
         return;
       }
@@ -74,14 +72,14 @@ export class SvgPanZoom {
         .xml(this.svgPath)
         .mimeType('image/svg+xml')
         .get((error, xml) => {
-          console.log(xml)
+          console.log(xml);
           if (error) {
             console.log(error);
           } else {
             const svgElement = document.body.appendChild(xml.documentElement);
             g.append(() => svgElement);
 
-            this.zoomer = d3.zoom()
+            this.zoomer = d3.zoom();
             // setInterval(() => {
             //   console.log(this.zoomer.wheelDelta());
             // }, 2000);
@@ -93,17 +91,15 @@ export class SvgPanZoom {
               .attr('width', width)
               .attr('height', height)
               .call(
-                this.zoomer
-                  .scaleExtent([1, 8])
-                  .on('zoom', () => {
-                    this.transformData = d3.event.transform
-                    g.attr('transform', d3.event.transform);
-                  })
+                this.zoomer.scaleExtent([1, 8]).on('zoom', () => {
+                  this.transformData = d3.event.transform;
+                  g.attr('transform', d3.event.transform);
+                })
               );
             resolve();
           }
         });
-    })
+    });
   }
 
   zoom(scale: number) {
@@ -140,7 +136,6 @@ export class SvgPanZoom {
 }
 
 global.SvgPanZoom = SvgPanZoom;
-
 
 // resize
 // destroy

@@ -18,7 +18,6 @@ $gray-lightest:             white !default;
 @import "~bootstrap/scss/bootstrap-grid.scss";
 @import "~ionicons-temp/scss/ionicons.scss";
 @import "~nprogress/nprogress.css";
-@import "~react-virtualized/styles.css";
 @import "~react-select/dist/react-select.css";
 @import "~react-table/react-table.css";
 @import "../../packages/graphql-voyager/styles.css";
@@ -82,4 +81,7 @@ body {
 }
 .ace_gutter-cell {
   color: #D8D8D8;
+}
+.LogPage.ReactTable {
+  height: 100%;
 }

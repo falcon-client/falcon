@@ -16,6 +16,10 @@
 digraph {
   graph [
     rankdir = "LR"
+    // modified from upstream
+    nodesep=0
+    nodesep=0
+    ordering=out
   ];
   node [
     fontsize = "16"
@@ -24,7 +28,6 @@ digraph {
   ];
   edge [
   ];
-  ranksep = 2.0
 <%_ _.each(typeGraph.nodes, function(node) { -%>
   "<%- node.name %>" [
     id = "<%- node.id %>"

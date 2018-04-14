@@ -8,6 +8,8 @@ type Props = {
   databaseType: string,
   databaseVersion?: number | string,
   isLoading: boolean,
+  // The SQL statement to run when reloading the current view
+  onRefreshClick: () => void,
   selectedTable?: ?{
     name: string
   }
@@ -69,14 +71,20 @@ export default class Header extends Component<Props, {}> {
             <a href="">Connected</a>
           </span>
           <span>
-            <a href="">
+            <a>
               {props.databaseType} {props.databaseVersion || ''}
             </a>
           </span>
         </div>
         <div className="Header--container Header--container-hidden">
-          <div className="Header--button ion-android-refresh" />
-          <div className="Header--button ion-android-add" />
+          <div
+            className="Header--button ion-android-refresh"
+            onClick={() => this.props.onRefreshClick()}
+          />
+          <div
+            className="Header--button ion-android-add"
+            onClick={() => this.props.history.push('/login')}
+          />
         </div>
       </div>
     );

@@ -49,6 +49,7 @@ class Login extends Component<Props, State> {
         database: this.state.databasePath,
         type: 'sqlite'
       });
+      await this.props.onSuccess();
     } catch (e) {
       this.setState({
         errorMessages: e.data.errors.error.details.map(detail => ({

@@ -1,0 +1,14 @@
+{
+  "name": "@falcon-client/falcon-ui",
+  "version": "1.0.1",
+  "main": "index.js",
+  "author": "Amila Welihinda <amilajack@gmail.com>",
+  "license": "MIT",
+  "module": "./es/index.js",
+  "scripts": {
+    "build": "cross-env NODE_ENV=production rm -rf es && babel -d es/ src/ --source-maps",
+    "example": "parcel test/index.html",
+    "test": "npm run build",
+    "watch": "cross-env NODE_ENV=development babel --out-dir lib src --source-maps --watch"
+  }
+}

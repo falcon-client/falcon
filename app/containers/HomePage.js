@@ -32,6 +32,10 @@ const GraphPage = Loadable({
   loader: () => import('./GraphPage'),
   loading: () => <div>Loading...</div>
 });
+const LogPage = Loadable({
+  loader: () => import('./LogPage'),
+  loading: () => <div>Loading...</div>
+});
 
 type Props = {
   location: {
@@ -50,6 +54,7 @@ type State = {
   activeConnections: Array<connectionType>,
   connections: Array<connectionType>,
   isLoading: boolean,
+  logs: Array<{ query: string, time: string, duration: string }>,
   tables: Array<{
     name: string
   }>
@@ -57,6 +62,8 @@ type State = {
 
 export default class HomePage extends Component<Props, State> {
   core: Database;
+
+  sqlFormatter: ((sql: string, numSpaces: number) => string) | (() => {});
 
   state = {
     // @TODO: See LoginPage line 131 for why replace'_' with '/'
@@ -72,12 +79,16 @@ export default class HomePage extends Component<Props, State> {
     tableColumns: [],
     tableDefinition: '',
     rows: [],
+    logs: [],
     activeConnections: [],
     connections: [],
-    isLoading: true
+    isLoading: true,
+    sqlFormatter: () => {}
   };
 
   ipcConnection = null;
+
+  refreshQueryFn = () => {};
 
   constructor(props: Props) {
     super(props);
@@ -96,9 +107,11 @@ export default class HomePage extends Component<Props, State> {
    * @TODO: Since supporting just SQLite, getDatabases will only return 1 db
    */
   getInitialViewData = async () => {
-    const [databases, tableNames, databaseVersion] = await Promise.all([
+    const [databases, tableNames, databaseVersion, logs] = await Promise.all([
       this.core.connection.listDatabases(),
-      this.core.connection.listTables()
+      this.core.connection.listTables(),
+      this.core.connection.getVersion(),
+      this.core.connection.getLogs()
     ]);
     const selectedTable = this.state.selectedTable || {
       name: tableNames[0].name
@@ -107,9 +120,18 @@ export default class HomePage extends Component<Props, State> {
 
     await this.onTableSelect(selectedTable);
 
+    this.getLogsInterval = setInterval(() => {
+      this.core.connection.getLogs().then(logs => {
+        this.setState({
+          logs
+        });
+      });
+    }, 5000);
+
     this.setState({
       databaseName,
       selectedTable,
+      logs,
       databaseVersion,
       isLoading: false,
       tables: tableNames
@@ -118,13 +140,36 @@ export default class HomePage extends Component<Props, State> {
     });
   };
 
+  /**
+   * Allow child components of HomePage to define fn's that are called onclick
+   * of the refresh button in the Header
+   */
+  setRefreshQueryFn(refreshQueryFn) {
+    this.refreshQueryFn = refreshQueryFn;
+  }
+
+  /**
+   * Call the fn defined in setRefreshQueryFn()
+   */
+  async callRefreshQueryFn() {
+    this.setState({
+      isLoading: true
+    });
+    await this.refreshQueryFn();
+    this.setState({
+      isLoading: false
+    });
+  }
+
   async setConnections() {
     const connections = await this.connectionManager.getAll();
     this.setState({
       connections
     });
     // @HACK
-    await this.onConnectionSelect(connections[0]);
+    if (connections.length) {
+      await this.onConnectionSelect(connections[0]);
+    }
     return connections;
   }
 
@@ -147,12 +192,29 @@ export default class HomePage extends Component<Props, State> {
   };
 
   onConnectionSelect = async (selectedConnection: connectionType) => {
+    const a = await import('falcon-core/es/database/provider_clients/SqliteProviderFactory');
+    const { default: SqliteProviderFactory } = a;
+
+    this.core.connection = await SqliteProviderFactory(
+      selectedConnection,
+      selectedConnection
+    );
+    this.state.selectedTable = undefined;
+    await this.getInitialViewData();
     this.setState({
       selectedConnection
     });
   };
 
   onTableSelect = async (selectedTable: TableType) => {
+    // Redefine the refresh query to the select table
+    this.setRefreshQueryFn(() => {
+      this.setState({
+        rows: []
+      });
+      this.onTableSelect(selectedTable);
+    });
+
     this.setState({
       selectedTable,
       isLoading: true
@@ -164,6 +226,7 @@ export default class HomePage extends Component<Props, State> {
       this.core.connection.getTableValues(selectedTable.name)
     ]);
 
+    // @HACK: This should be abstracted to falcon-core
     const rows = tableValues.map((value, index) => ({
       rowID: value[Object.keys(value)[index]],
       value: Object.values(value).filter(e => !(e instanceof Buffer))
@@ -184,18 +247,21 @@ export default class HomePage extends Component<Props, State> {
    * grid/sidebar resizing data. Also core
    */
   async componentDidMount() {
-    const [a, b] = await Promise.all([
+    const [a, b, c] = await Promise.all([
       import('falcon-core/es/database/provider_clients/SqliteProviderFactory'),
-      import('falcon-core/es/config/ConnectionManager')
+      import('falcon-core/es/config/ConnectionManager'),
+      import('falcon-core/es/formatters/SqliteFormatter')
     ]);
 
     const { default: SqliteProviderFactory } = a;
     const { default: ConnectionManager } = b;
+    const { default: SqliteFormatter } = c;
 
     // @HACK: This is a temporary way if improving require performance.
     //        The API itself in falcon-core needs to be changed to reflect this
     this.core = {};
     this.connectionManager = new ConnectionManager();
+    this.sqlFormatter = SqliteFormatter;
     this.setConnections()
       .then(async connections => {
         if (connections.length) {
@@ -239,7 +305,12 @@ export default class HomePage extends Component<Props, State> {
       StructurePage.preload();
       QueryPage.preload();
       GraphPage.preload();
+      LogPage.preload();
     });
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.getLogsInterval);
   }
 
   render() {
@@ -248,11 +319,13 @@ export default class HomePage extends Component<Props, State> {
         <div className="row">
           <div className="sticky">
             <Header
+              history={this.props.history}
               isLoading={this.state.isLoading}
               selectedTable={this.state.selectedTable}
               databaseType={this.state.databaseType}
               databaseName={this.state.databaseName}
               databaseVersion={this.state.databaseVersion}
+              onRefreshClick={() => this.callRefreshQueryFn()}
             />
             <div className="row no-margin">
               <ResizableBox
@@ -272,6 +345,7 @@ export default class HomePage extends Component<Props, State> {
                   onTableSelect={this.onTableSelect}
                   onConnectionSelect={this.onConnectionSelect}
                   selectedTable={this.state.selectedTable}
+                  selectedConnection={this.state.selectedConnection}
                   connections={this.state.connections}
                   activeConnections={this.state.activeConnections}
                 />
@@ -280,8 +354,7 @@ export default class HomePage extends Component<Props, State> {
                 className="Grid"
                 style={{
                   position: 'relative',
-                  width: this.state.widthGrid,
-                  overflow: 'scroll'
+                  width: this.state.widthGrid
                 }}
               >
                 <Switch>
@@ -290,7 +363,13 @@ export default class HomePage extends Component<Props, State> {
                     strict
                     path="/login"
                     render={() => (
-                      <LoginPage connectionManager={this.connectionManager} />
+                      <LoginPage
+                        connectionManager={this.connectionManager}
+                        onSuccess={() => {
+                          this.setConnections();
+                          this.props.history.push('/content');
+                        }}
+                      />
                     )}
                   />
                   <Route
@@ -317,6 +396,11 @@ export default class HomePage extends Component<Props, State> {
                       <StructurePage
                         tableColumns={this.state.tableColumns}
                         tableDefinition={this.state.tableDefinition}
+                        setRefreshQueryFn={() =>
+                          this.setRefreshQueryFn(() =>
+                            this.onTableSelect(this.state.selectedTable)
+                          )
+                        }
                       />
                     )}
                   />
@@ -327,7 +411,9 @@ export default class HomePage extends Component<Props, State> {
                     render={() => (
                       <QueryPage
                         tableColumns={this.state.tableColumns}
-                        executeQuery={e => this.executeQuery(e)}
+                        setRefreshQueryFn={e => this.setRefreshQueryFn(e)}
+                        executeQuery={query => this.executeQuery(query)}
+                        sqlFormatter={this.sqlFormatter}
                       />
                     )}
                   />
@@ -347,11 +433,18 @@ export default class HomePage extends Component<Props, State> {
                       ) : null
                     }
                   />
+                  <Route
+                    exact
+                    strict
+                    path="/logs"
+                    render={() => <LogPage logs={this.state.logs} />}
+                  />
                 </Switch>
               </div>
               <Footer
                 offset={this.state.widthSidebar}
                 pathname={this.props.location.pathname}
+                history={this.props.history}
                 hasActiveConnection={
                   this.state.activeConnections.length !== 0 ||
                   this.state.connections.length !== 0

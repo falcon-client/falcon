@@ -71,10 +71,7 @@ export default {
         __dirname,
         'packages/svg-pan-zoom'
       ),
-      '@falcon-client/svg-zoom': path.resolve(
-        __dirname,
-        'packages/svg-zoom'
-      ),
+      '@falcon-client/svg-zoom': path.resolve(__dirname, 'packages/svg-zoom'),
       '@falcon-client/falcon-core': path.resolve(
         __dirname,
         'packages/falcon-core'

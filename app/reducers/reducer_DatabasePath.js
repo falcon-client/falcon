@@ -6,7 +6,7 @@ import { SET_DATABASE_PATH } from '../actions/index';
 // @HACK: HARDCODE
 const tempDbPath = path.join(
   os.homedir(),
-  'Documents/Projects/falcon-ui-rewrite-2/test/e2e/temp.sqlite'
+  'Documents/Projects/falcon/test/e2e/temp.sqlite'
 );
 
 // @TODO: default is this database path because hot-loader does not save state.databasePath. Fix later
