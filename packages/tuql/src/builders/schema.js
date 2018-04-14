@@ -3,13 +3,13 @@ import {
   GraphQLSchema,
   GraphQLObjectType,
   GraphQLList,
-  GraphQLBoolean,
+  GraphQLBoolean
 } from 'graphql';
 import {
   resolver,
   attributeFields,
   defaultListArgs,
-  defaultArgs,
+  defaultArgs
 } from 'graphql-sequelize';
 import { plural, singular } from 'pluralize';
 import Sequelize, { QueryTypes } from 'sequelize';
@@ -20,7 +20,7 @@ import {
   findModelKey,
   formatFieldName,
   formatTypeName,
-  pascalCase,
+  pascalCase
 } from '../utils';
 import { joinTableAssociations, tableAssociations } from './associations';
 import {
@@ -29,14 +29,14 @@ import {
   makeDeleteArgs,
   getPkFieldKey,
   makePolyArgs,
-  getPolyKeys,
+  getPolyKeys
 } from './arguments';
 
 const GenericResponseType = new GraphQLObjectType({
   name: 'GenericResponse',
   fields: {
-    success: { type: GraphQLBoolean },
-  },
+    success: { type: GraphQLBoolean }
+  }
 });
 
 export const buildSchemaFromDatabase = databaseFile => {
@@ -45,7 +45,7 @@ export const buildSchemaFromDatabase = databaseFile => {
       dialect: 'sqlite',
       storage: databaseFile,
       logging: false,
-      operatorsAliases: Sequelize.Op,
+      operatorsAliases: Sequelize.Op
     });
 
     resolve(await build(db));
@@ -58,7 +58,7 @@ export const buildSchemaFromInfile = infile => {
       dialect: 'sqlite',
       storage: ':memory:',
       logging: false,
-      operatorsAliases: Sequelize.Op,
+      operatorsAliases: Sequelize.Op
     });
 
     const contents = fs.readFileSync(infile);
@@ -95,7 +95,7 @@ const build = db => {
       } else {
         models[table] = db.define(table, createDefinitions(info, table), {
           timestamps: false,
-          tableName: table,
+          tableName: table
         });
 
         associations = associations.concat(
@@ -129,7 +129,7 @@ const build = db => {
         belongsToMany: associations
           .filter(({ type }) => type === 'belongsToMany')
           .map(({ from, to }) => [from, to])
-          .filter(sides => sides.includes(key)),
+          .filter(sides => sides.includes(key))
       };
 
       const type = new GraphQLObjectType({
@@ -141,7 +141,7 @@ const build = db => {
             fields[formatFieldName(associatedModel.name)] = {
               type: new GraphQLList(types[associatedModel.name]),
               args: defaultListArgs(model[associatedModel.name]),
-              resolve: resolver(model[associatedModel.name]),
+              resolve: resolver(model[associatedModel.name])
             };
           });
 
@@ -149,7 +149,7 @@ const build = db => {
             const fieldName = singular(associatedModel.name);
             fields[formatFieldName(fieldName)] = {
               type: types[associatedModel.name],
-              resolve: resolver(model[fieldName]),
+              resolve: resolver(model[fieldName])
             };
           });
 
@@ -157,12 +157,12 @@ const build = db => {
             const [other] = sides.filter(side => side !== model.name);
             fields[formatFieldName(other)] = {
               type: new GraphQLList(types[other]),
-              resolve: resolver(model[other]),
+              resolve: resolver(model[other])
             };
           });
 
           return fields;
-        },
+        }
       });
 
       types[key] = type;
@@ -170,13 +170,13 @@ const build = db => {
       queries[formatFieldName(key)] = {
         type: new GraphQLList(type),
         args: defaultListArgs(model),
-        resolve: resolver(model),
+        resolve: resolver(model)
       };
 
       queries[singular(formatFieldName(key))] = {
         type,
         args: defaultArgs(model),
-        resolve: resolver(model),
+        resolve: resolver(model)
       };
 
       mutations[`create${type}`] = {
@@ -185,7 +185,7 @@ const build = db => {
         resolve: async (obj, values, info) => {
           const thing = await model.create(values);
           return thing;
-        },
+        }
       };
 
       mutations[`update${type}`] = {
@@ -195,13 +195,13 @@ const build = db => {
           const pkKey = getPkFieldKey(model);
 
           const thing = await model.findOne({
-            where: { [pkKey]: values[pkKey] },
+            where: { [pkKey]: values[pkKey] }
           });
 
           await thing.update(values);
 
           return thing;
-        },
+        }
       };
 
       mutations[`delete${type}`] = {
@@ -209,15 +209,15 @@ const build = db => {
         args: makeDeleteArgs(model),
         resolve: async (obj, values, info) => {
           const thing = await model.findOne({
-            where: values,
+            where: values
           });
 
           await thing.destroy();
 
           return {
-            success: true,
+            success: true
           };
-        },
+        }
       };
 
       fieldAssociations.belongsToMany.forEach(sides => {
@@ -244,9 +244,9 @@ const build = db => {
               await thingOne[method](thingTwo);
 
               return {
-                success: true,
+                success: true
               };
-            },
+            }
           };
         });
       });
@@ -254,18 +254,18 @@ const build = db => {
 
     const query = new GraphQLObjectType({
       name: 'Query',
-      fields: queries,
+      fields: queries
     });
 
     const mutation = new GraphQLObjectType({
       name: 'Mutation',
-      fields: mutations,
+      fields: mutations
     });
 
     resolve(
       new GraphQLSchema({
         query,
-        mutation,
+        mutation
       })
     );
   });

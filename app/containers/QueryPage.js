@@ -124,21 +124,27 @@ export default class QueryPage extends Component<Props, State> {
             />
             <div className="col-sm-4 QueryPage--actions-container">
               <div className="QueryPage--actions-container-child">
-              <input placeholder="My Query" />
-              <button>Save</button>
-            </div>
+                <input placeholder="My Query" />
+                <button>Save</button>
+              </div>
               <div className="QueryPage--actions-container-child">
-            <input type="checkbox" checked /> Auto Run
-          </div>
+                <input type="checkbox" checked /> Auto Run
+              </div>
               <div className="QueryPage--actions-container-child">
-            <select>
-              <option>First saved query</option>
-              <option>second saved query</option>
-            </select>
-          </div>
-              <div className="QueryPage--actions-container-child" style={{flex: 1}}>
-            <textarea placeholder="Notes here..." style={{height: '100%'}} />
-          </div>
+                <select>
+                  <option>First saved query</option>
+                  <option>second saved query</option>
+                </select>
+              </div>
+              <div
+                className="QueryPage--actions-container-child"
+                style={{ flex: 1 }}
+              >
+                <textarea
+                  placeholder="Notes here..."
+                  style={{ height: '100%' }}
+                />
+              </div>
             </div>
           </div>
         </ResizableBox>

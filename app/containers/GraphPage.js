@@ -16,16 +16,19 @@ export default class GraphPage extends Component {
 
   render() {
     const { props } = this;
-    const worker = import('worker-loader!@falcon-client/graphql-voyager/es/worker.js').then(
-      VoyagerWorker => new VoyagerWorker()
-    );
+    const worker =
+      import('worker-loader!@falcon-client/graphql-voyager/es/worker.js')
+        .then(o => o.default)
+        .then(VoyagerWorker => new VoyagerWorker());
 
     async function introspectionProvider(query) {
       try {
         await props.connection.startGraphQLServer();
+        console.log(props.connection.getGraphQLServerPort())
       } catch (e) {
         console.log(e);
       }
+      console.log(props.connection)
       return fetch(
         `http://localhost:${props.connection.getGraphQLServerPort()}/graphql`,
         {

@@ -13,27 +13,27 @@ import type { TableType } from '../types/TableType';
 
 // @NOTE: This duplication is necessary. It makes webpack lazily load the chunks
 const ContentPage = Loadable({
-  loader: () => import('./ContentPage'),
+  loader: () => import('./ContentPage').then(o => o.default),
   loading: () => <div>Loading...</div>
 });
 const LoginPage = Loadable({
-  loader: () => import('./LoginPage'),
+  loader: () => import('./LoginPage').then(o => o.default),
   loading: () => <div>Loading...</div>
 });
 const StructurePage = Loadable({
-  loader: () => import('./StructurePage'),
+  loader: () => import('./StructurePage').then(o => o.default),
   loading: () => <div>Loading...</div>
 });
 const QueryPage = Loadable({
-  loader: () => import('./QueryPage'),
+  loader: () => import('./QueryPage').then(o => o.default),
   loading: () => <div>Loading...</div>
 });
 const GraphPage = Loadable({
-  loader: () => import('./GraphPage'),
+  loader: () => import('./GraphPage').then(o => o.default),
   loading: () => <div>Loading...</div>
 });
 const LogPage = Loadable({
-  loader: () => import('./LogPage'),
+  loader: () => import('./LogPage').then(o => o.default),
   loading: () => <div>Loading...</div>
 });
 

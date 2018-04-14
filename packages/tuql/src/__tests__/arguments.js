@@ -6,7 +6,7 @@ import {
   makeCreateArgs,
   makeUpdateArgs,
   makeDeleteArgs,
-  makePolyArgs,
+  makePolyArgs
 } from '../builders/arguments';
 import { GraphQLString, GraphQLNonNull, GraphQLInt } from 'graphql';
 
@@ -14,7 +14,7 @@ const db = new Sequelize({
   dialect: 'sqlite',
   storage: ':memory:',
   logging: false,
-  operatorsAliases: Sequelize.Op,
+  operatorsAliases: Sequelize.Op
 });
 
 const model = db.define(
@@ -22,16 +22,16 @@ const model = db.define(
   {
     id: {
       type: INTEGER,
-      primaryKey: true,
+      primaryKey: true
     },
     title: {
       type: TEXT,
-      allowNull: true,
+      allowNull: true
     },
     userId: {
       type: INTEGER,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   },
   { timestamps: false }
 );
@@ -41,16 +41,16 @@ const model2 = db.define(
   {
     id: {
       type: INTEGER,
-      primaryKey: true,
+      primaryKey: true
     },
     title: {
       type: TEXT,
-      allowNull: true,
+      allowNull: true
     },
     userId: {
       type: INTEGER,
-      allowNull: false,
-    },
+      allowNull: false
+    }
   },
   { timestamps: false }
 );
@@ -65,7 +65,7 @@ describe('getPkField', () => {
     const args = makeCreateArgs(model);
     expect(args).toEqual({
       title: { type: GraphQLString },
-      userId: { type: new GraphQLNonNull(GraphQLInt) },
+      userId: { type: new GraphQLNonNull(GraphQLInt) }
     });
   });
 
@@ -74,14 +74,14 @@ describe('getPkField', () => {
     expect(args).toEqual({
       id: { type: GraphQLInt },
       title: { type: GraphQLString },
-      userId: { type: GraphQLInt },
+      userId: { type: GraphQLInt }
     });
   });
 
   it('makeDeleteArgs', () => {
     const args = makeDeleteArgs(model);
     expect(args).toEqual({
-      id: { type: new GraphQLNonNull(GraphQLInt) },
+      id: { type: new GraphQLNonNull(GraphQLInt) }
     });
   });
 
@@ -89,7 +89,7 @@ describe('getPkField', () => {
     const args = makePolyArgs(model, model2);
     expect(args).toEqual({
       id: { type: new GraphQLNonNull(GraphQLInt) },
-      categoryId: { type: new GraphQLNonNull(GraphQLInt) },
+      categoryId: { type: new GraphQLNonNull(GraphQLInt) }
     });
   });
 
@@ -99,8 +99,8 @@ describe('getPkField', () => {
       {
         postId: {
           type: INTEGER,
-          primaryKey: true,
-        },
+          primaryKey: true
+        }
       },
       { timestamps: false }
     );
@@ -110,8 +110,8 @@ describe('getPkField', () => {
       {
         categoryId: {
           type: INTEGER,
-          primaryKey: true,
-        },
+          primaryKey: true
+        }
       },
       { timestamps: false }
     );
@@ -119,7 +119,7 @@ describe('getPkField', () => {
     const args = makePolyArgs(posts, categories);
     expect(args).toEqual({
       postId: { type: new GraphQLNonNull(GraphQLInt) },
-      categoryId: { type: new GraphQLNonNull(GraphQLInt) },
+      categoryId: { type: new GraphQLNonNull(GraphQLInt) }
     });
   });
 });

@@ -12,8 +12,8 @@ const formJoinTableAssociations = (a, b, aKey, bKey, table) => {
       options: {
         through: table,
         foreignKey: aKey,
-        timestamps: false,
-      },
+        timestamps: false
+      }
     },
     {
       from: b,
@@ -22,9 +22,9 @@ const formJoinTableAssociations = (a, b, aKey, bKey, table) => {
       options: {
         through: table,
         foreignKey: bKey,
-        timestamps: false,
-      },
-    },
+        timestamps: false
+      }
+    }
   ];
 };
 
@@ -56,8 +56,8 @@ export const tableAssociations = (table, info, foreignKeys) => {
       to: table,
       type: 'hasMany',
       options: {
-        foreignKey: formatFieldName(from),
-      },
+        foreignKey: formatFieldName(from)
+      }
     });
 
     associations.push({
@@ -65,8 +65,8 @@ export const tableAssociations = (table, info, foreignKeys) => {
       to: otherTable,
       type: 'belongsTo',
       options: {
-        foreignKey: formatFieldName(from),
-      },
+        foreignKey: formatFieldName(from)
+      }
     });
   });
 
@@ -83,8 +83,8 @@ export const tableAssociations = (table, info, foreignKeys) => {
         to: table,
         type: 'hasMany',
         options: {
-          foreignKey: column.name,
-        },
+          foreignKey: column.name
+        }
       });
 
       associations.push({
@@ -92,8 +92,8 @@ export const tableAssociations = (table, info, foreignKeys) => {
         to: plural(root),
         type: 'belongsTo',
         options: {
-          foreignKey: column.name,
-        },
+          foreignKey: column.name
+        }
       });
     });
 

@@ -49,7 +49,7 @@ export const getPolyKeys = (model, otherModel) => {
     return [
       key,
       otherKey,
-      camelcase(`${singular(otherModel.name)}_${otherKey}`),
+      camelcase(`${singular(otherModel.name)}_${otherKey}`)
     ];
   }
 
@@ -63,6 +63,6 @@ export const makePolyArgs = (model, otherModel) => {
 
   return {
     [key]: fields[key],
-    [otherKeyFormatted]: otherFields[otherKey],
+    [otherKeyFormatted]: otherFields[otherKey]
   };
 };

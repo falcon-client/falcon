@@ -8,13 +8,13 @@ describe('definitions', () => {
       {
         name: 'AlbumId',
         pk: 1,
-        type: 'TEXT',
+        type: 'TEXT'
       },
       {
         name: 'post_id',
         pk: 0,
-        type: 'INTEGER',
-      },
+        type: 'INTEGER'
+      }
     ]);
 
     expect(results).toEqual({
@@ -24,7 +24,7 @@ describe('definitions', () => {
         type: TEXT,
         allowNull: true,
         autoIncrement: false,
-        defaultValue: undefined,
+        defaultValue: undefined
       },
       postId: {
         field: 'post_id',
@@ -32,8 +32,8 @@ describe('definitions', () => {
         type: INTEGER,
         allowNull: true,
         autoIncrement: false,
-        defaultValue: undefined,
-      },
+        defaultValue: undefined
+      }
     });
   });
 
@@ -42,13 +42,13 @@ describe('definitions', () => {
       {
         name: 'AlbumId',
         pk: 1,
-        type: 'INTEGER',
+        type: 'INTEGER'
       },
       {
         name: 'post_id',
         pk: 0,
-        type: 'INTEGER',
-      },
+        type: 'INTEGER'
+      }
     ]);
 
     expect(results).toEqual({
@@ -58,7 +58,7 @@ describe('definitions', () => {
         type: INTEGER,
         allowNull: true,
         autoIncrement: true,
-        defaultValue: undefined,
+        defaultValue: undefined
       },
       postId: {
         field: 'post_id',
@@ -66,8 +66,8 @@ describe('definitions', () => {
         type: INTEGER,
         allowNull: true,
         autoIncrement: false,
-        defaultValue: undefined,
-      },
+        defaultValue: undefined
+      }
     });
   });
 });

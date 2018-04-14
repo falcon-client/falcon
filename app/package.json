@@ -14,6 +14,6 @@
     "postinstall": "npm run electron-rebuild"
   },
   "dependencies": {
-    "falcon-core": "git+ssh://git@github.com:amilajack/falcon-core.git#add-es-support"
+    "falcon-core": "git+ssh://git@github.com:amilajack/falcon-core.git#master"
   }
 }

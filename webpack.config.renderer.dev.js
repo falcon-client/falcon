@@ -38,6 +38,8 @@ if (!(fs.existsSync(dll) && fs.existsSync(manifest))) {
 }
 
 export default merge.smart(baseConfig, {
+  mode: 'development',
+
   devtool: 'inline-source-map',
 
   target: 'electron-renderer',
@@ -59,24 +61,30 @@ export default merge.smart(baseConfig, {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            cacheDirectory: true,
-            plugins: [
-              // Here, we include babel plugins that are only required for the
-              // renderer process. The 'transform-*' plugins must be included
-              // before react-hot-loader/babel
-              'transform-class-properties',
-              'transform-es2015-classes',
-              'react-hot-loader/babel'
-            ]
+        use: [
+          'cache-loader',
+          {
+            loader: 'babel-loader',
+            options: {
+              cacheDirectory: true,
+              plugins: [
+                // Here, we include babel plugins that are only required for the
+                // renderer process. The 'transform-*' plugins must be included
+                // before react-hot-loader/babel
+                'transform-class-properties',
+                'transform-es2015-classes',
+                'react-hot-loader/babel'
+              ]
+            }
           }
-        }
+        ]
       },
       {
         test: /\.global\.css$/,
         use: [
+          {
+            loader: 'cache-loader',
+          },
           {
             loader: 'style-loader'
           },
@@ -91,6 +99,9 @@ export default merge.smart(baseConfig, {
       {
         test: /^((?!\.global).)*\.css$/,
         use: [
+          {
+            loader: 'cache-loader',
+          },
           {
             loader: 'style-loader'
           },
@@ -110,6 +121,9 @@ export default merge.smart(baseConfig, {
         test: /\.global\.scss$/,
         use: [
           {
+            loader: 'cache-loader',
+          },
+          {
             loader: 'style-loader'
           },
           {
@@ -127,6 +141,9 @@ export default merge.smart(baseConfig, {
       {
         test: /^((?!\.global).)*\.scss$/,
         use: [
+          {
+            loader: 'cache-loader',
+          },
           {
             loader: 'style-loader'
           },
@@ -254,7 +271,7 @@ export default merge.smart(baseConfig, {
     stats: 'errors-only',
     inline: true,
     lazy: false,
-    hot: true,
+    // hot: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
     contentBase: path.join(__dirname, 'dist'),
     watchOptions: {

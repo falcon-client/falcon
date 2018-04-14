@@ -1,6 +1,6 @@
 import {
   tableAssociations,
-  joinTableAssociations,
+  joinTableAssociations
 } from '../builders/associations';
 
 describe('associations', () => {
@@ -10,8 +10,8 @@ describe('associations', () => {
         'posts',
         [
           {
-            name: 'user_id',
-          },
+            name: 'user_id'
+          }
         ],
         []
       )
@@ -21,17 +21,17 @@ describe('associations', () => {
         to: 'posts',
         type: 'hasMany',
         options: {
-          foreignKey: 'user_id',
-        },
+          foreignKey: 'user_id'
+        }
       },
       {
         from: 'posts',
         to: 'users',
         type: 'belongsTo',
         options: {
-          foreignKey: 'user_id',
-        },
-      },
+          foreignKey: 'user_id'
+        }
+      }
     ]);
   });
 
@@ -43,8 +43,8 @@ describe('associations', () => {
         [
           {
             table: 'users',
-            from: 'UserId',
-          },
+            from: 'UserId'
+          }
         ]
       )
     ).toEqual([
@@ -53,17 +53,17 @@ describe('associations', () => {
         to: 'posts',
         type: 'hasMany',
         options: {
-          foreignKey: 'userId',
-        },
+          foreignKey: 'userId'
+        }
       },
       {
         from: 'posts',
         to: 'users',
         type: 'belongsTo',
         options: {
-          foreignKey: 'userId',
-        },
-      },
+          foreignKey: 'userId'
+        }
+      }
     ]);
   });
 });
@@ -75,11 +75,11 @@ describe('join associations', () => {
         'post_user',
         [
           {
-            name: 'post_id',
+            name: 'post_id'
           },
           {
-            name: 'user_id',
-          },
+            name: 'user_id'
+          }
         ],
         []
       )
@@ -91,8 +91,8 @@ describe('join associations', () => {
         options: {
           through: 'post_user',
           foreignKey: 'post_id',
-          timestamps: false,
-        },
+          timestamps: false
+        }
       },
       {
         from: 'users',
@@ -101,9 +101,9 @@ describe('join associations', () => {
         options: {
           through: 'post_user',
           foreignKey: 'user_id',
-          timestamps: false,
-        },
-      },
+          timestamps: false
+        }
+      }
     ]);
   });
 
@@ -115,12 +115,12 @@ describe('join associations', () => {
         [
           {
             table: 'posts',
-            from: 'post_id',
+            from: 'post_id'
           },
           {
             table: 'users',
-            from: 'user_id',
-          },
+            from: 'user_id'
+          }
         ]
       )
     ).toEqual([
@@ -131,8 +131,8 @@ describe('join associations', () => {
         options: {
           through: 'post_user',
           foreignKey: 'post_id',
-          timestamps: false,
-        },
+          timestamps: false
+        }
       },
       {
         from: 'users',
@@ -141,9 +141,9 @@ describe('join associations', () => {
         options: {
           through: 'post_user',
           foreignKey: 'user_id',
-          timestamps: false,
-        },
-      },
+          timestamps: false
+        }
+      }
     ]);
   });
 });

@@ -59,3 +59,4 @@ prefix-lite/
 sources/
 .cache
 lib
+.cache-loader

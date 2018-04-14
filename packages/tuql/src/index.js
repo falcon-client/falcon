@@ -1,6 +1,6 @@
 import {
   buildSchemaFromDatabase,
-  buildSchemaFromInfile,
+  buildSchemaFromInfile
 } from './builders/schema';
 
 export { buildSchemaFromDatabase, buildSchemaFromInfile };

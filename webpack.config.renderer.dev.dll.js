@@ -14,6 +14,8 @@ CheckNodeEnv('development');
 const dist = path.resolve(process.cwd(), 'dll');
 
 export default merge.smart(baseConfig, {
+  mode: 'development',
+
   context: process.cwd(),
 
   devtool: 'eval',
