@@ -34,7 +34,6 @@ export default {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: [
-          'cache-loader',
           {
             loader: 'babel-loader',
             options: {
@@ -45,12 +44,7 @@ export default {
       },
       {
         test: /\.worker\.js$/,
-        use: [
-          {
-            loader: 'cache-loader',
-          },
-          { loader: 'worker-loader' }
-        ]
+        use: [{ loader: 'worker-loader' }]
       },
       {
         test: /aws-sdk/,
@@ -101,7 +95,7 @@ export default {
     new LodashModuleReplacementPlugin(),
     new webpack.NamedModulesPlugin(),
     new webpack.IgnorePlugin(/^mock-firmata$/),
-    new webpack.ContextReplacementPlugin(/bindings$/, /^$/),
+    new webpack.ContextReplacementPlugin(/bindings$/, /^$/)
     // new HardSourceWebpackPlugin(),
     // {
     //   apply(compiler) {

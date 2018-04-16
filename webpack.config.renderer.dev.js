@@ -62,7 +62,6 @@ export default merge.smart(baseConfig, {
         test: /\.jsx?$/,
         exclude: /node_modules/,
         use: [
-          'cache-loader',
           {
             loader: 'babel-loader',
             options: {
@@ -83,9 +82,6 @@ export default merge.smart(baseConfig, {
         test: /\.global\.css$/,
         use: [
           {
-            loader: 'cache-loader',
-          },
-          {
             loader: 'style-loader'
           },
           {
@@ -99,9 +95,6 @@ export default merge.smart(baseConfig, {
       {
         test: /^((?!\.global).)*\.css$/,
         use: [
-          {
-            loader: 'cache-loader',
-          },
           {
             loader: 'style-loader'
           },
@@ -121,9 +114,6 @@ export default merge.smart(baseConfig, {
         test: /\.global\.scss$/,
         use: [
           {
-            loader: 'cache-loader',
-          },
-          {
             loader: 'style-loader'
           },
           {
@@ -141,9 +131,6 @@ export default merge.smart(baseConfig, {
       {
         test: /^((?!\.global).)*\.scss$/,
         use: [
-          {
-            loader: 'cache-loader',
-          },
           {
             loader: 'style-loader'
           },

@@ -272,7 +272,12 @@ export default class HomePage extends Component<Props, State> {
             this.ipcConnection || connections[0]
           );
           await this.getInitialViewData();
-          this.props.history.push('/content');
+          if (
+            this.props.history.location.pathname === '/login' ||
+            this.props.history.location.pathname === '/'
+          ) {
+            this.props.history.push('/content');
+          }
         } else {
           this.props.history.push('/login');
         }

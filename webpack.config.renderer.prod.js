@@ -181,7 +181,12 @@ export default merge.smart(baseConfig, {
 
     new LodashModuleReplacementPlugin(),
 
-    new ExtractTextPlugin('style.css'),
+    // new ExtractTextPlugin('style.css'),
+
+    new ExtractTextPlugin({
+      filename: 'style.css',
+      allChunks: true
+    }),
 
     new BundleAnalyzerPlugin({
       analyzerMode:
