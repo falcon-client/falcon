@@ -23,10 +23,14 @@ export default class LogPage extends Component {
   ];
 
   render() {
+    const logs = this.props.logs.map(e => ({
+      ...e,
+      duration: `${e.duration} ns`
+    }))
     return (
       <ReactTable
         className="LogPage"
-        data={this.props.logs}
+        data={logs}
         columns={this.columns}
       />
     );

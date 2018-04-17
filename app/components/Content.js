@@ -23,7 +23,7 @@ export default class Content extends Component<Props, {}> {
     return (
       <div className="VirtualList-row">
         {/* @HACK: node-sqlite3 sometimes returns buffers. This kilss rendering perf */}
-        {row}
+        {row.join(',   ')}
       </div>
     );
   }

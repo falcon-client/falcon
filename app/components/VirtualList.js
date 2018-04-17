@@ -55,8 +55,10 @@ export default class VirtualList extends Component<Props, State> {
   };
 
   resize() {
-    if (this.state.height !== this.base.offsetHeight) {
-      this.setState({ height: this.base.offsetHeight });
+    if (this.state) {
+      if (this.state.height !== this.base.offsetHeight) {
+        this.setState({ height: this.base.offsetHeight });
+      }
     }
   }
 

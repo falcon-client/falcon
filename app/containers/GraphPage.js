@@ -23,7 +23,6 @@ export default class GraphPage extends Component {
     async function introspectionProvider(query) {
       try {
         await props.connection.startGraphQLServer();
-        console.log(props.connection.getGraphQLServerPort());
       } catch (e) {
         console.log(e);
       }

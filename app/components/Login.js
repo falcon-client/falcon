@@ -51,6 +51,7 @@ class Login extends Component<Props, State> {
       });
       await this.props.onSuccess();
     } catch (e) {
+      console.log(e)
       this.setState({
         errorMessages: e.data.errors.error.details.map(detail => ({
           fieldName: detail.context.label,
