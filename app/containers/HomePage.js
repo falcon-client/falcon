@@ -113,6 +113,9 @@ export default class HomePage extends Component<Props, State> {
       this.core.connection.getVersion(),
       this.core.connection.getLogs()
     ]);
+    if (tableNames.length === 0) {
+      return;
+    }
     const selectedTable = this.state.selectedTable || {
       name: tableNames[0].name
     };
