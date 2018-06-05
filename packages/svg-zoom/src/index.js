@@ -68,8 +68,7 @@ export class SvgPanZoom {
 
       const g = svg.append('g');
 
-      d3
-        .xml(this.svgPath)
+      d3.xml(this.svgPath)
         .mimeType('image/svg+xml')
         .get((error, xml) => {
           console.log(xml);
@@ -165,8 +164,7 @@ export default function SvgZoom(
   const height = +svg.attr('height');
   const g = svg.append('g');
 
-  d3
-    .xml(svgPath)
+  d3.xml(svgPath)
     .mimeType('image/svg+xml')
     .get((error, xml) => {
       if (error) {

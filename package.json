@@ -1,7 +1,7 @@
 {
   "name": "falcon",
   "productName": "Falcon",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "erbVersion": "0.13.1",
   "description": "A fast, modern, and extensible database client",
   "scripts": {

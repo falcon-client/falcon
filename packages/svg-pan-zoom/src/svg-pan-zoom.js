@@ -271,7 +271,7 @@ class SvgPanZoom {
     delta =
       delta > -0.3 && delta < 0.3
         ? delta
-        : (delta > 0 ? 1 : -1) * Math.log(Math.abs(delta) + 10) / divider;
+        : ((delta > 0 ? 1 : -1) * Math.log(Math.abs(delta) + 10)) / divider;
 
     const inversedScreenCTM = this.svg.getScreenCTM().inverse(); // multiplying by neg. 1 so as to make zoom in/out behavior match Google maps behavior
 
@@ -302,12 +302,14 @@ class SvgPanZoom {
         this.getZoom() * zoomScale <
         this.options.minZoom * originalState.zoom
       ) {
-        zoomScale = this.options.minZoom * originalState.zoom / this.getZoom();
+        zoomScale =
+          (this.options.minZoom * originalState.zoom) / this.getZoom();
       } else if (
         this.getZoom() * zoomScale >
         this.options.maxZoom * originalState.zoom
       ) {
-        zoomScale = this.options.maxZoom * originalState.zoom / this.getZoom();
+        zoomScale =
+          (this.options.maxZoom * originalState.zoom) / this.getZoom();
       }
     } else {
       // Fit zoomScale in set bounds

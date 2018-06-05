@@ -53,10 +53,10 @@ export default (function uniwhel() {
 
       // calculate deltaY (and deltaX) according to the event
       if (support === 'mousewheel') {
-        event.deltaY = -1 / 40 * originalEvent.wheelDelta;
+        event.deltaY = (-1 / 40) * originalEvent.wheelDelta;
         // Webkit also support wheelDeltaX
         originalEvent.wheelDeltaX &&
-          (event.deltaX = -1 / 40 * originalEvent.wheelDeltaX);
+          (event.deltaX = (-1 / 40) * originalEvent.wheelDeltaX);
       } else {
         event.deltaY = originalEvent.detail;
       }
