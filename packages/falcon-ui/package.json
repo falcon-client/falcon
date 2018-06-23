@@ -6,5 +6,10 @@
   "license": "MIT",
   "module": "./es/index.js",
   "scripts": {
+    "build": "BABEL_ENV=es NODE_ENV=es rollup -f es -c --environment BUILD:foo && rollup -f es -c --environment BUILD:moo"
+  },
+  "peerDependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
   }
 }

@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import NProgress from 'nprogress';
+import { Button } from 'falcon-client/falcon-ui';
 import ListSymbol from './ListSymbol';
 
 type Props = {
