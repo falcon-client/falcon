@@ -1,0 +1,11 @@
+{
+  "presets": [
+    ["env", {
+      "targets": { "node": 10 },
+      "useBuiltIns": true,
+      "modules": false
+    }],
+    "stage-0",
+    "react"
+  ]
+}
