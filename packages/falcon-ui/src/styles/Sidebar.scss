@@ -1,0 +1,60 @@
+.Sidebar {
+  contain: strict;
+  background: #F4F4F4;
+  border-right: 2px solid #979797;
+  border-top: 2px solid #979797;
+  position: relative;
+
+  .Sidebar--header {
+    padding: 0 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: #767676;
+    font-size: 13px;
+  }
+
+  .Sidebar--list {
+    list-style: none;
+    padding: 10px 0;
+    overflow: scroll;
+    height: 100vh;
+    margin: 0;
+    overflow: scroll;
+    white-space: nowrap;
+    cursor: pointer;
+    height: 100%;
+  }
+
+  .Sidebar--list-item {
+    font-size: 12px;
+    padding: 5px;
+    padding-left: 20px;
+    color: #686868;
+
+    &:hover {
+      background-color: #999999;
+      color: white;
+
+      .ListSymbol {
+        background: white;
+        color: #686868;
+      }
+    }
+  }
+
+  .Sidebar--list-item-selected {
+    font-size: 12px;
+    padding: 5px;
+    padding-left: 20px;
+    background-color: #686868;
+    color: white;
+
+    .ListSymbol {
+      background: white;
+      color: #686868;
+    }
+  }
+}

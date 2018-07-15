@@ -1,0 +1,16 @@
+.HomePage {
+  .react-resizable {
+    position: relative;
+  }
+
+  .react-resizable-handle {
+    position: absolute;
+    width: 3px;
+    height: 1000px;
+    bottom: 0;
+    top: 0;
+    right: 0;
+    background: gray;
+    cursor: col-resize;
+  }
+}

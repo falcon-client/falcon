@@ -1,0 +1,95 @@
+.Structure {
+  contain: strict;
+  background: #F4F4F4;
+  height: 100%;
+  // padding: 50px;
+
+  .ReactTable {
+    background: white;
+    overflow: scroll;
+
+    .search-bar {
+      margin: 20px;
+      text-align: center;
+    }
+
+      .search-bar input {
+        width: 75%;
+      }
+
+    .rt-tbody {
+      background: white;
+    }
+
+    .rt-resizable-header-content {
+      text-align: left;
+    }
+
+    * {
+      font-family: 'Avenir';
+    }
+
+    * {
+      box-shadow: none !important;
+      font-size: 14px;
+    }
+
+    .rt-resizable-header-content {
+      font-weight: bold;
+    }
+
+    .rt-table {
+      overflow: initial;
+    }
+
+    .rt-tbody {
+      overflow: initial;
+    }
+
+    .rt-td {
+      overflow: initial !important;
+    }
+
+    .rt-td:focus-within {
+      border-color: blue;
+    }
+
+
+    .rt-tr {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 1px solid lightgray;
+    }
+
+    .Select-menu-outer {
+      position: absolute;
+      z-index: 1000000;
+    }
+
+    .Structure-Cell-Input {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      font-size: 110%;
+      color: #686868;
+      border: 0
+    }
+
+    .Structure-Cell-Input--null {
+      background-color: #FFF8B2;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      width: 100%;
+      font-size: 110%;
+      color: #686868;
+      border: 0;
+    }
+
+    .Structure-Cell-Input--null::placeholder {
+      color: #b3b3b3
+    }
+  }
+}
