@@ -26,7 +26,11 @@ export default function Button(props: Props) {
   const { disabled, className, style, children } = props;
 
   return (
-    <button disabled={disabled} className={className} style={style || defaultStyle}>
+    <button
+      disabled={disabled}
+      className={className}
+      style={style || defaultStyle}
+    >
       {children}
     </button>
   );

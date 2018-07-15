@@ -10,7 +10,6 @@ import SWPrecacheWebpackPlugin from 'sw-precache-webpack-plugin';
 import merge from 'webpack-merge';
 import UglifyJSPlugin from 'uglifyjs-webpack-plugin';
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
-import { Plugin as ShakePlugin } from 'webpack-common-shake';
 import baseConfig from './webpack.config.base';
 import CheckNodeEnv from './internals/scripts/CheckNodeEnv';
 

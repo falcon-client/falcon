@@ -5,7 +5,7 @@ import '../src/styles/app.global.scss';
 
 class Root extends Component {
   render() {
-    return <Button>Foobar</Button>
+    return <Button>Foobar</Button>;
   }
 }
 

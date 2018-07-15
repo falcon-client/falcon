@@ -14,7 +14,7 @@
     "flow": "flow",
     "flow-typed": "rimraf flow-typed/npm && flow-typed install --overwrite || true",
     "lint": "cross-env NODE_ENV=development eslint --cache --format=node_modules/eslint-formatter-pretty .",
-    "lint-fix": "yarn --silent lint -- --fix; exit 0",
+    "lint-fix": "yarn --silent lint --fix; exit 0",
     "lint-styles": "stylelint app/*.css app/components/*.css --syntax scss",
     "lint-styles-fix": "stylefmt -r app/*.css app/components/*.css",
     "package": "yarn build && build --publish never",
@@ -34,7 +34,7 @@
     "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 node --trace-warnings -r babel-register ./internals/scripts/RunTests.js",
     "test-all": "yarn lint && yarn flow && yarn build && yarn test && yarn test-e2e",
     "test-e2e": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 node --trace-warnings -r babel-register ./internals/scripts/RunTests.js e2e",
-    "test-watch": "npm test -- --watch"
+    "test-watch": "yarn test --watch"
   },
   "husky": {
     "hooks": {
@@ -201,7 +201,6 @@
     "webpack": "^4.10.2",
     "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.0.1",
-    "webpack-common-shake": "^1.5.3",
     "webpack-dev-server": "^3.1.4",
     "webpack-merge": "^4.1.2",
     "worker-loader": "^2.0.0"
