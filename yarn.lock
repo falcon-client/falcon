@@ -1183,6 +1183,10 @@ babel-plugin-macros@^2.0.0:
   dependencies:
     cosmiconfig "^4.0.0"
 
+babel-plugin-react-remove-properties@^0.2.5:
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/babel-plugin-react-remove-properties/-/babel-plugin-react-remove-properties-0.2.5.tgz#c076e1291940c730f4fb7dfb670691fc41787cf8"
+
 babel-plugin-react-transform@^2.0.2:
   version "2.0.2"
   resolved "https://registry.yarnpkg.com/babel-plugin-react-transform/-/babel-plugin-react-transform-2.0.2.tgz#515bbfa996893981142d90b1f9b1635de2995109"
@@ -4602,6 +4606,10 @@ eslint-plugin-react@^7.10.0:
     has "^1.0.3"
     jsx-ast-utils "^2.0.1"
     prop-types "^15.6.2"
+
+eslint-plugin-testcafe@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-testcafe/-/eslint-plugin-testcafe-0.2.1.tgz#4089f646dadb69b1376a01d7e608184907e6036b"
 
 eslint-restricted-globals@^0.1.1:
   version "0.1.1"
