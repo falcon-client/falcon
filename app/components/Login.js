@@ -74,7 +74,7 @@ class Login extends Component<Props, State> {
   render() {
     return (
       <div className="Login">
-        <div className="Login--container">
+        <div className="Login--container" data-e2e="login-container">
           <div className="row no-gutters">
             <div className="col-12 row-margin text-center">
               <h2 className="Login--header">Create Connection</h2>
@@ -90,6 +90,7 @@ class Login extends Component<Props, State> {
                 placeholder="My first connection"
                 value={this.state.connectionName}
                 type="text"
+                data-e2e="create-connection-connection-name"
                 onChange={e =>
                   this.setState({ connectionName: e.target.value })
                 }
@@ -100,6 +101,7 @@ class Login extends Component<Props, State> {
               <input
                 placeholder="/Desktop/sqlite.db"
                 value={this.state.databasePath}
+                data-e2e="create-connection-database-path"
                 onChange={e => this.setState({ databasePath: e.target.value })}
               />
             </div>
@@ -112,6 +114,7 @@ class Login extends Component<Props, State> {
               <div
                 className="Login--submit-button"
                 onClick={() => this.handleConnect()}
+                data-e2e="create-connection-submit"
               >
                 Connect
               </div>

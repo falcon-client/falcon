@@ -33,7 +33,7 @@
     "start-renderer-dev": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack-dev-server/bin/webpack-dev-server --config webpack.config.renderer.dev.js",
     "test": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 node --trace-warnings -r babel-register ./internals/scripts/RunTests.js",
     "test-all": "yarn lint && yarn flow && yarn build && yarn test && yarn test-e2e",
-    "test-e2e": "cross-env NODE_ENV=test BABEL_DISABLE_CACHE=1 node --trace-warnings -r babel-register ./internals/scripts/RunTests.js e2e",
+    "test-e2e": "cross-env NODE_ENV=test testcafe electron:./app ./test/e2e/*.spec.js",
     "test-watch": "yarn test --watch"
   },
   "husky": {
@@ -126,6 +126,7 @@
     "babel-plugin-dev-expression": "^0.2.1",
     "babel-plugin-dynamic-import-node": "^2.0.0",
     "babel-plugin-flow-runtime": "^0.17.0",
+    "babel-plugin-react-remove-properties": "^0.2.5",
     "babel-plugin-transform-class-properties": "^6.24.1",
     "babel-plugin-transform-es2015-classes": "^6.24.1",
     "babel-preset-env": "^1.7.0",
@@ -163,6 +164,7 @@
     "eslint-plugin-jsx-a11y": "6.1.1",
     "eslint-plugin-promise": "^3.8.0",
     "eslint-plugin-react": "^7.10.0",
+    "eslint-plugin-testcafe": "^0.2.1",
     "extract-text-webpack-plugin": "^4.0.0-beta.0",
     "fbjs-scripts": "^0.8.3",
     "file-loader": "^1.1.11",
@@ -195,6 +197,8 @@
     "stylelint": "^9.4.0",
     "stylelint-config-standard": "^18.2.0",
     "sw-precache-webpack-plugin": "^0.11.5",
+    "testcafe": "^0.20.5",
+    "testcafe-browser-provider-electron": "^0.0.6",
     "transform-loader": "^0.2.4",
     "uglifyjs-webpack-plugin": "1.2.7",
     "url-loader": "^1.0.1",
