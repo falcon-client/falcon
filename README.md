@@ -1,4 +1,5 @@
 # falcon
+[![Build Status](https://travis-ci.com/amilajack/falcon.svg?token=stGf151gAJ11ZUi8LyvG&branch=master)](https://travis-ci.com/amilajack/falcon)
 ![Falcon Demo Rewrite](/internals/img/falcon-demo.png)
 
 ## Setup
