@@ -50,8 +50,6 @@ export default class Header extends Component<Props, {}> {
 
     return (
       <div className="Header col-sm-12">
-        <Button>Hello World! </Button>
-        <Tab />
         <div
           className="Header--container"
           style={{ marginLeft: shouldHideMargin ? '10px' : '80px' }}
