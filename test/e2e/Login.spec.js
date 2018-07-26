@@ -41,21 +41,21 @@ test.skip('it should create a new connection', async t => {
     .contains('/login')
     .expect(Selector('[data-e2e="login-container"]').visible)
     .ok()
-    .typeText('[data-e2e="create-connection-connection-name"]', 'Foo connection')
+    .typeText(
+      '[data-e2e="create-connection-connection-name"]',
+      'Foo connection'
+    )
     .typeText('[data-e2e="create-connection-database-name"]', 'foobar')
     .click('[data-e2e="create-connection-submit"]')
-    .click(Selector('a').withExactText('Foo Connection').parent());
+    .click(
+      Selector('a')
+        .withExactText('Foo Connection')
+        .parent()
+    );
 });
 
 test.skip('it should refresh connection', async t => {
   const url = await getPageUrl();
-  await t
-    .eval(() => {
-      window.location.reload()
-    })
-  await t
-    .click('[data-e2e="header-connection-refresh-button"]');
-  await t
-    .expect(url)
-    .eql(await getPageUrl());
+  await t.click('[data-e2e="header-connection-refresh-button"]');
+  await t.expect(url).eql(await getPageUrl());
 });
