@@ -5,15 +5,15 @@
   "author": "Amila Welihinda <amilajack@gmail.com>",
   "license": "MIT",
   "module": "./src/index.js",
-  "devDependencies": {
-    "d3": "^4.12.2",
-    "http-server": "^0.11.1"
-  },
   "scripts": {
     "build": "cross-env NODE_ENV=production rm -rf es && babel -d es/ src/ --source-maps",
     "example": "parcel test/index.html",
-    "test": "npm run build",
+    "test": "yarn build",
     "watch": "cross-env NODE_ENV=development babel --out-dir lib src --source-maps --watch"
+  },
+  "devDependencies": {
+    "d3": "^4.12.2",
+    "http-server": "^0.11.1"
   },
   "peerDependencies": {
     "d3": "^4.12.2"

@@ -17,5 +17,12 @@
     "flowtype/union-intersection-spacing": ["error", "always"],
     "flowtype/use-flow-type": "error",
     "flowtype/valid-syntax": "error"
+  },
+  "settings": {
+    "import/resolver": {
+      "webpack": {
+        "config": "../webpack.config.eslint.js"
+      }
+    }
   }
 }

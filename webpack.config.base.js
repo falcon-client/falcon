@@ -84,7 +84,8 @@ export default {
       '@falcon-client/falcon-core': path.resolve(
         __dirname,
         'packages/falcon-core'
-      )
+      ),
+      '@falcon-client/falcon-ui': path.resolve(__dirname, 'packages/falcon-ui')
     }
   },
 

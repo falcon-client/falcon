@@ -5,7 +5,7 @@
   "module": "es/voyager.js",
   "scripts": {
     "clean:release": "rimraf es",
-    "build": "npm run build:es",
+    "build": "yarn build:es",
     "build:es": "BABEL_ENV=es NODE_ENV=es rollup -f es -c --environment BUILD:foo && rollup -f es -c --environment BUILD:moo"
   },
   "author": "",
