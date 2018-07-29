@@ -1,7 +1,5 @@
 sudo: false
 
-env: NODE_VERSION="10" ELECTRON_VERSION="2.0.1"
-
 language: node_js
 
 node_js:
