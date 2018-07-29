@@ -3,8 +3,8 @@ falcon-ui
 
 ## Usage
 ```js
-import '@falcon-client/falcon-ui/src/styles/app.global.css';
-import Button from '@falcon-client/falcon-ui/src/styles/app.global.css';
+import '@falcon-client/falcon-ui/src/styles/app.global.scss';
+import { Button } from '@falcon-client/falcon-ui';
 
 <Button>Foobar</Button>
 ```
