@@ -14,23 +14,11 @@ Button.defaultProps = {
   disabled: false
 };
 
-const defaultStyle = {
-  color: '#fff',
-  backgroundColor: '#6c757d',
-  border: '1px solid #6c757d',
-  textAlign: 'center',
-  borderRadius: '8px'
-};
-
 export default function Button(props: Props) {
   const { disabled, className, style, children } = props;
 
   return (
-    <button
-      disabled={disabled}
-      className={className}
-      style={style || defaultStyle}
-    >
+    <button disabled={disabled} className="Button">
       {children}
     </button>
   );

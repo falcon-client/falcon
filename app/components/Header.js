@@ -1,7 +1,8 @@
 // @flow
 import React, { Component } from 'react';
 import NProgress from 'nprogress';
-import { Button, Tab } from '@falcon-client/falcon-ui';
+import '@falcon-client/falcon-ui/src/styles/app.global.scss';
+import { Button } from '@falcon-client/falcon-ui';
 import ListSymbol from './ListSymbol';
 
 type Props = {
@@ -50,6 +51,7 @@ export default class Header extends Component<Props, {}> {
 
     return (
       <div className="Header col-sm-12">
+        <Button>Hello</Button>
         <div
           className="Header--container"
           style={{ marginLeft: shouldHideMargin ? '10px' : '80px' }}
