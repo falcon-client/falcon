@@ -38,4 +38,5 @@ script:
   - lerna bootstrap && lerna run build
   - yarn package
   - yarn test
+  - yarn electron-rebuild
   - yarn test-e2e
