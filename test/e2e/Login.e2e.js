@@ -4,20 +4,14 @@ import {
   getPageTitle,
   getPageUrl,
   clearConfig,
-  createNewConnection
+  createNewConnection,
+  assertGoesToPageWithLinkText
 } from './helpers';
 
 fixture`Login`.page('../../app/app.html').beforeEach(async t => {
   await clearConfig();
   await createNewConnection(t);
 });
-
-function assertGoesToPageWithLinkText(t, linkText, urlRoute) {
-  return t
-    .click(Selector('a').withExactText(linkText))
-    .expect(getPageUrl())
-    .contains(urlRoute);
-}
 
 test('it should have the expected title', async t => {
   await t.expect(getPageTitle()).eql('Falcon');
@@ -35,7 +29,7 @@ test('it should load logs page', async t => {
   await assertGoesToPageWithLinkText(t, 'Logs', '/logs');
 });
 
-test('it should load graph page', async t => {
+test.skip('it should load graph page', async t => {
   await assertGoesToPageWithLinkText(t, 'Graph', '/graph');
 });
 

@@ -14,7 +14,18 @@ export const scrollBottom = ClientFunction(() =>
   window.scrollTo(0, document.body.scrollHeight)
 );
 
-export function createNewConnection(t, connectionName = 'New Test Connection') {
+export function assertGoesToPageWithLinkText(t, linkText, urlRoute) {
+  return t
+    .click(Selector('a').withExactText(linkText))
+    .expect(getPageUrl())
+    .contains(urlRoute);
+}
+
+export function createNewConnection(
+  t,
+  connectionName = 'New Test Connection',
+  databaseName = path.join(__dirname, 'temp.sqlite')
+) {
   return t
     .click('[data-e2e="header-create-new-connection-button"]')
     .expect(getPageUrl())
@@ -22,10 +33,7 @@ export function createNewConnection(t, connectionName = 'New Test Connection') {
     .expect(Selector('[data-e2e="login-container"]').visible)
     .ok()
     .typeText('[data-e2e="create-connection-name"]', connectionName)
-    .typeText(
-      '[data-e2e="create-connection-database-name"]',
-      path.join(__dirname, 'temp.sqlite')
-    )
+    .typeText('[data-e2e="create-connection-database-name"]', databaseName)
     .click('[data-e2e="create-connection-submit"]')
     .click(
       Selector('a')
