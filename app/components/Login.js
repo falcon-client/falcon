@@ -90,7 +90,7 @@ class Login extends Component<Props, State> {
                 placeholder="My first connection"
                 value={this.state.connectionName}
                 type="text"
-                data-e2e="create-connection-connection-name"
+                data-e2e="create-connection-name"
                 onChange={e =>
                   this.setState({ connectionName: e.target.value })
                 }
@@ -101,7 +101,7 @@ class Login extends Component<Props, State> {
               <input
                 placeholder="/Desktop/sqlite.db"
                 value={this.state.databasePath}
-                data-e2e="create-connection-database-path"
+                data-e2e="create-connection-database-name"
                 onChange={e => this.setState({ databasePath: e.target.value })}
               />
             </div>

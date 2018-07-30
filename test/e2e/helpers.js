@@ -1,4 +1,9 @@
+import path from 'path';
+import os from 'os';
+import fs from 'fs';
 import { ClientFunction, Selector } from 'testcafe';
+
+const APP_NAME = 'Electron';
 
 export const getPageTitle = ClientFunction(() => document.title);
 export const getPageUrl = ClientFunction(() => window.location.href);
@@ -8,3 +13,45 @@ export const cardSelector = Selector('.Card');
 export const scrollBottom = ClientFunction(() =>
   window.scrollTo(0, document.body.scrollHeight)
 );
+
+export function createNewConnection(t, connectionName = 'New Test Connection') {
+  return t
+    .click('[data-e2e="header-create-new-connection-button"]')
+    .expect(getPageUrl())
+    .contains('/login')
+    .expect(Selector('[data-e2e="login-container"]').visible)
+    .ok()
+    .typeText(
+      '[data-e2e="create-connection-name"]',
+      connectionName
+    )
+    .typeText(
+      '[data-e2e="create-connection-database-name"]',
+      path.join(__dirname, 'temp.sqlite')
+    )
+    .click('[data-e2e="create-connection-submit"]')
+    .click(
+      Selector('a')
+        .withExactText(connectionName)
+        .parent()
+    );
+}
+
+export function clearConfig() {
+  const appConfigPath = (() => {
+    switch (os.type()) {
+      case 'Darwin':
+        return path.join(os.homedir(), 'Library', 'Application Support', APP_NAME, 'config.json');
+      case 'Windows_NT':
+        return path.join(os.homedir(), process.env.APPDATA, APP_NAME, 'config.json');
+      case 'Linux':
+        return path.join(os.homedir(), '.config', APP_NAME, 'config.json');
+      default:
+        return path.join(os.homedir(), '.config', APP_NAME, 'config.json');
+    }
+  })();
+
+  if (fs.existsSync(appConfigPath)) {
+    return fs.unlinkSync(appConfigPath);
+  }
+}
