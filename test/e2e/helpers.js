@@ -21,10 +21,7 @@ export function createNewConnection(t, connectionName = 'New Test Connection') {
     .contains('/login')
     .expect(Selector('[data-e2e="login-container"]').visible)
     .ok()
-    .typeText(
-      '[data-e2e="create-connection-name"]',
-      connectionName
-    )
+    .typeText('[data-e2e="create-connection-name"]', connectionName)
     .typeText(
       '[data-e2e="create-connection-database-name"]',
       path.join(__dirname, 'temp.sqlite')
@@ -41,9 +38,20 @@ export function clearConfig() {
   const appConfigPath = (() => {
     switch (os.type()) {
       case 'Darwin':
-        return path.join(os.homedir(), 'Library', 'Application Support', APP_NAME, 'config.json');
+        return path.join(
+          os.homedir(),
+          'Library',
+          'Application Support',
+          APP_NAME,
+          'config.json'
+        );
       case 'Windows_NT':
-        return path.join(os.homedir(), process.env.APPDATA, APP_NAME, 'config.json');
+        return path.join(
+          os.homedir(),
+          process.env.APPDATA,
+          APP_NAME,
+          'config.json'
+        );
       case 'Linux':
         return path.join(os.homedir(), '.config', APP_NAME, 'config.json');
       default:
