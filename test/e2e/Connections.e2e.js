@@ -24,12 +24,10 @@ function createNewBadConnection(
     .ok()
     .typeText('[data-e2e="create-connection-name"]', connectionName)
     .typeText('[data-e2e="create-connection-database-name"]', databaseName)
-    .click('[data-e2e="create-connection-submit"]')
+    .click('[data-e2e="create-connection-submit"]');
 }
 
 test('it should not handle bad sqlite files', async t => {
   await createNewBadConnection(t);
-  await t
-    .expect(getPageUrl())
-    .contains('/login')
+  await t.expect(getPageUrl()).contains('/login');
 });
