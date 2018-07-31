@@ -23,6 +23,7 @@
     "package-all": "yarn build && build -mwl",
     "package-linux": "yarn build && build --linux",
     "package-win": "yarn build && build --win --x64",
+    "precommit": "lint-staged",
     "postinstall": "node -r babel-register internals/scripts/CheckNativeDep.js && yarn flow-typed && yarn build-dll && electron-builder install-app-deps",
     "postlint-fix": "prettier --ignore-path .eslintignore --single-quote --write '**/*.js'",
     "reinstall": "rm -rf node_modules/ && rm -rf app/node_modules/ && yarn install",
@@ -36,10 +37,16 @@
     "test-e2e": "cross-env NODE_ENV=test testcafe electron:./app ./test/e2e/*.e2e.js",
     "test-watch": "yarn test --watch"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "yarn lint-fix"
-    }
+  "lint-staged": {
+    "*.(js|jsx)": [
+      "cross-env NODE_ENV=development eslint --cache --format=node_modules/eslint-formatter-pretty",
+      "prettier --ignore-path .eslintignore --single-quote --write",
+      "git add"
+    ],
+    "*.(json|css|scss|md|yml)|.(babelrc|prettierrc|eslintrc)": [
+      "prettier --ignore-path .eslintignore --write",
+      "git add"
+    ]
   },
   "browserslist": "electron 1.6",
   "build": {
@@ -172,13 +179,14 @@
     "flow-runtime": "^0.17.0",
     "flow-typed": "^2.5.1",
     "hard-source-webpack-plugin": "^0.11.2",
-    "husky": "^0.15.0-rc.3",
+    "husky": "^0.14.3",
     "identity-obj-proxy": "^3.0.0",
     "ionicons-temp": "^2.0.0",
     "jest": "^23.4.2",
     "jsdom": "^11.12.0",
     "json-loader": "^0.5.7",
     "lerna": "^3.0.0-rc.0",
+    "lint-staged": "^7.2.0",
     "lodash-webpack-plugin": "^0.11.5",
     "minimist": "^1.2.0",
     "node-sass": "^4.9.2",
