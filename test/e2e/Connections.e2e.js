@@ -1,15 +1,14 @@
 import path from 'path';
 import { Selector } from 'testcafe';
-import {
-  getPageTitle,
-  getPageUrl,
-  clearConfig,
-  createNewConnection
-} from './helpers';
+import { createNewConnection, getPageUrl, clearConfig } from './helpers';
 
-fixture`Connections`.page('../../app/app.html').beforeEach(async t => {
+fixture`Connections`.page('../../app/app.html').beforeEach(async () => {
   await clearConfig();
 });
+
+const loginErrorMessageElement = Selector(
+  '[data-e2e="login-error-message-box"]'
+);
 
 function createNewBadConnection(
   t,
@@ -27,7 +26,37 @@ function createNewBadConnection(
     .click('[data-e2e="create-connection-submit"]');
 }
 
+test('it should open "demo.sqlite"', async t => {
+  await createNewConnection(
+    t,
+    'Demo SQLite Connection',
+    path.join(__dirname, 'demo.sqlite')
+  );
+});
+
+test('it should open "temp.sqlite"', async t => {
+  await createNewConnection(
+    t,
+    'Temp SQLite Connection',
+    path.join(__dirname, 'temp.sqlite')
+  );
+});
+
+test('it should open "oracle-sample.db"', async t => {
+  await createNewConnection(
+    t,
+    'Temp SQLite Connection',
+    path.join(__dirname, 'oracle-sample.db')
+  );
+});
+
 test('it should not handle bad sqlite files', async t => {
   await createNewBadConnection(t);
-  await t.expect(getPageUrl()).contains('/login');
+  await t
+    .expect(getPageUrl())
+    .contains('/login')
+    .expect(
+      loginErrorMessageElement.withExactText('"database" is not valid').visible
+    )
+    .ok();
 });
