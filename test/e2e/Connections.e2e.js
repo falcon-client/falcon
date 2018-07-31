@@ -60,3 +60,32 @@ test('it should not handle bad sqlite files', async t => {
     )
     .ok();
 });
+
+test('it should not create connection without connection name', async t => {
+  await t
+    .click('[data-e2e="header-create-new-connection-button"]')
+    .expect(getPageUrl())
+    .contains('/login')
+    .expect(Selector('[data-e2e="login-container"]').visible)
+    .ok()
+    .typeText(
+      '[data-e2e="create-connection-database-name"]',
+      'No password database'
+    )
+    .click('[data-e2e="create-connection-submit"]')
+    .expect(getPageUrl())
+    .contains('/login');
+});
+
+test('it should not create connection without database name', async t => {
+  await t
+    .click('[data-e2e="header-create-new-connection-button"]')
+    .expect(getPageUrl())
+    .contains('/login')
+    .expect(Selector('[data-e2e="login-container"]').visible)
+    .ok()
+    .typeText('[data-e2e="create-connection-name"]', 'Test With')
+    .click('[data-e2e="create-connection-submit"]')
+    .expect(getPageUrl())
+    .contains('/login');
+});
