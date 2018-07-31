@@ -12,9 +12,9 @@ import CheckNodeEnv from './internals/scripts/CheckNodeEnv';
 CheckNodeEnv('production');
 
 export default merge.smart(baseConfig, {
-  mode: 'production',
-
   devtool: 'source-map',
+
+  mode: 'production',
 
   target: 'electron-main',
 
@@ -25,15 +25,17 @@ export default merge.smart(baseConfig, {
     filename: './app/main.prod.js'
   },
 
+  optimization: {
+    minimizer: [
+      new UglifyJSPlugin({
+        parallel: true,
+        sourceMap: true,
+        cache: true
+      })
+    ]
+  },
+
   plugins: [
-    new UglifyJSPlugin({
-      parallel: true,
-      sourceMap: true,
-      cache: true
-    }),
-
-    // new ShakePlugin(),
-
     new BundleAnalyzerPlugin({
       analyzerMode:
         process.env.OPEN_ANALYZER === 'true' ? 'server' : 'disabled',
