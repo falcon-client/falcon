@@ -39,7 +39,9 @@ export function createNewConnection(
       Selector('a')
         .withExactText(connectionName)
         .parent()
-    );
+    )
+    .expect(getPageUrl())
+    .contains('/content');
 }
 
 export function clearConfig() {

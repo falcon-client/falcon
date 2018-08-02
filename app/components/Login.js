@@ -16,7 +16,8 @@ const buttonStyle = {
 };
 
 type Props = {
-  setDatabasePath: (path: string) => null
+  setDatabasePath: (path: string) => null,
+  onSuccess: () => void
 };
 
 type State = {
@@ -41,15 +42,17 @@ class Login extends Component<Props, State> {
   }
 
   async handleConnect() {
-    const { connectionManager } = this.props;
+    const { connectionManager, onSuccess } = this.props;
+    const { connectionName, databasePath } = this.state;
     try {
       await connectionManager.add({
-        id: 'foo',
-        name: this.state.connectionName,
-        database: this.state.databasePath,
+        id: `connection-${Math.round(Math.random() * (10 ** 6))}`,
+        name: connectionName,
+        database: databasePath,
+        // @HARDCODE
         type: 'sqlite'
       });
-      await this.props.onSuccess();
+      await onSuccess();
     } catch (e) {
       console.log(e);
       this.setState({
@@ -72,13 +75,14 @@ class Login extends Component<Props, State> {
   };
 
   render() {
+    const { errorMessages, connectionName, databasePath } = this.state;
     return (
       <div className="Login">
         <div className="Login--container" data-e2e="login-container">
           <div className="row no-gutters">
             <div className="col-12 row-margin text-center">
               <h2 className="Login--header">Create Connection</h2>
-              {this.state.errorMessages.map(e => (
+              {errorMessages.map(e => (
                 <div
                   data-e2e="login-error-message-box"
                   className="Login--alert"
@@ -93,7 +97,7 @@ class Login extends Component<Props, State> {
               </h3>
               <input
                 placeholder="My first connection"
-                value={this.state.connectionName}
+                value={connectionName}
                 type="text"
                 data-e2e="create-connection-name"
                 onChange={e =>
@@ -105,13 +109,13 @@ class Login extends Component<Props, State> {
               <h3 className="text-left Login--input-label">Database path</h3>
               <input
                 placeholder="/Desktop/sqlite.db"
-                value={this.state.databasePath}
+                value={databasePath}
                 data-e2e="create-connection-database-name"
                 onChange={e => this.setState({ databasePath: e.target.value })}
               />
             </div>
             <div className="col-2" style={buttonStyle}>
-              <button onClick={this.handleDatabasePathSelection}>
+              <button onClick={this.handleDatabasePathSelection} type="button">
                 Choose Path
               </button>
             </div>
