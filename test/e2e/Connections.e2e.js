@@ -1,3 +1,4 @@
+/* eslint no-await-in-loop: off */
 import path from 'path';
 import { Selector } from 'testcafe';
 import { createNewConnection, getPageUrl, clearConfig } from './helpers';
@@ -9,6 +10,16 @@ fixture`Connections`.page('../../app/app.html').beforeEach(async () => {
 const loginErrorMessageElement = Selector(
   '[data-e2e="login-error-message-box"]'
 );
+
+async function assertErrorMessagesExists(t, errorMessages) {
+  for (const errorMessage of errorMessages) {
+    await t
+      .expect(
+        loginErrorMessageElement.withExactText(errorMessage).visible
+      )
+      .ok()
+  }
+}
 
 function createNewBadConnection(
   t,
@@ -70,11 +81,17 @@ test('it should not create connection without connection name', async t => {
     .ok()
     .typeText(
       '[data-e2e="create-connection-database-name"]',
-      'No password database'
+      path.join(__dirname, 'oracle-sample.db')
     )
     .click('[data-e2e="create-connection-submit"]')
     .expect(getPageUrl())
     .contains('/login');
+  await assertErrorMessagesExists(
+    t,
+    [
+      '"name" is not allowed to be empty'
+    ]
+  )
 });
 
 test('it should not create connection without database name', async t => {
@@ -84,8 +101,46 @@ test('it should not create connection without database name', async t => {
     .contains('/login')
     .expect(Selector('[data-e2e="login-container"]').visible)
     .ok()
-    .typeText('[data-e2e="create-connection-name"]', 'Test With')
+    .typeText('[data-e2e="create-connection-name"]', 'Test Connection Name')
     .click('[data-e2e="create-connection-submit"]')
     .expect(getPageUrl())
     .contains('/login');
+  await assertErrorMessagesExists(
+    t,
+    [
+      '"database" is not allowed to be empty',
+      '"database" needs to be an absolute path',
+      '"database" does not exist',
+      '"database" is not valid'
+    ]
+  )
+});
+
+test('it should not create connection with non-existent database', async t => {
+  await createNewBadConnection(
+    t,
+    'Test Connection',
+    path.join(__dirname, 'foo-oracle-sample.db')
+  )
+  await assertErrorMessagesExists(
+    t,
+    [
+      '"database" does not exist',
+      '"database" is not valid'
+    ]
+  )
+});
+
+test('it should not create connection with non-sqlite file', async t => {
+  await createNewBadConnection(
+    t,
+    'Test Connection',
+    path.join(__dirname)
+  )
+  await assertErrorMessagesExists(
+    t,
+    [
+      '"database" is not valid'
+    ]
+  )
 });

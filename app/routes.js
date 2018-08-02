@@ -8,8 +8,6 @@ import HomePage from './containers/HomePage';
 export default () => (
   <App>
     <Switch>
-      <Route exact strict path="/:item" component={HomePage} />
-      <Route exact strict path="/" component={HomePage} />
       <Route exact strict component={HomePage} />
     </Switch>
   </App>
