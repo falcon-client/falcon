@@ -55,6 +55,6 @@ test('it should load graph page', async t => {
 
 test('it should refresh connection', async t => {
   const url = await getPageUrl();
-  await t.click('[data-e2e="header-connection-refresh-button"]');
+  await t.click('[e2eData="header-connection-refresh-button"]');
   await t.expect(url).eql(await getPageUrl());
 });

@@ -8,7 +8,7 @@ fixture`Connections`.page('../../app/app.html').beforeEach(async () => {
 });
 
 const loginErrorMessageElement = Selector(
-  '[data-e2e="login-error-message-box"]'
+  '[e2eData="login-error-message-box"]'
 );
 
 async function assertErrorMessagesExists(t, errorMessages) {
@@ -25,14 +25,14 @@ function createNewBadConnection(
   databaseName = path.join(__dirname, 'badSqliteFile.db')
 ) {
   return t
-    .click('[data-e2e="header-create-new-connection-button"]')
+    .click('[e2eData="header-create-new-connection-button"]')
     .expect(getPageUrl())
     .contains('/login')
-    .expect(Selector('[data-e2e="login-container"]').visible)
+    .expect(Selector('[e2eData="login-container"]').visible)
     .ok()
-    .typeText('[data-e2e="create-connection-name"]', connectionName)
-    .typeText('[data-e2e="create-connection-database-name"]', databaseName)
-    .click('[data-e2e="create-connection-submit"]');
+    .typeText('[e2eData="create-connection-name"]', connectionName)
+    .typeText('[e2eData="create-connection-database-name"]', databaseName)
+    .click('[e2eData="create-connection-submit"]');
 }
 
 test('it should open "demo.sqlite"', async t => {
@@ -72,16 +72,16 @@ test('it should not handle bad sqlite files', async t => {
 
 test('it should not create connection without connection name', async t => {
   await t
-    .click('[data-e2e="header-create-new-connection-button"]')
+    .click('[e2eData="header-create-new-connection-button"]')
     .expect(getPageUrl())
     .contains('/login')
-    .expect(Selector('[data-e2e="login-container"]').visible)
+    .expect(Selector('[e2eData="login-container"]').visible)
     .ok()
     .typeText(
-      '[data-e2e="create-connection-database-name"]',
+      '[e2eData="create-connection-database-name"]',
       path.join(__dirname, 'oracle-sample.db')
     )
-    .click('[data-e2e="create-connection-submit"]')
+    .click('[e2eData="create-connection-submit"]')
     .expect(getPageUrl())
     .contains('/login');
   await assertErrorMessagesExists(t, ['"name" is not allowed to be empty']);
@@ -89,13 +89,13 @@ test('it should not create connection without connection name', async t => {
 
 test('it should not create connection without database name', async t => {
   await t
-    .click('[data-e2e="header-create-new-connection-button"]')
+    .click('[e2eData="header-create-new-connection-button"]')
     .expect(getPageUrl())
     .contains('/login')
-    .expect(Selector('[data-e2e="login-container"]').visible)
+    .expect(Selector('[e2eData="login-container"]').visible)
     .ok()
-    .typeText('[data-e2e="create-connection-name"]', 'Test Connection Name')
-    .click('[data-e2e="create-connection-submit"]')
+    .typeText('[e2eData="create-connection-name"]', 'Test Connection Name')
+    .click('[e2eData="create-connection-submit"]')
     .expect(getPageUrl())
     .contains('/login');
   await assertErrorMessagesExists(t, [

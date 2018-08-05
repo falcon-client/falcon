@@ -78,13 +78,13 @@ class Login extends Component<Props, State> {
     const { errorMessages, connectionName, databasePath } = this.state;
     return (
       <div className="Login">
-        <div className="Login--container" data-e2e="login-container">
+        <div className="Login--container" e2eData="login-container">
           <div className="row no-gutters">
             <div className="col-12 row-margin text-center">
               <h2 className="Login--header">Create Connection</h2>
               {errorMessages.map(e => (
                 <div
-                  data-e2e="login-error-message-box"
+                  e2eData="login-error-message-box"
                   className="Login--alert"
                 >
                   {e.message}
@@ -99,7 +99,7 @@ class Login extends Component<Props, State> {
                 placeholder="My first connection"
                 value={connectionName}
                 type="text"
-                data-e2e="create-connection-name"
+                e2eData="create-connection-name"
                 onChange={e =>
                   this.setState({ connectionName: e.target.value })
                 }
@@ -110,7 +110,7 @@ class Login extends Component<Props, State> {
               <input
                 placeholder="/Desktop/sqlite.db"
                 value={databasePath}
-                data-e2e="create-connection-database-name"
+                e2eData="create-connection-database-name"
                 onChange={e => this.setState({ databasePath: e.target.value })}
               />
             </div>
@@ -123,7 +123,7 @@ class Login extends Component<Props, State> {
               <div
                 className="Login--submit-button"
                 onClick={() => this.handleConnect()}
-                data-e2e="create-connection-submit"
+                e2eData="create-connection-submit"
               >
                 Connect
               </div>

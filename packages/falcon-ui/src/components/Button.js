@@ -1,24 +1,24 @@
 import * as React from 'react';
 
 type Props = {
-  color: string,
-  disabled: boolean,
-  onClick: ?Function,
+  disabled: ?boolean,
   className: ?string,
   style: ?Object,
-  children: ?[React.Node]
+  children: ?[React.Node],
+  onClick: ?Function,
+  e2eData: ?string
 };
 
 Button.defaultProps = {
-  color: '#fff',
   disabled: false
 };
 
 export default function Button(props: Props) {
-  const { disabled, className, style, children } = props;
+  const { disabled, className, style, children, onClick, e2eData} = props;
+
 
   return (
-    <button disabled={disabled} className="Button">
+    <button disabled={disabled} e2eData className={`Button ${className}`} style={style} onClick={onClick}>
       {children}
     </button>
   );
