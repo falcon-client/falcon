@@ -14,10 +14,8 @@ const loginErrorMessageElement = Selector(
 async function assertErrorMessagesExists(t, errorMessages) {
   for (const errorMessage of errorMessages) {
     await t
-      .expect(
-        loginErrorMessageElement.withExactText(errorMessage).visible
-      )
-      .ok()
+      .expect(loginErrorMessageElement.withExactText(errorMessage).visible)
+      .ok();
   }
 }
 
@@ -86,12 +84,7 @@ test('it should not create connection without connection name', async t => {
     .click('[data-e2e="create-connection-submit"]')
     .expect(getPageUrl())
     .contains('/login');
-  await assertErrorMessagesExists(
-    t,
-    [
-      '"name" is not allowed to be empty'
-    ]
-  )
+  await assertErrorMessagesExists(t, ['"name" is not allowed to be empty']);
 });
 
 test('it should not create connection without database name', async t => {
@@ -105,15 +98,12 @@ test('it should not create connection without database name', async t => {
     .click('[data-e2e="create-connection-submit"]')
     .expect(getPageUrl())
     .contains('/login');
-  await assertErrorMessagesExists(
-    t,
-    [
-      '"database" is not allowed to be empty',
-      '"database" needs to be an absolute path',
-      '"database" does not exist',
-      '"database" is not valid'
-    ]
-  )
+  await assertErrorMessagesExists(t, [
+    '"database" is not allowed to be empty',
+    '"database" needs to be an absolute path',
+    '"database" does not exist',
+    '"database" is not valid'
+  ]);
 });
 
 test('it should not create connection with non-existent database', async t => {
@@ -121,26 +111,25 @@ test('it should not create connection with non-existent database', async t => {
     t,
     'Test Connection',
     path.join(__dirname, 'foo-oracle-sample.db')
-  )
-  await assertErrorMessagesExists(
-    t,
-    [
-      '"database" does not exist',
-      '"database" is not valid'
-    ]
-  )
+  );
+  await assertErrorMessagesExists(t, [
+    '"database" does not exist',
+    '"database" is not valid'
+  ]);
 });
 
 test('it should not create connection with non-sqlite file', async t => {
-  await createNewBadConnection(
+  await createNewBadConnection(t, 'Test Connection', path.join(__dirname));
+  await assertErrorMessagesExists(t, ['"database" is not valid']);
+});
+
+test('it should create multiple connections', async t => {
+  await createNewConnection(t);
+  await createNewConnection(
     t,
     'Test Connection',
-    path.join(__dirname)
-  )
-  await assertErrorMessagesExists(
-    t,
-    [
-      '"database" is not valid'
-    ]
-  )
+    path.join(__dirname, 'demo.sqlite')
+  );
 });
+
+// test('it should switch between multiple connections', async t => {})
