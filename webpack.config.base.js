@@ -5,8 +5,12 @@
 import path from 'path';
 import webpack from 'webpack';
 import LodashModuleReplacementPlugin from 'lodash-webpack-plugin';
-import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
+import del from 'del';
 import { dependencies as externals } from './app/package.json';
+
+export function deleteSourceMaps() {
+  del.sync(['./app/*.map', './app/dist/*.map']);
+}
 
 export default {
   mode: 'development',
@@ -97,24 +101,5 @@ export default {
     new webpack.NamedModulesPlugin(),
     new webpack.IgnorePlugin(/^mock-firmata$/),
     new webpack.ContextReplacementPlugin(/bindings$/, /^$/)
-    // new HardSourceWebpackPlugin(),
-    // {
-    //   apply(compiler) {
-    //     function setModuleConstant(expressionName, fn) {
-    //       compiler.parser.plugin(
-    //         `expression ${expressionName}`,
-    //         function plugin() {
-    //           this.state.current.addVariable(
-    //             expressionName,
-    //             JSON.stringify(fn(this.state.module))
-    //           );
-    //           return true;
-    //         }
-    //       );
-    //     }
-    //     setModuleConstant('__filename', module => module.resource);
-    //     setModuleConstant('__dirname', module => module.context);
-    //   }
-    // }
   ]
 };

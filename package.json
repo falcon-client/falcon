@@ -150,6 +150,7 @@
     "cross-env": "^5.2.0",
     "cross-spawn": "^6.0.5",
     "css-loader": "^1.0.0",
+    "del": "^3.0.0",
     "detect-port": "^1.2.3",
     "electron": "2.0.5",
     "electron-builder": "^20.26.0",
