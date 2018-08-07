@@ -51,7 +51,6 @@ export default class Header extends Component<Props, {}> {
 
     return (
       <div className="Header col-sm-12">
-        <Button>Hello</Button>
         <div
           className="Header--container"
           style={{ marginLeft: shouldHideMargin ? '10px' : '80px' }}
@@ -80,12 +79,12 @@ export default class Header extends Component<Props, {}> {
           </span>
         </div>
         <div className="Header--container Header--container-hidden">
-          <div
+          <Button
             className="Header--button ion-android-refresh"
             e2eData="header-connection-refresh-button"
             onClick={() => this.props.onRefreshClick()}
           />
-          <div
+          <Button
             className="Header--button ion-android-add"
             e2eData="header-create-new-connection-button"
             onClick={() => this.props.history.push('/login')}

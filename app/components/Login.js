@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { remote, ipcRenderer } from 'electron';
 import { connect } from 'react-redux';
+import { Button } from '@falcon-client/falcon-ui';
 import { OPEN_FILE_CHANNEL } from '../types/channels';
 import { setDatabasePath } from '../actions/index';
 
@@ -115,9 +116,9 @@ class Login extends Component<Props, State> {
               />
             </div>
             <div className="col-2" style={buttonStyle}>
-              <button onClick={this.handleDatabasePathSelection} type="button">
+              <Button onClick={this.handleDatabasePathSelection}>
                 Choose Path
-              </button>
+              </Button>
             </div>
             <div className="col-12 row-margin Login--submit-button-container">
               <div

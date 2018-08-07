@@ -18,7 +18,7 @@ export default function Button(props: Props) {
 
 
   return (
-    <button disabled={disabled} e2eData className={`Button ${className}`} style={style} onClick={onClick}>
+    <button disabled={disabled} e2eData={e2eData} className={`Button ${className}`} style={style} onClick={onClick}>
       {children}
     </button>
   );
