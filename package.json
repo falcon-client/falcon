@@ -1,7 +1,7 @@
 {
   "name": "falcon",
   "productName": "Falcon",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "erbVersion": "0.13.1",
   "description": "A fast, modern, and extensible database client",
   "scripts": {
@@ -21,6 +21,7 @@
     "package-no-build": "build --publish never",
     "package-all-no-build": "build -mwl",
     "package-all": "yarn build && build -mwl",
+    "package-ci": "yarn build && electron-builder --publish always",
     "package-linux": "yarn build && build --linux",
     "package-win": "yarn build && build --win --x64",
     "precommit": "lint-staged",
@@ -62,27 +63,36 @@
       "package.json"
     ],
     "dmg": {
+      "format": "ULFO",
+      "window": {
+        "width": "500",
+        "height": "300"
+      },
       "contents": [
         {
-          "x": 130,
-          "y": 220
-        },
-        {
           "x": 410,
-          "y": 220,
+          "y": 150,
           "type": "link",
           "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
         }
       ]
     },
     "win": {
       "target": [
-        "nsis"
+        "nsis",
+        "portable"
       ]
     },
     "linux": {
       "target": [
         "deb",
+        "rpm",
+        "snap",
         "AppImage"
       ],
       "category": "Development"
