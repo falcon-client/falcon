@@ -1,4 +1,3 @@
-import path from 'path';
 import { Selector } from 'testcafe';
 import {
   getPageTitle,
@@ -29,8 +28,29 @@ test('it should load logs page', async t => {
   await assertGoesToPageWithLinkText(t, 'Logs', '/logs');
 });
 
-test.skip('it should load graph page', async t => {
+async function assertGraphPageLink(t, linkText) {
+  // eslint-disable-next-line
+  for (const text of linkText) {
+    // eslint-disable-next-line
+    await t.expect(Selector('a').withExactText(text).visible).ok();
+  }
+}
+
+test('it should load graph page', async t => {
   await assertGoesToPageWithLinkText(t, 'Graph', '/graph');
+  await assertGraphPageLink(t, [
+    'Query',
+    'Album',
+    'Artist',
+    'Customer',
+    'Employee',
+    'Genre',
+    'Invoice',
+    'InvoiceItem',
+    'MediaType',
+    'Playlist',
+    'Track'
+  ]);
 });
 
 test('it should refresh connection', async t => {
