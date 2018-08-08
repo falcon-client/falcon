@@ -1,7 +1,7 @@
 {
   "name": "falcon",
   "productName": "Falcon",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "erbVersion": "0.13.1",
   "description": "A fast, modern, and extensible database client",
   "scripts": {
@@ -17,12 +17,13 @@
     "lint-fix": "yarn --silent lint --fix; exit 0",
     "lint-styles": "stylelint app/*.css app/components/*.css --syntax scss",
     "lint-styles-fix": "stylefmt -r app/*.css app/components/*.css",
-    "package": "yarn build && build --publish never",
+    "package": "yarn build && electron-builder build --publish never",
     "package-no-build": "build --publish never",
     "package-all-no-build": "build -mwl",
-    "package-all": "yarn build && build -mwl",
-    "package-linux": "yarn build && build --linux",
-    "package-win": "yarn build && build --win --x64",
+    "package-all": "yarn build && electron-builder build -mwl",
+    "package-ci": "yarn build && electron-builder --publish always",
+    "package-linux": "yarn build && electron-builder build --linux",
+    "package-win": "yarn build && electron-builder build --win --x64",
     "precommit": "lint-staged",
     "postinstall": "node -r babel-register internals/scripts/CheckNativeDep.js && yarn flow-typed && yarn build-dll && electron-builder install-app-deps",
     "postlint-fix": "prettier --ignore-path .eslintignore --single-quote --write '**/*.js'",
@@ -62,27 +63,36 @@
       "package.json"
     ],
     "dmg": {
+      "format": "ULFO",
+      "window": {
+        "width": "500",
+        "height": "300"
+      },
       "contents": [
         {
-          "x": 130,
-          "y": 220
-        },
-        {
           "x": 410,
-          "y": 220,
+          "y": 150,
           "type": "link",
           "path": "/Applications"
+        },
+        {
+          "x": 130,
+          "y": 150,
+          "type": "file"
         }
       ]
     },
     "win": {
       "target": [
-        "nsis"
+        "nsis",
+        "portable"
       ]
     },
     "linux": {
       "target": [
         "deb",
+        "rpm",
+        "snap",
         "AppImage"
       ],
       "category": "Development"
