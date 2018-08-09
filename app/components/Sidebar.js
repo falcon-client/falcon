@@ -10,8 +10,8 @@ import type { TableType } from '../types/TableType';
 
 type Props = {
   databaseName?: ?string,
+  onConnectionSelect: (table: TableType) => void,
   onTableSelect: (table: TableType) => void,
-  activeConnections: Array<connectionType>,
   connections: Array<connectionType>,
   selectedConnection: connectionType,
   selectedTable?: ?TableType,
@@ -24,13 +24,22 @@ type Props = {
 // Children are rendered outside of the parent and is made to look like a children
 // via styling. Will need to fix this when we want collapsible elements
 export default function Sidebar(props: Props) {
-  const connections = props.connections.map(connection => (
+  const {
+    onTableSelect,
+    onConnectionSelect,
+    connections,
+    selectedConnection,
+    tables,
+    databaseName,
+    selectedTable
+  } = props;
+
+  const connectionsSymbols = connections.map(connection => (
     <div
       key={connection.name}
-      onClick={() => props.onConnectionSelect(connection)}
+      onClick={() => onConnectionSelect(connection)}
       className={
-        props.selectedConnection &&
-        props.selectedConnection.name === connection.name
+        selectedConnection && selectedConnection.name === connection.name
           ? 'Sidebar--list-item-selected'
           : 'Sidebar--list-item'
       }
@@ -41,16 +50,17 @@ export default function Sidebar(props: Props) {
     </div>
   ));
 
-  const tables = props.tables.map(table => (
+  const tablesSymbols = tables.map(table => (
     <div
       key={table.name}
-      onClick={() => props.onTableSelect(table)}
+      onClick={() => onTableSelect(table)}
       className={
-        props.selectedTable.name === table.name
+        selectedTable.name === table.name
           ? 'Sidebar--list-item-selected'
           : 'Sidebar--list-item'
       }
       style={{ paddingLeft: 40 }}
+      data-e2e="Sidebar--list-item"
     >
       <ListSymbol type="table" />
       <a>{table.name}</a>
@@ -63,16 +73,21 @@ export default function Sidebar(props: Props) {
         <div className="Sidebar--list-item">
           <ListSymbol type="connection" /> <a>Connections</a>
         </div>
-        {connections}
-        {tables.length ? (
+        {connectionsSymbols}
+        {tablesSymbols.length ? (
           <div>
             <div className="Sidebar--list-item">
-              <ListSymbol type="database" /> <a>{props.databaseName}</a>
+              <ListSymbol type="database" /> <a>{databaseName}</a>
             </div>
-            {tables}
+            {tablesSymbols}
           </div>
         ) : null}
       </ul>
     </div>
   );
 }
+
+Sidebar.defaultProps = {
+  databaseName: '',
+  selectedTable: null
+};
