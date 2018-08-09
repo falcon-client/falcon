@@ -132,4 +132,16 @@ test('it should create multiple connections', async t => {
   );
 });
 
-// test('it should switch between multiple connections', async t => {})
+test('it should switch between multiple connections', async t => {
+  await createNewConnection(t, 'First Connection');
+  await createNewConnection(
+    t,
+    'Second Connection',
+    path.join(__dirname, 'oracle-sample.db')
+  );
+  await t
+    .click(Selector('a').withExactText('First Connection'))
+    .click(Selector('a').withExactText('albums'))
+    .click(Selector('a').withExactText('Second Connection'))
+    .click(Selector('a').withExactText('dept'));
+});
