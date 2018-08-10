@@ -4,6 +4,7 @@ import { AppContainer } from 'react-hot-loader';
 import Root from './containers/Root';
 import { configureStore, history } from './store/configureStore';
 import './styles/app.global.scss';
+import '@falcon-client/falcon-ui/src/styles/app.global.scss';
 
 const store = configureStore();
 

@@ -1,7 +1,6 @@
 // @flow
 import React, { Component } from 'react';
 import NProgress from 'nprogress';
-import '@falcon-client/falcon-ui/src/styles/app.global.scss';
 import { Button } from '@falcon-client/falcon-ui';
 import ListSymbol from './ListSymbol';
 
