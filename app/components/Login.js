@@ -84,10 +84,7 @@ class Login extends Component<Props, State> {
             <div className="col-12 row-margin text-center">
               <h2 className="Login--header">Create Connection</h2>
               {errorMessages.map(e => (
-                <div
-                  e2eData="login-error-message-box"
-                  className="Login--alert"
-                >
+                <div e2eData="login-error-message-box" className="Login--alert">
                   {e.message}
                 </div>
               ))}
