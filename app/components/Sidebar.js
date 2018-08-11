@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
-// import type { connectionType } from 'falcon-core/types';
 import ListSymbol from './ListSymbol';
+import type ConnectionType from '../types/ConnectionType';
 import type { TableType } from '../types/TableType';
 
 /**
@@ -10,10 +10,10 @@ import type { TableType } from '../types/TableType';
 
 type Props = {
   databaseName?: ?string,
-  onConnectionSelect: (table: TableType) => void,
+  onConnectionSelect: (connection: ConnectionType) => void,
   onTableSelect: (table: TableType) => void,
-  connections: Array<connectionType>,
-  selectedConnection: connectionType,
+  connections: Array<ConnectionType>,
+  selectedConnection: ConnectionType,
   selectedTable?: ?TableType,
   tables: Array<{
     name: string
