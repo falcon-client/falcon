@@ -72,6 +72,11 @@ script:
   - node --version
   - lerna bootstrap
   - lerna run build
-  - yarn package-ci
+  - |
+    if [[ $TRAVIS_BRANCH == 'master' ]]; then
+      yarn package-release
+    else
+      yarn package
+    fi
   - yarn test
   - yarn test-e2e

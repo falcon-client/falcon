@@ -21,7 +21,7 @@
     "package-no-build": "build --publish never",
     "package-all-no-build": "build -mwl",
     "package-all": "yarn build && electron-builder build -mwl",
-    "package-ci": "yarn build && electron-builder --publish always",
+    "package-release": "yarn build && electron-builder --publish always",
     "package-linux": "yarn build && electron-builder build --linux",
     "package-win": "yarn build && electron-builder build --win --x64",
     "precommit": "lint-staged",
