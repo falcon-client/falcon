@@ -24,14 +24,16 @@ class ChromeTabs {
     this.draggabillyInstances = [];
   }
 
+  // @1. Should be ran after each javascript initialization of ChromeTabs
   init(el, options) {
-    this.el = el;
-    this.options = options;
+    this.el = el; // @1a. Root HTML element of ChromeTabs object
+    this.options = options; // @1b. { tabOverlapDistance: 14, minWidth: 45, maxWidth: 243 }
 
-    this.instanceId = instanceId;
+    this.instanceId = instanceId; // @1c. Sets which instance this ChromeTabs is
     this.el.setAttribute('data-chrome-tabs-instance-id', this.instanceId);
     instanceId += 1;
 
+    // @1d: Initializes event listeners, layout, etc.
     this.setupStyleEl();
     this.setupEvents();
     this.layoutTabs();
@@ -39,6 +41,7 @@ class ChromeTabs {
     this.setupDraggabilly();
   }
 
+  /** Utility tool that dispatches events related to chrome tabs*/
   emit(eventName, data) {
     this.el.dispatchEvent(new CustomEvent(eventName, { detail: data }));
   }
@@ -51,7 +54,9 @@ class ChromeTabs {
   setupEvents() {
     window.addEventListener('resize', event => this.layoutTabs());
 
-    this.el.addEventListener('dblclick', event => this.addTab());
+    this.el.addEventListener('dblclick', event => {
+      if ([this.el, this.tabContentEl].includes(event.target)) this.addTab()
+    })
 
     this.el.addEventListener('click', ({ target }) => {
       if (target.classList.contains('chrome-tab')) {
@@ -67,6 +72,7 @@ class ChromeTabs {
     });
   }
 
+  /** Returns array of all tab elements */
   get tabEls() {
     return Array.from(this.el.querySelectorAll('.chrome-tab'));
   }
@@ -75,7 +81,8 @@ class ChromeTabs {
     return this.el.querySelector('.chrome-tabs-content');
   }
 
-  get tabWidth() {
+  /** Gets width of tabs */
+  get tabWidth(): number  {
     const tabsContentWidth =
       this.tabContentEl.clientWidth - this.options.tabOverlapDistance;
     const width =
@@ -90,6 +97,7 @@ class ChromeTabs {
     return this.tabWidth - this.options.tabOverlapDistance;
   }
 
+  /** Gets the positions of each tabs */
   get tabPositions() {
     const tabEffectiveWidth = this.tabEffectiveWidth;
     let left = 0;
@@ -102,6 +110,7 @@ class ChromeTabs {
     return positions;
   }
 
+  /** Lays out all the current tabs  */
   layoutTabs() {
     const tabWidth = this.tabWidth;
 
@@ -137,12 +146,14 @@ class ChromeTabs {
     });
   }
 
+  /** Create a tab's HTML representation */
   createNewTabEl() {
     const div = document.createElement('div');
     div.innerHTML = tabTemplate;
     return div.firstElementChild;
   }
 
+  /** Adds additional tabs. Performs necessary HTML/CSS modifications */
   addTab(tabProperties) {
     const tabEl = this.createNewTabEl();
 
@@ -159,6 +170,7 @@ class ChromeTabs {
     this.setupDraggabilly();
   }
 
+  /** Sets the selected tab. Performs necessary HTML/CSS modifications */
   setCurrentTab(tabEl) {
     const currentTab = this.el.querySelector('.chrome-tab-current');
     if (currentTab) currentTab.classList.remove('chrome-tab-current');
@@ -182,6 +194,7 @@ class ChromeTabs {
     this.setupDraggabilly();
   }
 
+  /** Updates the contents of a Tab (in the TabList) */
   updateTab(tabEl, tabProperties) {
     tabEl.querySelector('.chrome-tab-title').textContent = tabProperties.title;
     tabEl.querySelector('.chrome-tab-favicon').style.backgroundImage = `url('${
