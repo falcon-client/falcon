@@ -313,18 +313,6 @@ export default class Tab extends Component {
         .addEventListener('click', () => {
           chromeTabs.removeTab(el.querySelector('.chrome-tab-current'));
         });
-
-      document
-        .querySelector('button[data-theme-toggle]')
-        .addEventListener('click', () => {
-          if (el.classList.contains('chrome-tabs-dark-theme')) {
-            document.documentElement.classList.remove('dark-theme');
-            el.classList.remove('chrome-tabs-dark-theme');
-          } else {
-            document.documentElement.classList.add('dark-theme');
-            el.classList.add('chrome-tabs-dark-theme');
-          }
-        });
     }, 0);
   }
 
