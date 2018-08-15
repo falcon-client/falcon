@@ -14,11 +14,16 @@ Button.defaultProps = {
 };
 
 export default function Button(props: Props) {
-  const { disabled, className, style, children, onClick, e2eData} = props;
-
+  const { disabled, className, style, children, onClick, e2eData } = props;
 
   return (
-    <button disabled={disabled} e2eData={e2eData} className={`Button ${className}`} style={style} onClick={onClick}>
+    <button
+      disabled={disabled}
+      e2eData={e2eData}
+      className={`Button ${className}`}
+      style={style}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

@@ -55,8 +55,8 @@ class ChromeTabs {
     window.addEventListener('resize', event => this.layoutTabs());
 
     this.el.addEventListener('dblclick', event => {
-      if ([this.el, this.tabContentEl].includes(event.target)) this.addTab()
-    })
+      if ([this.el, this.tabContentEl].includes(event.target)) this.addTab();
+    });
 
     this.el.addEventListener('click', ({ target }) => {
       if (target.classList.contains('chrome-tab')) {
@@ -82,7 +82,7 @@ class ChromeTabs {
   }
 
   /** Gets width of tabs */
-  get tabWidth(): number  {
+  get tabWidth(): number {
     const tabsContentWidth =
       this.tabContentEl.clientWidth - this.options.tabOverlapDistance;
     const width =
