@@ -1,0 +1,16 @@
+{
+  "groups": {
+    "default": {
+      "packages": [
+        "app/package.json",
+        "package.json",
+        "packages/falcon-ui/package.json",
+        "packages/graphql-voyager/package.json",
+        "packages/react-clipboard.js/package.json",
+        "packages/svg-pan-zoom/package.json",
+        "packages/svg-zoom/package.json",
+        "packages/viz/package.json"
+      ]
+    }
+  }
+}
