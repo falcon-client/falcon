@@ -64,5 +64,5 @@ packages/viz/src/boilerplate
 test-browser
 .cache
 
-packages
+packages/*
 !packages/falcon-ui

@@ -46,7 +46,7 @@ class Login extends Component<Props, State> {
     const { connectionName, databasePath } = this.state;
     try {
       await connectionManager.add({
-        id: `connection-${Math.round(Math.random() * (10 ** 6))}`,
+        id: `connection-${Math.round(Math.random() * 10 ** 6)}`,
         name: connectionName,
         database: databasePath,
         // @HARDCODE
