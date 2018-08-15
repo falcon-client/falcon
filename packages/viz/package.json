@@ -29,8 +29,8 @@
   "homepage": "https://github.com/mdaines/viz.js",
   "devDependencies": {
     "minimist": "^1.2.0",
-    "selenium-webdriver": "^2.45.1",
-    "typescript": "^2.7.2"
+    "selenium-webdriver": "^3.6.0",
+    "typescript": "^3.0.1"
   },
   "dependencies": {
     "@falcon-client/graphql-voyager": "^0.0.1",
