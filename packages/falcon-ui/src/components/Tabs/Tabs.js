@@ -10,10 +10,10 @@ type Props = {
   onSelect: (index: number, lastIndex: number, event: Event) => ?boolean,
   selectedIndex: number,
   selectedTabClassName: string,
-  selectedTabPanelClassName: PropTypes.string
+  selectedTabPanelClassName: string
 };
 
-export default class Tabs extends Component<Props> {
+export default class Tabs extends React.Component<Props> {
   render() {
     return <div />;
   }

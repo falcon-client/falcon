@@ -5,13 +5,13 @@ type Props = {
   className?: string,
   disabled?: boolean,
   tabIndex: string,
-  disabledClassName?: PropTypes.string,
-  focus: PropTypes.bool, // private
-  id: PropTypes.string, // private
-  panelId: PropTypes.string, // private
-  selected: PropTypes.bool, // private
-  selectedClassName: PropTypes.string,
-  tabRef: PropTypes.func // private
+  disabledClassName?: string,
+  focus: boolean, // private
+  id: string, // private
+  panelId: string, // private
+  selected: boolean, // private
+  selectedClassName: string,
+  tabRef: Function // private
 };
 
 export default class Tab extends React.Component<Props> {
