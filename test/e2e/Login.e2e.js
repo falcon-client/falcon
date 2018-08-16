@@ -1,3 +1,4 @@
+import path from 'path';
 import { Selector } from 'testcafe';
 import {
   getPageTitle,
@@ -32,7 +33,7 @@ async function assertGraphPageLink(t, linkText) {
   // eslint-disable-next-line
   for (const text of linkText) {
     // eslint-disable-next-line
-    await t.expect(Selector('a').withExactText(text).visible).ok();
+    await t.expect(Selector('.Graph a').withExactText(text).visible).ok();
   }
 }
 
@@ -51,6 +52,13 @@ test('it should load graph page', async t => {
     'Playlist',
     'Track'
   ]);
+});
+
+test('it should load graph page for different connection', async t => {
+  await assertGoesToPageWithLinkText(t, 'Graph', '/graph');
+  await createNewConnection(t, 'Bar', path.join(__dirname, 'oracle-sample.db'));
+  await t.click(Selector('a').withExactText('Bar'));
+  await assertGraphPageLink(t, ['dept', 'emp']);
 });
 
 test('it should refresh connection', async t => {
