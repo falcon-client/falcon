@@ -80,3 +80,4 @@ script:
     fi
   - yarn test
   - yarn test-e2e
+  - lerna run test
