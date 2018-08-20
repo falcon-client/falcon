@@ -1,3 +1,4 @@
+import path from 'path';
 import { Selector } from 'testcafe';
 import {
   getPageTitle,
@@ -32,12 +33,25 @@ async function assertGraphPageLink(t, linkText) {
   // eslint-disable-next-line
   for (const text of linkText) {
     // eslint-disable-next-line
-    await t.expect(Selector('a').withExactText(text).visible).ok();
+    await t
+      .expect(Selector('.graphql-voyager a').withExactText(text).visible)
+      .ok();
   }
 }
 
-test('it should load graph page', async t => {
+test('it should refresh connection', async t => {
+  const url = await getPageUrl();
+  await t.click('[data-e2e="header-connection-refresh-button"]');
+  await t.expect(url).eql(await getPageUrl());
+});
+
+fixture`Graph`.page('../../app/app.html').beforeEach(async t => {
+  await clearConfig();
+  await createNewConnection(t);
   await assertGoesToPageWithLinkText(t, 'Graph', '/graph');
+});
+
+test('it should load graph page', async t => {
   await assertGraphPageLink(t, [
     'Query',
     'Album',
@@ -53,8 +67,9 @@ test('it should load graph page', async t => {
   ]);
 });
 
-test('it should refresh connection', async t => {
-  const url = await getPageUrl();
-  await t.click('[data-e2e="header-connection-refresh-button"]');
-  await t.expect(url).eql(await getPageUrl());
+test('it should load graph page for different connection', async t => {
+  await createNewConnection(t, 'Bar', path.join(__dirname, 'oracle-sample.db'));
+  await t.click(Selector('a').withExactText('Bar'));
+  await assertGoesToPageWithLinkText(t, 'Graph', '/graph');
+  await assertGraphPageLink(t, ['Query', 'Dept', 'Emp']);
 });
