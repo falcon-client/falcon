@@ -45,7 +45,7 @@ test('it should refresh connection', async t => {
   await t.expect(url).eql(await getPageUrl());
 });
 
-fixture.only`Graph`.page('../../app/app.html').beforeEach(async t => {
+fixture`Graph`.page('../../app/app.html').beforeEach(async t => {
   await clearConfig();
   await createNewConnection(t);
   await assertGoesToPageWithLinkText(t, 'Graph', '/graph');
