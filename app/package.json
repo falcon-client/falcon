@@ -14,6 +14,6 @@
     "postinstall": "yarn electron-rebuild"
   },
   "dependencies": {
-    "falcon-core": "git+ssh://git@github.com:amilajack/falcon-core.git#master"
+    "falcon-core": "git+ssh://git@github.com:amilajack/falcon-core.git#add-rollup-support"
   }
 }
