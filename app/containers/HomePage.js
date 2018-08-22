@@ -4,6 +4,13 @@ import React, { Component } from 'react';
 import { ResizableBox } from 'react-resizable';
 import { ipcRenderer } from 'electron';
 import { Switch, Route } from 'react-router';
+import {
+  Tabs,
+  Tab,
+  TabPanel,
+  TabList,
+  HTMLTabs
+} from '@falcon-client/falcon-ui';
 import Loadable from 'react-loadable';
 import Header from '../components/Header';
 import Footer from '../components/Footer';

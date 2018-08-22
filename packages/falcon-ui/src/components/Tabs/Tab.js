@@ -6,12 +6,14 @@ type Props = {
   disabled?: boolean,
   tabIndex: string,
   disabledClassName?: string,
+  title: string,
   focus: boolean, // private
   id: string, // private
   panelId: string, // private
   selected: boolean, // private
   selectedClassName: string,
-  tabRef: Function // private
+  tabRef: Function, // private
+  left: number // private
 };
 
 export default class Tab extends React.Component<Props> {
@@ -45,6 +47,13 @@ export default class Tab extends React.Component<Props> {
       ...attributes
     } = this.props;
 
-    return <div />;
+    return (
+      <div className="chrome-tab">
+        <div className="chrome-tab-background" />
+        <div className="chrome-tab-favicon" />
+        <div className="chrome-tab-title">{this.props.title}</div>
+        <div className="chrome-tab-close" />
+      </div>
+    );
   }
 }
