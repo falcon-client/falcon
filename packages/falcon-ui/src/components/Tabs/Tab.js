@@ -1,19 +1,19 @@
 import * as React from 'react';
 
 type Props = {
-  children: React.ReactNode,
-  className?: string,
-  disabled?: boolean,
-  tabIndex: string,
-  disabledClassName?: string,
+  // children: React.ReactNode,
+  // className?: string,
+  // disabled?: boolean,
+  // tabIndex: string,
+  // disabledClassName?: string,
   title: string,
   focus: boolean, // private
-  id: string, // private
-  panelId: string, // private
-  selected: boolean, // private
-  selectedClassName: string,
-  tabRef: Function, // private
-  left: number // private
+  // id: string, // private
+  // panelId: string, // private
+  selected: boolean // private
+  // selectedClassName: string,
+  // tabRef: Function, // private
+  // left: number // private
 };
 
 export default class Tab extends React.Component<Props> {
@@ -33,25 +33,26 @@ export default class Tab extends React.Component<Props> {
 
   render() {
     const {
-      children,
-      className,
-      disabled,
-      disabledClassName,
-      focus, // unused
-      id,
-      panelId,
-      selected,
-      selectedClassName,
-      tabIndex,
-      tabRef,
-      ...attributes
+      // children,
+      // className,
+      // disabled,
+      // disabledClassName,
+      title
+      // focus, // unused
+      // id,
+      // panelId,
+      // selected,
+      // selectedClassName,
+      // tabIndex,
+      // tabRef,
+      // ...attributes
     } = this.props;
 
     return (
       <div className="chrome-tab">
         <div className="chrome-tab-background" />
         <div className="chrome-tab-favicon" />
-        <div className="chrome-tab-title">{this.props.title}</div>
+        <div className="chrome-tab-title">{title}</div>
         <div className="chrome-tab-close" />
       </div>
     );

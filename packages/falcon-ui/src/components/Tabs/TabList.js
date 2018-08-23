@@ -2,15 +2,15 @@ import * as React from 'react';
 
 type Props = {
   children: React.ReactNode,
-  className: string,
-  id: string, // private
-  selected: boolean, // private
-  selectedClassName: string,
+  // className: string,
+  // id: string, // private
+  // selected: boolean, // private
+  // selectedClassName: string,
   clientWidth: number,
   minTabWidth: number,
   maxTabWidth: number,
-  tabOverlapDistance: number,
-  tabId: string // private
+  tabOverlapDistance: number
+  // tabId: string // private
 };
 
 export default class TabList extends React.Component<Props> {
