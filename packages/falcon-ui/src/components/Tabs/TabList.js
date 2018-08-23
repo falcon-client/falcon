@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Children, Component } from 'react';
 
 type Props = {
   children: React.ReactNode,
@@ -13,41 +13,34 @@ type Props = {
   // tabId: string // private
 };
 
-export default class TabList extends React.Component<Props> {
+export default class TabList extends Component<Props> {
   getTabWidth = (): number => {
     console.log('In get tabWidth');
     const tabsContentWidth =
       this.props.clientWidth - this.props.tabOverlapDistance;
-    const width =
-      tabsContentWidth / this.tabEls.length + this.props.tabOverlapDistance;
+    const tabWidth =
+      tabsContentWidth / Children.count(this.props.children) +
+      this.props.tabOverlapDistance;
     return Math.max(
       this.props.minTabWidth,
-      Math.min(this.props.maxTabWidth, width)
+      Math.min(this.props.maxTabWidth, tabWidth)
     );
   };
 
   getTabEffectiveWidth = () =>
     this.getTabWidth() - this.props.tabOverlapDistance;
 
-  getTabPositions = () => {
-    console.log('In getTabPositions');
-    const tabEffectiveWidth = this.getTabEffectiveWidth();
-    let left = 0;
-    const positions = [];
-
-    this.tabEls.forEach((tabEl, i) => {
-      positions.push(left);
-      left += tabEffectiveWidth;
-    });
-    return positions;
+  renderChildren = () => {
+    const tabWidth = this.getTabEffectiveWidth();
+    return React.Children.map(this.props.children, (child, i) =>
+      React.cloneElement(child, {
+        left: tabWidth * i,
+        tabWidth,
+        tabIndex: i,
+        key: i
+      })
+    );
   };
-
-  renderChildren = () =>
-    React.Children.map(this.props.children, child => {
-      console.log('In TabList.js');
-      console.dir(child);
-      return React.cloneElement(child, {});
-    });
 
   render() {
     return (

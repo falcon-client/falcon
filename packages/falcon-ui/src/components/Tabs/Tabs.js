@@ -16,13 +16,11 @@ type Props = {
 
 export default class Tabs extends Component<Props> {
   renderChildren = () =>
-    React.Children.map(this.props.children, child =>
+    Children.map(this.props.children, child =>
       // console.log('In Tab.js');
       // console.dir(child);
       React.cloneElement(child, {})
     );
-
-  3;
 
   renderSelectedTab = (i: number) => {};
 
