@@ -39,12 +39,6 @@ export default class GraphPage extends Component {
       ).then(response => response.json());
     }
 
-    return (
-      <Voyager
-        className="Graph"
-        introspection={introspectionProvider}
-        workerURI={worker}
-      />
-    );
+    return <Voyager introspection={introspectionProvider} workerURI={worker} />;
   }
 }
