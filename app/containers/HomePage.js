@@ -54,6 +54,7 @@ type State = {
   widthSidebar: number, // 200
   widthGrid: number, // window.innerWidth - 200
   databaseName: ?string,
+  selectedTabIndex: number,
   selectedTable: ?TableType,
   selectedConnection: ?connectionType,
   tableColumns: Array<TableColumnType>,
@@ -81,6 +82,7 @@ export default class HomePage extends Component<Props, State> {
     // @HACK: HARDCODE
     databaseType: 'SQLite',
     databaseVersion: '',
+    selectedTabIndex: 0,
     selectedTable: null,
     selectedConnection: null,
     tableColumns: [],
@@ -252,6 +254,10 @@ export default class HomePage extends Component<Props, State> {
     });
   };
 
+  onTabSelect = (index: number, event: SyntheticEvent) => {
+    this.setState({ selectedTabIndex: index });
+  };
+
   /**
    * Upon mounting, component fetches initial database data and configures
    * grid/sidebar resizing data. Also core
@@ -367,7 +373,11 @@ export default class HomePage extends Component<Props, State> {
                 />
               </ResizableBox>
               <div>
-                <Tabs width={this.state.widthGrid}>
+                <Tabs
+                  width={this.state.widthGrid}
+                  selectedIndex={this.state.selectedTabIndex}
+                  onSelect={this.onTabSelect}
+                >
                   <TabList
                     clientWidth={this.state.widthGrid}
                     minTabWidth={45}

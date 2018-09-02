@@ -7,11 +7,11 @@ type Props = {
   // defaultFocus: boolean,
   // defaultIndex: number,
   // disabledTabClassName: string,
-  // selectedIndex: number,
+  onSelect: (index: number, lastIndex: number, event: Event) => ?boolean,
+  selectedIndex: number,
   // selectedTabClassName: string,
   // selectedTabPanelClassName: string,
   width: number
-  // onSelect: (index: number, lastIndex: number, event: Event) => ?boolean
 };
 
 export default class Tabs extends Component<Props> {
@@ -19,10 +19,13 @@ export default class Tabs extends Component<Props> {
     Children.map(this.props.children, child =>
       // console.log('In Tab.js');
       // console.dir(child);
-      React.cloneElement(child, {})
+      React.cloneElement(child, {
+        selectedIndex: this.props.selectedIndex,
+        onSelect: this.props.onSelect
+      })
     );
 
-  renderSelectedTab = (i: number) => {};
+  // renderSelectedTab = (i: number) => {};
 
   render() {
     return (

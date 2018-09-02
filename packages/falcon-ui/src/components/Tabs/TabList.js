@@ -4,11 +4,12 @@ type Props = {
   children: React.ReactNode,
   // className: string,
   // id: string, // private
-  // selected: boolean, // private
-  // selectedClassName: string,
   clientWidth: number,
   minTabWidth: number,
   maxTabWidth: number,
+  onSelect: (index: number, lastIndex: number, event: Event) => ?boolean,
+  // selectedClassName: string,
+  selectedIndex: number, // private
   tabOverlapDistance: number
   // tabId: string // private
 };
@@ -34,10 +35,12 @@ export default class TabList extends Component<Props> {
     const tabWidth = this.getTabEffectiveWidth();
     return React.Children.map(this.props.children, (child, i) =>
       React.cloneElement(child, {
+        key: i,
         left: tabWidth * i,
+        onSelect: this.props.onSelect,
+        selected: this.props.selectedIndex === i ? true : undefined,
         tabWidth,
-        tabIndex: i,
-        key: i
+        tabIndex: i
       })
     );
   };
