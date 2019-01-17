@@ -195,18 +195,18 @@ export default class MenuBuilder {
           label: 'Export',
           accelerator: '',
           click: async () => {
-            const exportPath = dialog.showSaveDialog(this.mainWindow, {
-              filters: [
-                { name: 'JSON', extensions: ['json'] },
-                { name: 'CSV', extensions: ['csv'] }
-              ],
-              title: 'Export a database',
-              // @TODO: Change foo to current database table
-              defaultPath: '~/foo.csv'
-            });
-            const fileType: 'json' | 'csv' = exportPath.substring(
-              exportPath.lastIndexOf('.') + 1
-            );
+            // const exportPath = dialog.showSaveDialog(this.mainWindow, {
+            //   filters: [
+            //     { name: 'JSON', extensions: ['json'] },
+            //     { name: 'CSV', extensions: ['csv'] }
+            //   ],
+            //   title: 'Export a database',
+            //   // @TODO: Change foo to current database table
+            //   defaultPath: '~/foo.csv'
+            // });
+            // const fileType: 'json' | 'csv' = exportPath.substring(
+            //   exportPath.lastIndexOf('.') + 1
+            // );
             // await exportFile(fileType, exportPath, {
             //   // @TODO: HARDCODE
             //   table: 'albums'
@@ -246,25 +246,31 @@ export default class MenuBuilder {
         {
           label: 'Learn More',
           click() {
-            shell.openExternal('https://github.com/amilajack/falcon');
+            shell.openExternal('https://github.com/falcon-client/falcon');
           }
         },
         {
           label: 'Documentation',
           click() {
-            shell.openExternal('https://github.com/amilajack/falcon#readme');
+            shell.openExternal(
+              'https://github.com/falcon-client/falcon#readme'
+            );
           }
         },
         {
           label: 'Community Discussions',
           click() {
-            shell.openExternal('https://github.com/amilajack/falcon/issues');
+            shell.openExternal(
+              'https://github.com/falcon-client/falcon/issues'
+            );
           }
         },
         {
           label: 'Search Issues',
           click() {
-            shell.openExternal('https://github.com/amilajack/falcon/issues');
+            shell.openExternal(
+              'https://github.com/falcon-client/falcon/issues'
+            );
           }
         }
       ]
@@ -345,25 +351,31 @@ export default class MenuBuilder {
           {
             label: 'Learn More',
             click() {
-              shell.openExternal('https://github.com/amilajack/falcon');
+              shell.openExternal('https://github.com/falcon-client/falcon');
             }
           },
           {
             label: 'Documentation',
             click() {
-              shell.openExternal('https://github.com/amilajack/falcon#readme');
+              shell.openExternal(
+                'https://github.com/falcon-client/falcon#readme'
+              );
             }
           },
           {
             label: 'Community Discussions',
             click() {
-              shell.openExternal('https://github.com/amilajack/falcon/issues');
+              shell.openExternal(
+                'https://github.com/falcon-client/falcon/issues'
+              );
             }
           },
           {
             label: 'Search Issues',
             click() {
-              shell.openExternal('https://github.com/amilajack/falcon/issues');
+              shell.openExternal(
+                'https://github.com/falcon-client/falcon/issues'
+              );
             }
           }
         ]

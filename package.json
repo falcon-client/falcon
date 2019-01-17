@@ -108,7 +108,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/amilajack/falcon.git"
+    "url": "git+https://github.com/falcon-client/falcon.git"
   },
   "author": {
     "name": "The Falcon Team",
@@ -116,9 +116,9 @@
     "url": "https://github.com/falcon-client"
   },
   "bugs": {
-    "url": "https://github.com/amilajack/falcon/issues"
+    "url": "https://github.com/falcon-client/falcon/issues"
   },
-  "homepage": "https://github.com/amilajack/falcon#readme",
+  "homepage": "https://github.com/falcon-client/falcon#readme",
   "jest": {
     "testEnvironment": "node",
     "moduleNameMapper": {
