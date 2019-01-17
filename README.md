@@ -8,8 +8,8 @@
 ```bash
 git clone https://github.com/amilajack/falcon.git
 cd falcon
-lerna bootstrap
-lerna run build
+yarn
+yarn build
 yarn dev
 
 # Starting the app minimized

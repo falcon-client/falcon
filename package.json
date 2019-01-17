@@ -4,8 +4,12 @@
   "version": "0.0.8",
   "erbVersion": "0.13.1",
   "description": "A fast, modern, and extensible database client",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "build": "concurrently \"yarn build-main\" \"yarn build-renderer\"",
+    "build": "lerna run build && concurrently \"yarn build-main\" \"yarn build-renderer\"",
     "build-dll": "cross-env NODE_ENV=development node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.dev.dll.js --colors",
     "build-main": "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.main.prod.js --colors",
     "build-renderer": "cross-env NODE_ENV=production node --trace-warnings -r babel-register ./node_modules/webpack/bin/webpack --config webpack.config.renderer.prod.js --colors && mv app/dist/service-worker.prod.js app/",
@@ -163,7 +167,7 @@
     "css-loader": "^1.0.0",
     "del": "^3.0.0",
     "detect-port": "^1.2.3",
-    "electron": "2.0.5",
+    "electron": "^4.0.1",
     "electron-builder": "^20.26.0",
     "electron-devtools-installer": "^2.2.4",
     "electron-rebuild": "^1.8.1",
