@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import NProgress from 'nprogress';
-import { Button, Tab } from '@falcon-client/falcon-ui';
+import { Button } from '@falcon-client/falcon-ui';
 import ListSymbol from './ListSymbol';
 
 type Props = {
@@ -78,14 +78,14 @@ export default class Header extends Component<Props, {}> {
           </span>
         </div>
         <div className="Header--container Header--container-hidden">
-          <div
+          <Button
             className="Header--button ion-android-refresh"
-            data-e2e="header-connection-refresh-button"
+            e2eData="header-connection-refresh-button"
             onClick={() => this.props.onRefreshClick()}
           />
-          <div
+          <Button
             className="Header--button ion-android-add"
-            data-e2e="header-create-new-connection-button"
+            e2eData="header-create-new-connection-button"
             onClick={() => this.props.history.push('/login')}
           />
         </div>

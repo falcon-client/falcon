@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import { remote, ipcRenderer } from 'electron';
 import { connect } from 'react-redux';
+import { Button } from '@falcon-client/falcon-ui';
 import { OPEN_FILE_CHANNEL } from '../types/channels';
 import { setDatabasePath } from '../actions/index';
 
@@ -78,15 +79,12 @@ class Login extends Component<Props, State> {
     const { errorMessages, connectionName, databasePath } = this.state;
     return (
       <div className="Login">
-        <div className="Login--container" data-e2e="login-container">
+        <div className="Login--container" e2eData="login-container">
           <div className="row no-gutters">
             <div className="col-12 row-margin text-center">
               <h2 className="Login--header">Create Connection</h2>
               {errorMessages.map(e => (
-                <div
-                  data-e2e="login-error-message-box"
-                  className="Login--alert"
-                >
+                <div e2eData="login-error-message-box" className="Login--alert">
                   {e.message}
                 </div>
               ))}
@@ -99,7 +97,7 @@ class Login extends Component<Props, State> {
                 placeholder="My first connection"
                 value={connectionName}
                 type="text"
-                data-e2e="create-connection-name"
+                e2eData="create-connection-name"
                 onChange={e =>
                   this.setState({ connectionName: e.target.value })
                 }
@@ -110,20 +108,20 @@ class Login extends Component<Props, State> {
               <input
                 placeholder="/Desktop/sqlite.db"
                 value={databasePath}
-                data-e2e="create-connection-database-name"
+                e2eData="create-connection-database-name"
                 onChange={e => this.setState({ databasePath: e.target.value })}
               />
             </div>
             <div className="col-2" style={buttonStyle}>
-              <button onClick={this.handleDatabasePathSelection} type="button">
+              <Button onClick={this.handleDatabasePathSelection}>
                 Choose Path
-              </button>
+              </Button>
             </div>
             <div className="col-12 row-margin Login--submit-button-container">
               <div
                 className="Login--submit-button"
                 onClick={() => this.handleConnect()}
-                data-e2e="create-connection-submit"
+                e2eData="create-connection-submit"
               >
                 Connect
               </div>

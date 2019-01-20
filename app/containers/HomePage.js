@@ -4,6 +4,13 @@ import React, { Component } from 'react';
 import { ResizableBox } from 'react-resizable';
 import { ipcRenderer } from 'electron';
 import { Switch, Route } from 'react-router';
+import {
+  Tabs,
+  Tab,
+  TabPanel,
+  TabList,
+  HTMLTabs
+} from '@falcon-client/falcon-ui';
 import Loadable from 'react-loadable';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
@@ -47,6 +54,7 @@ type State = {
   widthSidebar: number, // 200
   widthGrid: number, // window.innerWidth - 200
   databaseName: ?string,
+  selectedTabIndex: number,
   selectedTable: ?TableType,
   selectedConnection: ?connectionType,
   tableColumns: Array<TableColumnType>,
@@ -74,6 +82,7 @@ export default class HomePage extends Component<Props, State> {
     // @HACK: HARDCODE
     databaseType: 'SQLite',
     databaseVersion: '',
+    selectedTabIndex: 0,
     selectedTable: null,
     selectedConnection: null,
     tableColumns: [],
@@ -245,6 +254,10 @@ export default class HomePage extends Component<Props, State> {
     });
   };
 
+  onTabSelect = (index: number, event: SyntheticEvent) => {
+    this.setState({ selectedTabIndex: index });
+  };
+
   /**
    * Upon mounting, component fetches initial database data and configures
    * grid/sidebar resizing data. Also core
@@ -299,11 +312,12 @@ export default class HomePage extends Component<Props, State> {
     const sidebar = document.querySelector('.Sidebar');
     if (grid && sidebar) {
       const height = 32 + 10 + 21 + 15;
-      grid.style.height = `${window.innerHeight - height}px`;
+      // -32 for Tabs Height
+      grid.style.height = `${window.innerHeight - height - 32}px`;
       sidebar.style.height = `${window.innerHeight - height + 40}px`;
       // If the window is resized, change the height of the grid repsectively
       window.onresizeFunctions['resize-grid-resize'] = () => {
-        grid.style.height = `${window.innerHeight - height}px`;
+        grid.style.height = `${window.innerHeight - height - 32}px`;
         sidebar.style.height = `${window.innerHeight - height + 40}px`;
       };
     }
@@ -358,96 +372,115 @@ export default class HomePage extends Component<Props, State> {
                   activeConnections={this.state.activeConnections}
                 />
               </ResizableBox>
-              <div
-                className="Grid"
-                style={{
-                  position: 'relative',
-                  width: this.state.widthGrid
-                }}
-              >
-                <Switch>
-                  <Route
-                    exact
-                    strict
-                    path="/login"
-                    render={() => (
-                      <LoginPage
-                        connectionManager={this.connectionManager}
-                        onSuccess={() => {
-                          this.setConnections();
-                          this.props.history.push('/content');
-                        }}
-                      />
-                    )}
-                  />
-                  <Route
-                    exact
-                    strict
-                    path="/content"
-                    render={() =>
-                      this.state.selectedTable ? (
-                        <ContentPage
-                          table={{
-                            name: this.state.selectedTable.name,
-                            columns: this.state.tableColumns,
-                            rows: this.state.rows
+              <div>
+                <Tabs
+                  width={this.state.widthGrid}
+                  selectedIndex={this.state.selectedTabIndex}
+                  onSelect={this.onTabSelect}
+                >
+                  <TabList
+                    clientWidth={this.state.widthGrid}
+                    minTabWidth={45}
+                    maxTabWidth={243}
+                    tabOverlapDistance={0}
+                  >
+                    <Tab title="falcon-ui" />
+                    <Tab title="compat-db" />
+                  </TabList>
+                </Tabs>
+                <div
+                  className="Grid"
+                  style={{
+                    position: 'relative',
+                    width: this.state.widthGrid
+                  }}
+                >
+                  <Switch>
+                    <Route
+                      exact
+                      strict
+                      path="/login"
+                      render={() => (
+                        <LoginPage
+                          connectionManager={this.connectionManager}
+                          onSuccess={() => {
+                            this.setConnections();
+                            this.props.history.push('/content');
                           }}
                         />
-                      ) : null
-                    }
-                  />
-                  <Route
-                    exact
-                    strict
-                    path="/structure"
-                    render={() => (
-                      <StructurePage
-                        tableColumns={this.state.tableColumns}
-                        tableDefinition={this.state.tableDefinition}
-                        setRefreshQueryFn={() =>
-                          this.setRefreshQueryFn(() =>
-                            this.onTableSelect(this.state.selectedTable)
-                          )
-                        }
-                      />
-                    )}
-                  />
-                  <Route
-                    exact
-                    strict
-                    path="/query"
-                    render={() => (
-                      <QueryPage
-                        tableColumns={this.state.tableColumns}
-                        setRefreshQueryFn={e => this.setRefreshQueryFn(e)}
-                        executeQuery={query => this.executeQuery(query)}
-                        sqlFormatter={this.sqlFormatter}
-                      />
-                    )}
-                  />
-                  <Route
-                    exact
-                    strict
-                    path="/graph"
-                    render={() =>
-                      this.core &&
-                      this.core.connection &&
-                      this.state.selectedConnection &&
-                      this.state.selectedConnection.database ? (
-                        <GraphPage
-                          databasePath={this.state.selectedConnection.database}
-                          connection={this.core.connection}
+                      )}
+                    />
+                    <Route
+                      exact
+                      strict
+                      path="/content"
+                      render={() =>
+                        this.state.selectedTable ? (
+                          <ContentPage
+                            table={{
+                              name: this.state.selectedTable.name,
+                              columns: this.state.tableColumns,
+                              rows: this.state.rows
+                            }}
+                          />
+                        ) : null
+                      }
+                    />
+                    <Route
+                      exact
+                      strict
+                      path="/structure"
+                      render={() => (
+                        <StructurePage
+                          tableColumns={this.state.tableColumns}
+                          tableDefinition={this.state.tableDefinition}
+                          setRefreshQueryFn={() =>
+                            this.setRefreshQueryFn(() =>
+                              this.onTableSelect(this.state.selectedTable)
+                            )
+                          }
                         />
-                      ) : null
-                    }
-                  />
-                  <Route
-                    exact
-                    strict
-                    path="/logs"
-                    render={() => <LogPage logs={this.state.logs} />}
-                  />
-                </Switch>
+                      )}
+                    />
+                    <Route
+                      exact
+                      strict
+                      path="/query"
+                      render={() => (
+                        <QueryPage
+                          tableColumns={this.state.tableColumns}
+                          setRefreshQueryFn={e => this.setRefreshQueryFn(e)}
+                          executeQuery={query => this.executeQuery(query)}
+                          sqlFormatter={this.sqlFormatter}
+                        />
+                      )}
+                    />
+                    <Route
+                      exact
+                      strict
+                      path="/graph"
+                      render={() =>
+                        this.core &&
+                        this.core.connection &&
+                        this.state.selectedConnection &&
+                        this.state.selectedConnection.database ? (
+                          <GraphPage
+                            databasePath={
+                              this.state.selectedConnection.database
+                            }
+                            connection={this.core.connection}
+                          />
+                        ) : null
+                      }
+                    />
+                    <Route
+                      exact
+                      strict
+                      path="/logs"
+                      render={() => <LogPage logs={this.state.logs} />}
+                    />
+                  </Switch>
+                </div>
               </div>
               <Footer
                 offset={this.state.widthSidebar}

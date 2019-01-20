@@ -1,35 +1,28 @@
 import * as React from 'react';
 
 type Props = {
-  color: string,
-  disabled: boolean,
-  onClick: ?Function,
+  disabled: ?boolean,
   className: ?string,
   style: ?Object,
-  children: ?[React.Node]
+  children: ?[React.Node],
+  onClick: ?Function,
+  e2eData: ?string
 };
 
 Button.defaultProps = {
-  color: '#fff',
   disabled: false
 };
 
-const defaultStyle = {
-  color: '#fff',
-  backgroundColor: '#6c757d',
-  border: '1px solid #6c757d',
-  textAlign: 'center',
-  borderRadius: '8px'
-};
-
 export default function Button(props: Props) {
-  const { disabled, className, style, children } = props;
+  const { disabled, className, style, children, onClick, e2eData } = props;
 
   return (
     <button
       disabled={disabled}
-      className={className}
-      style={style || defaultStyle}
+      e2eData={e2eData}
+      className={`Button ${className}`}
+      style={style}
+      onClick={onClick}
     >
       {children}
     </button>

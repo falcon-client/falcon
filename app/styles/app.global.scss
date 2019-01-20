@@ -2,24 +2,28 @@
 // 3rd Party Libraries
 //
 
-$font-family-sans-serif: "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, sans-serif;
-$font-family-serif: "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, sans-serif;
-$font-family-monospace: "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, sans-serif;
-$font-family-base: "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, sans-serif;
+$font-family-sans-serif: 'Avenir Next', Avenir, 'Segoe UI', Roboto,
+  'Helvetica Neue', Helvetica, sans-serif;
+$font-family-serif: 'Avenir Next', Avenir, 'Segoe UI', Roboto, 'Helvetica Neue',
+  Helvetica, sans-serif;
+$font-family-monospace: 'Avenir Next', Avenir, 'Segoe UI', Roboto,
+  'Helvetica Neue', Helvetica, sans-serif;
+$font-family-base: 'Avenir Next', Avenir, 'Segoe UI', Roboto, 'Helvetica Neue',
+  Helvetica, sans-serif;
 $headings-font-family: $font-family-base;
 
 // Create grayscale
-$gray-dark:                 #767676 !default;
-$gray:                      gray !default;
-$gray-light:                #F4F4F4 !default;
-$gray-lighter:              white !default;
-$gray-lightest:             white !default;
+$gray-dark: #767676 !default;
+$gray: gray !default;
+$gray-light: #f4f4f4 !default;
+$gray-lighter: white !default;
+$gray-lightest: white !default;
 
-@import "~bootstrap/scss/bootstrap-grid.scss";
-@import "~ionicons-temp/scss/ionicons.scss";
-@import "~nprogress/nprogress.css";
-@import "~react-table/react-table.css";
-@import "../../packages/graphql-voyager/styles.css";
+@import '~bootstrap/scss/bootstrap-grid.scss';
+@import '~ionicons-temp/scss/ionicons.scss';
+@import '~nprogress/nprogress.css';
+@import '~react-table/react-table.css';
+@import '../../packages/graphql-voyager/styles.css';
 
 .Select-menu-outer {
   position: relative;
@@ -30,26 +34,26 @@ $gray-lightest:             white !default;
 // Custom Compoments
 //
 
-@import "./Header.scss";
-@import "./Tabs.scss";
-@import "./Grid.scss";
-@import "./Sidebar.scss";
-@import "./Footer.scss";
-@import "./Structure.scss";
-@import "./Login.scss";
-@import "./ListSymbol.scss";
-@import "./VirtualList.scss";
-@import "./QueryPage.scss";
-@import "./HomePage.scss";
-@import "./Table.scss";
-@import "./Graph.scss";
+@import './Header.scss';
+@import './Grid.scss';
+@import './Sidebar.scss';
+@import './Footer.scss';
+@import './Structure.scss';
+@import './Login.scss';
+@import './ListSymbol.scss';
+@import './VirtualList.scss';
+@import './QueryPage.scss';
+@import './HomePage.scss';
+@import './Table.scss';
+@import './Graph.scss';
 
 //
 // Global style overrides
 //
 
 body {
-  font-family: "Avenir Next", Avenir, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, sans-serif;
+  font-family: 'Avenir Next', Avenir, 'Segoe UI', Roboto, 'Helvetica Neue',
+    Helvetica, sans-serif;
   margin: 0;
 }
 
@@ -79,7 +83,7 @@ body {
   background: white;
 }
 .ace_gutter-cell {
-  color: #D8D8D8;
+  color: #d8d8d8;
 }
 .LogPage.ReactTable {
   height: 100%;

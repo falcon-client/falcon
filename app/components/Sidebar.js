@@ -60,7 +60,7 @@ export default function Sidebar(props: Props) {
           : 'Sidebar--list-item'
       }
       style={{ paddingLeft: 40 }}
-      data-e2e="Sidebar--list-item"
+      e2eData="Sidebar--list-item"
     >
       <ListSymbol type="table" />
       <a>{table.name}</a>

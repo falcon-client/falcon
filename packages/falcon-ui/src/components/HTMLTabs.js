@@ -21,17 +21,21 @@ let instanceId = 0;
 
 class ChromeTabs {
   constructor() {
+    console.log('In ChromeTabs constructor');
     this.draggabillyInstances = [];
   }
 
+  // @1. Should be ran after each javascript initialization of ChromeTabs
   init(el, options) {
-    this.el = el;
-    this.options = options;
+    console.log('In init');
+    this.el = el; // @1a. Root HTML element of ChromeTabs object
+    this.options = options; // @1b. { tabOverlapDistance: 14, minWidth: 45, maxWidth: 243 }
 
-    this.instanceId = instanceId;
+    this.instanceId = instanceId; // @1c. Sets which instance this ChromeTabs is
     this.el.setAttribute('data-chrome-tabs-instance-id', this.instanceId);
     instanceId += 1;
 
+    // @1d: Initializes event listeners, layout, etc.
     this.setupStyleEl();
     this.setupEvents();
     this.layoutTabs();
@@ -39,19 +43,25 @@ class ChromeTabs {
     this.setupDraggabilly();
   }
 
+  /** Utility tool that dispatches events related to chrome tabs*/
   emit(eventName, data) {
+    console.log('In emit');
     this.el.dispatchEvent(new CustomEvent(eventName, { detail: data }));
   }
 
   setupStyleEl() {
+    console.log('In setupStyleEl');
     this.animationStyleEl = document.createElement('style');
     this.el.appendChild(this.animationStyleEl);
   }
 
   setupEvents() {
+    console.log('In setupEvents');
     window.addEventListener('resize', event => this.layoutTabs());
 
-    this.el.addEventListener('dblclick', event => this.addTab());
+    this.el.addEventListener('dblclick', event => {
+      if ([this.el, this.tabContentEl].includes(event.target)) this.addTab();
+    });
 
     this.el.addEventListener('click', ({ target }) => {
       if (target.classList.contains('chrome-tab')) {
@@ -67,15 +77,20 @@ class ChromeTabs {
     });
   }
 
+  /** Returns array of all tab elements */
   get tabEls() {
+    console.log('In get tabEls');
     return Array.from(this.el.querySelectorAll('.chrome-tab'));
   }
 
   get tabContentEl() {
+    console.log('In get tabContentEl');
     return this.el.querySelector('.chrome-tabs-content');
   }
 
-  get tabWidth() {
+  /** Gets width of tabs */
+  get tabWidth(): number {
+    console.log('In get tabWidth');
     const tabsContentWidth =
       this.tabContentEl.clientWidth - this.options.tabOverlapDistance;
     const width =
@@ -90,7 +105,9 @@ class ChromeTabs {
     return this.tabWidth - this.options.tabOverlapDistance;
   }
 
+  /** Gets the positions of each tabs */
   get tabPositions() {
+    console.log('In tabPositions');
     const tabEffectiveWidth = this.tabEffectiveWidth;
     let left = 0;
     const positions = [];
@@ -102,7 +119,9 @@ class ChromeTabs {
     return positions;
   }
 
+  /** Lays out all the current tabs  */
   layoutTabs() {
+    console.log('In layoutTabs');
     const tabWidth = this.tabWidth;
 
     this.cleanUpPreviouslyDraggedTabs();
@@ -123,6 +142,7 @@ class ChromeTabs {
   }
 
   fixZIndexes() {
+    console.log('In fixZIndexes');
     const bottomBarEl = this.el.querySelector('.chrome-tabs-bottom-bar');
     const tabEls = this.tabEls;
 
@@ -137,13 +157,17 @@ class ChromeTabs {
     });
   }
 
+  /** Create a tab's HTML representation */
   createNewTabEl() {
+    console.log('In createNewTabEl');
     const div = document.createElement('div');
     div.innerHTML = tabTemplate;
     return div.firstElementChild;
   }
 
+  /** Adds additional tabs. Performs necessary HTML/CSS modifications */
   addTab(tabProperties) {
+    console.log('In addTab');
     const tabEl = this.createNewTabEl();
 
     tabEl.classList.add('chrome-tab-just-added');
@@ -159,7 +183,9 @@ class ChromeTabs {
     this.setupDraggabilly();
   }
 
+  /** Sets the selected tab. Performs necessary HTML/CSS modifications */
   setCurrentTab(tabEl) {
+    console.log('In setCurrentTab');
     const currentTab = this.el.querySelector('.chrome-tab-current');
     if (currentTab) currentTab.classList.remove('chrome-tab-current');
     tabEl.classList.add('chrome-tab-current');
@@ -168,6 +194,7 @@ class ChromeTabs {
   }
 
   removeTab(tabEl) {
+    console.log('In removeTab');
     if (tabEl.classList.contains('chrome-tab-current')) {
       if (tabEl.previousElementSibling) {
         this.setCurrentTab(tabEl.previousElementSibling);
@@ -182,7 +209,9 @@ class ChromeTabs {
     this.setupDraggabilly();
   }
 
+  /** Updates the contents of a Tab (in the TabList) */
   updateTab(tabEl, tabProperties) {
+    console.log('In updateTab');
     tabEl.querySelector('.chrome-tab-title').textContent = tabProperties.title;
     tabEl.querySelector('.chrome-tab-favicon').style.backgroundImage = `url('${
       tabProperties.favicon
@@ -190,12 +219,14 @@ class ChromeTabs {
   }
 
   cleanUpPreviouslyDraggedTabs() {
+    console.log('In cleanUpPreviouslyDraggedTabs');
     this.tabEls.forEach(tabEl =>
       tabEl.classList.remove('chrome-tab-just-dragged')
     );
   }
 
   setupDraggabilly() {
+    console.log('In setupDraggabilly');
     const tabEls = this.tabEls;
     const tabEffectiveWidth = this.tabEffectiveWidth;
     const tabPositions = this.tabPositions;
@@ -269,6 +300,7 @@ class ChromeTabs {
   }
 
   animateTabMove(tabEl, originIndex, destinationIndex) {
+    console.log('In animateTabMove');
     if (destinationIndex < originIndex) {
       tabEl.parentNode.insertBefore(tabEl, this.tabEls[destinationIndex]);
     } else {
@@ -312,18 +344,6 @@ export default class Tab extends Component {
         .querySelector('button[data-remove-tab]')
         .addEventListener('click', () => {
           chromeTabs.removeTab(el.querySelector('.chrome-tab-current'));
-        });
-
-      document
-        .querySelector('button[data-theme-toggle]')
-        .addEventListener('click', () => {
-          if (el.classList.contains('chrome-tabs-dark-theme')) {
-            document.documentElement.classList.remove('dark-theme');
-            el.classList.remove('chrome-tabs-dark-theme');
-          } else {
-            document.documentElement.classList.add('dark-theme');
-            el.classList.add('chrome-tabs-dark-theme');
-          }
         });
     }, 0);
   }

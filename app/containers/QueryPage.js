@@ -1,6 +1,7 @@
 // @flow
 import React, { Component } from 'react';
 import { ResizableBox } from 'react-resizable';
+import { Button } from '@falcon-client/falcon-ui';
 import Editor from '../components/Editor';
 import Content from '../components/Content';
 
@@ -125,7 +126,7 @@ export default class QueryPage extends Component<Props, State> {
             <div className="col-sm-4 QueryPage--actions-container">
               <div className="QueryPage--actions-container-child">
                 <input placeholder="My Query" />
-                <button>Save</button>
+                <Button>Save</Button>
               </div>
               <div className="QueryPage--actions-container-child">
                 <input type="checkbox" checked /> Auto Run

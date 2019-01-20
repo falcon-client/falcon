@@ -9,7 +9,9 @@
     "build": "cross-env NODE_ENV=production rm -rf es && babel -d es/ src/ --source-maps",
     "example": "parcel test/index.html --open",
     "test": "yarn build",
-    "watch": "cross-env NODE_ENV=development babel --out-dir es src --source-maps --watch"
+    "watch": "cross-env NODE_ENV=development babel --out-dir es src --source-maps --watch",
+    "lint-fix": "yarn --silent lint --fix; exit 0",
+    "postlint-fix": "prettier --ignore-path .eslintignore --single-quote --write '**/*.js'"
   },
   "devDependencies": {
     "react": "^16.4.1",

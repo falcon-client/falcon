@@ -27,14 +27,14 @@ export function createNewConnection(
   databaseName = path.join(__dirname, 'temp.sqlite')
 ) {
   return t
-    .click('[data-e2e="header-create-new-connection-button"]')
+    .click('[e2eData="header-create-new-connection-button"]')
     .expect(getPageUrl())
     .contains('/login')
-    .expect(Selector('[data-e2e="login-container"]').visible)
+    .expect(Selector('[e2eData="login-container"]').visible)
     .ok()
-    .typeText('[data-e2e="create-connection-name"]', connectionName)
-    .typeText('[data-e2e="create-connection-database-name"]', databaseName)
-    .click('[data-e2e="create-connection-submit"]')
+    .typeText('[e2eData="create-connection-name"]', connectionName)
+    .typeText('[e2eData="create-connection-database-name"]', databaseName)
+    .click('[e2eData="create-connection-submit"]')
     .click(
       Selector('a')
         .withExactText(connectionName)
