@@ -505,9 +505,9 @@ extsprintf@^1.2.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/extsprintf/-/extsprintf-1.4.0.tgz#e2689f8f356fad62cca65a3a91c5df5f9551692f"
 
-"falcon-core@git+ssh://git@github.com:amilajack/falcon-core.git#master":
+"falcon-core@git+ssh://git@github.com:falcon-client/falcon-core.git#master":
   version "0.1.0-4"
-  resolved "git+ssh://git@github.com:amilajack/falcon-core.git#4f939ea227b2076abf4b9892653fd715e17e7428"
+  resolved "git+ssh://git@github.com:falcon-client/falcon-core.git#4f939ea227b2076abf4b9892653fd715e17e7428"
   dependencies:
     "@falcon-client/sql-formatter" "^0.0.2-alpha.8"
     "@falcon-client/tuql" "0.0.2-alpha.8"

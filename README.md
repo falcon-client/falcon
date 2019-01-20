@@ -1,12 +1,12 @@
 # falcon
 
-[![Build Status](https://travis-ci.com/amilajack/falcon.svg?token=stGf151gAJ11ZUi8LyvG&branch=master)](https://travis-ci.com/amilajack/falcon)
+[![Build Status](https://travis-ci.com/falcon-client/falcon.svg?token=stGf151gAJ11ZUi8LyvG&branch=master)](https://travis-ci.com/falcon-client/falcon)
 ![Falcon Demo Rewrite](/internals/img/falcon-demo.png)
 
 ## Setup
 
 ```bash
-git clone https://github.com/amilajack/falcon.git
+git clone https://github.com/falcon-client/falcon.git
 cd falcon
 yarn
 yarn build
