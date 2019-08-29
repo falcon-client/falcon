@@ -70,8 +70,7 @@ before_script:
 
 script:
   - node --version
-  - lerna bootstrap
-  - lerna run build
+  - yarn build
   - |
     if [[ $TRAVIS_BRANCH == 'master' ]]; then
       yarn package-release

@@ -28,7 +28,7 @@ install:
 
 test_script:
   - node --version
-  - lerna bootstrap && lerna run build
+  - yarn build
   - yarn package
   - yarn test
   - yarn test-e2e
